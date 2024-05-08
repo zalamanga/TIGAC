@@ -45,7 +45,7 @@
             <div class="col-12 col-md-3 col-lg-2 mb-3 mb-md-0">
                 <h4 class="fs-5 fw-bold mb-3">Quick Links</h4>
                 <div class="d-flex flex-column gap-3 fs-7">
-                    <a href="#" class="text-decoration-none footer-link text-white fs-7">Home
+                    <a href="{{route('pages.index')}}" class="text-decoration-none footer-link text-white fs-7">Home
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                             viewBox="0 0 256 256">
                             <path
@@ -53,7 +53,7 @@
                             </path>
                         </svg>
                     </a>
-                    <a href="#" class="text-decoration-none footer-link text-white">About Us
+                    <a href="{{route('pages.aboutUs')}}" class="text-decoration-none footer-link text-white">About Us
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                             viewBox="0 0 256 256">
                             <path
@@ -61,7 +61,7 @@
                             </path>
                         </svg>
                     </a>
-                    <a href="#" class="text-decoration-none footer-link text-white">News
+                    <a href="{{route('pages.news')}}" class="text-decoration-none footer-link text-white">News
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                             viewBox="0 0 256 256">
                             <path
@@ -69,7 +69,7 @@
                             </path>
                         </svg>
                     </a>
-                    <a href="#" class="text-decoration-none footer-link text-white">Products
+                    <a href="{{route('pages.products')}}" class="text-decoration-none footer-link text-white">Products
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                             viewBox="0 0 256 256">
                             <path
@@ -77,7 +77,7 @@
                             </path>
                         </svg>
                     </a>
-                    <a href="#" class="text-decoration-none footer-link text-white">Contact Us
+                    <a href="{{route('pages.contactUs')}}" class="text-decoration-none footer-link text-white">Contact Us
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                             viewBox="0 0 256 256">
                             <path

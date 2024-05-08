@@ -16,20 +16,20 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto gap-3 ps-2 ps-md-0">
                     <li class="nav-item">
-                        <a class="nav-link active text-white fs-7 fw-semibold" aria-current="page" href="#">HOME</a>
+                        <a class="nav-link text-white fs-7 fw-semibold {{Route::is('pages.index') ? 'active' : ''}}" aria-current="page" href="{{route('pages.index')}}">HOME</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white fs-7 fw-semibold" aria-current="page" href="#">ABOUT
+                        <a class="nav-link text-white fs-7 fw-semibold {{Route::is('pages.aboutUs') ? 'active' : ''}}" href="{{route('pages.aboutUs')}}">ABOUT
                             US</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white fs-7 fw-semibold" href="#">NEWS</a>
+                        <a class="nav-link text-white fs-7 fw-semibold {{Route::is('pages.news') ? 'active' : ''}}" href="{{route('pages.news')}}">NEWS</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white fs-7 fw-semibold" href="#">PRODUCT</a>
+                        <a class="nav-link text-white fs-7 fw-semibold {{Route::is('pages.products') ? 'active' : ''}}" href="{{route('pages.products')}}">PRODUCTS</a>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link text-white fs-7 fw-semibold" href="#">CONTACT US</a>
+                        <a class="nav-link text-white fs-7 fw-semibold {{Route::is('pages.contactUs') ? 'active' : ''}}" href="{{route('pages.contactUs')}}">CONTACT US</a>
                     </li>
                 </ul>
             </div>

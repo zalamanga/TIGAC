@@ -1,7 +1,9 @@
 <div class="container pt-3 pb-5 py-md-5">
     <div class="row flex-column-reverse flex-lg-row gap-3 gap-lg-0">
         <div class="col-12 col-lg-6">
-            <img src="{{ asset('images/logo.png') }}" alt="logo" width="150" class="bg-dark px-3 py-2 rounded mb-3">
+            @if (!Route::is('pages.aboutUs'))
+                <img src="{{ asset('images/logo.png') }}" alt="logo" width="150" class="bg-dark px-3 py-2 rounded mb-3">
+            @endif
             <h2 class="display-2 fw-bolder m-0">ABOUT US</h2>
             <div style="width: 220px; height: 7px" class="bg-primary rounded-pill mb-4"></div>
             <p class="text-start text-muted mb-3 fs-6">Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -26,7 +28,14 @@
                     <p class="fs-4 fw-bolder text-primary">35+</p>
                 </div>
             </div>
-            <a href="#" class="btn btn-primary mt-5 rounded-pill btn-lg">Read More</a>
+            @if (!Route::is('pages.aboutUs'))
+                <a href="{{route('pages.aboutUs')}}" class="btn btn-primary mt-5 rounded-pill btn-lg">Read More</a>
+            @else
+                <div class="mt-5 px-3 px-md-0">
+                    <h3 class="fw-semibold mb-5 fs-4">Our regard</h3>
+                    <p>CEO TIGAC</p>
+                </div>
+            @endif
         </div>
         <div class="col-12 col-lg-6">
             <img src="{{ asset('images/about.png') }}" alt="about" class="img-fluid">
