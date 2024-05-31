@@ -14,7 +14,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('pages.index');
+    $fileProducts = file_get_contents('../public/data/products.json');
+    $data = json_decode($fileProducts, true);
+    $products = $data['products'];
+
+    return view('pages.index', compact('products'));
 })->name('pages.index');
 
 Route::get('/about', function () {
@@ -26,8 +30,23 @@ Route::get('/news', function () {
 })->name('pages.news');
 
 Route::get('/products', function () {
-    return view('pages.products');
+    $fileProducts = file_get_contents('../public/data/products.json');
+    $data = json_decode($fileProducts, true);
+    $products = $data['products'];
+
+    return view('pages.products',compact('products'));
 })->name('pages.products');
+
+Route::get('/products/{id}', function (int $id) {
+    $fileProducts = file_get_contents('../public/data/products.json');
+    $data = json_decode($fileProducts, true);
+
+    $findIndex = array_search($id, array_column($data['products'], 'id'));
+
+    $product = $data['products'][$findIndex];
+
+    return view('pages.productsDetail', compact('product'));
+})->name('pages.products.detail');
 
 Route::get('/contact', function () {
     return view('pages.contactUs');

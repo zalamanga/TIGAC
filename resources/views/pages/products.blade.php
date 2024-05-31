@@ -3,12 +3,11 @@
     <div class="container mt-md-4 mb-3 mb-md-5">
         <button type="button" class="btn btn-primary d-block d-md-none ms-auto mb-3" data-bs-toggle="modal"
             data-bs-target="#staticBackdrop">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
-            viewBox="0 0 256 256">
-            <path
-                d="M40,88H73a32,32,0,0,0,62,0h81a8,8,0,0,0,0-16H135a32,32,0,0,0-62,0H40a8,8,0,0,0,0,16Zm64-24A16,16,0,1,1,88,80,16,16,0,0,1,104,64ZM216,168H199a32,32,0,0,0-62,0H40a8,8,0,0,0,0,16h97a32,32,0,0,0,62,0h17a8,8,0,0,0,0-16Zm-48,24a16,16,0,1,1,16-16A16,16,0,0,1,168,192Z">
-            </path>
-        </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256">
+                <path
+                    d="M40,88H73a32,32,0,0,0,62,0h81a8,8,0,0,0,0-16H135a32,32,0,0,0-62,0H40a8,8,0,0,0,0,16Zm64-24A16,16,0,1,1,88,80,16,16,0,0,1,104,64ZM216,168H199a32,32,0,0,0-62,0H40a8,8,0,0,0,0,16h97a32,32,0,0,0,62,0h17a8,8,0,0,0,0-16Zm-48,24a16,16,0,1,1,16-16A16,16,0,0,1,168,192Z">
+                </path>
+            </svg>
         </button>
 
         {{-- Modal filters --}}
@@ -122,11 +121,11 @@
             </div>
             <div class="col-12 col-md-9 col-lg-8">
                 <div class="row justify-content-start ms-1 mx-auto gap-3 mx-md-0 justify-content-md-end ms-md-0 gap-md-4">
-                    @for ($i = 0; $i < 9; $i++)
+                    @foreach ($products as $product)
                         <div class="col-5 col-md-4 col-lg-3 product p-0 mb-4">
                             <div
                                 class="product-header bg-secondary rounded d-flex align-items-center mb-3 position-relative">
-                                <img src="{{ asset('/images/logo.png') }}" alt="image-default" class="img-fluid">
+                                <img src="{{ asset('/images/products/'. $product['image']) }}" alt="{{$product['name']}}" class="img-fluid rounded">
                                 <button type="button"
                                     class="btn btn-sm btn-secondary p-1 me-3 mt-3 rounded-circle position-absolute top-0 end-0">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
@@ -138,12 +137,11 @@
                                 </button>
                             </div>
                             <div class="d-flex align-items-center justify-content-between mb-2">
-                                <a href="#"
-                                    class="link text-white fs-5 fw-bold m-0 text-decoration-none p-0">Airpods
-                                    Max</a>
-                                <p class="fs-7 text-warning m-0 p-0">$400.00</p>
+                                <a href="{{Route('pages.products.detail', $product['id'])}}"
+                                    class="link text-white fs-5 fw-bold m-0 text-decoration-none p-0 text-truncate">{{$product['name']}}</a>
+                                <p class="fs-7 text-warning m-0 p-0">Rp.{{number_format($product['price'])}}</p>
                             </div>
-                            <p class="mb-2 fs-7 text-white lh-sm">A perfect balance of high-fidelity audio</p>
+                            <p class="mb-2 fs-7 text-white lh-sm">A perfect liquid ever</p>
                             <div class="d-flex align-items-center gap-1 text-warning">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                     fill="currentColor" viewBox="0 0 256 256">
@@ -179,7 +177,7 @@
                                 </p>
                             </div>
                         </div>
-                    @endfor
+                    @endforeach
                 </div>
             </div>
         </div>

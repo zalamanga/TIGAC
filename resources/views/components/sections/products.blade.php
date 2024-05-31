@@ -4,7 +4,7 @@
         <div class="d-flex gap-2 align-items-center category-filters">
             <div class="dropdown">
                 <button
-                    class="badge badge-light transition-all d-flex align-items-center rounded-pill text-bg-light py-2 px-3 gap-2"
+                    class="badge badge-light border-0 transition-all d-flex align-items-center rounded-pill text-bg-light py-2 px-3 gap-2"
                     data-bs-toggle="dropdown" aria-expanded="false" type="button">All
                     Category
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -21,20 +21,20 @@
                 </ul>
             </div>
             <button
-                class="badge badge-light transition-all d-flex align-items-center rounded-pill text-bg-light py-2 px-3 gap-2">HexOhm
+                class="badge badge-light border-0 transition-all d-flex align-items-center rounded-pill text-bg-light py-2 px-3 gap-2">HexOhm
             </button>
             <button
-                class="badge badge-light transition-all d-flex align-items-center rounded-pill text-bg-light py-2 px-3 gap-2">eLiquids
+                class="badge badge-light border-0 transition-all d-flex align-items-center rounded-pill text-bg-light py-2 px-3 gap-2">eLiquids
             </button>
             <button
-                class="badge badge-light transition-all d-flex align-items-center rounded-pill text-bg-light py-2 px-3 gap-2">Molicel Vape Battery
+                class="badge badge-light border-0 transition-all d-flex align-items-center rounded-pill text-bg-light py-2 px-3 gap-2">Molicel Vape Battery
             </button>
             <button
-                class="badge badge-light transition-all d-flex align-items-center rounded-pill text-bg-light py-2 px-3 gap-2">EZDripper
+                class="badge badge-light border-0 transition-all d-flex align-items-center rounded-pill text-bg-light py-2 px-3 gap-2">EZDripper
             </button>
         </div>
         <button
-            class="badge d-flex align-items-center rounded-pill text-bg-light py-2 px-3 gap-2 badge-light transition-all">Filters
+            class="badge d-flex border-0 align-items-center rounded-pill text-bg-light py-2 px-3 gap-2 badge-light transition-all">Filters
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                 viewBox="0 0 256 256">
                 <path
@@ -44,10 +44,10 @@
         </button>
     </div>
     <div class="row justify-content-evenly justify-content-md-start gap-md-4 gap-lg-3">
-        @for ($i = 0; $i < 10; $i++)
+        @foreach($products as $product)
             <div class="col-5 col-md-4 col-lg-3 product p-0 mb-4">
                 <div class="product-header bg-secondary rounded d-flex align-items-center mb-3 position-relative">
-                    <img src="{{ asset('/images/logo.png') }}" alt="image-default" class="img-fluid">
+                    <img src="{{ asset('/images/products/'. $product['image']) }}" alt="{{$product['name']}}" class="img-fluid rounded">
                     <button type="button"
                         class="btn btn-sm btn-secondary p-1 me-3 mt-3 rounded-circle position-absolute top-0 end-0">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
@@ -59,10 +59,10 @@
                     </button>
                 </div>
                 <div class="d-flex align-items-center justify-content-between mb-2">
-                    <a href="#" class="link text-white fs-5 fw-bold m-0 text-decoration-none p-0">Airpods Max</a>
-                    <p class="fs-7 text-warning m-0 p-0">$400.00</p>
+                    <a href="{{Route('pages.products.detail', $product['id'])}}" class="link text-white fs-5 fw-bold m-0 text-decoration-none p-0 text-truncate">{{$product['name']}}</a>
+                    <p class="fs-7 text-warning m-0 p-0">Rp.{{number_format($product['price'])}}</p>
                 </div>
-                <p class="mb-2 fs-7 text-white lh-sm">A perfect balance of high-fidelity audio</p>
+                <p class="mb-2 fs-7 text-white lh-sm">A perfect liquid ever</p>
                 <div class="d-flex align-items-center gap-1 text-warning">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                         viewBox="0 0 256 256">
@@ -98,6 +98,6 @@
                     </p>
                 </div>
             </div>
-        @endfor
+        @endforeach
     </div>
 </div>

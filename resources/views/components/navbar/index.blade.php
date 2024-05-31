@@ -33,7 +33,7 @@
                             <a class="nav-link text-white fs-7 fw-semibold {{Route::is('pages.news') ? 'active' : ''}}" href="{{route('pages.news')}}">NEWS</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white fs-7 fw-semibold {{Route::is('pages.products') ? 'active' : ''}}" href="{{route('pages.products')}}">PRODUCTS</a>
+                            <a class="nav-link text-white fs-7 fw-semibold {{Route::is('pages.products') || Route::is('pages.products.detail') ? 'active' : ''}}" href="{{route('pages.products')}}">PRODUCTS</a>
                         </li>
                         <li class="nav-item ">
                             <a class="nav-link text-white fs-7 fw-semibold {{Route::is('pages.contactUs') ? 'active' : ''}}" href="{{route('pages.contactUs')}}">CONTACT US</a>
