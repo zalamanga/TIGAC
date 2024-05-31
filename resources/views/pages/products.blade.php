@@ -25,20 +25,20 @@
                             <div class="mb-3">
                                 <label for="category" class="form-label text-black mb-2 fs-4 fw-bold">Category</label>
                                 <div class="mb-1 fs-7">
-                                    <input type="checkbox" name="mens" id="mens" class="form-check-input">
-                                    <label for="mens" class="form-label text-black mb-2">Mens</label>
+                                    <input type="checkbox" name="HexOhm" id="HexOhm" class="form-check-input">
+                                    <label for="HexOhm" class="form-label text-black mb-2">HexOhm</label>
                                 </div>
                                 <div class="mb-1 fs-7">
-                                    <input type="checkbox" name="womans" id="womans" class="form-check-input">
-                                    <label for="womans" class="form-label text-black mb-2">Womans</label>
+                                    <input type="checkbox" name="eLiquids" id="eLiquids" class="form-check-input">
+                                    <label for="eLiquids" class="form-label text-black mb-2">eLiquids</label>
                                 </div>
                                 <div class="mb-1 fs-7">
-                                    <input type="checkbox" name="electronic" id="electronic" class="form-check-input">
-                                    <label for="electronic" class="form-label text-black mb-2">Electronic</label>
+                                    <input type="checkbox" name="Vape Battery" id="Vape Battery" class="form-check-input">
+                                    <label for="Vape Battery" class="form-label text-black mb-2">Vape Battery</label>
                                 </div>
                                 <div class="mb-1 fs-7">
-                                    <input type="checkbox" name="watch" id="watch" class="form-check-input">
-                                    <label for="watch" class="form-label text-black mb-2">Watch</label>
+                                    <input type="checkbox" name="EZDripper" id="EZDripper" class="form-check-input">
+                                    <label for="EZDripper" class="form-label text-black mb-2">EZDripper</label>
                                 </div>
                             </div>
                             <div class="mb-3">
@@ -78,20 +78,20 @@
                     <div class="mb-3">
                         <label for="category" class="form-label text-white mb-2 fs-4 fw-bold">Category</label>
                         <div class="mb-1 fs-7">
-                            <input type="checkbox" name="mens" id="mens" class="form-check-input">
-                            <label for="mens" class="form-label text-white mb-2">Mens</label>
+                            <input type="checkbox" name="HexOhm" id="HexOhm" class="form-check-input">
+                            <label for="HexOhm" class="form-label text-white mb-2">HexOhm</label>
                         </div>
                         <div class="mb-1 fs-7">
-                            <input type="checkbox" name="womans" id="womans" class="form-check-input">
-                            <label for="womans" class="form-label text-white mb-2">Womans</label>
+                            <input type="checkbox" name="eLiquids" id="eLiquids" class="form-check-input">
+                            <label for="eLiquids" class="form-label text-white mb-2">eLiquids</label>
                         </div>
                         <div class="mb-1 fs-7">
-                            <input type="checkbox" name="electronic" id="electronic" class="form-check-input">
-                            <label for="electronic" class="form-label text-white mb-2">Electronic</label>
+                            <input type="checkbox" name="Vape Battery" id="Vape Battery" class="form-check-input">
+                            <label for="Vape Battery" class="form-label text-white mb-2">Vape Battery</label>
                         </div>
                         <div class="mb-1 fs-7">
-                            <input type="checkbox" name="watch" id="watch" class="form-check-input">
-                            <label for="watch" class="form-label text-white mb-2">Watch</label>
+                            <input type="checkbox" name="EZDripper" id="EZDripper" class="form-check-input">
+                            <label for="EZDripper" class="form-label text-white mb-2">EZDripper</label>
                         </div>
                     </div>
                     <div class="mb-3">
@@ -144,7 +144,7 @@
                                 <p class="fs-7 text-warning m-0 p-0">$400.00</p>
                             </div>
                             <p class="mb-2 fs-7 text-white lh-sm">A perfect balance of high-fidelity audio</p>
-                            <div class="d-flex align-items-center mb-4 gap-1 text-warning">
+                            <div class="d-flex align-items-center gap-1 text-warning">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                     fill="currentColor" viewBox="0 0 256 256">
                                     <path
@@ -178,7 +178,6 @@
                                 <p class="text-white fs-7 m-0 p-0">(121)</p>
                                 </p>
                             </div>
-                            <button class="btn btn-sm rounded-pill px-3 btn-primary">Add to Cart</button>
                         </div>
                     @endfor
                 </div>

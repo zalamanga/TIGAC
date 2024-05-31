@@ -1,7 +1,7 @@
 <div>
     <div class="text-center mb-5 mx-auto" style="width:350px">
         <h2 class="fw-bold text-white fs-1 mb-3">What We Offer</h2>
-        <p class="text-secondary">
+        <p class="text-white">
             Interesting becoming our clients? Thease are all that we have.
         </p>
     </div>

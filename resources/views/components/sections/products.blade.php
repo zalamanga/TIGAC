@@ -21,40 +21,16 @@
                 </ul>
             </div>
             <button
-                class="badge badge-light transition-all d-flex align-items-center rounded-pill text-bg-light py-2 px-3 gap-2">Mens
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                    viewBox="0 0 256 256">
-                    <path
-                        d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z">
-                    </path>
-                </svg>
+                class="badge badge-light transition-all d-flex align-items-center rounded-pill text-bg-light py-2 px-3 gap-2">HexOhm
             </button>
             <button
-                class="badge badge-light transition-all d-flex align-items-center rounded-pill text-bg-light py-2 px-3 gap-2">Womens
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                    viewBox="0 0 256 256">
-                    <path
-                        d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z">
-                    </path>
-                </svg>
+                class="badge badge-light transition-all d-flex align-items-center rounded-pill text-bg-light py-2 px-3 gap-2">eLiquids
             </button>
             <button
-                class="badge badge-light transition-all d-flex align-items-center rounded-pill text-bg-light py-2 px-3 gap-2">Electronics
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                    viewBox="0 0 256 256">
-                    <path
-                        d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z">
-                    </path>
-                </svg>
+                class="badge badge-light transition-all d-flex align-items-center rounded-pill text-bg-light py-2 px-3 gap-2">Molicel Vape Battery
             </button>
             <button
-                class="badge badge-light transition-all d-flex align-items-center rounded-pill text-bg-light py-2 px-3 gap-2">Beauty
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                    viewBox="0 0 256 256">
-                    <path
-                        d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z">
-                    </path>
-                </svg>
+                class="badge badge-light transition-all d-flex align-items-center rounded-pill text-bg-light py-2 px-3 gap-2">EZDripper
             </button>
         </div>
         <button
@@ -87,7 +63,7 @@
                     <p class="fs-7 text-warning m-0 p-0">$400.00</p>
                 </div>
                 <p class="mb-2 fs-7 text-white lh-sm">A perfect balance of high-fidelity audio</p>
-                <div class="d-flex align-items-center mb-4 gap-1 text-warning">
+                <div class="d-flex align-items-center gap-1 text-warning">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                         viewBox="0 0 256 256">
                         <path
@@ -121,7 +97,6 @@
                     <p class="text-white fs-7 m-0 p-0">(121)</p>
                     </p>
                 </div>
-                <button class="btn btn-sm rounded-pill px-3 btn-primary">Add to Cart</button>
             </div>
         @endfor
     </div>

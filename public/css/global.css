@@ -1,5 +1,7 @@
 :root {
     --dark-blue: #005eeb;
+    --primary-background: #222d68;
+    --white: #fff;
 }
 
 *,
@@ -8,7 +10,7 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: "Nunito", sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-optical-sizing: auto;
     font-weight: normal;
     font-style: normal;
@@ -16,6 +18,14 @@
 
 html {
     scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--primary-background);
+}
+
+.bg-main {
+    background-color: var(--primary-background) !important;
 }
 
 .bg-dark-blue {
@@ -39,12 +49,12 @@ html {
 }
 
 .nav-link:hover {
-    color: var(--dark-blue) !important;
+    color: var(--white) !important;
 }
 
 .nav-link.active {
     position: relative;
-    color: var(--dark-blue) !important;
+    color: var(--white) !important;
 }
 
 .nav-link.active::after {
@@ -55,7 +65,11 @@ html {
     left: 0;
     border-radius: 3px;
     bottom: 0;
-    background: #005eeb;
+    background: var(--white);
+}
+
+.offcanvas {
+    background-color: var(--primary-background) !important;
 }
 
 .footer-link {
@@ -115,7 +129,7 @@ html {
 }
 
 .brand-container {
-    animation: slide-to-left 35s ease infinite alternate-reverse;
+    animation: slide-to-left 35s ease-in-out infinite alternate-reverse;
 }
 
 .brand-item {
@@ -152,6 +166,17 @@ html {
     width: 100% !important;
     height: 250px !important;
     object-fit: cover !important;
+}
+
+.mission {
+    list-style-type: square;
+}
+
+.mission > li::marker {
+    color: var(--dark-blue);
+    font-size: 30px;
+    margin: 0;
+    padding: 0;
 }
 
 @keyframes slide-to-left {

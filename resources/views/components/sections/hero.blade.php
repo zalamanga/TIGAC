@@ -1,13 +1,19 @@
 <div id="carouselHero" class="carousel slide">
     <div class="carousel-inner rounded">
         <div class="carousel-item active">
-            <img src="{{asset('images/watch-hero-section.jpg')}}" class="d-block w-100" alt="watch">
+            <img src="{{asset('images/products/liquid.png')}}" class="d-block rounded w-100" alt="liquid">
         </div>
         <div class="carousel-item">
-            <img src="{{asset('images/shoes-hero-section.jpg')}}" class="d-block w-100" alt="shoes">
+            <img src="{{asset('images/products/idcard.png')}}" class="d-block rounded w-100" alt="idcard">
         </div>
         <div class="carousel-item">
-            <img src="{{asset('images/beauty-hero-section.jpg')}}" class="d-block w-100" alt="beauty">
+            <img src="{{asset('images/products/totebag.png')}}" class="d-block rounded w-100" alt="totebag">
+        </div>
+        <div class="carousel-item">
+            <img src="{{asset('images/products/tumbler.png')}}" class="d-block rounded w-100" alt="tumbler">
+        </div>
+        <div class="carousel-item">
+            <img src="{{asset('images/products/varsity.png')}}" class="d-block rounded w-100" alt="varsity">
         </div>
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselHero" data-bs-slide="prev">

@@ -90,7 +90,7 @@
             <div class="col-12 col-md-3 col-lg-2 mb-3 mb-md-0">
                 <h4 class="fs-5 fw-bold mb-3">Products</h4>
                 <div class="d-flex flex-column gap-3 fs-7">
-                    <a href="#" class="text-decoration-none footer-link text-white fs-7">Mens
+                    <a href="#" class="text-decoration-none footer-link text-white fs-7">HexOhm
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                             viewBox="0 0 256 256">
                             <path
@@ -98,7 +98,7 @@
                             </path>
                         </svg>
                     </a>
-                    <a href="#" class="text-decoration-none footer-link text-white">Womens
+                    <a href="#" class="text-decoration-none footer-link text-white">eLiquids
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                             viewBox="0 0 256 256">
                             <path
@@ -106,7 +106,7 @@
                             </path>
                         </svg>
                     </a>
-                    <a href="#" class="text-decoration-none footer-link text-white">Electronics
+                    <a href="#" class="text-decoration-none footer-link text-white">Vape Battery
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                             viewBox="0 0 256 256">
                             <path
@@ -114,7 +114,7 @@
                             </path>
                         </svg>
                     </a>
-                    <a href="#" class="text-decoration-none footer-link text-white">Beauty
+                    <a href="#" class="text-decoration-none footer-link text-white">EZDripper
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                             viewBox="0 0 256 256">
                             <path

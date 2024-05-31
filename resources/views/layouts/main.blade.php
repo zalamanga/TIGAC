@@ -1,6 +1,6 @@
 @include('includes.head')
 
-<body class="bg-dark">
+<body>
     @include('components.navbar.index')
     <main>
         @yield('content')
@@ -9,3 +9,4 @@
 
 </body>
 @include('includes.foot')
+
