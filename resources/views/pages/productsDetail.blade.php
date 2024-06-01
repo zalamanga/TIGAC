@@ -1,7 +1,7 @@
 @extends('layouts.main')
 @section('content')
-    <div class="container pt-3 pb-5 py-md-5" style="height: 120dvh">
-        <div class="d-flex gap-3 align-items-center mb-5">
+    <div class="container pt-3 pb-5 mb-5 py-md-5">
+        <div class="d-flex gap-3 align-items-center mb-4 mb-md-5">
             <button
                 class="badge badge-light transition-all d-flex align-items-center rounded-pill text-bg-light py-2 px-3 gap-2 border-0"
                 onclick="window.history.back()">
@@ -22,10 +22,10 @@
                 </ol>
             </nav>
         </div>
-        <div class="row align-items-start justify-content-between">
-            <div class="col-5">
+        <div class="row align-items-start justify-content-between gap-3 gap-md-0">
+            <div class="col-12 col-md-6 col-lg-5">
                 <img src="{{ asset('images/products/' . $product['image']) }}" alt="{{ $product['name'] }}"
-                    class="img-fluid rounded border mb-3" width="500">
+                    class="img-fluid rounded border mb-3 product-detail-image">
                 <div class="row align-items-center justify-content-center">
                     @for ($i = 0; $i < 3; $i++)
                         <img src="{{ asset('images/products/' . $product['image']) }}" alt="{{ $product['name'] }}"
@@ -33,11 +33,11 @@
                     @endfor
                 </div>
             </div>
-            <div class="col-7">
+            <div class="col-12 col-md-6 col-lg-7">
                 <div class="bg-light d-inline-block py-2 px-3 rounded-pill text-capitalize fs-7 fw-semibold mb-4">
                     {{ $product['category'] }}</div>
                 <div class="d-flex align-items-start justify-content-between mb-2">
-                    <h1 class="text-white">{{ $product['name'] }}</h1>
+                    <h1 class="text-white fs-1 fw-bold">{{ $product['name'] }}</h1>
                     <button type="button" title="add to favorite"
                         class="btn btn-sm btn-light text-danger p-1 rounded-circle">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
@@ -61,7 +61,7 @@
                     <span class="text-light">20k+ Reviews</span>
                 </div>
                 <div class="mb-4">
-                    <p class="text-white">{{ $product['description'] }}</p>
+                    <p class="text-white fs-7">{{ $product['description'] }}</p>
                 </div>
                 <div class="mb-4 d-flex gap-2 align-items-center pb-3 border-bottom">
                     <h2 class="fw-bold fs-1 text-white">
@@ -73,12 +73,12 @@
                     <div class="badge badge-danger text-bg-danger rounded-pill">-10%</div>
                 </div>
                 <div class="ms-1 row align-items-center gap-3">
-                    <div class="col-3 border rounded p-3 text-white">
+                    <div class="col-4 col-md-5 col-lg-3 border rounded p-3 text-white">
                         <h5 class="fs-6 fw-bold mb-2 d-flex align-items-center gap-1">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256"><path d="M223.68,66.15,135.68,18h0a15.88,15.88,0,0,0-15.36,0l-88,48.17a16,16,0,0,0-8.32,14v95.64a16,16,0,0,0,8.32,14l88,48.17a15.88,15.88,0,0,0,15.36,0l88-48.17a16,16,0,0,0,8.32-14V80.18A16,16,0,0,0,223.68,66.15ZM128,32h0l80.34,44L128,120,47.66,76ZM40,90l80,43.78v85.79L40,175.82Zm96,129.57V133.82L216,90v85.78Z"></path></svg>Volume</h5>
                         <p class="fs-7 m-0 p-0">{{$product['volume']}}</p>
                     </div>
-                    <div class="col-3 border rounded p-3 text-white">
+                    <div class="col-4 col-md-5 col-lg-3 border rounded p-3 text-white">
                         <h5 class="fs-6 fw-bold mb-2 d-flex align-items-center gap-1">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256"><path d="M96,104a8,8,0,0,1,8-8h64a8,8,0,0,1,0,16H104A8,8,0,0,1,96,104Zm8,40h64a8,8,0,0,0,0-16H104a8,8,0,0,0,0,16Zm128,48a32,32,0,0,1-32,32H88a32,32,0,0,1-32-32V64a16,16,0,0,0-32,0c0,5.74,4.83,9.62,4.88,9.66h0A8,8,0,0,1,24,88a7.89,7.89,0,0,1-4.79-1.61h0C18.05,85.54,8,77.61,8,64A32,32,0,0,1,40,32H176a32,32,0,0,1,32,32V168h8a8,8,0,0,1,4.8,1.6C222,170.46,232,178.39,232,192ZM96.26,173.48A8.07,8.07,0,0,1,104,168h88V64a16,16,0,0,0-16-16H67.69A31.71,31.71,0,0,1,72,64V192a16,16,0,0,0,32,0c0-5.74-4.83-9.62-4.88-9.66A7.82,7.82,0,0,1,96.26,173.48ZM216,192a12.58,12.58,0,0,0-3.23-8h-94a26.92,26.92,0,0,1,1.21,8,31.82,31.82,0,0,1-4.29,16H200A16,16,0,0,0,216,192Z"></path></svg>Variant</h5>
                             <p class="fs-7 m-0 p-0">{{implode(', ', $product['variants'])}}</p>
