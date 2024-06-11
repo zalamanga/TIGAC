@@ -4,7 +4,7 @@
             <div class="col-12 col-md-5 col-lg-3 mb-3 mb-lg-0">
                 <img src="{{ asset('images/logo.png') }}" alt="Logo" width="150px" />
                 <p class="mb-4 fs-6">
-                    Jalan kenangan bersama dia yang sulit terlupakan, No.12 Kav 12-22, Jakarta Barat. (0821)
+                    Jalan Panjang, No.12 Kav 12-22, Jakarta Barat. (0821)
                 </p>
                 <h4 class="fs-5 fw-bold">Get In Touch with TIGAC</h4>
                 <div class="d-flex fs-6 align-items-center gap-2">
