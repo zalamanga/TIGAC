@@ -31,6 +31,6 @@ class ProfileStatistics extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.admin.profile-statistics');
+        return view('components.admin.profileStatistics');
     }
 }
