@@ -51,3 +51,7 @@ Route::get('/products/{id}', function (int $id) {
 Route::get('/contact', function () {
     return view('pages.contactUs');
 })->name('pages.contactUs');
+
+Route::get('admin', function () {
+    return view('pages.admin.index');
+})->name('admin.index');
