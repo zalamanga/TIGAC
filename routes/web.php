@@ -58,4 +58,4 @@ Route::get('admin', function () {
     return view('pages.admin.index')->with([
         'title' => $title
     ]);
-})->name('admin.index');
+})->name('admin.index')->middleware('auth');
