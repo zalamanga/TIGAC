@@ -40,6 +40,33 @@
         </div>
         <div class="sidebar-menu">
             <ul class="menu">
+                <li class="sidebar-title">Profile Setting</li>
+
+                <li class="sidebar-item has-sub">
+                    <a href="#" class="sidebar-link">
+                        <i class="bi bi-stack"></i>
+                        <span>Profile Setting</span>
+                    </a>
+
+                    <ul class="submenu">
+                        <li class="submenu-item">
+                            <a href="component-accordion.html" class="submenu-link">Prouduct Setting</a>
+                        </li>
+
+                        <li class="submenu-item">
+                            <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="submenu-link" data-confirm-delete='true'>
+                                Logout
+                            </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                                @csrf
+                            </form>
+                        </li>
+                    </ul>
+
+                </li>
+            </ul>
+            <ul class="menu">
                 <li class="sidebar-title">Menu</li>
 
                 <li class="sidebar-item active">

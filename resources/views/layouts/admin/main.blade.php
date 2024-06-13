@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 @include('includes.admin.head')
-
+@include('sweetalert::alert')
 <body>
     <script src="assets/static/js/initTheme.js"></script>
     <div id="app">
@@ -17,7 +17,8 @@
                 @yield('content')
             </div>
         </div>
-        @include('includes.admin.foot')
+    </div>
+    @include('includes.admin.foot')
 </body>
 
 </html>
