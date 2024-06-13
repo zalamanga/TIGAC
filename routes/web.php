@@ -51,3 +51,11 @@ Route::get('/products/{id}', function (int $id) {
 Route::get('/contact', function () {
     return view('pages.contactUs');
 })->name('pages.contactUs');
+
+Route::get('admin', function () {
+    $title = 'Admin Dashboard';
+
+    return view('pages.admin.index')->with([
+        'title' => $title
+    ]);
+})->name('admin.index');
