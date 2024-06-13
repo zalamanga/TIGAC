@@ -17,7 +17,8 @@
                 @yield('content')
             </div>
         </div>
-        @include('includes.admin.foot')
+    </div>
+    @include('includes.admin.foot')
 </body>
 
 </html>

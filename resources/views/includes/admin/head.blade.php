@@ -26,5 +26,5 @@
       href="{{ asset('compiled/css/iconly.css') }}"
     />
 
-    @yield('heads')
+    @stack('styles')
 </head>
