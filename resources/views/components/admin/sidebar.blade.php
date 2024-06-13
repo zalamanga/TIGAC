@@ -54,7 +54,7 @@
                         </li>
 
                         <li class="submenu-item">
-                            <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="submenu-link">
+                            <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="submenu-link" data-confirm-delete='true'>
                                 Logout
                             </a>
 
