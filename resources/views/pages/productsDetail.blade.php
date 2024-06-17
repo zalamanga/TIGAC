@@ -36,18 +36,7 @@
             <div class="col-12 col-md-6 col-lg-7">
                 <div class="bg-light d-inline-block py-2 px-3 rounded-pill text-capitalize fs-7 fw-semibold mb-4">
                     {{ $product['category'] }}</div>
-                <div class="d-flex align-items-start justify-content-between mb-2">
-                    <h1 class="text-white fs-1 fw-bold">{{ $product['name'] }}</h1>
-                    <button type="button" title="add to favorite"
-                        class="btn btn-sm btn-light text-danger p-1 rounded-circle">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
-                            viewBox="0 0 256 256">
-                            <path
-                                d="M178,40c-20.65,0-38.73,8.88-50,23.89C116.73,48.88,98.65,40,78,40a62.07,62.07,0,0,0-62,62c0,70,103.79,126.66,108.21,129a8,8,0,0,0,7.58,0C136.21,228.66,240,172,240,102A62.07,62.07,0,0,0,178,40ZM128,214.8C109.74,204.16,32,155.69,32,102A46.06,46.06,0,0,1,78,56c19.45,0,35.78,10.36,42.6,27a8,8,0,0,0,14.8,0c6.82-16.67,23.15-27,42.6-27a46.06,46.06,0,0,1,46,46C224,155.61,146.24,204.15,128,214.8Z">
-                            </path>
-                        </svg>
-                    </button>
-                </div>
+                <h1 class="text-white fs-1 fw-bold mb-2">{{ $product['name'] }}</h1>
                 <div class="d-flex gap-2 mb-2">
                     <div class="d-flex align-items-center text-warning gap-1">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -56,7 +45,7 @@
                                 d="M234.29,114.85l-45,38.83L203,211.75a16.4,16.4,0,0,1-24.5,17.82L128,198.49,77.47,229.57A16.4,16.4,0,0,1,53,211.75l13.76-58.07-45-38.83A16.46,16.46,0,0,1,31.08,86l59-4.76,22.76-55.08a16.36,16.36,0,0,1,30.27,0l22.75,55.08,59,4.76a16.46,16.46,0,0,1,9.37,28.86Z">
                             </path>
                         </svg>
-                        <span class="text-white fw-bold">{{$product['rating']}}</span>
+                        <span class="text-white fw-bold">{{ $product['rating'] }}</span>
                     </div>
                     <span class="text-light">20k+ Reviews</span>
                 </div>
@@ -65,23 +54,35 @@
                 </div>
                 <div class="mb-4 d-flex gap-2 align-items-center pb-3 border-bottom">
                     <h2 class="fw-bold fs-1 text-white">
-                        Rp.{{number_format($product['price']-($product['price']*0.1))}}
+                        Rp.{{ number_format($product['price'] - $product['price'] * 0.1) }}
                     </h2>
                     <h3 class="text-secondary text-decoration-line-through fs-4">
-                        Rp.{{number_format($product['price'])}}
+                        Rp.{{ number_format($product['price']) }}
                     </h3>
                     <div class="badge badge-danger text-bg-danger rounded-pill">-10%</div>
                 </div>
                 <div class="ms-1 row align-items-center gap-3">
                     <div class="col-4 col-md-5 col-lg-3 border rounded p-3 text-white">
                         <h5 class="fs-6 fw-bold mb-2 d-flex align-items-center gap-1">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256"><path d="M223.68,66.15,135.68,18h0a15.88,15.88,0,0,0-15.36,0l-88,48.17a16,16,0,0,0-8.32,14v95.64a16,16,0,0,0,8.32,14l88,48.17a15.88,15.88,0,0,0,15.36,0l88-48.17a16,16,0,0,0,8.32-14V80.18A16,16,0,0,0,223.68,66.15ZM128,32h0l80.34,44L128,120,47.66,76ZM40,90l80,43.78v85.79L40,175.82Zm96,129.57V133.82L216,90v85.78Z"></path></svg>Volume</h5>
-                        <p class="fs-7 m-0 p-0">{{$product['volume']}}</p>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                viewBox="0 0 256 256">
+                                <path
+                                    d="M223.68,66.15,135.68,18h0a15.88,15.88,0,0,0-15.36,0l-88,48.17a16,16,0,0,0-8.32,14v95.64a16,16,0,0,0,8.32,14l88,48.17a15.88,15.88,0,0,0,15.36,0l88-48.17a16,16,0,0,0,8.32-14V80.18A16,16,0,0,0,223.68,66.15ZM128,32h0l80.34,44L128,120,47.66,76ZM40,90l80,43.78v85.79L40,175.82Zm96,129.57V133.82L216,90v85.78Z">
+                                </path>
+                            </svg>Volume
+                        </h5>
+                        <p class="fs-7 m-0 p-0">{{ $product['volume'] }}</p>
                     </div>
                     <div class="col-4 col-md-5 col-lg-3 border rounded p-3 text-white">
                         <h5 class="fs-6 fw-bold mb-2 d-flex align-items-center gap-1">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256"><path d="M96,104a8,8,0,0,1,8-8h64a8,8,0,0,1,0,16H104A8,8,0,0,1,96,104Zm8,40h64a8,8,0,0,0,0-16H104a8,8,0,0,0,0,16Zm128,48a32,32,0,0,1-32,32H88a32,32,0,0,1-32-32V64a16,16,0,0,0-32,0c0,5.74,4.83,9.62,4.88,9.66h0A8,8,0,0,1,24,88a7.89,7.89,0,0,1-4.79-1.61h0C18.05,85.54,8,77.61,8,64A32,32,0,0,1,40,32H176a32,32,0,0,1,32,32V168h8a8,8,0,0,1,4.8,1.6C222,170.46,232,178.39,232,192ZM96.26,173.48A8.07,8.07,0,0,1,104,168h88V64a16,16,0,0,0-16-16H67.69A31.71,31.71,0,0,1,72,64V192a16,16,0,0,0,32,0c0-5.74-4.83-9.62-4.88-9.66A7.82,7.82,0,0,1,96.26,173.48ZM216,192a12.58,12.58,0,0,0-3.23-8h-94a26.92,26.92,0,0,1,1.21,8,31.82,31.82,0,0,1-4.29,16H200A16,16,0,0,0,216,192Z"></path></svg>Variant</h5>
-                            <p class="fs-7 m-0 p-0">{{implode(', ', $product['variants'])}}</p>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                viewBox="0 0 256 256">
+                                <path
+                                    d="M96,104a8,8,0,0,1,8-8h64a8,8,0,0,1,0,16H104A8,8,0,0,1,96,104Zm8,40h64a8,8,0,0,0,0-16H104a8,8,0,0,0,0,16Zm128,48a32,32,0,0,1-32,32H88a32,32,0,0,1-32-32V64a16,16,0,0,0-32,0c0,5.74,4.83,9.62,4.88,9.66h0A8,8,0,0,1,24,88a7.89,7.89,0,0,1-4.79-1.61h0C18.05,85.54,8,77.61,8,64A32,32,0,0,1,40,32H176a32,32,0,0,1,32,32V168h8a8,8,0,0,1,4.8,1.6C222,170.46,232,178.39,232,192ZM96.26,173.48A8.07,8.07,0,0,1,104,168h88V64a16,16,0,0,0-16-16H67.69A31.71,31.71,0,0,1,72,64V192a16,16,0,0,0,32,0c0-5.74-4.83-9.62-4.88-9.66A7.82,7.82,0,0,1,96.26,173.48ZM216,192a12.58,12.58,0,0,0-3.23-8h-94a26.92,26.92,0,0,1,1.21,8,31.82,31.82,0,0,1-4.29,16H200A16,16,0,0,0,216,192Z">
+                                </path>
+                            </svg>Variant
+                        </h5>
+                        <p class="fs-7 m-0 p-0">{{ implode(', ', $product['variants']) }}</p>
                     </div>
                 </div>
             </div>
