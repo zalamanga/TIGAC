@@ -1,6 +1,6 @@
 @extends('layouts.main')
 @section('content')
-    <div class="mb-3 mt-lg-3 mb-lg-5 container">
+    <div class="mb-3 mt-lg-3 mb-lg-5 pb-lg-4 container">
         @include('components.sections.hero')
     </div>
     <div class="mb-3 mb-lg-5 container">

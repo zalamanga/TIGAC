@@ -1,6 +1,6 @@
 <div id="carouselHero" class="carousel slide">
-    <div class="carousel-inner rounded">
-        <div class="carousel-item active">
+    <div class="carousel-inner rounded" style="min-height: 80dvh">
+        <div class="carousel-item active ">
             <img src="{{asset('images/products/liquid.png')}}" class="d-block rounded w-100" alt="liquid">
         </div>
         <div class="carousel-item">

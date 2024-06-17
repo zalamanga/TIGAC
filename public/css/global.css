@@ -186,6 +186,22 @@ body {
     object-fit: cover !important;
 }
 
+#navMenu {
+    position: fixed;
+    top: 70px;
+    right: -100%;
+    z-index: 100;
+    height: 100dvh;
+    padding-left: 1rem !important;
+    width: 70%;
+    transition: all 0.3s !important;
+    background-color: var(--primary-background);
+}
+
+#navMenu.show {
+    right: 0 !important;
+}
+
 @keyframes slide-to-left {
     0% {
         transform: translateX(0);
@@ -228,6 +244,13 @@ body {
 }
 
 @media screen and (min-width: 1024px) {
+    #navMenu {
+        position: static !important;
+        display: flex !important;
+        height: auto;
+        width: auto;
+    }
+
     .nav-link.active::after {
         width: 30%;
         left: 50%;
