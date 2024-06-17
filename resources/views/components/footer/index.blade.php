@@ -1,14 +1,14 @@
-<footer class="bg-dark-blue">
-    <div class="container text-white pt-3 pt-md-5 pb-3">
+<footer class="bg-white">
+    <div class="container pt-3 pt-md-5 pb-3">
         <div class="row pb-5 mb-4 gap-3 border-bottom">
             <div class="col-12 col-md-5 col-lg-3 mb-3 mb-lg-0">
-                <img src="{{ asset('images/logo.png') }}" alt="Logo" width="150px" />
+                <img src="{{ asset('images/logo.png') }}" alt="Logo" width="150px" class="bg-dark rounded mb-3 mb-lg-4"/>
                 <p class="mb-4 fs-6">
                     Jalan Panjang, No.12 Kav 12-22, Jakarta Barat. (0821)
                 </p>
                 <h4 class="fs-5 fw-bold">Get In Touch with TIGAC</h4>
                 <div class="d-flex fs-6 align-items-center gap-2">
-                    <a href="#" class="text-white text-decoration-none">
+                    <a href="#" class="text-dark text-decoration-none">
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                             viewBox="0 0 256 256">
                             <path
@@ -16,7 +16,7 @@
                             </path>
                         </svg>
                     </a>
-                    <a href="#" class="text-white text-decoration-none">
+                    <a href="#" class="text-dark text-decoration-none">
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                             viewBox="0 0 256 256">
                             <path
@@ -24,7 +24,7 @@
                             </path>
                         </svg>
                     </a>
-                    <a href="#" class="text-white text-decoration-none">
+                    <a href="#" class="text-dark text-decoration-none">
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                             viewBox="0 0 256 256">
                             <path
@@ -32,7 +32,7 @@
                             </path>
                         </svg>
                     </a>
-                    <a href="#" class="text-white text-decoration-none">
+                    <a href="#" class="text-dark text-decoration-none">
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                             viewBox="0 0 256 256">
                             <path
@@ -45,7 +45,7 @@
             <div class="col-12 col-md-3 col-lg-2 mb-3 mb-md-0">
                 <h4 class="fs-5 fw-bold mb-3">Quick Links</h4>
                 <div class="d-flex flex-column gap-3 fs-7">
-                    <a href="{{route('pages.index')}}" class="text-decoration-none footer-link text-white fs-7">Home
+                    <a href="{{route('pages.index')}}" class="text-decoration-none footer-link text-dark fs-7">Home
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                             viewBox="0 0 256 256">
                             <path
@@ -53,7 +53,7 @@
                             </path>
                         </svg>
                     </a>
-                    <a href="{{route('pages.aboutUs')}}" class="text-decoration-none footer-link text-white">About Us
+                    <a href="{{route('pages.aboutUs')}}" class="text-decoration-none footer-link text-dark">About Us
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                             viewBox="0 0 256 256">
                             <path
@@ -61,7 +61,7 @@
                             </path>
                         </svg>
                     </a>
-                    <a href="{{route('pages.news')}}" class="text-decoration-none footer-link text-white">News
+                    <a href="{{route('pages.news')}}" class="text-decoration-none footer-link text-dark">News
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                             viewBox="0 0 256 256">
                             <path
@@ -69,7 +69,7 @@
                             </path>
                         </svg>
                     </a>
-                    <a href="{{route('pages.products')}}" class="text-decoration-none footer-link text-white">Products
+                    <a href="{{route('pages.products')}}" class="text-decoration-none footer-link text-dark">Products
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                             viewBox="0 0 256 256">
                             <path
@@ -77,7 +77,7 @@
                             </path>
                         </svg>
                     </a>
-                    <a href="{{route('pages.contactUs')}}" class="text-decoration-none footer-link text-white">Contact Us
+                    <a href="{{route('pages.contactUs')}}" class="text-decoration-none footer-link text-dark">Contact Us
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                             viewBox="0 0 256 256">
                             <path
@@ -90,7 +90,7 @@
             <div class="col-12 col-md-3 col-lg-2 mb-3 mb-md-0">
                 <h4 class="fs-5 fw-bold mb-3">Products</h4>
                 <div class="d-flex flex-column gap-3 fs-7">
-                    <a href="#" class="text-decoration-none footer-link text-white fs-7">HexOhm
+                    <a href="#" class="text-decoration-none footer-link text-dark fs-7">HexOhm
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                             viewBox="0 0 256 256">
                             <path
@@ -98,7 +98,7 @@
                             </path>
                         </svg>
                     </a>
-                    <a href="#" class="text-decoration-none footer-link text-white">eLiquids
+                    <a href="#" class="text-decoration-none footer-link text-dark">eLiquids
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                             viewBox="0 0 256 256">
                             <path
@@ -106,7 +106,7 @@
                             </path>
                         </svg>
                     </a>
-                    <a href="#" class="text-decoration-none footer-link text-white">Vape Battery
+                    <a href="#" class="text-decoration-none footer-link text-dark">Vape Battery
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                             viewBox="0 0 256 256">
                             <path
@@ -114,7 +114,7 @@
                             </path>
                         </svg>
                     </a>
-                    <a href="#" class="text-decoration-none footer-link text-white">EZDripper
+                    <a href="#" class="text-decoration-none footer-link text-dark">EZDripper
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                             viewBox="0 0 256 256">
                             <path
@@ -122,7 +122,7 @@
                             </path>
                         </svg>
                     </a>
-                    <a href="#" class="text-decoration-none footer-link text-white">Watch
+                    <a href="#" class="text-decoration-none footer-link text-dark">Watch
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                             viewBox="0 0 256 256">
                             <path
@@ -138,8 +138,8 @@
                     Subscribe to our newsletter and stay updated with our latest news and promotions.
                 </p>
                 <form action="#" class="d-flex align-items-center gap-2">
-                    <input type="text" class="form-control fs-7 py-2" placeholder="Enter your email">
-                    <button class="btn border-white py-2 fs-7 text-white">Subscribe</button>
+                    <input type="text" class="form-control fs-7 py-2" placeholder="Enter your email or phone number">
+                    <button class="btn text-white py-2 fs-7 bg-main">Subscribe</button>
                 </form>
             </div>
         </div>
