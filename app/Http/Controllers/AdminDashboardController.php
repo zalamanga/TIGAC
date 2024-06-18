@@ -2,22 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Contracts\UserRepositoryInterface;
 use App\Services\UserService;
 use Illuminate\Http\Request;
 
 class AdminDashboardController extends Controller
 {
-    protected $userService;
+    protected $userInterface;
     
-    public function __construct(UserService $userService)
+    public function __construct(UserRepositoryInterface $userInterface)
     {
-        $this->userService = $userService;
+        $this->userInterface = $userInterface;
     }
 
     public function index()
     {
         $title = 'Admin Dashboard';
-        $loggedUserData = $this->userService->getLoggedUser();
+        $loggedUserData = $this->userInterface->getLoggedUser();
     
         return view('pages.admin.index')->with([
             'title' => $title,
