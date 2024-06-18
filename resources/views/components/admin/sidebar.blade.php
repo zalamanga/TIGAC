@@ -99,7 +99,7 @@
                         </li>
 
                         <li class="submenu-item">
-                            <a href="{{ route('admin.product.category') }}" class="submenu-link">Product Category</a>
+                            <a href="{{ route('admin.product.product-category') }}" class="submenu-link">Product Category</a>
                         </li>
                     </ul>
                 </li>

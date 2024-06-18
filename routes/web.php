@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminDashboardController;
+use App\Http\Controllers\ProductCategoryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,7 +36,7 @@ Route::get('/products', function () {
     $data = json_decode($fileProducts, true);
     $products = $data['products'];
 
-    return view('pages.products',compact('products'));
+    return view('pages.products', compact('products'));
 })->name('pages.products');
 
 Route::get('/products/{id}', function (int $id) {
@@ -60,6 +61,4 @@ Route::get('/admin/products', function () {
     return "Product List";
 })->name('admin.product');
 
-Route::get('/admin/products/categories', function () {
-    return "Product Category List";
-})->name('admin.product.category');
+Route::get('/admin/products/categories', [ProductCategoryController::class, 'index'])->name('admin.product.product-category');
