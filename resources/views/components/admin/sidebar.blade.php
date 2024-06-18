@@ -95,11 +95,11 @@
 
                     <ul class="submenu">
                         <li class="submenu-item">
-                            <a href="component-accordion.html" class="submenu-link">Prouduct List</a>
+                            <a href="{{ route('admin.product') }}" class="submenu-link">Prouduct List</a>
                         </li>
 
                         <li class="submenu-item">
-                            <a href="component-alert.html" class="submenu-link">Product Category</a>
+                            <a href="{{ route('admin.product.category') }}" class="submenu-link">Product Category</a>
                         </li>
                     </ul>
                 </li>

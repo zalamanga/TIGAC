@@ -53,4 +53,13 @@ Route::get('/contact', function () {
     return view('pages.contactUs');
 })->name('pages.contactUs');
 
+// Backend
 Route::get('/admin', [AdminDashboardController::class, 'index'])->name('admin.index')->middleware('auth');
+
+Route::get('/admin/products', function () {
+    return "Product List";
+})->name('admin.product');
+
+Route::get('/admin/products/categories', function () {
+    return "Product Category List";
+})->name('admin.product.category');
