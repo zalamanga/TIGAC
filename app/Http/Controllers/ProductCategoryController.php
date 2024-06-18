@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\ProductCategoryDataTable;
 use App\Services\ProductCategoryService;
 use Illuminate\Http\Request;
 
@@ -14,14 +15,15 @@ class ProductCategoryController extends Controller
         $this->productCategoryService = $productCategoryService;
     }
 
-    public function index()
+    public function index(ProductCategoryDataTable $dataTable)
     {
-        $productCategories = $this->productCategoryService->getProductCategories();
+        $title = 'Product Category List';
 
-        dd($productCategories);
 
-        return view('pages.admin.productCategory.index', [
-            'productCategories' => $productCategories, 
-        ]);
+        $data = [
+            'title' => $title
+        ];
+
+        return $dataTable->render("pages.admin.product-category.index", $data);
     }
 }
