@@ -6,6 +6,7 @@ use App\DataTables\ProductCategoryDataTable;
 use App\Http\Requests\ProductCategoryRequest;
 use App\Services\ProductCategoryService;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ProductCategoryController extends Controller
 {
@@ -34,9 +35,7 @@ class ProductCategoryController extends Controller
 
         $this->productCategoryService->createProductCategory($productCategoryData);
 
-        session()->flash('status', 'success');
-        session()->flash('message', 'Success create new category');
-
+        Alert::success('Success', 'Success create new category');
         return redirect()->route('admin.product.product-category.index');
     }
 
@@ -44,9 +43,7 @@ class ProductCategoryController extends Controller
     {
         $this->productCategoryService->deleteProductCategory($productCategoryId);
 
-        session()->flash('status', 'success');
-        session()->flash('message', 'Success delete category');
-
+        Alert::success('Success', 'Success delete category');
         return redirect()->route('admin.product.product-category.index');
     }
 }
