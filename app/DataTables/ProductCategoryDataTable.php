@@ -22,8 +22,9 @@ class ProductCategoryDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', 'productcategory.action')
-            ->setRowId('id');
+            ->addColumn('action', 'components.datatables.action-button')
+            ->setRowId('id')
+            ->rawColumns(['action']);
     }
 
     /**
@@ -44,7 +45,7 @@ class ProductCategoryDataTable extends DataTable
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     ->dom('lfrtip')
-                    ->orderBy(1)
+                    ->orderBy(0)
                     ->selectStyleSingle();
     }
 
@@ -57,6 +58,7 @@ class ProductCategoryDataTable extends DataTable
             Column::make('id'),
             Column::make('name'),
             Column::make('description'),
+            Column::make('action'),
         ];
     }
 

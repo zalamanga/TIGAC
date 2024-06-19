@@ -17,4 +17,8 @@ class ProductCategoryService
     {
         return $this->productCartegoryRepositoryInterface->getProductCategories();
     }
+
+    public function createProductCategory($data) {
+        return $this->productCartegoryRepositoryInterface->createProductCategory($data);
+    }
 }
