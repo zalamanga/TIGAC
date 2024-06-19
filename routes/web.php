@@ -61,4 +61,11 @@ Route::get('/admin/products', function () {
     return "Product List";
 })->name('admin.product');
 
-Route::get('/admin/products/categories', [ProductCategoryController::class, 'index'])->name('admin.product.product-category');
+Route::get('/admin/products/categories', [ProductCategoryController::class, 'index'])->name('admin.product.product-category.index');
+Route::get('/admin/products/categories/store', function () {
+    $title = 'Create New Product Category';
+    
+    return view('pages.admin.product-category.show', [
+        'title' => $title
+    ]);
+})->name('admin.product.product-category.create');
