@@ -13,6 +13,7 @@
                                     placeholder="Category Name"
                                     title="Name"
                                     class=""
+                                    isRequired="true"
                                 >
                                 </x-input>
                             </div>

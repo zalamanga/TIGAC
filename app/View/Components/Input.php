@@ -14,6 +14,7 @@ class Input extends Component
     public $class;
     public $name;
     public $title;
+    public $isRequired;
 
     /**
      * Create a new component instance.
@@ -24,12 +25,14 @@ class Input extends Component
         $class,
         $name,
         $title,
+        $isRequired
     ) {
         $this->type = $type;
         $this->placeholder = $placeholder;
         $this->class = $class;
         $this->name = $name;
         $this->title = $title;
+        $this->isRequired = $isRequired;
     }
 
     /**
