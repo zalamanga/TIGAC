@@ -28,16 +28,24 @@ class ProductCategoryController extends Controller
         return $dataTable->render("pages.admin.product-category.index", $data);
     }
 
-    public function store(ProductCategoryRequest $productCategoryRequest, ProductCategoryDataTable $dataTable)
+    public function store(ProductCategoryRequest $productCategoryRequest)
     {
         $productCategoryData = $productCategoryRequest->validated();
-
-        $title = 'Product Category List';
 
         $this->productCategoryService->createProductCategory($productCategoryData);
 
         session()->flash('status', 'success');
         session()->flash('message', 'Success create new category');
+
+        return redirect()->route('admin.product.product-category.index');
+    }
+
+    public function destroy($productCategoryId)
+    {
+        $this->productCategoryService->deleteProductCategory($productCategoryId);
+
+        session()->flash('status', 'success');
+        session()->flash('message', 'Success delete category');
 
         return redirect()->route('admin.product.product-category.index');
     }

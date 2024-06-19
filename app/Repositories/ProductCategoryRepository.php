@@ -13,12 +13,13 @@ class ProductCategoryRepository implements ProductCategoryRepositoryInterface
         return ProductCategory::all();
     }
 
-    public function createProductCategory($data)
+    public function createProductCategory($productCategoryData)
     {
-        try {
-            ProductCategory::create($data);
-        } catch (\Throwable $th) {
-            Log::error('Failed to create product category: ' . $th->getMessage());
-        }
+        return ProductCategory::create($productCategoryData);
+    }
+
+    public function deleteProductCategory($productCategoryId)
+    {
+        return ProductCategory::where('id', $productCategoryId)->delete();
     }
 }
