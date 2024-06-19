@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminDashboardController;
+use App\Http\Controllers\ProductCategoryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,7 +36,7 @@ Route::get('/products', function () {
     $data = json_decode($fileProducts, true);
     $products = $data['products'];
 
-    return view('pages.products',compact('products'));
+    return view('pages.products', compact('products'));
 })->name('pages.products');
 
 Route::get('/products/{id}', function (int $id) {
@@ -53,4 +54,25 @@ Route::get('/contact', function () {
     return view('pages.contactUs');
 })->name('pages.contactUs');
 
-Route::get('/admin', [AdminDashboardController::class, 'index'])->name('admin.index')->middleware('auth');
+// Backend
+// Admin
+Route::controller(AdminDashboardController::class)->group(function () {
+    Route::get('/admin', 'index')->name('admin.index');
+})->middleware('auth');
+
+// Product Category
+Route::controller(ProductCategoryController::class)->group(function () {
+    Route::get('/admin/products', function () {
+        return "Product List";
+    })->name('admin.product');
+    Route::get('/admin/products/categories', 'index')->name('admin.product.product-category.index');
+    Route::get('/admin/products/categories/create', function () {
+        $title = 'Create New Product Category';
+
+        return view('pages.admin.product-category.show', [
+            'title' => $title
+        ]);
+    })->name('admin.product.product-category.create');
+    Route::post('/admin/products/categories/store', 'store')->name('admin.product.product-category.store');
+    Route::delete('/admin/products/categories/destroy/{productCategoryId}', 'destroy')->name('admin.product.product-category.destroy');
+})->middleware('auth');
