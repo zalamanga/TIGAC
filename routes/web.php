@@ -55,23 +55,24 @@ Route::get('/contact', function () {
 })->name('pages.contactUs');
 
 // Backend
-Route::get('/admin', [AdminDashboardController::class, 'index'])->name('admin.index')->middleware('auth');
+// Admin
+Route::controller(AdminDashboardController::class)->group(function () {
+    Route::get('/admin', 'index')->name('admin.index');
+})->middleware('auth');
 
-Route::get('/admin/products', function () {
-    return "Product List";
-})->name('admin.product');
+// Product Category
+Route::controller(ProductCategoryController::class)->group(function () {
+    Route::get('/admin/products', function () {
+        return "Product List";
+    })->name('admin.product');
+    Route::get('/admin/products/categories', 'index')->name('admin.product.product-category.index');
+    Route::get('/admin/products/categories/create', function () {
+        $title = 'Create New Product Category';
 
-Route::get('/admin/products/categories', [ProductCategoryController::class, 'index'])
-    ->name('admin.product.product-category.index');
-
-Route::get('/admin/products/categories/create', function () {
-    $title = 'Create New Product Category';
-
-    return view('pages.admin.product-category.show', [
-        'title' => $title
-    ]);
-})->name('admin.product.product-category.create');
-
-Route::post('/admin/products/categories/store', [ProductCategoryController::class, 'store'])
-    ->name('admin.product.product-category.store')
-    ->middleware('auth');
+        return view('pages.admin.product-category.show', [
+            'title' => $title
+        ]);
+    })->name('admin.product.product-category.create');
+    Route::post('/admin/products/categories/store', 'store')->name('admin.product.product-category.store');
+    Route::delete('/admin/products/categories/destroy/{productCategoryId}', 'destroy')->name('admin.product.product-category.destroy');
+})->middleware('auth');
