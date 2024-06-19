@@ -15,6 +15,8 @@
         @endif
     </label>
     <input type="{{ $type }}" id="{{ $name }}" class="form-control {{ $class }}"
-        name="{{ $name }}" placeholder="{{ $placeholder }}"
-        @if ($isRequired == 'true') required @endif>
+        name="{{ $name }}" placeholder="{{ $placeholder }}" @if ($isRequired == 'true') required @endif>
+    @error('name')
+        <div class="text-danger">{{ $message }}</div>
+    @enderror
 </div>
