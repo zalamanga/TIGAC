@@ -22,7 +22,7 @@ class ProductCategoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|max:50',
+            'name' => 'unique:product_categories,name|required|max:50',
             'description' => '',
         ];
     }
@@ -30,7 +30,8 @@ class ProductCategoryRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'name.required' => "Product category name is required"
+            'name.required' => "Product category name is required",
+            'name.unique' => "Product category already exists"
         ];
     }
 }
