@@ -4,16 +4,17 @@
     'name' => $name,
     'class' => '',
     'title' => $title,
-    'isRequired' => "false"
+    'isRequired' => 'false',
 ])
 
 <div class="form-group">
     <label for="{{ $name }}">
         {{ $title }}
-    @if ($isRequired == "true")
-        <span class="text-danger">*</span>
-    @endif
+        @if ($isRequired == 'true')
+            <span class="text-danger">*</span>
+        @endif
     </label>
     <input type="{{ $type }}" id="{{ $name }}" class="form-control {{ $class }}"
-        name="{{ $name }}" placeholder="{{ $placeholder }}">
+        name="{{ $name }}" placeholder="{{ $placeholder }}"
+        @if ($isRequired == 'true') required @endif>
 </div>
