@@ -3,7 +3,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TIGAC - Admin Dashboard</title>
 
-    <link rel="stylesheet" href="{{asset('extensions/datatables.net-bs5/css/dataTables.bootstrap5.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('extensions/datatables.net-bs5/css/dataTables.bootstrap5.min.css') }}">
 
     <link rel="stylesheet" crossorigin href="{{ asset('compiled/css/table-datatable-jquery.css') }}">
 
@@ -17,6 +17,8 @@
     <link rel="stylesheet" crossorigin href="{{ asset('compiled/css/app.css') }}" />
     <link rel="stylesheet" crossorigin href="{{ asset('compiled/css/app-dark.css') }}" />
     <link rel="stylesheet" crossorigin href="{{ asset('compiled/css/iconly.css') }}" />
+
+    <link rel=”stylesheet” href=" https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">
 
     @stack('styles')
 </head>
