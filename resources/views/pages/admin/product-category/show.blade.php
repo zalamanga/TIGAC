@@ -3,18 +3,15 @@
     <div class="card">
         <div class="card-content">
             <div class="card-body">
-                <form class="form form-vertical">
+                <form class="form form-vertical" action="{{ route('admin.product.product-category.store') }}" method="POST"
+                    enctype="multipart/form-data">
                     <div class="form-body">
                         <div class="row">
+                            @csrf
+
                             <div class="col-12">
-                                <x-input
-                                    name="name"
-                                    type="text"
-                                    placeholder="Category Name"
-                                    title="Name"
-                                    class=""
-                                    isRequired="true"
-                                >
+                                <x-input name="name" type="text" placeholder="Category Name" title="Name"
+                                    class="" isRequired="true">
                                 </x-input>
                             </div>
                             <div class="col-12">
@@ -27,7 +24,8 @@
                             <div class="col-12">
                                 <div class='form-check'>
                                     <div class="checkbox">
-                                        <input type="checkbox" id="checkbox3" class='form-check-input' data-parsley-required="true" required>
+                                        <input type="checkbox" id="checkbox3" class='form-check-input'
+                                            data-parsley-required="true" required>
                                         <label for="checkbox3">Data yang diinput sudah benar</label>
                                     </div>
                                 </div>
