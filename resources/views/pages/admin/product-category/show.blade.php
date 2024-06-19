@@ -7,11 +7,14 @@
                     <div class="form-body">
                         <div class="row">
                             <div class="col-12">
-                                <div class="form-group">
-                                    <label for="first-name-vertical">Name</label>
-                                    <input type="text" id="first-name-vertical" class="form-control" name="name"
-                                        placeholder="Category Name" data-parsley-required="true" required >
-                                </div>
+                                <x-input
+                                    name="name"
+                                    type="text"
+                                    placeholder="Category Name"
+                                    title="Name"
+                                    class=""
+                                >
+                                </x-input>
                             </div>
                             <div class="col-12">
                                 <div class="form-group">

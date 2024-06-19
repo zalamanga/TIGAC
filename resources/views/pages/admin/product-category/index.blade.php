@@ -1,14 +1,13 @@
 @extends('layouts.admin.main')
 @section('content')
+    <a href="{{ route('admin.product.product-category.create') }}" class="btn btn-primary mb-3">Add New Category</a>
     <section class="row">
         <div class="col-12 col-lg-12">
-            <div class="container">
-                <div class="card">
-                    <div class="card-header">Manage Product Category</div>
-                    <div class="card-body">
-                        {{ $dataTable->table() }}
-                        {{ $dataTable->scripts(attributes: ['type' => 'module']) }}
-                    </div>
+            <div class="card">
+                <div class="card-header">Manage Product Category</div>
+                <div class="card-body">
+                    {{ $dataTable->table() }}
+                    {{ $dataTable->scripts(attributes: ['type' => 'module']) }}
                 </div>
             </div>
         </div>

@@ -69,7 +69,7 @@
             <ul class="menu">
                 <li class="sidebar-title">Menu</li>
 
-                <li class="sidebar-item active">
+                <li class="sidebar-item ac">
                     <a href="{{ route('admin.index') }}" class="sidebar-link">
                         <i class="bi bi-grid-fill"></i>
                         <span>Dashboard</span>
@@ -88,7 +88,7 @@
                         </li>
 
                         <li class="submenu-item">
-                            <a href="{{ route('admin.product.product-category') }}" class="submenu-link">Product Category</a>
+                            <a href="{{ route('admin.product.product-category.index') }}" class="submenu-link">Product Category</a>
                         </li>
                     </ul>
                 </li>
