@@ -29,6 +29,15 @@ class ProductCategoryController extends Controller
         return $dataTable->render("pages.admin.product-category.index", $data);
     }
 
+    public function create()
+    {
+        $title = 'Create New Product Category';
+
+        return view('pages.admin.product-category.show', [
+            'title' => $title
+        ]);
+    }
+
     public function store(ProductCategoryRequest $productCategoryRequest)
     {
         $productCategoryData = $productCategoryRequest->validated();

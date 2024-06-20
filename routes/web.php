@@ -55,24 +55,20 @@ Route::get('/contact', function () {
 })->name('pages.contactUs');
 
 // Backend
-// Admin
-Route::controller(AdminDashboardController::class)->group(function () {
-    Route::get('/admin', 'index')->name('admin.index');
-})->middleware('auth');
+Route::middleware(['auth'])->group(function () {
+    // Admin
+    Route::controller(AdminDashboardController::class)->group(function () {
+        Route::get('/admin', 'index')->name('admin.index');
+    });
 
-// Product Category
-Route::controller(ProductCategoryController::class)->group(function () {
-    Route::get('/admin/products', function () {
-        return "Product List";
-    })->name('admin.product');
-    Route::get('/admin/products/categories', 'index')->name('admin.product.product-category.index');
-    Route::get('/admin/products/categories/create', function () {
-        $title = 'Create New Product Category';
-
-        return view('pages.admin.product-category.show', [
-            'title' => $title
-        ]);
-    })->name('admin.product.product-category.create');
-    Route::post('/admin/products/categories/store', 'store')->name('admin.product.product-category.store');
-    Route::delete('/admin/products/categories/destroy/{productCategoryId}', 'destroy')->name('admin.product.product-category.destroy');
-})->middleware('auth');
+    // Product Category
+    Route::controller(ProductCategoryController::class)->group(function () {
+        Route::get('/admin/products', function () {
+            return "Product List";
+        })->name('admin.product');
+        Route::get('/admin/products/categories', 'index')->name('admin.product.product-category.index');
+        Route::get('/admin/products/categories/create', 'create')->name('admin.product.product-category.create');
+        Route::post('/admin/products/categories/store', 'store')->name('admin.product.product-category.store');
+        Route::delete('/admin/products/categories/destroy/{productCategoryId}', 'destroy')->name('admin.product.product-category.destroy');
+    });
+});
