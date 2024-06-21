@@ -22,4 +22,9 @@ class ProductCategoryRepository implements ProductCategoryRepositoryInterface
     {
         return ProductCategory::where('id', $productCategoryId)->delete();
     }
+
+    public function getProductCategoryById($productCategoryId)
+    {
+        return ProductCategory::where('id', $productCategoryId);
+    }
 }
