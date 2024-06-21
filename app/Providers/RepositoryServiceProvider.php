@@ -11,6 +11,7 @@ use App\Repositories\ProductRepository;
 use App\Repositories\ProductVariantRepository;
 use App\Repositories\UserRepository;
 use App\Services\ProductCategoryService;
+use App\Services\ProductVariantService;
 use App\Services\UserService;
 use Illuminate\Support\ServiceProvider;
 
@@ -33,7 +34,11 @@ class RepositoryServiceProvider extends ServiceProvider
             return new ProductCategoryService($app->make(ProductCategoryRepositoryInterface::class));
         });
 
+        // Product Variant
         $this->app->bind(ProductVariantRepositoryInterface::class, ProductVariantRepository::class);
+        $this->app->bind(ProductVariantService::class, function ($app) {
+            return new ProductVariantService($app->make(ProductVariantRepositoryInterface::class));
+        });
 
     }
 
