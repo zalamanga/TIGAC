@@ -23,7 +23,7 @@ class ProductCategoryRequest extends FormRequest
     {
         return [
             'name' => 'unique:product_categories,name|required|max:50',
-            'description' => '',
+            'description' => 'nullable|max:255',
         ];
     }
 
