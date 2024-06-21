@@ -21,7 +21,16 @@ class ProductVariantController
         $data = [
             'title' => $title
         ];
-        ;
-        return $dataTable->render("pages.admin.product-category.index", $data);
+
+        return $dataTable->render("pages.admin.product-variant.index", $data);
+    }
+
+    public function create()
+    {
+        $title = 'Create New Product Variant';
+
+        return view('pages.admin.product-variant.show', [
+            'title' => $title
+        ]);
     }
 }

@@ -1,6 +1,6 @@
 @extends('layouts.admin.main')
 @section('content')
-    <a href="{{ route('admin.product.product-category.create') }}" class="btn btn-primary mb-3">Add New Variant</a>
+    <a href="{{ route('admin.product.product-variant.create') }}" class="btn btn-primary mb-3">Add New Variant</a>
     @if (session('status') == 'success')
         <div class="alert alert-success">
             {{ session('message') }}
