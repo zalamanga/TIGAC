@@ -22,7 +22,8 @@ class ProductVariantDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', 'productvariant.action')
+            ->addColumn('action', 'components.datatables.product-variant.action-button')
+            ->rawColumns(['action'])
             ->setRowId('id');
     }
 
@@ -55,6 +56,7 @@ class ProductVariantDataTable extends DataTable
             Column::make('id'),
             Column::make('name'),
             Column::make('description'),
+            Column::make('action'),
         ];
     }
 

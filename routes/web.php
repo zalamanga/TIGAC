@@ -77,5 +77,6 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/admin/products/variants', 'index')->name('admin.product.product-variant.index');
         Route::get('/admin/products/variants/create', 'create')->name('admin.product.product-variant.create');
         Route::post('/admin/products/variants/store', 'store')->name('admin.product.product-variant.store');
+        Route::delete('/admin/products/variants/destroy/{productVariantId}', 'destroy')->name('admin.product.product-variant.destroy');
     });
 });
