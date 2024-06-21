@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\ProductVariant;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -24,7 +26,8 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $this->call([
-            ProductCategorySeeder::class
+            ProductCategorySeeder::class,
+            ProductVariantSeeder::class
         ]);
     }
 }

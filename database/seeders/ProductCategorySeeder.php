@@ -15,22 +15,18 @@ class ProductCategorySeeder extends Seeder
     {
         $productCategories = [
             [
-                "id" => "1",
                 "name" => "HexOhm",
                 "description" => "lorem impsum dolor sit description"
             ],
             [
-                "id" => "2",
                 "name" => "eLiquids",
                 "description" => "lorem impsum dolor sit description"
             ],
             [
-                "id" => "3",
                 "name" => "Molicel Vape Battery",
                 "description" => "lorem impsum dolor sit description"
             ],
             [
-                "id" => "4",
                 "name" => "EZDripper",
                 "description" => "lorem impsum dolor sit description"
             ],
