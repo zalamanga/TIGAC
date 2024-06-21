@@ -90,6 +90,11 @@
                         <li class="submenu-item">
                             <a href="{{ route('admin.product.product-category.index') }}" class="submenu-link">Product Category</a>
                         </li>
+
+
+                        <li class="submenu-item">
+                            <a href="{{ route('admin.product.product-variant.index') }}" class="submenu-link">Product Variant</a>
+                        </li>
                     </ul>
                 </li>
                 <li class="sidebar-item has-sub">

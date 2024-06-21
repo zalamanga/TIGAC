@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProductVariantController;
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\ProductCategoryController;
 use Illuminate\Support\Facades\Route;
@@ -70,5 +71,12 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/admin/products/categories/create', 'create')->name('admin.product.product-category.create');
         Route::post('/admin/products/categories/store', 'store')->name('admin.product.product-category.store');
         Route::delete('/admin/products/categories/destroy/{productCategoryId}', 'destroy')->name('admin.product.product-category.destroy');
+    });
+
+    Route::controller(ProductVariantController::class)->group(function () {
+        Route::get('/admin/products/variants', 'index')->name('admin.product.product-variant.index');
+        Route::get('/admin/products/variants/create', 'create')->name('admin.product.product-variant.create');
+        Route::post('/admin/products/variants/store', 'store')->name('admin.product.product-variant.store');
+        Route::delete('/admin/products/variants/destroy/{productVariantId}', 'destroy')->name('admin.product.product-variant.destroy');
     });
 });
