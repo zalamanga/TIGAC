@@ -21,7 +21,7 @@ class ProductVariantController
         $title = 'Product Category List';
 
         $data = [
-            'title' => $title
+            'title' => $title,
         ];
 
         return $dataTable->render("pages.admin.product-variant.index", $data);
@@ -44,6 +44,13 @@ class ProductVariantController
 
         Alert::success('Success', 'Success create new category');
         return redirect()->route('admin.product.product-variant.index');
+    }
 
+    public function destroy($productVariantId)
+    {
+        $this->productVariantService->deleteProductVariant($productVariantId);
+
+        Alert::success('Success', 'Success delete variant');
+        return redirect()->route('admin.product.product-variant.index');
     }
 }
