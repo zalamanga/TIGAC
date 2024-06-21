@@ -3,8 +3,9 @@
         aria-haspopup="true" aria-expanded="false">
         Action
     </button>
+    
     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <form action="{{ route('admin.product.product-category.destroy', ['productCategoryId' => $id]) }}"
+        <form action="{{ route('admin.product.product-variant.destroy', $id) }}"
             method="post">
             @csrf
             @method('DELETE')
