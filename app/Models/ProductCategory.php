@@ -13,6 +13,11 @@ class ProductCategory extends Model
 
     protected $fillable = [
         'name',
-        'description'
+        'description',
+        'is_active'
+    ];
+
+    protected $attributes = [
+        'is_active' => true
     ];
 }
