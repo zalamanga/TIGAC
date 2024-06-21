@@ -18,7 +18,7 @@ class ProductVariantController
 
     public function index(ProductVariantDataTable $dataTable)
     {
-        $title = 'Product Category List';
+        $title = 'Product Variant List';
 
         $data = [
             'title' => $title,
