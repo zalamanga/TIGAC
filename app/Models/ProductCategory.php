@@ -18,6 +18,6 @@ class ProductCategory extends Model
     ];
 
     protected $attributes = [
-        'is_active' => true
+        'is_active' => 'true'
     ];
 }

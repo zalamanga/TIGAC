@@ -22,8 +22,8 @@ class ProductCategoryDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', 'components.datatables.action-button')
-            ->addColumn('is_active', 'components.datatables.active-switch')
+            ->addColumn('action', 'components.datatables.product-category.action-button')
+            ->addColumn('is_active', 'components.datatables.product-category.active-switch')
             ->setRowId('id')
             ->rawColumns(['action', 'is_active']);
     }
