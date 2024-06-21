@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\ProductCategory;
+use App\Models\ProductVariant;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -12,7 +12,7 @@ use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class ProductCategoryDataTable extends DataTable
+class ProductVariantDataTable extends DataTable
 {
     /**
      * Build the DataTable class.
@@ -22,16 +22,15 @@ class ProductCategoryDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', 'components.datatables.product-category.action-button')
-            ->addColumn('is_active', 'components.datatables.product-category.active-switch')
-            ->setRowId('id')
-            ->rawColumns(['action', 'is_active']);
+            ->addColumn('action', 'components.datatables.product-variant.action-button')
+            ->rawColumns(['action'])
+            ->setRowId('id');
     }
 
     /**
      * Get the query source of dataTable.
      */
-    public function query(ProductCategory $model): QueryBuilder
+    public function query(ProductVariant $model): QueryBuilder
     {
         return $model->newQuery();
     }
@@ -42,12 +41,10 @@ class ProductCategoryDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('productcategory-table')
+                    ->setTableId('productvariant-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
-                    ->dom('lfrtip')
-                    ->orderBy(0)
-                    ->selectStyleSingle();
+                    ->dom('lfrtip');
     }
 
     /**
@@ -59,7 +56,6 @@ class ProductCategoryDataTable extends DataTable
             Column::make('id'),
             Column::make('name'),
             Column::make('description'),
-            Column::make('is_active'),
             Column::make('action'),
         ];
     }
@@ -69,6 +65,6 @@ class ProductCategoryDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'ProductCategory_' . date('YmdHis');
+        return 'ProductVariant_' . date('YmdHis');
     }
 }
