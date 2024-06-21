@@ -17,6 +17,9 @@ return new class extends Migration
             $table->string('name')->require();
             $table->text('description')->nullable();
             $table->text('image_path')->require();
+            $table->unsignedBigInteger('product_id')->require();
+
+            $table->foreign('product_id')->references('id')->on('products');
         });
     }
 
