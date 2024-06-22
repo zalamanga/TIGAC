@@ -25,6 +25,15 @@ class ProductCategoryRepository implements ProductCategoryRepositoryInterface
 
     public function getProductCategoryById($productCategoryId)
     {
-        return ProductCategory::where('id', $productCategoryId);
+        return ProductCategory::where('id', $productCategoryId)->first();
+    }
+
+    public function changeActiveStatus($productCategoryId, $requestData)
+    {
+        $productCategory = $this->getProductCategoryById($productCategoryId);
+
+        $productCategory->is_active = $requestData;
+
+        $productCategory->save();
     }
 }

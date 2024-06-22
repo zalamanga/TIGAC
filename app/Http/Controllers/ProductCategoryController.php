@@ -6,6 +6,7 @@ use App\DataTables\ProductCategoryDataTable;
 use App\Http\Requests\ProductCategoryRequest;
 use App\Services\ProductCategoryService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class ProductCategoryController extends Controller
@@ -53,6 +54,14 @@ class ProductCategoryController extends Controller
         $this->productCategoryService->deleteProductCategory($productCategoryId);
 
         Alert::success('Success', 'Success delete category');
+        return redirect()->route('admin.product.product-category.index');
+    }
+
+    public function changeActiveStatus($productCategoryId, Request $request)
+    {
+        $this->productCategoryService->changeProductCategoryActiveStatus($productCategoryId, $request->status);
+
+        Alert::success('Success', 'Success change product category active status');
         return redirect()->route('admin.product.product-category.index');
     }
 }
