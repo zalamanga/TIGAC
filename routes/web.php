@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProductVariantController;
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\ProductCategoryController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -79,4 +80,6 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/admin/products/variants/store', 'store')->name('admin.product.product-variant.store');
         Route::delete('/admin/products/variants/destroy/{productVariantId}', 'destroy')->name('admin.product.product-variant.destroy');
     });
+
+    Route::resource('userManagement', UserController::class);
 });
