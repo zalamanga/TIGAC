@@ -127,6 +127,12 @@
                         <span>Contact</span>
                     </a>
                 </li>
+                <li class="sidebar-item">
+                    <a href="{{ route('userManagement.index') }}" class="sidebar-link">
+                        <i class="bi bi-person-add"></i>
+                        <span>User Management</span>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>

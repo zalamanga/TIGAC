@@ -6,20 +6,36 @@ use App\Contracts\UserRepositoryInterface;
 
 class UserService
 {
-    protected $userRepository;
 
-    public function __construct(UserRepositoryInterface $userRepository)
+    protected $userRepositoryInterface;
+
+    public function __construct(UserRepositoryInterface $userRepositoryInterface)
     {
-        $this->userRepository = $userRepository;
+        $this->userRepositoryInterface = $userRepositoryInterface;
     }
 
     public function getLoggedUser()
     {
-        return $this->userRepository->getLoggedUser();
+        return $this->userRepositoryInterface->getLoggedUser();
     }
 
     public function getUserById($userId)
     {
-        return $this->userRepository->getUserById($userId);
+        return $this->userRepositoryInterface->getUserById($userId);
+    }
+
+    public function getUsers()
+    {
+        return $this->userRepositoryInterface->getUsers();
+    }
+
+    public function createUser($data)
+    {
+        return $this->userRepositoryInterface->createUser($data);
+    }
+
+    public function deleteUser($userId)
+    {
+        return $this->userRepositoryInterface->deleteUser($userId);
     }
 }
