@@ -12,6 +12,7 @@
 
             <button class="dropdown-item text-danger" type="submit">Delete</button>
         </form>
-        <a class="dropdown-item" href="#">Edit</a>
+        <a class="dropdown-item" href="{{ route('admin.product.product-variant.show', $id) }}">Detail</a>
+        <a class="dropdown-item" href="{{ route('admin.product.product-variant.edit', $id) }}">Edit</a>
     </div>
 </div>

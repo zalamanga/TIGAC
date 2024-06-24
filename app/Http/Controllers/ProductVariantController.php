@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\DataTables\ProductVariantDataTable;
 use App\Http\Requests\ProductVariantRequest;
+use App\Models\ProductVariant;
 use App\Services\ProductVariantService;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -31,7 +32,7 @@ class ProductVariantController
     {
         $title = 'Create New Product Variant';
 
-        return view('pages.admin.product-variant.show', [
+        return view('pages.admin.product-variant.create', [
             'title' => $title
         ]);
     }
@@ -44,6 +45,28 @@ class ProductVariantController
 
         Alert::success('Success', 'Success create new category');
         return redirect()->route('admin.product.product-variant.index');
+    }
+
+    public function show($productVariantId)
+    {
+        $title = 'Product Variant Detail';
+        $productVariant = $this->productVariantService->getProductVariantById($productVariantId);
+
+        return view('pages.admin.product-variant.show', compact(
+            'productVariant',
+            'title'
+        ));
+    }
+
+    public function edit($productVariantId)
+    {
+        $title = 'Product Variant Update';
+        $productVariant = $this->productVariantService->getProductVariantById($productVariantId);
+
+        return view('pages.admin.product-variant.show', compact(
+            'productVariant',
+            'title'
+        ));        
     }
 
     public function destroy($productVariantId)

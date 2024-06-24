@@ -5,6 +5,7 @@
     'class' => '',
     'title' => $title,
     'isRequired' => 'false',
+    'value' => '{{ old($name) }}'
 ])
 
 <div class="form-group">
@@ -14,8 +15,8 @@
             <span class="text-danger">*</span>
         @endif
     </label>
-    <input type="{{ $type }}" id="{{ $name }}" class="form-control {{ $class }}"
-        name="{{ $name }}" placeholder="{{ $placeholder }}" @if ($isRequired == 'true') required @endif value="{{ old($name) }}">
+    <input type="{{ $type }}" id="{{ $name }}" class="{{ $class }}"
+        name="{{ $name }}" placeholder="{{ $placeholder }}" @if ($isRequired == 'true') required @endif value="{{ $value }}">
     @error('name')
         <div class="text-danger">{{ $message }}</div>
     @enderror

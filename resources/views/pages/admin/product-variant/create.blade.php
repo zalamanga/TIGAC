@@ -11,20 +11,19 @@
 
                             <div class="col-12">
                                 <x-input name="name" type="text" placeholder="Variant Name" title="Name"
-                                    class="{{ $productVariant && Route::is('admin.product.product-variant.show') ? 'form-control-plaintext' : 'form-control' }}"
+                                    class="form-control"
                                     isRequired="true"
-                                    value="{{ $productVariant ? $productVariant[0]->name : old('name') }}">
+                                    value="{{ old('name') }}">
                                 </x-input>
                             </div>
                             <div class="col-12">
                                 <div class="form-group">
                                     <label for="email-id-vertical">Description</label>
                                     <textarea type="text" id="email-id-vertical"
-                                        class="{{ $productVariant && Route::is('admin.product.product-variant.show') ? 'form-control-plaintext' : 'form-control' }}"
-                                        name="description" placeholder="Variant Description">{{ $productVariant ? ($productVariant[0]->description ? $productVariant[0]->description : 'no description') : old('description') }}</textarea>
+                                        class="{{ 'form-control' }}"
+                                        name="description" placeholder="Variant Description">{{ old('description') }}</textarea>
                                 </div>
                             </div>
-                            @if (!Route::is('admin.product.product-variant.show'))
                                 <div class="col-12">
                                     <div class='form-check'>
                                         <div class="checkbox">
@@ -39,11 +38,6 @@
                                     <button type="reset" class="btn btn-light me-1 mb-1">Reset</button>
                                     <a href="{{ route('admin.product.product-variant.index') }}" class="btn btn-light-secondary me-1 mb-1">Back</a>
                                 </div>
-                            @else
-                                <div class="col-12 d-flex justify-content-end">
-                                    <a href="{{ route('admin.product.product-variant.index') }}" class="btn btn-light-secondary me-1 mb-1">Back</a>
-                                </div>
-                            @endif
                         </div>
                     </div>
                 </form>

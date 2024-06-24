@@ -15,6 +15,7 @@ class Input extends Component
     public $name;
     public $title;
     public $isRequired;
+    public $value;
 
     /**
      * Create a new component instance.
@@ -25,7 +26,8 @@ class Input extends Component
         $class,
         $name,
         $title,
-        $isRequired
+        $isRequired,
+        $value
     ) {
         $this->type = $type;
         $this->placeholder = $placeholder;
@@ -33,6 +35,7 @@ class Input extends Component
         $this->name = $name;
         $this->title = $title;
         $this->isRequired = $isRequired;
+        $this->value = $value;
     }
 
     /**

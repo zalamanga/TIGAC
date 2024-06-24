@@ -76,6 +76,8 @@ Route::middleware(['auth'])->group(function () {
     Route::controller(ProductVariantController::class)->group(function () {
         Route::get('/admin/products/variants', 'index')->name('admin.product.product-variant.index');
         Route::get('/admin/products/variants/create', 'create')->name('admin.product.product-variant.create');
+        Route::get('/admin/products/variants/detail/{productVariantId}', 'show')->name('admin.product.product-variant.show');
+        Route::get('/admin/products/variants/edit/{productVariantId}', 'edit')->name('admin.product.product-variant.edit');
         Route::post('/admin/products/variants/store', 'store')->name('admin.product.product-variant.store');
         Route::delete('/admin/products/variants/destroy/{productVariantId}', 'destroy')->name('admin.product.product-variant.destroy');
     });
