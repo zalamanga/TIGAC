@@ -24,6 +24,7 @@ class ProductCategoryDataTable extends DataTable
         return (new EloquentDataTable($query))
             ->addColumn('action', 'components.datatables.product-category.action-button')
             ->addColumn('is_active', 'components.datatables.product-category.active-switch')
+            ->addIndexColumn()
             ->setRowId('id')
             ->rawColumns(['action', 'is_active']);
     }
@@ -56,7 +57,7 @@ class ProductCategoryDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::make('id'),
+            Column::computed('DT_RowIndex')->title('No')->orderable(false)->searchable(false),
             Column::make('name'),
             Column::make('description'),
             Column::make('is_active'),
