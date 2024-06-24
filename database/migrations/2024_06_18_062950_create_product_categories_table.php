@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string('name')->require()->unique();
-            $table->string('is_active')->boolean();
+            $table->string('is_active', '1');
             $table->text('description')->nullable();
         });
     }

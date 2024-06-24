@@ -6,25 +6,30 @@ use App\Contracts\ProductCategoryRepositoryInterface;
 
 class ProductCategoryService
 {
-    protected $productCartegoryRepositoryInterface;
+    protected $productCategoryRepositoryInterface;
 
-    public function __construct(ProductCategoryRepositoryInterface $productCartegoryRepositoryInterface)
+    public function __construct(ProductCategoryRepositoryInterface $productCategoryRepositoryInterface)
     {
-        $this->productCartegoryRepositoryInterface = $productCartegoryRepositoryInterface;
+        $this->productCategoryRepositoryInterface = $productCategoryRepositoryInterface;
     }
 
     public function getProductCategories()
     {
-        return $this->productCartegoryRepositoryInterface->getProductCategories();
+        return $this->productCategoryRepositoryInterface->getProductCategories();
     }
 
     public function createProductCategory($data)
     {
-        return $this->productCartegoryRepositoryInterface->createProductCategory($data);
+        return $this->productCategoryRepositoryInterface->createProductCategory($data);
     }
 
     public function deleteProductCategory($productCategoryId)
     {
-        return $this->productCartegoryRepositoryInterface->deleteProductCategory($productCategoryId);
+        return $this->productCategoryRepositoryInterface->deleteProductCategory($productCategoryId);
+    }
+
+    public function changeProductCategoryActiveStatus($productCategoryId, $requestData)
+    {
+        return $this->productCategoryRepositoryInterface->changeActiveStatus($productCategoryId, $requestData);
     }
 }
