@@ -8,4 +8,5 @@ interface ProductCategoryRepositoryInterface
     public function createProductCategory($productCategoryData);
     public function deleteProductCategory($productCategoryId);
     public function getProductCategoryById($productCategoryId);
+    public function changeActiveStatus($productCategoryId, $data);
 }

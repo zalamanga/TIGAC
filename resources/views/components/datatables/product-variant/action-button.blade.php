@@ -9,6 +9,7 @@
             method="post">
             @csrf
             @method('DELETE')
+
             <button class="dropdown-item text-danger" type="submit">Delete</button>
         </form>
         <a class="dropdown-item" href="#">Edit</a>
