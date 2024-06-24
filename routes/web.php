@@ -4,6 +4,7 @@ use App\Http\Controllers\ProductVariantController;
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -65,9 +66,6 @@ Route::middleware(['auth'])->group(function () {
 
     // Product Category
     Route::controller(ProductCategoryController::class)->group(function () {
-        Route::get('/admin/products', function () {
-            return "Product List";
-        })->name('admin.product');
         Route::get('/admin/products/categories', 'index')->name('admin.product.product-category.index');
         Route::get('/admin/products/categories/create', 'create')->name('admin.product.product-category.create');
         Route::post('/admin/products/categories/store', 'store')->name('admin.product.product-category.store');
@@ -83,4 +81,8 @@ Route::middleware(['auth'])->group(function () {
     });
 
     Route::resource('userManagement', UserController::class);
+});
+
+Route::prefix('admin')->group(function () {
+    Route::resource('/products', ProductController::class, ['as' => 'admin']);
 });

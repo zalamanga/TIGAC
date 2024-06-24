@@ -84,7 +84,7 @@
 
                     <ul class="submenu">
                         <li class="submenu-item">
-                            <a href="{{ route('admin.product') }}" class="submenu-link">Prouduct List</a>
+                            <a href="{{ route('admin.products.index') }}" class="submenu-link">Prouduct</a>
                         </li>
 
                         <li class="submenu-item">
