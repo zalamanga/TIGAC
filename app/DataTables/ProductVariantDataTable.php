@@ -23,6 +23,7 @@ class ProductVariantDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addColumn('action', 'components.datatables.product-variant.action-button')
+            ->addIndexColumn()
             ->rawColumns(['action'])
             ->setRowId('id');
     }
@@ -53,7 +54,7 @@ class ProductVariantDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::make('id'),
+            Column::computed('DT_RowIndex')->title('No')->orderable(false)->searchable(false),
             Column::make('name'),
             Column::make('description'),
             Column::make('action'),
