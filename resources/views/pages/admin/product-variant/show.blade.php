@@ -3,17 +3,20 @@
     <div class="card">
         <div class="card-content">
             <div class="card-body">
-                <form class="form form-vertical" action="{{ route('admin.product.product-variant.store') }}" method="POST"
+                <form class="form form-vertical" action="{{ (Route::is('admin.product.product-variant.edit')) ?  route('admin.product.product-variant.update', $productVariant->id) : route('admin.product.product-variant.store') }}" method="POST"
                     enctype="multipart/form-data">
                     <div class="form-body">
                         <div class="row">
                             @csrf
+                            @if ((Route::is('admin.product.product-variant.edit')))
+                                @method('PUT')
+                            @endif
 
                             <div class="col-12">
                                 <x-input name="name" type="text" placeholder="Variant Name" title="Name"
                                     class="{{ $productVariant && Route::is('admin.product.product-variant.show') ? 'form-control-plaintext' : 'form-control' }}"
                                     isRequired="true"
-                                    value="{{ $productVariant ? $productVariant[0]->name : old('name') }}">
+                                    value="{{ $productVariant ? $productVariant->name : old('name') }}">
                                 </x-input>
                             </div>
                             <div class="col-12">
@@ -21,7 +24,7 @@
                                     <label for="email-id-vertical">Description</label>
                                     <textarea type="text" id="email-id-vertical"
                                         class="{{ $productVariant && Route::is('admin.product.product-variant.show') ? 'form-control-plaintext' : 'form-control' }}"
-                                        name="description" placeholder="Variant Description">{{ $productVariant ? ($productVariant[0]->description ? $productVariant[0]->description : 'no description') : old('description') }}</textarea>
+                                        name="description" placeholder="Variant Description">{{ $productVariant ? $productVariant->description : old('description') }}</textarea>
                                 </div>
                             </div>
                             @if (!Route::is('admin.product.product-variant.show'))

@@ -8,4 +8,5 @@ interface ProductVariantRepositoryInterface
     public function createProductVariant($productVariantData);
     public function getProductVariantById($productVariantId);
     public function deleteProductVariant($productVariantId);
+    public function updateProductVariant($productVariantId, $productVariantData);
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\DataTables\ProductVariantDataTable;
 use App\Http\Requests\ProductVariantRequest;
+use App\Http\Requests\ProductVariantUpdateRequest;
 use App\Models\ProductVariant;
 use App\Services\ProductVariantService;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -56,6 +57,20 @@ class ProductVariantController
             'productVariant',
             'title'
         ));
+    }
+
+    public function update($productVariantId, ProductVariantUpdateRequest $productVariantUpdateRequest)
+    {
+        $productVariantData = $productVariantUpdateRequest->validated();
+
+        try {
+            $this->productVariantService->updateProductVariant($productVariantId, $productVariantData);
+            Alert::success('Success', 'Success update variant');
+            return redirect()->route('admin.product.product-variant.index');
+        } catch (\Throwable $th) {
+            Alert::error('Error', 'Failed update variant');
+            return redirect()->route('admin.product.product-variant.index');
+        }
     }
 
     public function edit($productVariantId)

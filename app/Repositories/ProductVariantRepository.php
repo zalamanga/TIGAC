@@ -24,6 +24,13 @@ class ProductVariantRepository implements ProductVariantRepositoryInterface
 
     public function getProductVariantById($productVariantId)
     {
-        return Variant::where('id', $productVariantId)->get();
+        return Variant::where('id', $productVariantId)->first();
+    }
+
+    public function updateProductVariant($productVariantId, $productVariantUpdateData)
+    {
+        $productVariant = Variant::where('id', $productVariantId)->first();
+        
+        return $productVariant->update($productVariantUpdateData);
     }
 }

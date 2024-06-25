@@ -28,8 +28,15 @@ class ProductVariantService
         return $this->productVariantRepository->getProductVariantById($productVariantId);
     }
 
+    public function updateProductVariant($productVariantId, $productVariantData)
+    {
+        return $this->productVariantRepository->updateProductVariant($productVariantId, $productVariantData);
+    }
+
     public function deleteProductVariant($productVariantId)
     {
         return $this->productVariantRepository->deleteProductVariant($productVariantId);
     }
+
+
 }
