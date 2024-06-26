@@ -1,8 +1,9 @@
 
 <script src="{{ asset('static/js/components/dark.js') }}"></script>
 <script src="{{ asset('extensions/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
-
+ps
 <script src="{{ asset('compiled/js/app.js') }}"></script>
+{{-- <script src="{{ asset() }}"></script> --}}
 
 <script src="{{ asset('extensions/jquery/jquery.min.js')}}"></script>
 <script src="{{ asset('extensions/datatables.net/js/jquery.dataTables.min.js')}}"></>

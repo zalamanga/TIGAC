@@ -10,7 +10,7 @@
         <div class="col-12 col-lg-12">
             <div class="card">
                 <div class="card-header">Manage Product Variant</div>
-                <div class="card-body table-responsive">
+                <div class="card-body">
                     {{ $dataTable->table() }}
                     {{ $dataTable->scripts(attributes: ['type' => 'module']) }}
                 </div>
