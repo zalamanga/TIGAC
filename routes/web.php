@@ -71,6 +71,9 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/admin/products/categories/store', 'store')->name('admin.product.product-category.store');
         Route::delete('/admin/products/categories/destroy/{productCategoryId}', 'destroy')->name('admin.product.product-category.destroy');
         Route::put('/admin/products/categories/chagne-active-status/{productCategoryId}', 'changeActiveStatus')->name('admin.product.product-category.change-active-status');
+        Route::get('/admin/products/categories/edit/{productCategoryId}', 'edit')->name('admin.product.product-category.edit');
+        Route::put('/admin/products/categories/update/{productCategoryId}', 'update')->name('admin.product.product-category.update');
+        Route::get('/admin/products/categories/detail/{productCategoryId}', 'show')->name('admin.product.product-category.show');
     });
 
     Route::controller(ProductVariantController::class)->group(function () {
