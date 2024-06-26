@@ -24,6 +24,11 @@ class ProductDataTable extends DataTable
         return (new EloquentDataTable($query))
             ->addColumn('action', 'product.action')
             ->addIndexColumn()
+            ->editColumn('description', function($row) {
+                // You can customize the HTML output for the column
+                return '<div style="width: 500px;">' . $row->description . '</div>';
+            })
+            ->rawColumns(['description']) 
             ->setRowId('id');
     }
 
@@ -43,10 +48,15 @@ class ProductDataTable extends DataTable
         return $this->builder()
                     ->setTableId('product-table')
                     ->columns($this->getColumns())
+                    ->autoWidth('false')
                     ->minifiedAjax()
                     ->dom('lfrtip')
                     ->orderBy(1)
-                    ->selectStyleSingle();
+                    ->selectStyleSingle()
+                    // ->parameters([
+                    //     'autoWidth' => false
+                    // ])
+                    ;
     }
 
     /**
@@ -56,9 +66,17 @@ class ProductDataTable extends DataTable
     {
         return [
             Column::computed('DT_RowIndex')->title('No')->orderable(false)->searchable(false),
-            Column::make('add your columns'),
-            Column::make('created_at'),
-            Column::make('updated_at'),
+            Column::make('name'),
+            Column::make('sku'),
+            Column::make('description'),
+            Column::make('product_category_id'),
+            Column::make('rating'),
+            Column::make('price'),
+            Column::make('discount_percent'),
+            Column::make('is_active'),
+            Column::make('is_hot_item'),
+            Column::make('stock'),
+            Column::make('action')
         ];
     }
 

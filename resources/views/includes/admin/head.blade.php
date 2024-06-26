@@ -19,6 +19,5 @@
     <link rel="stylesheet" crossorigin href="{{ asset('compiled/css/iconly.css') }}" />
 
     <link rel=”stylesheet” href=" https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">
-
     @stack('styles')
 </head>
