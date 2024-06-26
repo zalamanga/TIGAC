@@ -36,4 +36,11 @@ class ProductCategoryRepository implements ProductCategoryRepositoryInterface
 
         $productCategory->save();
     }
+
+    public function updateProductCategory($productCategoryId, $productCategoryUpdateData)
+    {
+        $productVariant = ProductCategory::where('id', $productCategoryId)->first();
+        
+        return $productVariant->update($productCategoryUpdateData);
+    }
 }

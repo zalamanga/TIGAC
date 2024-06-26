@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\DataTables\ProductCategoryDataTable;
 use App\Http\Requests\ProductCategoryRequest;
+use App\Http\Requests\ProductCategoryUpdateRequest;
 use App\Services\ProductCategoryService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -35,7 +36,7 @@ class ProductCategoryController extends Controller
     {
         $title = 'Create New Product Category';
 
-        return view('pages.admin.product-category.show', [
+        return view('pages.admin.product-category.create', [
             'title' => $title
         ]);
     }
@@ -64,5 +65,41 @@ class ProductCategoryController extends Controller
 
         Alert::success('Success', 'Success change product category active status');
         return redirect()->route('admin.product.product-category.index');
+    }
+
+    public function edit($productCategoryId)
+    {
+        $title = 'Product Category Update';
+        $productCategory = $this->productCategoryService->getProductCategoryById($productCategoryId);
+
+        return view('pages.admin.product-category.show', compact(
+            'productCategory',
+            'title'
+        ));
+    }
+
+    public function show($productCategoryId)
+    {
+        $title = 'Product Category Detail';
+        $productCategory = $this->productCategoryService->getProductCategoryById($productCategoryId);
+
+        return view('pages.admin.product-category.show', compact(
+            'productCategory',
+            'title'
+        ));
+    }
+
+    public function update($productCategoryId, ProductCategoryUpdateRequest $productCategoryUpdateRequest)
+    {
+        $productCategoryData = $productCategoryUpdateRequest->validated();
+
+        try {
+            $this->productCategoryService->updateProductCategory($productCategoryId, $productCategoryData);
+            Alert::success('Success', 'Success update Category');
+            return redirect()->route('admin.product.product-category.index');
+        } catch (\Throwable $th) {
+            Alert::error('Error', 'Failed update Category');
+            return redirect()->route('admin.product.product-category.index');
+        }
     }
 }
