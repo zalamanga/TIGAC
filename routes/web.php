@@ -34,6 +34,14 @@ Route::get('/news', function () {
     return view('pages.news');
 })->name('pages.news');
 
+Route::get('/landing', function () {
+    return view('pages.landing');
+})->name('pages.landing');
+
+Route::get('/qr', function () {
+    return view('pages.qr');
+})->name('pages.qr');
+
 Route::get('/products', function () {
     $fileProducts = file_get_contents('../public/data/products.json');
     $data = json_decode($fileProducts, true);

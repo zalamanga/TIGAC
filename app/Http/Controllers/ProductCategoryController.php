@@ -20,6 +20,7 @@ class ProductCategoryController extends Controller
 
     public function index(ProductCategoryDataTable $dataTable)
     {
+        // dd($dataTable->render("pages.admin.product-category.index"));
         $title = 'Product Category List';
 
 
