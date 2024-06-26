@@ -17,16 +17,16 @@ return new class extends Migration
             $table->timestamps();
             $table->string('name')->require();
             $table->text('description')->require();
-            $table->unsignedBigInteger('product_category')->require();
+            $table->unsignedBigInteger('product_category_id')->require();
             $table->float('rating')->nullable();
             $table->float('price')->nullable();
             $table->float('discount_percent')->nullable();
-            $table->float('is_active')->nullable();
-            $table->float('is_hot_item')->nullable();
+            $table->string('is_active', 1)->nullable();
+            $table->string('is_hot_item', 1)->nullable();
             $table->integer('stock')->nullable();
-            $table->integer('volume')->nullable();
+            $table->string('volume')->nullable();
 
-            $table->foreign('product_category')->references('id')->on('product_categories');
+            $table->foreign('product_category_id')->references('id')->on('product_categories');
         });
     }
 
