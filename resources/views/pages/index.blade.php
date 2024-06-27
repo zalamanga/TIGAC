@@ -9,7 +9,7 @@
     <div class="bg-white mb-3 mb-lg-5">
         @include('components.sections.about')
     </div>
-    <div class="container pt-3 pt-lg-0 pb-5 mb-md-5">
+    <div class="container pt-3 pb-5 mb-md-5">
         @include('components.sections.news')
     </div>
     <div class="container pb-5 mb-md-5">

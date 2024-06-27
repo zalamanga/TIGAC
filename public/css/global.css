@@ -277,6 +277,13 @@ body {
 
     .news-item {
         width: 19.5rem !important;
+        height: 350px !important;
+    }
+
+    .news-item > img {
+        object-fit: contain;
+        height: 200px;
+        max-height: 300px;
     }
 
     .img-potrait {
