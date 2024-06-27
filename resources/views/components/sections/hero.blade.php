@@ -1,20 +1,20 @@
 <div id="carouselHero" class="carousel slide">
     <div class="carousel-inner rounded" style="min-height: 80dvh">
-        <div class="carousel-item active ">
+        <a href="#" class="text-decoration-none carousel-item active">
             <img src="{{asset('images/products/liquid.png')}}" class="d-block rounded w-100" alt="liquid">
-        </div>
-        <div class="carousel-item">
+        </a>
+        <a href="#" class="text-decoration-none carousel-item">
             <img src="{{asset('images/products/idcard.png')}}" class="d-block rounded w-100" alt="idcard">
-        </div>
-        <div class="carousel-item">
+        </a>
+        <a href="#" class="text-decoration-none carousel-item">
             <img src="{{asset('images/products/totebag.png')}}" class="d-block rounded w-100" alt="totebag">
-        </div>
-        <div class="carousel-item">
+        </a>
+        <a href="#" class="text-decoration-none carousel-item">
             <img src="{{asset('images/products/tumbler.png')}}" class="d-block rounded w-100" alt="tumbler">
-        </div>
-        <div class="carousel-item">
+        </a>
+        <a href="#" class="text-decoration-none carousel-item">
             <img src="{{asset('images/products/varsity.png')}}" class="d-block rounded w-100" alt="varsity">
-        </div>
+        </a>
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselHero" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>

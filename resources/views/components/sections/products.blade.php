@@ -53,7 +53,7 @@
                             class="img-fluid rounded">
                     </div>
                     <div class="d-flex align-items-center justify-content-between mb-2">
-                        <p class=" text-white fs-5 fw-bold m-0 p-0 text-truncate">{{ $product['name'] }}</p>
+                        <p class="product-title text-white fs-5 fw-bold m-0 p-0 text-truncate">{{ $product['name'] }}</p>
                         <p class="fs-7 text-warning m-0 p-0">Rp.{{ number_format($product['price']) }}</p>
                     </div>
                     <p class="mb-2 fs-7 text-white lh-sm">A perfect liquid ever</p>
@@ -92,7 +92,6 @@
                         </p>
                     </div>
                 </a>
-
             </div>
         @endforeach
     </div>

@@ -1,6 +1,7 @@
 :root {
     --dark-blue: #005eeb;
     --primary-background: #222d68;
+    --red: #ee2a38;
     --white: #fff;
 }
 
@@ -113,6 +114,14 @@ body {
 .product-header {
     width: 170px !important;
     height: 170px !important;
+}
+
+.product-title {
+    transition: all 0.125s ease-in-out;
+}
+
+.product:hover .product-title {
+    color: var(--red) !important;
 }
 
 .link {
