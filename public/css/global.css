@@ -141,6 +141,10 @@ body {
     animation: slide-to-left 35s ease-in-out infinite alternate-reverse;
 }
 
+.brand-container:hover {
+    animation-play-state: paused !important;
+}
+
 .brand-item {
     transition: all 0.3s !important;
     color: #aaa !important;
@@ -216,7 +220,7 @@ body {
         transform: translateX(0);
     }
     100% {
-        transform: translateX(-180%);
+        transform: translateX(-200%);
     }
 }
 
