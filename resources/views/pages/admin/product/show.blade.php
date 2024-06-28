@@ -3,7 +3,7 @@
     <div class="card">
         <div class="card-content">
             <div class="card-body">
-                Product Detail Page
+                {{ Route::is('admin.products.show') ? 'Product Detail Page' : 'Add New Product' }}
             </div>
         </div>
     </div>

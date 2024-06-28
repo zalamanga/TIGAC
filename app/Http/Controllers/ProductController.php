@@ -37,4 +37,15 @@ class ProductController extends Controller
 
         return view("pages.admin.product.show", $data);
     }
+
+    public function create()
+    {
+        $title = 'Add New Product';
+
+        $data = [
+            'title' => $title
+        ];
+
+        return view("pages.admin.product.show", $data);
+    }
 }
