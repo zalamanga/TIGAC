@@ -3,15 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\DataTables\ProductDataTable;
+use App\Models\Product;
+use App\Services\ProductCategoryService;
 use App\Services\ProductService;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
     protected $productService;
+    protected $productCategoryService;
 
-    public function __construct(ProductService $productService) {
+    public function __construct(ProductService $productService, ProductCategoryService $productCategoryService) {
         $this->productService = $productService;
+        $this->productCategoryService = $productCategoryService;
     }
 
     public function index(ProductDataTable $dataTable)
@@ -41,9 +45,11 @@ class ProductController extends Controller
     public function create()
     {
         $title = 'Add New Product';
+        $productCategories = $this->productCategoryService->getProductCategories();
 
         $data = [
-            'title' => $title
+            'title' => $title,
+            'productCategories' => $productCategories
         ];
 
         return view("pages.admin.product.show", $data);
