@@ -90,19 +90,15 @@
                     <div class="row">
                         <p class="h2">Product Media (Images)</p>
                         <div class="form-group">
-                            <label>Desktop Size Media</label>
-                            <input type="file" class="form-control" name="images_desktop[]" multiple>
+                            <label for="total_image">How Much Image This Product Have?</label>
+                            <input type="number" class="form-control total-image-input" id="totalImageNumberInput">
+                            <a class="btn btn-primary mt-2" onclick="generateImageInput()">Add Images</a>
                         </div>
-                        <div class="form-group">
-                            <label>Tablet Size Media</label>
-                            <input type="file" class="form-control" name="images_tablet[]" multiple>
-                        </div>
-                        <div class="form-group">
-                            <label>Mobile Size Media</label>
-                            <input type="file" class="form-control" name="images_mobile[]" multiple>
+                        <div class="product-image-input" id="imageInputWrapper">
+
                         </div>
                     </div>
-                    <div class="col-12 d-flex justify-content-end">
+                    <div class="col-12 d-flex justify-content-end mt-2">
                         <button type="submit" class="btn btn-primary me-1 mb-1">Submit</button>
                         <button type="reset" class="btn btn-light me-1 mb-1">Reset</button>
                         <a href="{{ route('admin.products.index') }}" class="btn btn-light-secondary me-1 mb-1">Back</a>
@@ -111,4 +107,43 @@
             </div>
         </div>
     </div>
+
+    <script>
+        function getTotalImageNumber() {
+            let totalImageNumberInput = document.getElementById('totalImageNumberInput');
+
+            let totalNumber = totalImageNumberInput.value;
+
+            return totalNumber;
+        }
+
+        function generateImageInput() {
+            let totalImageNumber = getTotalImageNumber();
+
+            let imageInputWrapper = document.getElementById('imageInputWrapper');
+            imageInputWrapper.innerHTML = ''; // Clear existing content if any
+
+            for (let i = 0; i < totalImageNumber; i++) {
+                let imageInputFormGroup = document.createElement('div');
+                imageInputFormGroup.className = 'form-group'; // Optional: Add a class for styling
+                imageInputFormGroup.innerHTML = `
+                <div class='form-group'>
+                    <label for="image_${i}">Image name ${i + 1} <span class="text-danger">*</span></label>
+                    <input type"text" name="image_name[]" class="form-control" value={{ old('image_name[]') }}>
+                </div>
+                <div class='form-group'>
+                    <label for="description_${i}">Image Description ${i + 1}</label>
+                    <textarea type"text" name="image_description[]" class="form-control" value={{ old('image_description[]') }}></textarea>
+                </div>
+                <div class='form-group'>
+                    <label for="images_${i}">Image File ${i + 1}</label>
+                    <input type="file" name="images[]" class="form-control">
+                </div>
+            `;
+                imageInputWrapper.appendChild(imageInputFormGroup);
+            }
+
+            console.log(totalImageNumber);
+        }
+    </script>
 @endsection

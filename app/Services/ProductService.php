@@ -21,4 +21,9 @@ class ProductService
     {
         return $this->productRepositoryInterface->getProductById($productId);
     }
+
+    public function storeProductData($requestProductData)
+    {
+        $imagesData;
+    }
 }
