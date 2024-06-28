@@ -24,11 +24,35 @@ class ProductDataTable extends DataTable
         return (new EloquentDataTable($query))
             ->addColumn('action', 'product.action')
             ->addIndexColumn()
+            ->editColumn('name', function($row) {
+                return '<div style="width: 150px;">' . $row->name . '</div>';
+            })
             ->editColumn('description', function($row) {
-                // You can customize the HTML output for the column
                 return '<div style="width: 500px;">' . $row->description . '</div>';
             })
-            ->rawColumns(['description']) 
+            ->editColumn('product_category', function($row) {
+                return $row->productCategory->name;
+            })
+            ->editColumn('product_variant', function($row) {
+                $productVariants = [];
+
+                foreach ($row->variants as $variant) {
+                    array_push($productVariants, $variant->name);
+                }
+
+                return $productVariants;
+            })
+            ->editColumn('sku', function($row) {
+                $sku = $row->sku == null ? 'SKU tidak ditemukan' : $row->sku;
+
+                return $sku;
+            })
+            ->editColumn('price', function($row) {
+                return 'Rp.' . number_format($row->price,2,",",".");
+            })
+            ->addColumn('is_active', 'components.datatables.product.active-switch')
+            ->addColumn('is_hot_item', 'components.datatables.product.hot-item-switch')
+            ->rawColumns(['description', 'name', 'is_active', 'is_hot_item']) 
             ->setRowId('id');
     }
 
@@ -53,9 +77,13 @@ class ProductDataTable extends DataTable
                     ->dom('lfrtip')
                     ->orderBy(1)
                     ->selectStyleSingle()
-                    // ->parameters([
-                    //     'autoWidth' => false
-                    // ])
+                    ->parameters([
+                        'autoWidth' => false,
+                        'initComplete' => 'function() {
+                            $("#product-table thead th").css("padding-right", "75px");
+                            $("#product-table").css("table-layout", "auto");
+                        }',
+                    ])
                     ;
     }
 
@@ -69,10 +97,9 @@ class ProductDataTable extends DataTable
             Column::make('name'),
             Column::make('sku'),
             Column::make('description'),
-            Column::make('product_category_id'),
-            Column::make('rating'),
-            Column::make('price'),
-            Column::make('discount_percent'),
+            Column::make('product_category'),
+            Column::make('product_variant'),
+            Column::make('price')->title('Base Price'),
             Column::make('is_active'),
             Column::make('is_hot_item'),
             Column::make('stock'),
