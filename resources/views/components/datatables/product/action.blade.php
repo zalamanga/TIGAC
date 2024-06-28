@@ -11,7 +11,7 @@
             @method('DELETE')
             <button class="dropdown-item text-danger" type="submit">Delete</button>
     </form>
-        <a class="dropdown-item" href="#">Detail</a>
+        <a class="dropdown-item" href="{{ route('admin.products.show', $id) }}">Detail</a>
         <a class="dropdown-item" href="#">Edit</a>
     </div>
 </div>
