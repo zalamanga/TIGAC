@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\DataTables\ProductDataTable;
+use App\Http\Requests\ProductRequest;
 use App\Models\Product;
 use App\Services\ProductCategoryService;
 use App\Services\ProductService;
@@ -53,5 +54,10 @@ class ProductController extends Controller
         ];
 
         return view("pages.admin.product.show", $data);
+    }
+
+    public function store(ProductRequest $request)
+    {
+        dd($request);
     }
 }
