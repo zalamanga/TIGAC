@@ -22,7 +22,7 @@ class ProductDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', 'product.action')
+            ->addColumn('action', 'components.datatables.product.action')
             ->addIndexColumn()
             ->editColumn('name', function($row) {
                 return '<div style="width: 150px;">' . $row->name . '</div>';
@@ -52,7 +52,7 @@ class ProductDataTable extends DataTable
             })
             ->addColumn('is_active', 'components.datatables.product.active-switch')
             ->addColumn('is_hot_item', 'components.datatables.product.hot-item-switch')
-            ->rawColumns(['description', 'name', 'is_active', 'is_hot_item']) 
+            ->rawColumns(['description', 'name', 'is_active', 'is_hot_item', 'action']) 
             ->setRowId('id');
     }
 
