@@ -21,9 +21,20 @@
                         <div class="col-4">
                             <div class="form-group">
                                 <label for="product_category">Product Category <span class="text-danger">*</span></label>
-                                <select class="form-select" id="product_category" name="product_category_id">
+                                <select class="form-select" id="product_category" name="product_category" data-placeholder="Choose Category">
                                     @foreach ($productCategories as $productCategory)
                                         <option value="{{ $productCategory->id }}">{{ $productCategory->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label for="product_category">Product Variant <span class="text-danger">*</span></label>
+                                <select class="form-select" id="product_category" name="product_category" data-placeholder="Choose Variants">
+                                        <option value="">No Variants</option>
+                                    @foreach ($productVariants as $productVariant)
+                                        <option value="{{ $productVariant->id }}">{{ $productVariant->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -45,7 +56,7 @@
                             <div class="form-group">
                                 <label for="discount_percent">Discount in Percent</label>
                                 <div class="input-group">
-                                    <input type="number" max="100" class="form-control" name="discount_percent" value="{{ old('discount_percent') }}>
+                                    <input type="number" max="100" class="form-control" name="discount_percent" value="{{ old('discount_percent') }}">
                                     <span class="input-group-text">%</span>
                                     @error('discount_percent')
                                         <div class="text-danger">{{ $message }}</div>
