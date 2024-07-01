@@ -64,11 +64,11 @@ class ProductController extends Controller
 
             $this->productService->storeProductData($productRequest);
 
-            Alert::success('Success', 'Success update Category');
-            return redirect()->route('admin.produc.index');
+            Alert::success('Success', 'Success Add Product');
+            return redirect()->route('admin.products.index');
         } catch (\Throwable $th) {
             Alert::error('Error', 'Failed to Add a Product');
-            return redirect()->route('admin.product.crete');
+            return redirect()->route('admin.products.create');
         }
     }
 }
