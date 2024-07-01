@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Contracts\ProductRepositoryInterface;
+use Illuminate\Support\Facades\DB;
 
 class ProductService
 {
@@ -25,8 +26,7 @@ class ProductService
 
     public function storeProductData($requestProductData)
     {
-        // dd($requestProductData);
-
+        DB::beginTransaction();
         try {
             $productData = [
                 'sku' => $requestProductData['sku'],
@@ -40,14 +40,12 @@ class ProductService
                 'stock' => $requestProductData['stock']
             ];
 
-            // dd($productData, $requestProductData);
-
             $product = $this->productRepositoryInterface->createProduct($productData);
 
             // handle image input
             if ($requestProductData['images']) {
                 foreach ($requestProductData['images'] as $index => $imageFile) {
-                    $imagePath = $imageFile->store('images', 'public');
+                    $imagePath = $imageFile->store('images/products', 'public');
 
                     $imageData = [
                         'image_path' => $imagePath,
@@ -58,8 +56,10 @@ class ProductService
                     $this->productRepositoryInterface->storeProductImage($product, $imageData);
                 }
             }
+
+            DB::commit();
         } catch (\Throwable $th) {
-            dd($th);
+            DB::rollBack();
         }
     }
 }

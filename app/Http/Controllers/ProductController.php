@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Services\ProductCategoryService;
 use App\Services\ProductService;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ProductController extends Controller
 {
@@ -58,8 +59,16 @@ class ProductController extends Controller
 
     public function store(ProductRequest $productRequest)
     {
-        $productRequest = $productRequest->validated();
+        try {
+            $productRequest = $productRequest->validated();
 
-        $this->productService->storeProductData($productRequest);
+            $this->productService->storeProductData($productRequest);
+
+            Alert::success('Success', 'Success update Category');
+            return redirect()->route('admin.produc.index');
+        } catch (\Throwable $th) {
+            Alert::error('Error', 'Failed to Add a Product');
+            return redirect()->route('admin.product.crete');
+        }
     }
 }
