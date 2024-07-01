@@ -19,7 +19,7 @@ return new class extends Migration
             $table->text('description')->require();
             $table->unsignedBigInteger('product_category_id')->require();
             $table->float('rating')->nullable();
-            $table->float('price')->nullable();
+            $table->bigInteger('price')->nullable();
             $table->float('discount_percent')->nullable();
             $table->string('is_active', 1)->nullable();
             $table->string('is_hot_item', 1)->nullable();

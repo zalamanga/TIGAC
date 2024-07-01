@@ -17,9 +17,14 @@ class ProductRepository implements ProductRepositoryInterface
         return Product::where('id', $productId)->first();
     }
 
-    public function createProduct($productId, $requestCreateData)
+    public function createProduct($requestCreateData)
     {
         return Product::create($requestCreateData);
+    }
+
+    public function storeProductImage($product, $requestImageData)
+    {
+        return $product->images()->create($requestImageData);
     }
 
     public function updateProduct($productId, $requestUpdateData)

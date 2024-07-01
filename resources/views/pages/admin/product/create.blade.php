@@ -21,7 +21,7 @@
                         <div class="col-4">
                             <div class="form-group">
                                 <label for="product_category">Product Category <span class="text-danger">*</span></label>
-                                <select class="form-select" id="product_category" name="product_category">
+                                <select class="form-select" id="product_category" name="product_category_id">
                                     @foreach ($productCategories as $productCategory)
                                         <option value="{{ $productCategory->id }}">{{ $productCategory->name }}</option>
                                     @endforeach
@@ -60,8 +60,8 @@
                         </div>
                         <div class="col-4">
                             <div class="form-group">
-                                <label for="email-id-vertical">Active Status <span class="text-danger">*</span></label>
-                                <select class="form-select" id="inputGroupSelect02">
+                                <label for="is_active">Active Status <span class="text-danger">*</span></label>
+                                <select class="form-select" id="inputGroupSelect02" name="is_active">
                                     <option value="1">Active</option>
                                     <option value="0">Not Active</option>
                                 </select>
@@ -69,8 +69,8 @@
                         </div>
                         <div class="col-4">
                             <div class="form-group">
-                                <label for="email-id-vertical">Hot Item Status <span class="text-danger">*</span></label>
-                                <select class="form-select" id="inputGroupSelect02">
+                                <label for="is_hot_item">Hot Item Status <span class="text-danger">*</span></label>
+                                <select class="form-select" id="inputGroupSelect02" name="is_hot_item">
                                     <option value="1">Hot Item</option>
                                     <option value="0">Not Hot Item</option>
                                 </select>

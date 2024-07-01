@@ -53,11 +53,13 @@ class ProductController extends Controller
             'productCategories' => $productCategories
         ];
 
-        return view("pages.admin.product.show", $data);
+        return view("pages.admin.product.create", $data);
     }
 
-    public function store(ProductRequest $request)
+    public function store(ProductRequest $productRequest)
     {
-        dd($request);
+        $productRequest = $productRequest->validated();
+
+        $this->productService->storeProductData($productRequest);
     }
 }

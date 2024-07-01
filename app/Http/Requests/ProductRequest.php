@@ -24,18 +24,18 @@ class ProductRequest extends FormRequest
         return [
             'name' => 'unique:products,name|required|max:100',
             'sku' => 'nullable|max:25',
-            'product_category' => 'required|exists:product_categories,id',
+            'product_category_id' => 'required|exists:product_categories,id',
             'price' => 'required|numeric',
             'discount_percent' => 'nullable|numeric|max:100.0',
             'stock' => 'required|integer',
-            'active_status' => 'nullable|boolean',
+            'is_active' => 'nullable|boolean',
             'is_hot_item' => 'nullable|boolean',
-            'description' => 'nullable|string',
+            'description' => 'required',
             'images' => 'nullable|array',
             'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
             'images_name' => 'nullable|array',
-            'image_description' => 'required|array',
-            'image_name.*' => 'required',
+            'image_description' => 'nullable|array',
+            'image_name.*' => 'nullable',
             'image_description.*' => 'nullable'
         ];
     }
@@ -44,10 +44,11 @@ class ProductRequest extends FormRequest
     {
         return [
             'name.required' => "Product name are required",
+            'description.required' => "Product description name are required",
             'name.unique' => "Product name already exists",
             'sku.max' => "SKU maximum length are 25",
-            'product_category.required' => "Product category are required",
-            'product_category_exists' => "Product category not found",
+            'product_category_id.required' => "Product category are required",
+            'product_category_id.exists' => "Product category not found",
             'price.required' => "Product price are required",
             'discount_percent.max' => "Discount in percent maximum are 100",
             "stock.required" => "Product stock are required",
