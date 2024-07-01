@@ -21,7 +21,8 @@
                         <div class="col-4">
                             <div class="form-group">
                                 <label for="product_category">Product Category <span class="text-danger">*</span></label>
-                                <select class="form-select" id="product_category" name="product_category" data-placeholder="Choose Category">
+                                <select class="form-select" id="product_category" name="product_category"
+                                    data-placeholder="Choose Category">
                                     @foreach ($productCategories as $productCategory)
                                         <option value="{{ $productCategory->id }}">{{ $productCategory->name }}</option>
                                     @endforeach
@@ -31,8 +32,8 @@
                         <div class="col-4">
                             <div class="form-group">
                                 <label for="product_category">Product Variant <span class="text-danger">*</span></label>
-                                <select class="form-select" id="product_category" name="product_category" data-placeholder="Choose Variants">
-                                        <option value="">No Variants</option>
+                                <select class="choices form-select multiple-remove" name="product_variant"
+                                    multiple="multiple" data-placeholder="Choose Variants">
                                     @foreach ($productVariants as $productVariant)
                                         <option value="{{ $productVariant->id }}">{{ $productVariant->name }}</option>
                                     @endforeach
@@ -44,7 +45,8 @@
                                 <label for="price">Base Price <span class="text-danger">*</span></label>
                                 <div class="input-group">
                                     <span class="input-group-text">Rp.</span>
-                                    <input type="number" class="form-control" name="price" required value="{{ old('price') }}">
+                                    <input type="number" class="form-control" name="price" required
+                                        value="{{ old('price') }}">
                                     <span class="input-group-text">,00</span>
                                     @error('price')
                                         <div class="text-danger">{{ $message }}</div>
@@ -56,7 +58,8 @@
                             <div class="form-group">
                                 <label for="discount_percent">Discount in Percent</label>
                                 <div class="input-group">
-                                    <input type="number" max="100" class="form-control" name="discount_percent" value="{{ old('discount_percent') }}">
+                                    <input type="number" max="100" class="form-control" name="discount_percent"
+                                        value="{{ old('discount_percent') }}">
                                     <span class="input-group-text">%</span>
                                     @error('discount_percent')
                                         <div class="text-danger">{{ $message }}</div>
@@ -121,7 +124,8 @@
                                     </div>
                                     <div class='form-group'>
                                         <label for="images_{{ $index }}">Image File {{ $index + 1 }}</label>
-                                        <input type="file" name="images[]" class="form-control" value="{{ old('images' . $index) }}">
+                                        <input type="file" name="images[]" class="form-control"
+                                            value="{{ old('images' . $index) }}">
                                     </div>
                                 @endforeach
                             @endif
@@ -137,25 +141,26 @@
         </div>
     </div>
 
-    <script>
-        function getTotalImageNumber() {
-            let totalImageNumberInput = document.getElementById('totalImageNumberInput');
+    @push('scripts')
+        <script>
+            function getTotalImageNumber() {
+                let totalImageNumberInput = document.getElementById('totalImageNumberInput');
 
-            let totalNumber = totalImageNumberInput.value;
+                let totalNumber = totalImageNumberInput.value;
 
-            return totalNumber;
-        }
+                return totalNumber;
+            }
 
-        function generateImageInput() {
-            let totalImageNumber = getTotalImageNumber();
+            function generateImageInput() {
+                let totalImageNumber = getTotalImageNumber();
 
-            let imageInputWrapper = document.getElementById('imageInputWrapper');
-            imageInputWrapper.innerHTML = ''; // Clear existing content if any
+                let imageInputWrapper = document.getElementById('imageInputWrapper');
+                imageInputWrapper.innerHTML = ''; // Clear existing content if any
 
-            for (let i = 0; i < totalImageNumber; i++) {
-                let imageInputFormGroup = document.createElement('div');
-                imageInputFormGroup.className = 'form-group'; // Optional: Add a class for styling
-                imageInputFormGroup.innerHTML = `
+                for (let i = 0; i < totalImageNumber; i++) {
+                    let imageInputFormGroup = document.createElement('div');
+                    imageInputFormGroup.className = 'form-group'; // Optional: Add a class for styling
+                    imageInputFormGroup.innerHTML = `
                 <div class='form-group'>
                     <label for="image_${i}">Image name ${i + 1} <span class="text-danger">*</span></label>
                     <input type"text" name="image_name[]" class="form-control" value={{ old('image_name[]') }}>
@@ -169,10 +174,11 @@
                     <input type="file" name="images[]" class="form-control">
                 </div>
             `;
-                imageInputWrapper.appendChild(imageInputFormGroup);
-            }
+                    imageInputWrapper.appendChild(imageInputFormGroup);
+                }
 
-            console.log(totalImageNumber);
-        }
-    </script>
+                console.log(totalImageNumber);
+            }
+        </script>
+    @endpush
 @endsection
