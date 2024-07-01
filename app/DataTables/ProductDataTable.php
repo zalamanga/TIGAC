@@ -96,7 +96,7 @@ class ProductDataTable extends DataTable
             Column::computed('DT_RowIndex')->title('No')->orderable(false)->searchable(false),
             Column::make('name'),
             Column::make('sku'),
-            Column::make('description'),
+            // Column::make('description'),
             Column::make('product_category'),
             Column::make('product_variant'),
             Column::make('price')->title('Base Price'),
