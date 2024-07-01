@@ -17,7 +17,7 @@
     </label>
     <input type="{{ $type }}" id="{{ $name }}" class="{{ $class }}"
         name="{{ $name }}" placeholder="{{ $placeholder }}" @if ($isRequired == 'true') required @endif value="{{ $value }}">
-    @error('name')
+    @error($name)
         <div class="text-danger">{{ $message }}</div>
     @enderror
 </div>

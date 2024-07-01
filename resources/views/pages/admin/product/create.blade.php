@@ -33,7 +33,7 @@
                                 <label for="price">Base Price <span class="text-danger">*</span></label>
                                 <div class="input-group">
                                     <span class="input-group-text">Rp.</span>
-                                    <input type="number" class="form-control" name="price" required>
+                                    <input type="number" class="form-control" name="price" required value="{{ old('price') }}">
                                     <span class="input-group-text">,00</span>
                                     @error('price')
                                         <div class="text-danger">{{ $message }}</div>
@@ -45,7 +45,7 @@
                             <div class="form-group">
                                 <label for="discount_percent">Discount in Percent</label>
                                 <div class="input-group">
-                                    <input type="number" max="100" class="form-control" name="discount_percent">
+                                    <input type="number" max="100" class="form-control" name="discount_percent" value="{{ old('discount_percent') }}>
                                     <span class="input-group-text">%</span>
                                     @error('discount_percent')
                                         <div class="text-danger">{{ $message }}</div>
@@ -95,7 +95,25 @@
                             <a class="btn btn-primary mt-2" onclick="generateImageInput()">Add Images</a>
                         </div>
                         <div class="product-image-input" id="imageInputWrapper">
-
+                            @if (old('image_name'))
+                                @foreach (old('image_name') as $index => $imageName)
+                                    <div class='form-group'>
+                                        <label for="image_{{ $index }}">Image name {{ $index + 1 }} <span
+                                                class="text-danger">*</span></label>
+                                        <input type="text" name="image_name[]" class="form-control"
+                                            value="{{ $imageName }}">
+                                    </div>
+                                    <div class='form-group'>
+                                        <label for="description_{{ $index }}">Image Description
+                                            {{ $index + 1 }}</label>
+                                        <textarea type="text" name="image_description[]" class="form-control">{{ old('image_description.' . $index) }}</textarea>
+                                    </div>
+                                    <div class='form-group'>
+                                        <label for="images_{{ $index }}">Image File {{ $index + 1 }}</label>
+                                        <input type="file" name="images[]" class="form-control" value="{{ old('images' . $index) }}">
+                                    </div>
+                                @endforeach
+                            @endif
                         </div>
                     </div>
                     <div class="col-12 d-flex justify-content-end mt-2">

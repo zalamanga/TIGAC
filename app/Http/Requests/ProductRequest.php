@@ -22,7 +22,7 @@ class ProductRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'unique:products,name|required',
+            'name' => 'unique:products,name|required|max:100',
             'sku' => 'nullable|max:25',
             'product_category' => 'required|exists:product_categories,id',
             'price' => 'required|numeric',
@@ -31,12 +31,12 @@ class ProductRequest extends FormRequest
             'active_status' => 'nullable|boolean',
             'is_hot_item' => 'nullable|boolean',
             'description' => 'nullable|string',
-            'images_desktop' => 'nullable|array',
-            'images_desktop.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
-            'images_tablet' => 'nullable|array',
-            'images_tablet.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
-            'images_mobile' => 'nullable|array',
-            'images_mobile.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'images' => 'nullable|array',
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'images_name' => 'nullable|array',
+            'image_description' => 'required|array',
+            'image_name.*' => 'required',
+            'image_description.*' => 'nullable'
         ];
     }
 
@@ -51,9 +51,7 @@ class ProductRequest extends FormRequest
             'price.required' => "Product price are required",
             'discount_percent.max' => "Discount in percent maximum are 100",
             "stock.required" => "Product stock are required",
-            "images_desktop.*.mimes" => "Image file must jpeg,png,jpg, or gif",
-            "images_tablet.*.mimes" => "Image file must jpeg,png,jpg, or gif",
-            "images_mobile.*.mimes" => "Image file must jpeg,png,jpg, or gif",
+            "images.*.mimes" => "Image file must jpeg,png,jpg, or gif",
         ];
     }
 }
