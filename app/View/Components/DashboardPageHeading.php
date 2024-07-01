@@ -9,14 +9,16 @@ use Illuminate\View\Component;
 class DashboardPageHeading extends Component
 {
     public $title;
+    public $currentPage;
 
     /**
      * Create a new component instance.
      * @param string $title
      */
-    public function __construct($title)
+    public function __construct($title, $currentPage)
     {
         $this->title = $title;
+        $this->currentPage = $currentPage;
     }
 
     /**

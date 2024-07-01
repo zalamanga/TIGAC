@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 @include('includes.admin.head')
-@include('sweetalert::alert')
 <body>
-    <script src="assets/static/js/initTheme.js"></script>
+    <script src="{{ asset('static/js/initTheme.js') }}"></script>
     <div id="app">
         @include('components.admin.sidebar')
         <div id="main">
