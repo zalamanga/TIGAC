@@ -39,6 +39,12 @@ class ProductRepository implements ProductRepositoryInterface
 
     public function deleteProductById($productId)
     {
-        return Product::where('id', $productId)->delete();
+        $product = Product::where('id', $productId)->first();
+
+        if ($product->variants()->exists()){
+            $product->variants()->detach();
+        }
+
+        return $product->delete();
     }
 }

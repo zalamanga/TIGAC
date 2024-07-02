@@ -5,7 +5,7 @@
     </button>
     
     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <form action="#"
+        <form action="{{ route('admin.products.destroy', $id) }}"
             method="post">
             @csrf
             @method('DELETE')

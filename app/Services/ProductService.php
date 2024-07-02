@@ -27,7 +27,6 @@ class ProductService
     public function storeProductData($requestProductData)
     {
         DB::beginTransaction();
-        // dd($requestProductData);
         try {
             $productData = [
                 'sku' => $requestProductData['sku'],
@@ -57,17 +56,19 @@ class ProductService
                     $this->productRepositoryInterface->storeProductImage($product, $imageData);
                 }
             }
-            // dd(array_key_exists('product_variants', $requestProductData), $requestProductData);
-            // handle product variant input
             if (array_key_exists('product_variants', $requestProductData)) {
-                // dd($requestProductData['product_variants']);
                 $this->productRepositoryInterface->attachProductVariant($product, $requestProductData['product_variants']);
             }
 
             DB::commit();
         } catch (\Throwable $th) {
-            dd($th);
             DB::rollBack();
+            return $th;
         }
+    }
+
+    public function deleteProduct($productId)
+    {
+        return $this->productRepositoryInterface->deleteProductById($productId);
     }
 }

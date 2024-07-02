@@ -77,4 +77,12 @@ class ProductController extends Controller
             return redirect()->route('admin.products.create');
         }
     }
+
+    public function destroy($productId)
+    {
+        $this->productService->deleteProduct($productId);
+        Alert::success('Success', 'Success Delete Product');
+        return redirect()->route('admin.products.index');
+
+    }
 }
