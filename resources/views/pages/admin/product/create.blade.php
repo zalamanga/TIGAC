@@ -1,5 +1,9 @@
 @extends('layouts.admin.main')
 @section('content')
+    {{-- @if ($errors->any())
+        {{ dd($errors->all()) }}
+    @endif --}}
+
     <div class="card">
         <div class="card-content">
             <div class="card-body">
@@ -21,21 +25,24 @@
                         <div class="col-4">
                             <div class="form-group">
                                 <label for="product_category">Product Category <span class="text-danger">*</span></label>
-                                <select class="form-select" id="product_category" name="product_category"
-                                    data-placeholder="Choose Category">
+                                <select class="form-select" id="product_category" name="product_category_id"
+                                    data-placeholder="Choose Category" required>
                                     @foreach ($productCategories as $productCategory)
                                         <option value="{{ $productCategory->id }}">{{ $productCategory->name }}</option>
                                     @endforeach
                                 </select>
+                                @error('product_category')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                         <div class="col-4">
                             <div class="form-group">
-                                <label for="product_category">Product Variant <span class="text-danger">*</span></label>
-                                <select class="choices form-select multiple-remove" name="product_variant"
+                                <label for="product_category">Product Variant</label>
+                                <select class="choices form-select multiple-remove" name="product_variants[]"
                                     multiple="multiple" data-placeholder="Choose Variants">
                                     @foreach ($productVariants as $productVariant)
-                                        <option value="{{ $productVariant->id }}">{{ $productVariant->name }}</option>
+                                        <option value="{{ $productVariant->id }}" {{ (old('product_variants[]') == $productVariant->name ? "selected":"") }}>{{ $productVariant->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -92,7 +99,7 @@
                         </div>
                         <div class="col-12">
                             <div class="form-group">
-                                <label for="email-id-vertical">Description</label>
+                                <label for="email-id-vertical">Description <span class="text-danger">*</span></label>
                                 <textarea type="text" id="email-id-vertical" class="form-control" name="description"
                                     placeholder="Product Description" rows="4">{{ old('description') }}</textarea>
                                 @error('description')
@@ -163,7 +170,7 @@
                     imageInputFormGroup.innerHTML = `
                 <div class='form-group'>
                     <label for="image_${i}">Image name ${i + 1} <span class="text-danger">*</span></label>
-                    <input type"text" name="image_name[]" class="form-control" value={{ old('image_name[]') }}>
+                    <input type"text" name="image_name[]" class="form-control" value={{ old('image_name[]') }} required>
                 </div>
                 <div class='form-group'>
                     <label for="description_${i}">Image Description ${i + 1}</label>
@@ -171,7 +178,7 @@
                 </div>
                 <div class='form-group'>
                     <label for="images_${i}">Image File ${i + 1}</label>
-                    <input type="file" name="images[]" class="form-control">
+                    <input type="file" name="images[]" class="form-control" required>
                 </div>
             `;
                     imageInputWrapper.appendChild(imageInputFormGroup);

@@ -27,6 +27,11 @@ class ProductRepository implements ProductRepositoryInterface
         return $product->images()->create($requestImageData);
     }
 
+    public function attachProductVariant($product, $requestProductVariantData)
+    {
+        return $product->variants()->attach($requestProductVariantData);
+    }
+
     public function updateProduct($productId, $requestUpdateData)
     {
         return Product::where('id', $productId)->update($requestUpdateData);

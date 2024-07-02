@@ -31,12 +31,13 @@ class ProductRequest extends FormRequest
             'is_active' => 'nullable|boolean',
             'is_hot_item' => 'nullable|boolean',
             'description' => 'required',
-            'images' => 'nullable|array',
+            'images' => 'nullable',
             'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
-            'images_name' => 'nullable|array',
-            'image_description' => 'nullable|array',
+            'images_name' => 'nullable',
+            'image_description' => 'nullable',
             'image_name.*' => 'nullable',
-            'image_description.*' => 'nullable'
+            'image_description.*' => 'nullable',
+            'product_variants' => 'nullable|array'
         ];
     }
 
@@ -44,7 +45,7 @@ class ProductRequest extends FormRequest
     {
         return [
             'name.required' => "Product name are required",
-            'description.required' => "Product description name are required",
+            'description.required' => "Product description are required",
             'name.unique' => "Product name already exists",
             'sku.max' => "SKU maximum length are 25",
             'product_category_id.required' => "Product category are required",

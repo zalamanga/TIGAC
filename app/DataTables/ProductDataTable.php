@@ -50,9 +50,12 @@ class ProductDataTable extends DataTable
             ->editColumn('price', function($row) {
                 return 'Rp.' . number_format($row->price,2,",",".");
             })
+            ->editColumn('created_at', function ($row) {
+                return date('D, d-M-Y', strtotime($row->created_at));
+            })
             ->addColumn('is_active', 'components.datatables.product.active-switch')
             ->addColumn('is_hot_item', 'components.datatables.product.hot-item-switch')
-            ->rawColumns(['description', 'name', 'is_active', 'is_hot_item', 'action']) 
+            ->rawColumns(['description', 'name', 'is_active', 'is_hot_item', 'action', 'created_at']) 
             ->setRowId('id');
     }
 
@@ -75,7 +78,7 @@ class ProductDataTable extends DataTable
                     ->autoWidth('false')
                     ->minifiedAjax()
                     ->dom('lfrtip')
-                    ->orderBy(1)
+                    ->orderBy(9)
                     ->selectStyleSingle()
                     ->parameters([
                         'autoWidth' => false,
@@ -97,12 +100,13 @@ class ProductDataTable extends DataTable
             Column::make('name'),
             Column::make('sku'),
             // Column::make('description'),
-            Column::make('product_category'),
-            Column::make('product_variant'),
+            Column::make('product_category')->searchable(false),
+            Column::make('product_variant')->searchable(false),
             Column::make('price')->title('Base Price'),
             Column::make('is_active'),
             Column::make('is_hot_item'),
             Column::make('stock'),
+            Column::make('created_at'),
             Column::make('action')
         ];
     }

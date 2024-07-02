@@ -7,6 +7,7 @@ use App\Http\Requests\ProductRequest;
 use App\Models\Product;
 use App\Services\ProductCategoryService;
 use App\Services\ProductService;
+use App\Services\ProductVariantService;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -14,10 +15,12 @@ class ProductController extends Controller
 {
     protected $productService;
     protected $productCategoryService;
+    protected $productVariantService;
 
-    public function __construct(ProductService $productService, ProductCategoryService $productCategoryService) {
+    public function __construct(ProductService $productService, ProductCategoryService $productCategoryService, ProductVariantService $productVariantService) {
         $this->productService = $productService;
         $this->productCategoryService = $productCategoryService;
+        $this->productVariantService = $productVariantService;
     }
 
     public function index(ProductDataTable $dataTable)
@@ -48,10 +51,12 @@ class ProductController extends Controller
     {
         $title = 'Add New Product';
         $productCategories = $this->productCategoryService->getProductCategories();
+        $productVariants = $this->productVariantService->getAllProductVariant();
 
         $data = [
             'title' => $title,
-            'productCategories' => $productCategories
+            'productCategories' => $productCategories,
+            'productVariants' => $productVariants
         ];
 
         return view("pages.admin.product.create", $data);
@@ -61,6 +66,7 @@ class ProductController extends Controller
     {
         try {
             $productRequest = $productRequest->validated();
+
 
             $this->productService->storeProductData($productRequest);
 
