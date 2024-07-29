@@ -40,7 +40,7 @@ class ProductDataTable extends DataTable
                     array_push($productVariants, $variant->name);
                 }
 
-                return $productVariants;
+                return implode(', ', $productVariants);
             })
             ->editColumn('sku', function($row) {
                 $sku = $row->sku == null ? 'SKU tidak ditemukan' : $row->sku;

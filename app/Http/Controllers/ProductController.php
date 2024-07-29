@@ -17,7 +17,8 @@ class ProductController extends Controller
     protected $productCategoryService;
     protected $productVariantService;
 
-    public function __construct(ProductService $productService, ProductCategoryService $productCategoryService, ProductVariantService $productVariantService) {
+    public function __construct(ProductService $productService, ProductCategoryService $productCategoryService, ProductVariantService $productVariantService)
+    {
         $this->productService = $productService;
         $this->productCategoryService = $productCategoryService;
         $this->productVariantService = $productVariantService;
@@ -36,12 +37,19 @@ class ProductController extends Controller
 
     public function show($productId)
     {
-        $title = 'Product List';
+        $title = 'Product Detail.';
         $product = $this->productService->getProductById($productId);
+        $productVariants = [];
+
+        foreach ($product->variants as $variant) {
+            array_push($productVariants, $variant->name);
+        }
+
 
         $data = [
             'title' => $title,
-            'product' => $product
+            'product' => $product,
+            'productVariants' => $productVariants
         ];
 
         return view("pages.admin.product.show", $data);
@@ -83,6 +91,5 @@ class ProductController extends Controller
         $this->productService->deleteProduct($productId);
         Alert::success('Success', 'Success Delete Product');
         return redirect()->route('admin.products.index');
-
     }
 }
