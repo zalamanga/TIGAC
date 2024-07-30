@@ -17,11 +17,13 @@ class ProductSeeder extends Seeder
      */
     public function run(): void
     {
+        $imageBaseURL = 'images/products/';
+
         $products = [
             [
                 "id" => 1,
                 "name" => "Pocket Rockid Cosmic Strawberry Fizz",
-                "image" => "pocket rockid.jpg",
+                "image" => $imageBaseURL . "pocket rockid.jpg",
                 "description" => "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Animi dolor fugit fugiat ipsa at eos vel ut id accusantium iusto error, optio veritatis perferendis, nobis ipsum, aut ullam eum consequatur! \n\n Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt rem tempore atque consequatur ducimus beatae pariatur nihil amet debitis architecto!",
                 "rating" => 5,
                 "price" => 120000,
@@ -33,7 +35,7 @@ class ProductSeeder extends Seeder
             [
                 "id" => 2,
                 "name" => "Jaxel Mylkcheese Crackers",
-                "image" => "jaxel mylkcheese.jpg",
+                "image" => $imageBaseURL . "jaxel mylkcheese.jpg",
                 "description" => "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Animi dolor fugit fugiat ipsa at eos vel ut id accusantium iusto error, optio veritatis perferendis, nobis ipsum, aut ullam eum consequatur! \n\n Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt rem tempore atque consequatur ducimus beatae pariatur nihil amet debitis architecto!",
                 "rating" => 5,
                 "price" => 125000,
@@ -45,7 +47,7 @@ class ProductSeeder extends Seeder
             [
                 "id" => 3,
                 "name" => "SLANK VIRUS LIQUID AUTHENTIC CHEESETART",
-                "image" => "slank virus.jpg",
+                "image" => $imageBaseURL . "slank virus.jpg",
                 "description" => "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Animi dolor fugit fugiat ipsa at eos vel ut id accusantium iusto error, optio veritatis perferendis, nobis ipsum, aut ullam eum consequatur! \n\n Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt rem tempore atque consequatur ducimus beatae pariatur nihil amet debitis architecto!",
                 "rating" => 5,
                 "price" => 125000,
@@ -57,7 +59,7 @@ class ProductSeeder extends Seeder
             [
                 "id" => 4,
                 "name" => "Tokyo Pie Series V1 Buttermilk",
-                "image" => "tokyo pie.jpg",
+                "image" => $imageBaseURL . "tokyo pie.jpg",
                 "description" => "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Animi dolor fugit fugiat ipsa at eos vel ut id accusantium iusto error, optio veritatis perferendis, nobis ipsum, aut ullam eum consequatur! \n\n Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt rem tempore atque consequatur ducimus beatae pariatur nihil amet debitis architecto!",
                 "rating" => 5,
                 "price" => 125000,
@@ -69,7 +71,7 @@ class ProductSeeder extends Seeder
             [
                 "id" => 5,
                 "name" => "Ghost Rabbit Berry Yogurt Sundae",
-                "image" => "ghost rabbit.jpg",
+                "image" => $imageBaseURL . "ghost rabbit.jpg",
                 "description" => "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Animi dolor fugit fugiat ipsa at eos vel ut id accusantium iusto error, optio veritatis perferendis, nobis ipsum, aut ullam eum consequatur! \n\n Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt rem tempore atque consequatur ducimus beatae pariatur nihil amet debitis architecto!",
                 "rating" => 5,
                 "price" => 87000,
@@ -81,7 +83,7 @@ class ProductSeeder extends Seeder
             [
                 "id" => 6,
                 "name" => "SLANK V3 FULLMOON",
-                "image" => "slank v3 fullmoon.jpg",
+                "image" => $imageBaseURL . "slank v3 fullmoon.jpg",
                 "description" => "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Animi dolor fugit fugiat ipsa at eos vel ut id accusantium iusto error, optio veritatis perferendis, nobis ipsum, aut ullam eum consequatur! \n\n Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt rem tempore atque consequatur ducimus beatae pariatur nihil amet debitis architecto!",
                 "rating" => 5,
                 "price" => 90000,
@@ -93,7 +95,7 @@ class ProductSeeder extends Seeder
             [
                 "id" => 7,
                 "name" => "Lunar Keev Korean Bento Cake",
-                "image" => "lunar keev korean.jpg",
+                "image" => $imageBaseURL . "lunar keev korean.jpg",
                 "description" => "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Animi dolor fugit fugiat ipsa at eos vel ut id accusantium iusto error, optio veritatis perferendis, nobis ipsum, aut ullam eum consequatur! \n\n Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt rem tempore atque consequatur ducimus beatae pariatur nihil amet debitis architecto!",
                 "rating" => 5,
                 "price" => 121000,
@@ -105,7 +107,7 @@ class ProductSeeder extends Seeder
             [
                 "id" => 8,
                 "name" => "Freebase N Podfriendly Ghost Monkey",
-                "image" => "Freebase N Podfriendly Ghost Monkey.jpg",
+                "image" => $imageBaseURL . "Freebase N Podfriendly Ghost Monkey.jpg",
                 "description" => "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Animi dolor fugit fugiat ipsa at eos vel ut id accusantium iusto error, optio veritatis perferendis, nobis ipsum, aut ullam eum consequatur! \n\n Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt rem tempore atque consequatur ducimus beatae pariatur nihil amet debitis architecto!",
                 "rating" => 5,
                 "price" => 121000,
@@ -117,7 +119,7 @@ class ProductSeeder extends Seeder
             [
                 "id" => 9,
                 "name" => "HOMPIMPA YOYO BERRY CEREAL BUTTER TART",
-                "image" => "HOMPIMPA YOYO BERRY CEREAL BUTTER TART.jpg",
+                "image" => $imageBaseURL . "HOMPIMPA YOYO BERRY CEREAL BUTTER TART.jpg",
                 "description" => "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Animi dolor fugit fugiat ipsa at eos vel ut id accusantium iusto error, optio veritatis perferendis, nobis ipsum, aut ullam eum consequatur! \n\n Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt rem tempore atque consequatur ducimus beatae pariatur nihil amet debitis architecto!",
                 "rating" => 5,
                 "price" => 90000,
@@ -129,7 +131,7 @@ class ProductSeeder extends Seeder
             [
                 "id" => 10,
                 "name" => "Slank March 10",
-                "image" => "Slank March 10.jpg",
+                "image" => $imageBaseURL . "Slank March 10.jpg",
                 "description" => "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Animi dolor fugit fugiat ipsa at eos vel ut id accusantium iusto error, optio veritatis perferendis, nobis ipsum, aut ullam eum consequatur! \n\n Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt rem tempore atque consequatur ducimus beatae pariatur nihil amet debitis architecto!",
                 "rating" => 5,
                 "price" => 125000,
