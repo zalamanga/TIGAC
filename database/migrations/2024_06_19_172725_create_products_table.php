@@ -26,7 +26,7 @@ return new class extends Migration
             $table->integer('stock')->nullable();
             $table->string('volume')->nullable();
 
-            $table->foreign('product_category_id')->references('id')->on('product_categories');
+            $table->foreign('product_category_id')->references('id')->on('product_categories')->onDelete('cascade');
         });
     }
 
