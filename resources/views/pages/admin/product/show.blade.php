@@ -136,15 +136,36 @@
                         </div>
                         <div class="col-12">
                             <div class="form-group">
-                                <label for="email-id-vertical">Description <span class="text-danger">*</span></label>
-                                <textarea type="text" id="email-id-vertical" class="form-control" name="description"
-                                    placeholder="Product Description" rows="4">{{ old('description') }}</textarea>
-                                @error('description')
-                                    <div class="text-danger">{{ $message }}</div>
-                                @enderror
+                                @if (Route::is('admin.products.show'))
+                                    <label for="email-id-vertical">Description <span class="text-danger">*</span></label>
+                                    <textarea type="text" id="email-id-vertical" class="form-control form-control-plaintext" name="description"
+                                        placeholder="Product Description" rows="4">{{ $product->description }}</textarea>
+                                @else
+                                    <label for="email-id-vertical">Description <span class="text-danger">*</span></label>
+                                    <textarea type="text" id="email-id-vertical" class="form-control" name="description"
+                                        placeholder="Product Description" rows="4">{{ old('description') }}</textarea>
+                                    @error('description')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
+                                @endif
+
                             </div>
                         </div>
                     </div>
+                    @if (Route::is('admin.products.show'))
+                        <p class="h2">Product Images</p>
+                        <div class="d-flex gap-3">
+                            @foreach ($productImages as $productImage)
+                                <div class="card rounded-0" style="width: 18rem;">
+                                    <img src="{{ asset('storage/' . $productImage->image_path) }}"
+                                        class="card-img-top rounded-0" alt="{{ $productImage->description }}">
+                                    <div class="card-body">
+                                        <p class="card-text text-center">{{ $productImage->name }}</p>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    @endif
                     {{-- <div class="row">
                         <p class="h2">Product Media (Images)</p>
                         <div class="form-group">

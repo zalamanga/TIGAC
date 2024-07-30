@@ -40,16 +40,21 @@ class ProductController extends Controller
         $title = 'Product Detail.';
         $product = $this->productService->getProductById($productId);
         $productVariants = [];
+        $productImages = [];
 
         foreach ($product->variants as $variant) {
             array_push($productVariants, $variant->name);
         }
 
+        foreach ($product->images as $images) {
+            array_push($productImages, $images);
+        }
 
         $data = [
             'title' => $title,
             'product' => $product,
-            'productVariants' => $productVariants
+            'productVariants' => $productVariants,
+            'productImages' => $productImages
         ];
 
         return view("pages.admin.product.show", $data);
@@ -74,7 +79,6 @@ class ProductController extends Controller
     {
         try {
             $productRequest = $productRequest->validated();
-
 
             $this->productService->storeProductData($productRequest);
 
