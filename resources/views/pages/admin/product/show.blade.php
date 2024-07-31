@@ -7,30 +7,13 @@
     <div class="card">
         <div class="card-content">
             <div class="card-body">
-                <p class="h2">Product Images</p>
-                <div class="d-flex gap-3">
-                    @foreach ($productImages as $productImage)
-                        <div class="card rounded-0" style="width: 18rem;">
-                            <img src="{{ asset('storage/' . $productImage->image_path) }}" class="card-img-top rounded-0"
-                                alt="{{ $productImage->description }}">
-                            <div class="card-body">
-                                <p class="card-text text-center">{{ $productImage->name }}</p>
-                                <div class="text-center">
-                                    <form
-                                        action="{{ route('admin.products.images.delete', [$product->id, $productImage->id]) }}"
-                                        method="post">
-                                        @csrf
-                                        @method('DELETE')
-
-                                        <button type="submit" class="btn btn-danger">Delete</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-                <form action="{{ route('admin.products.store') }}" enctype="multipart/form-data" method="POST">
+                <form
+                    action="{{ Route::is(route('admin.products.show', $product->id)) ? route('admin.products.show', $product->id) : route('admin.products.update', $product->id) }}"
+                    enctype="multipart/form-data" method="POST">
                     @csrf
+                    @if (Route::is('admin.products.edit'))
+                        @method('PUT')
+                    @endif
 
                     <div class="row">
                         <p class="h2">Product Identity Detail</p>
@@ -181,7 +164,22 @@
                             </div>
                         </div>
                     </div>
-
+                    <p class="h2">Product Images</p>
+                    <div class="d-flex gap-3">
+                        @foreach ($productImages as $productImage)
+                            <div class="card rounded-0" style="width: 18rem;">
+                                <img src="{{ asset('storage/' . $productImage->image_path) }}"
+                                    class="card-img-top rounded-0" alt="{{ $productImage->description }}">
+                                <div class="card-body">
+                                    <p class="card-text text-center">{{ $productImage->name }}</p>
+                                    <div class="text-center">
+                                        <a href="{{ route('admin.products.images.delete', [$product->id, $productImage->id]) }}"
+                                            class="btn btn-danger" data-confirm-delete="true">Delete</a>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
                     @if (Route::is('admin.products.edit'))
                         <div class="row">
                             <p class="h2">Add Product Media</p>

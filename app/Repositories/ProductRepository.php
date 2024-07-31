@@ -4,6 +4,8 @@ namespace App\Repositories;
 
 use App\Contracts\ProductRepositoryInterface;
 use App\Models\Product;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class ProductRepository implements ProductRepositoryInterface
 {
@@ -32,6 +34,11 @@ class ProductRepository implements ProductRepositoryInterface
         return $product->variants()->attach($requestProductVariantData);
     }
 
+    public function syncProductVariant($product, $requestProductVariantData)
+    {
+        return $product->variants()->sync($requestProductVariantData);
+    }
+
     public function updateProduct($productId, $requestUpdateData)
     {
         return Product::where('id', $productId)->update($requestUpdateData);
@@ -53,6 +60,12 @@ class ProductRepository implements ProductRepositoryInterface
         $product = Product::where('id', $productId)->first();
 
         $productImage = $product->images->where('id', $productImageId)->first();
+
+        if (Storage::disk('public')->exists($productImage->image_path)) {
+            Storage::disk('public')->delete($productImage->image_path);
+        } else {
+            return 'file not exists';
+        }
 
         return $productImage->delete();
     }

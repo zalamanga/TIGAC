@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\DataTables\ProductDataTable;
 use App\Http\Requests\ProductRequest;
+use App\Http\Requests\ProductUpdateRequest;
 use App\Models\Product;
 use App\Services\ProductCategoryService;
 use App\Services\ProductService;
@@ -99,6 +100,8 @@ class ProductController extends Controller
         $productVariants = [];
         $productImages = [];
 
+        confirmDelete('Delete Product Image', 'are you sure you want to delete?');
+
         foreach ($product->variants as $variant) {
             array_push($productVariants, $variant->name);
         }
@@ -117,6 +120,15 @@ class ProductController extends Controller
         ];
 
         return view("pages.admin.product.show", $data);
+    }
+
+    public function update(ProductUpdateRequest $productUpdateRequest, $productId)
+    {
+        $productData = $productUpdateRequest->validated();
+
+        $this->productService->updateProduct($productId, $productData);
+        Alert::success('Success', 'Success Edit Product');
+        return redirect()->route('admin.products.index');
     }
 
     public function destroy($productId)
