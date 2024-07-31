@@ -67,6 +67,11 @@ class ProductService
         }
     }
 
+    public function deleteProductImage($productId, $productImageId)
+    {
+        return $this->productRepositoryInterface->deleteProductImage($productId, $productImageId);
+    }
+
     public function deleteProduct($productId)
     {
         return $this->productRepositoryInterface->deleteProductById($productId);

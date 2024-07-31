@@ -7,6 +7,28 @@
     <div class="card">
         <div class="card-content">
             <div class="card-body">
+                <p class="h2">Product Images</p>
+                <div class="d-flex gap-3">
+                    @foreach ($productImages as $productImage)
+                        <div class="card rounded-0" style="width: 18rem;">
+                            <img src="{{ asset('storage/' . $productImage->image_path) }}" class="card-img-top rounded-0"
+                                alt="{{ $productImage->description }}">
+                            <div class="card-body">
+                                <p class="card-text text-center">{{ $productImage->name }}</p>
+                                <div class="text-center">
+                                    <form
+                                        action="{{ route('admin.products.images.delete', [$product->id, $productImage->id]) }}"
+                                        method="post">
+                                        @csrf
+                                        @method('DELETE')
+
+                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
                 <form action="{{ route('admin.products.store') }}" enctype="multipart/form-data" method="POST">
                     @csrf
 
@@ -35,7 +57,9 @@
                                     <select class="form-select" id="product_category" name="product_category_id"
                                         data-placeholder="Choose Category" required>
                                         @foreach ($productCategories as $productCategory)
-                                            <option value="{{ $productCategory->id }}">{{ $productCategory->name }}</option>
+                                            <option value="{{ $productCategory->id }}"
+                                                {{ $product->productCategory->id == $productCategory->id ? 'selected' : '' }}>
+                                                {{ $productCategory->name }}</option>
                                         @endforeach
                                     </select>
                                     @error('product_category')
@@ -53,10 +77,10 @@
                                     @else{{ $product ? $product->name : old('name') }}
                                     <select class="choices form-select multiple-remove" name="product_variants[]"
                                         multiple="multiple" data-placeholder="Choose Variants">
-                                        @foreach ($productVariants as $productVariant)
-                                            <option value="{{ $productVariant->id }}"
-                                                {{ old('product_variants[]') == $productVariant->name ? 'selected' : '' }}>
-                                                {{ $productVariant->name }}</option>
+                                        @foreach ($productVariantSelections as $productVariantSelection)
+                                            <option value="{{ $productVariantSelection->id }}"
+                                                {{ old('product_variants[]', $product->variants->contains($productVariantSelection->id)) == $productVariantSelection->name ? 'selected' : '' }}>
+                                                {{ $productVariantSelection->name }}</option>
                                         @endforeach
                                     </select>
                                 @endif
@@ -72,7 +96,7 @@
                                     @else
                                         <span class="input-group-text">Rp.</span>
                                         <input type="number" class="form-control" name="price" required
-                                            value="{{ old('price') }}">
+                                            value="{{ old('price', $product->price) }}">
                                         <span class="input-group-text">,00</span>
                                         @error('price')
                                             <div class="text-danger">{{ $message }}</div>
@@ -91,7 +115,7 @@
                                 @else
                                     <div class="input-group">
                                         <input type="number" max="100" class="form-control" name="discount_percent"
-                                            value="{{ old('discount_percent') }}">
+                                            value="{{ old('discount_percent', $product->discount_percent) }}">
                                         <span class="input-group-text">%</span>
                                         @error('discount_percent')
                                             <div class="text-danger">{{ $message }}</div>
@@ -114,8 +138,11 @@
                                         value="{{ $product->is_active == 1 ? 'Active' : 'Not Active' }}">
                                 @else
                                     <select class="form-select" id="inputGroupSelect02" name="is_active">
-                                        <option value="1">Active</option>
-                                        <option value="0">Not Active</option>
+                                        <option value="1" {{ $product->is_active == '1' ? 'selected' : '' }}>Active
+                                        </option>
+                                        <option value="0" {{ $product->is_active == '0' ? 'selected' : '' }}>Not
+                                            Active
+                                        </option>
                                     </select>
                                 @endif
                             </div>
@@ -128,8 +155,10 @@
                                         value="{{ $product->is_hot_item == 1 ? 'Hot Item' : 'Not Hot Item' }}">
                                 @else
                                     <select class="form-select" id="inputGroupSelect02" name="is_hot_item">
-                                        <option value="1">Hot Item</option>
-                                        <option value="0">Not Hot Item</option>
+                                        <option value="1" {{ $product->is_hot_item == '1' ? 'selected' : '' }}>Hot
+                                            Item</option>
+                                        <option value="0" {{ $product->is_hot_item == '0' ? 'selected' : '' }}>Not
+                                            Hot Item</option>
                                     </select>
                                 @endif
                             </div>
@@ -143,7 +172,7 @@
                                 @else
                                     <label for="email-id-vertical">Description <span class="text-danger">*</span></label>
                                     <textarea type="text" id="email-id-vertical" class="form-control" name="description"
-                                        placeholder="Product Description" rows="4">{{ old('description') }}</textarea>
+                                        placeholder="Product Description" rows="4">{{ old('description', $product->description) }}</textarea>
                                     @error('description')
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror
@@ -152,19 +181,40 @@
                             </div>
                         </div>
                     </div>
-                    @if (Route::is('admin.products.show'))
-                        <p class="h2">Product Images</p>
-                        <div class="d-flex gap-3">
-                            @foreach ($productImages as $productImage)
-                                <div class="card rounded-0" style="width: 18rem;">
-                                    <img src="{{ asset('storage/' . $productImage->image_path) }}"
-                                        class="card-img-top rounded-0" alt="{{ $productImage->description }}">
-                                    <div class="card-body">
-                                        <p class="card-text text-center">{{ $productImage->name }}</p>
-                                    </div>
-                                </div>
-                            @endforeach
+
+                    @if (Route::is('admin.products.edit'))
+                        <div class="row">
+                            <p class="h2">Add Product Media</p>
+                            <div class="form-group">
+                                <label for="total_image">How Much Image This Product Have?</label>
+                                <input type="number" class="form-control total-image-input" id="totalImageNumberInput">
+                                <a class="btn btn-primary mt-2" onclick="generateImageInput()">Add Images</a>
+                            </div>
+                            <div class="product-image-input" id="imageInputWrapper">
+                                @if (old('image_name'))
+                                    @foreach (old('image_name') as $index => $imageName)
+                                        <div class='form-group'>
+                                            <label for="image_{{ $index }}">Image name {{ $index + 1 }} <span
+                                                    class="text-danger">*</span></label>
+                                            <input type="text" name="image_name[]" class="form-control"
+                                                value="{{ $imageName }}">
+                                        </div>
+                                        <div class='form-group'>
+                                            <label for="description_{{ $index }}">Image Description
+                                                {{ $index + 1 }}</label>
+                                            <textarea type="text" name="image_description[]" class="form-control">{{ old('image_description.' . $index) }}</textarea>
+                                        </div>
+                                        <div class='form-group'>
+                                            <label for="images_{{ $index }}">Image File
+                                                {{ $index + 1 }}</label>
+                                            <input type="file" name="images[]" class="form-control"
+                                                value="{{ old('images' . $index) }}">
+                                        </div>
+                                    @endforeach
+                                @endif
+                            </div>
                         </div>
+
                     @endif
                     {{-- <div class="row">
                         <p class="h2">Product Media (Images)</p>

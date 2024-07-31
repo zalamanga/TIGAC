@@ -3,15 +3,14 @@
         aria-haspopup="true" aria-expanded="false">
         Action
     </button>
-    
+
     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <form action="{{ route('admin.products.destroy', $id) }}"
-            method="post">
+        <form action="{{ route('admin.products.destroy', $id) }}" method="post">
             @csrf
             @method('DELETE')
             <button class="dropdown-item text-danger" type="submit">Delete</button>
-    </form>
+        </form>
         <a class="dropdown-item" href="{{ route('admin.products.show', $id) }}">Detail</a>
-        <a class="dropdown-item" href="#">Edit</a>
+        <a class="dropdown-item" href="{{ route('admin.products.edit', $id) }}">Edit</a>
     </div>
 </div>

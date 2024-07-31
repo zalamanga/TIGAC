@@ -41,10 +41,19 @@ class ProductRepository implements ProductRepositoryInterface
     {
         $product = Product::where('id', $productId)->first();
 
-        if ($product->variants()->exists()){
+        if ($product->variants()->exists()) {
             $product->variants()->detach();
         }
 
         return $product->delete();
+    }
+
+    public function deleteProductImage($productId, $productImageId)
+    {
+        $product = Product::where('id', $productId)->first();
+
+        $productImage = $product->images->where('id', $productImageId)->first();
+
+        return $productImage->delete();
     }
 }

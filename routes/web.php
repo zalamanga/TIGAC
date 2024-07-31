@@ -90,5 +90,6 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::prefix('admin')->group(function () {
+    Route::delete('/products/{productId}/images/{productImagesId}/destroy', [ProductController::class, 'deleteProductImage'])->name('admin.products.images.delete');
     Route::resource('/products', ProductController::class, ['as' => 'admin']);
 });

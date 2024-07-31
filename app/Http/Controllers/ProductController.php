@@ -90,10 +90,46 @@ class ProductController extends Controller
         }
     }
 
+    public function edit($productId)
+    {
+        $title = 'Product Detail.';
+        $product = $this->productService->getProductById($productId);
+        $productCategories = $this->productCategoryService->getProductCategories();
+        $productVariantSelections = $this->productVariantService->getAllProductVariant();
+        $productVariants = [];
+        $productImages = [];
+
+        foreach ($product->variants as $variant) {
+            array_push($productVariants, $variant->name);
+        }
+
+        foreach ($product->images as $images) {
+            array_push($productImages, $images);
+        }
+
+        $data = [
+            'title' => $title,
+            'product' => $product,
+            'productCategories' => $productCategories,
+            'productVariantSelections' => $productVariantSelections,
+            'productVariants' => $productVariants,
+            'productImages' => $productImages
+        ];
+
+        return view("pages.admin.product.show", $data);
+    }
+
     public function destroy($productId)
     {
         $this->productService->deleteProduct($productId);
         Alert::success('Success', 'Success Delete Product');
         return redirect()->route('admin.products.index');
+    }
+
+    public function deleteProductImage($productId, $productImageId)
+    {
+        $this->productService->deleteProductImage($productId, $productImageId);
+
+        return redirect()->back();
     }
 }

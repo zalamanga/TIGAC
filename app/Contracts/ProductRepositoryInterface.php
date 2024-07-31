@@ -11,4 +11,5 @@ interface ProductRepositoryInterface
     public function getProductById($productId);
     public function updateProduct($productId, $requestUpdateData);
     public function deleteProductById($productId);
+    public function deleteProductImage($productId, $productImageId);
 }
