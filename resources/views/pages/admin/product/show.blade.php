@@ -173,8 +173,10 @@
                                 <div class="card-body">
                                     <p class="card-text text-center">{{ $productImage->name }}</p>
                                     <div class="text-center">
-                                        <a href="{{ route('admin.products.images.delete', [$product->id, $productImage->id]) }}"
-                                            class="btn btn-danger" data-confirm-delete="true">Delete</a>
+                                        @if (Route::is('admin.products.edit'))
+                                            <a href="{{ route('admin.products.images.delete', [$product->id, $productImage->id]) }}"
+                                                class="btn btn-danger" data-confirm-delete="true">Delete</a>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
