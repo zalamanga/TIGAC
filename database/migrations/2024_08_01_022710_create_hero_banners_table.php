@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string('name')->require()->unique();
-            $table->string('description')->nullable();
+            $table->string('tagline')->require()->unique();
+            $table->text('tagline_description')->require()->unique();
             $table->string('media_type');
             $table->string('media_path');
-            $table->string('media_link')->nullable();
             $table->string('is_active')->nullable()->default(0);
             $table->string('is_priority')->nullable()->default(0);
         });

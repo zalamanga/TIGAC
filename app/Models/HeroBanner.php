@@ -11,10 +11,10 @@ class HeroBanner extends Model
 
     protected $fillable = [
         'name',
-        'description',
+        'tagline',
+        'tagline_description',
         'media_type',
         'media_path',
-        'media_link',
         'is_active',
         'is_priority'
     ];
