@@ -18,9 +18,9 @@ return new class extends Migration
             $table->string('description')->nullable();
             $table->string('media_type');
             $table->string('media_path');
-            $table->string('media_link')->nullable()->unique();
-            $table->string('is_active')->nullable()->unique()->default(0);
-            $table->string('is_priority')->nullable()->unique()->default(0);
+            $table->string('media_link')->nullable();
+            $table->string('is_active')->nullable()->default(0);
+            $table->string('is_priority')->nullable()->default(0);
         });
     }
 
