@@ -3,6 +3,7 @@
 namespace App\DataTables;
 
 use App\Models\ProductVariant;
+use App\Models\Variant;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -31,7 +32,7 @@ class ProductVariantDataTable extends DataTable
     /**
      * Get the query source of dataTable.
      */
-    public function query(ProductVariant $model): QueryBuilder
+    public function query(Variant $model): QueryBuilder
     {
         return $model->newQuery();
     }

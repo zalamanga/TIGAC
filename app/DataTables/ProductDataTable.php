@@ -22,8 +22,40 @@ class ProductDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', 'product.action')
+            ->addColumn('action', 'components.datatables.product.action')
             ->addIndexColumn()
+            ->editColumn('name', function($row) {
+                return '<div style="width: 150px;">' . $row->name . '</div>';
+            })
+            ->editColumn('description', function($row) {
+                return '<div style="width: 500px;">' . $row->description . '</div>';
+            })
+            ->editColumn('product_category', function($row) {
+                return $row->productCategory->name;
+            })
+            ->editColumn('product_variant', function($row) {
+                $productVariants = [];
+
+                foreach ($row->variants as $variant) {
+                    array_push($productVariants, $variant->name);
+                }
+
+                return implode(', ', $productVariants);
+            })
+            ->editColumn('sku', function($row) {
+                $sku = $row->sku == null ? 'SKU tidak ditemukan' : $row->sku;
+
+                return $sku;
+            })
+            ->editColumn('price', function($row) {
+                return 'Rp.' . number_format($row->price,2,",",".");
+            })
+            ->editColumn('created_at', function ($row) {
+                return date('D, d-M-Y', strtotime($row->created_at));
+            })
+            ->addColumn('is_active', 'components.datatables.product.active-switch')
+            ->addColumn('is_hot_item', 'components.datatables.product.hot-item-switch')
+            ->rawColumns(['description', 'name', 'is_active', 'is_hot_item', 'action', 'created_at']) 
             ->setRowId('id');
     }
 
@@ -43,10 +75,19 @@ class ProductDataTable extends DataTable
         return $this->builder()
                     ->setTableId('product-table')
                     ->columns($this->getColumns())
+                    ->autoWidth('false')
                     ->minifiedAjax()
                     ->dom('lfrtip')
-                    ->orderBy(1)
-                    ->selectStyleSingle();
+                    ->orderBy(9)
+                    ->selectStyleSingle()
+                    ->parameters([
+                        'autoWidth' => false,
+                        'initComplete' => 'function() {
+                            $("#product-table thead th").css("padding-right", "75px");
+                            $("#product-table").css("table-layout", "auto");
+                        }',
+                    ])
+                    ;
     }
 
     /**
@@ -56,9 +97,17 @@ class ProductDataTable extends DataTable
     {
         return [
             Column::computed('DT_RowIndex')->title('No')->orderable(false)->searchable(false),
-            Column::make('add your columns'),
+            Column::make('name'),
+            Column::make('sku'),
+            // Column::make('description'),
+            Column::make('product_category')->searchable(false)->orderable(false),
+            Column::make('product_variant')->searchable(false)->orderable(false),
+            Column::make('price')->title('Base Price'),
+            Column::make('is_active'),
+            Column::make('is_hot_item'),
+            Column::make('stock'),
             Column::make('created_at'),
-            Column::make('updated_at'),
+            Column::make('action')
         ];
     }
 

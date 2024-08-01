@@ -20,5 +20,7 @@
 
     <link rel=”stylesheet” href=" https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">
 
+    <link rel="stylesheet" crossorigin href="{{ asset('extensions/choices.js/public/assets/styles/choices.css') }}" />
+
     @stack('styles')
 </head>
