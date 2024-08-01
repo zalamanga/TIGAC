@@ -11,22 +11,22 @@
 
                             <div class="col-12">
                                 <x-input name="name" type="text" placeholder="Name" title="Name"
-                                    class="" isRequired="true">
+                                     class="form-control" isRequired="true" value="">
                                 </x-input>
                             </div>
                             <div class="col-12">
                                 <x-input name="email" type="email" placeholder="Email" title="Email"
-                                    class="" isRequired="true">
+                                     class="form-control" isRequired="true" value="">
                                 </x-input>
                             </div>
                             <div class="col-12">
                                 <x-input name="password" type="password" placeholder="*********" title="Password"
-                                    class="" isRequired="true">
+                                     class="form-control" isRequired="true" value="">
                                 </x-input>
                             </div>
                             <div class="col-12">
                                 <x-input name="cpassword" type="password" placeholder="*********" title="Confirmation Password"
-                                    class="" isRequired="true">
+                                     class="form-control" isRequired="true" value="">
                                 </x-input>
                             </div>
                             <div class="col-12">

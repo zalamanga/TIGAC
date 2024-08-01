@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('images', function (Blueprint $table) {
+        Schema::create('product_images', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
             $table->string('name')->require();
@@ -19,7 +19,7 @@ return new class extends Migration
             $table->text('image_path')->require();
             $table->unsignedBigInteger('product_id')->require();
 
-            $table->foreign('product_id')->references('id')->on('products');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
         });
     }
 

@@ -30,6 +30,10 @@ class ProductCategorySeeder extends Seeder
                 "name" => "EZDripper",
                 "description" => "lorem impsum dolor sit description"
             ],
+            [
+                "name" => "liquid",
+                "description" => "lorem impsum dolor sit description"
+            ],
         ];
 
         foreach($productCategories as $productCategory) {

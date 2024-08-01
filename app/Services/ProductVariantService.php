@@ -15,7 +15,7 @@ class ProductVariantService
 
     public function getAllProductVariant()
     {
-        return $this->getAllProductVariant();
+        return $this->productVariantRepository->getAllProductVariant();
     }
 
     public function createProductVariant($productVariantData)
