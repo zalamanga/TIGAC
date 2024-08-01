@@ -3,7 +3,8 @@
         <div class="sidebar-header position-relative">
             <div class="d-flex justify-content-between align-items-center">
                 <div class="logo">
-                    <a href="#" class="navbar-brand"><img src="{{ asset('images/logo.png') }}" alt="TIGAC logo" srcset=""/></a>
+                    <a href="#" class="navbar-brand"><img src="{{ asset('images/logo.png') }}" alt="TIGAC logo"
+                            srcset="" /></a>
                 </div>
                 <div class="theme-toggle d-flex gap-2 align-items-center mt-2">
                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -54,7 +55,9 @@
                         </li>
 
                         <li class="submenu-item">
-                            <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="submenu-link" data-confirm-delete='true'>
+                            <a href="{{ route('logout') }}"
+                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                                class="submenu-link" data-confirm-delete='true'>
                                 Logout
                             </a>
 
@@ -88,12 +91,14 @@
                         </li>
 
                         <li class="submenu-item">
-                            <a href="{{ route('admin.product.product-category.index') }}" class="submenu-link">Product Category</a>
+                            <a href="{{ route('admin.product.product-category.index') }}" class="submenu-link">Product
+                                Category</a>
                         </li>
 
 
                         <li class="submenu-item">
-                            <a href="{{ route('admin.product.product-variant.index') }}" class="submenu-link">Product Variant</a>
+                            <a href="{{ route('admin.product.product-variant.index') }}" class="submenu-link">Product
+                                Variant</a>
                         </li>
                     </ul>
                 </li>
@@ -105,7 +110,7 @@
 
                     <ul class="submenu">
                         <li class="submenu-item">
-                            <a href="component-accordion.html" class="submenu-link">Hero Banner</a>
+                            <a href="{{ route('admin.hero-banners.index') }}" class="submenu-link">Hero Banner</a>
                         </li>
                     </ul>
                 </li>

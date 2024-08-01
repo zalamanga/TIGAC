@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProductVariantController;
 use App\Http\Controllers\AdminDashboardController;
+use App\Http\Controllers\HeroBannerController;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
@@ -97,4 +98,5 @@ Route::middleware(['auth'])->group(function () {
 Route::prefix('admin')->group(function () {
     Route::delete('/products/{productId}/images/{productImagesId}/destroy', [ProductController::class, 'deleteProductImage'])->name('admin.products.images.delete');
     Route::resource('/products', ProductController::class, ['as' => 'admin']);
+    Route::resource('/hero-banners', HeroBannerController::class, ['as' => 'admin']);
 });
