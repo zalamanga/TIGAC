@@ -2,14 +2,17 @@
 
 namespace App\Providers;
 
+use App\Contracts\HeroBannerRepositoryInterface;
 use App\Contracts\ProductCategoryRepositoryInterface;
 use App\Contracts\ProductRepositoryInterface;
 use App\Contracts\ProductVariantRepositoryInterface;
 use App\Contracts\UserRepositoryInterface;
+use App\Repositories\HeroBannerRepository;
 use App\Repositories\ProductCategoryRepository;
 use App\Repositories\ProductRepository;
 use App\Repositories\ProductVariantRepository;
 use App\Repositories\UserRepository;
+use App\Services\HeroBannerService;
 use App\Services\ProductCategoryService;
 use App\Services\ProductService;
 use App\Services\ProductVariantService;
@@ -34,7 +37,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(ProductService::class, function ($app) {
             return new ProductService($app->make(ProductRepositoryInterface::class));
         });
-        
+
         // Product Repository
         $this->app->bind(ProductCategoryRepositoryInterface::class, ProductCategoryRepository::class);
         $this->app->bind(ProductCategoryService::class, function ($app) {
@@ -47,6 +50,11 @@ class RepositoryServiceProvider extends ServiceProvider
             return new ProductVariantService($app->make(ProductVariantRepositoryInterface::class));
         });
 
+        // Hero Banner
+        $this->app->bind(HeroBannerRepositoryInterface::class, HeroBannerRepository::class);
+        $this->app->bind(HeroBannerService::class, function ($app) {
+            return new HeroBannerService($app->make(HeroBannerRepositoryInterface::class));
+        });
     }
 
     /**

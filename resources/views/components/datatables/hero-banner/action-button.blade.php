@@ -3,14 +3,13 @@
         aria-haspopup="true" aria-expanded="false">
         Action
     </button>
-    
+
     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <form action="{{ route('admin.product.product-category.destroy', $id) }}"
-            method="post">
+        <form action="{{ route('admin.hero-banners.destroy', $id) }}" method="post">
             @csrf
             @method('DELETE')
             <button class="dropdown-item text-danger" type="submit">Delete</button>
-    </form>
+        </form>
         <a class="dropdown-item" href="#">Edit</a>
     </div>
 </div>
