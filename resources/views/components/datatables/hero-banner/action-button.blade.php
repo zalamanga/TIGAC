@@ -10,6 +10,6 @@
             @method('DELETE')
             <button class="dropdown-item text-danger" type="submit">Delete</button>
         </form>
-        <a class="dropdown-item" href="#">Edit</a>
+        <a class="dropdown-item" href="{{ route('admin.hero-banners.edit', $id) }}">Edit</a>
     </div>
 </div>

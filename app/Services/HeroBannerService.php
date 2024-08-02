@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Contracts\HeroBannerRepositoryInterface;
+use Illuminate\Support\Facades\Storage;
 
 class HeroBannerService
 {
@@ -11,6 +12,11 @@ class HeroBannerService
     public function __construct(HeroBannerRepositoryInterface $heroBannerRepositoryInterface)
     {
         $this->heroBannerRepositoryInterface = $heroBannerRepositoryInterface;
+    }
+
+    public function getHeroBanner($heroBannerId)
+    {
+        return $this->heroBannerRepositoryInterface->getHeroBanner($heroBannerId);
     }
 
     public function deleteHeroBanner($heroBannerId)
@@ -33,5 +39,40 @@ class HeroBannerService
         ];
 
         return $this->heroBannerRepositoryInterface->createHeroBanner($heroBannerData);
+    }
+
+    public function updateHeroBanner($heroBannerData, $heroBannerId)
+    {
+        $heroBanner = $this->getHeroBanner($heroBannerId);
+
+        // handle image input
+        if (array_key_exists('media', $heroBannerData)) {
+            if (Storage::disk('public')->exists($heroBanner->media_path)) {
+                Storage::disk('public')->delete($heroBanner->media_path);
+            }
+
+            $newMediaPath = $heroBannerData['media']->store('images/products', 'public');
+
+            $heroBannerData = [
+                'name' => $heroBannerData['name'],
+                'tagline' => $heroBannerData['tagline'],
+                'tagline_description' => $heroBannerData['tagline_description'],
+                'media_type' => $heroBannerData['media']->getClientMimeType(),
+                'media_path' => $newMediaPath,
+                'is_active' => $heroBannerData['is_active'],
+                'is_priority' => $heroBannerData['is_priority'],
+            ];
+        } else {
+            $heroBannerData = [
+                'name' => $heroBannerData['name'],
+                'tagline' => $heroBannerData['tagline'],
+                'tagline_description' => $heroBannerData['tagline_description'],
+                'media_type' => $heroBannerData['media']->getClientMimeType(),
+                'is_active' => $heroBannerData['is_active'],
+                'is_priority' => $heroBannerData['is_priority'],
+            ];
+        }
+
+        return $this->heroBannerRepositoryInterface->updateHeroBanner($heroBannerData, $heroBannerId);
     }
 }

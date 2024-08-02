@@ -28,4 +28,11 @@ class HeroBannerRepository implements HeroBannerRepositoryInterface
     {
         return HeroBanner::create($heroBannerData);
     }
+
+    public function updateHeroBanner($heroBannerUpdateData, $heroBannerId)
+    {
+        $heroBanner = $this->getHeroBanner($heroBannerId);
+
+        return $heroBanner->update($heroBannerUpdateData);
+    }
 }
