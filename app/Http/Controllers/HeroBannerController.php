@@ -72,6 +72,19 @@ class HeroBannerController extends Controller
         return redirect()->route('admin.hero-banners.index');
     }
 
+    public function show($heroBannerId)
+    {
+        $title = 'Hero Banner Detail.';
+        $heroBanner = $this->heroBannerService->getHeroBanner($heroBannerId);
+
+        $data = [
+            'title' => $title,
+            'heroBanner' => $heroBanner
+        ];
+
+        return view("pages.admin.hero-banner.show", $data);
+    }
+
     public function destroy($heroBannerId)
     {
         $this->heroBannerService->deleteHeroBanner($heroBannerId);
