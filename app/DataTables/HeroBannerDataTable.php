@@ -61,6 +61,7 @@ class HeroBannerDataTable extends DataTable
             Column::computed('DT_RowIndex')->title('No')->orderable(false)->searchable(false),
             Column::make('name'),
             Column::make('tagline'),
+            Column::make('tagline_description'),
             Column::make('media_preview'),
             Column::make('is_active'),
             Column::computed('action'),

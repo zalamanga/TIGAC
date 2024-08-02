@@ -23,4 +23,9 @@ class HeroBannerRepository implements HeroBannerRepositoryInterface
 
         return $heroBanner->delete();
     }
+
+    public function createHeroBanner($heroBannerData)
+    {
+        return HeroBanner::create($heroBannerData);
+    }
 }

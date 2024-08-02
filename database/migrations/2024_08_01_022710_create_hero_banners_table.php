@@ -17,10 +17,10 @@ return new class extends Migration
             $table->string('name')->require()->unique();
             $table->string('tagline')->require()->unique();
             $table->text('tagline_description')->require()->unique();
-            $table->string('media_type');
-            $table->string('media_path');
-            $table->string('is_active')->nullable()->default(0);
-            $table->string('is_priority')->nullable()->default(0);
+            $table->string('media_type')->require();
+            $table->string('media_path')->require();
+            $table->string('is_active')->require()->default(0);
+            $table->string('is_priority')->require()->default(0);
         });
     }
 
