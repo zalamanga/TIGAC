@@ -247,7 +247,12 @@
                         </div>
                     </div> --}}
                     <div class="col-12 d-flex justify-content-end mt-2">
-                        <button type="submit" class="btn btn-primary me-1 mb-1">Submit</button>
+                        @if (Route::is('admin.products.show'))
+                            <a href="{{ route('admin.products.edit', $product->id) }}" type="submit"
+                                class="btn btn-primary me-1 mb-1">Edit</a>
+                        @else
+                            <button type="submit" class="btn btn-primary me-1 mb-1">Submit</button>
+                        @endif
                         <button type="reset" class="btn btn-light me-1 mb-1">Reset</button>
                         <a href="{{ route('admin.products.index') }}" class="btn btn-light-secondary me-1 mb-1">Back</a>
                     </div>
