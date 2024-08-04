@@ -9,7 +9,7 @@ class AppServiceProvider extends ServiceProvider
 {
   public function register()
     {
-        $this->app['request']->server->set('HTTPS', true);
+
     }
 
     /**
@@ -19,7 +19,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(UrlGenerator $url)
     {
-        if (config('app.force_https')) {
-            $url->forceScheme('https');
-}}
+
+    }
 }

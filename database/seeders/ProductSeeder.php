@@ -2,6 +2,11 @@
 
 namespace Database\Seeders;
 
+use App\Models\Product;
+use App\Models\ProductCategory;
+use App\Models\ProductImage;
+use App\Models\ProductVariant;
+use App\Models\Variant;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -12,148 +17,154 @@ class ProductSeeder extends Seeder
      */
     public function run(): void
     {
+        $imageBaseURL = 'images/products/';
 
         $products = [
             [
                 "id" => 1,
-                "sku" => "",
                 "name" => "Pocket Rockid Cosmic Strawberry Fizz",
-                "image" => "pocket rockid.jpg",
+                "image" => $imageBaseURL . "pocket rockid.jpg",
                 "description" => "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Animi dolor fugit fugiat ipsa at eos vel ut id accusantium iusto error, optio veritatis perferendis, nobis ipsum, aut ullam eum consequatur! \n\n Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt rem tempore atque consequatur ducimus beatae pariatur nihil amet debitis architecto!",
                 "rating" => 5,
                 "price" => 120000,
-                "discont_percent" => 10,
                 "stock" => 10,
                 "volume" => "60ml",
                 "category" => "liquid",
-                // "variants" => ["3mg", "6mg"]
+                "variants" => ["3mg", "6mg"]
             ],
             [
                 "id" => 2,
-                "sku" => "",
                 "name" => "Jaxel Mylkcheese Crackers",
-                "image" => "jaxel mylkcheese.jpg",
+                "image" => $imageBaseURL . "jaxel mylkcheese.jpg",
                 "description" => "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Animi dolor fugit fugiat ipsa at eos vel ut id accusantium iusto error, optio veritatis perferendis, nobis ipsum, aut ullam eum consequatur! \n\n Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt rem tempore atque consequatur ducimus beatae pariatur nihil amet debitis architecto!",
                 "rating" => 5,
                 "price" => 125000,
-                "discont_percent" => 10,
                 "stock" => 10,
                 "volume" => "60ml",
                 "category" => "liquid",
-                // "variants" => ["3mg", "6mg"]
+                "variants" => ["3mg", "6mg"]
             ],
             [
                 "id" => 3,
-                "sku" => "",
                 "name" => "SLANK VIRUS LIQUID AUTHENTIC CHEESETART",
-                "image" => "slank virus.jpg",
+                "image" => $imageBaseURL . "slank virus.jpg",
                 "description" => "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Animi dolor fugit fugiat ipsa at eos vel ut id accusantium iusto error, optio veritatis perferendis, nobis ipsum, aut ullam eum consequatur! \n\n Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt rem tempore atque consequatur ducimus beatae pariatur nihil amet debitis architecto!",
                 "rating" => 5,
                 "price" => 125000,
-                "discont_percent" => 10,
                 "stock" => 10,
                 "volume" => "60ml",
                 "category" => "liquid",
-                // "variants" => ["3mg", "6mg"]
+                "variants" => ["3mg", "6mg"]
             ],
             [
                 "id" => 4,
-                "sku" => "",
                 "name" => "Tokyo Pie Series V1 Buttermilk",
-                "image" => "tokyo pie.jpg",
+                "image" => $imageBaseURL . "tokyo pie.jpg",
                 "description" => "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Animi dolor fugit fugiat ipsa at eos vel ut id accusantium iusto error, optio veritatis perferendis, nobis ipsum, aut ullam eum consequatur! \n\n Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt rem tempore atque consequatur ducimus beatae pariatur nihil amet debitis architecto!",
                 "rating" => 5,
                 "price" => 125000,
-                "discont_percent" => 10,
                 "stock" => 10,
                 "volume" => "60ml",
                 "category" => "liquid",
-                // "variants" => ["3mg", "6mg"]
+                "variants" => ["3mg", "6mg"]
             ],
             [
                 "id" => 5,
-                "sku" => "",
                 "name" => "Ghost Rabbit Berry Yogurt Sundae",
-                "image" => "ghost rabbit.jpg",
+                "image" => $imageBaseURL . "ghost rabbit.jpg",
                 "description" => "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Animi dolor fugit fugiat ipsa at eos vel ut id accusantium iusto error, optio veritatis perferendis, nobis ipsum, aut ullam eum consequatur! \n\n Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt rem tempore atque consequatur ducimus beatae pariatur nihil amet debitis architecto!",
                 "rating" => 5,
                 "price" => 87000,
-                "discont_percent" => 10,
                 "stock" => 10,
                 "volume" => "30ml",
                 "category" => "liquid",
-                // "variants" => ["12mg"]
+                "variants" => ["12mg"]
             ],
             [
                 "id" => 6,
-                "sku" => "",
                 "name" => "SLANK V3 FULLMOON",
-                "image" => "slank v3 fullmoon.jpg",
+                "image" => $imageBaseURL . "slank v3 fullmoon.jpg",
                 "description" => "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Animi dolor fugit fugiat ipsa at eos vel ut id accusantium iusto error, optio veritatis perferendis, nobis ipsum, aut ullam eum consequatur! \n\n Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt rem tempore atque consequatur ducimus beatae pariatur nihil amet debitis architecto!",
                 "rating" => 5,
                 "price" => 90000,
-                "discont_percent" => 10,
                 "stock" => 10,
                 "volume" => "60ml",
                 "category" => "liquid",
-                // "variants" => ["3mg", "6mg"]
+                "variants" => ["3mg", "6mg"]
             ],
             [
                 "id" => 7,
-                "sku" => "",
                 "name" => "Lunar Keev Korean Bento Cake",
-                "image" => "lunar keev korean.jpg",
+                "image" => $imageBaseURL . "lunar keev korean.jpg",
                 "description" => "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Animi dolor fugit fugiat ipsa at eos vel ut id accusantium iusto error, optio veritatis perferendis, nobis ipsum, aut ullam eum consequatur! \n\n Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt rem tempore atque consequatur ducimus beatae pariatur nihil amet debitis architecto!",
                 "rating" => 5,
                 "price" => 121000,
-                "discont_percent" => 10,
                 "stock" => 10,
                 "volume" => "60ml",
                 "category" => "liquid",
-                // "variants" => ["3mg", "6mg"]
+                "variants" => ["3mg", "6mg"]
             ],
             [
                 "id" => 8,
-                "sku" => "",
                 "name" => "Freebase N Podfriendly Ghost Monkey",
-                "image" => "Freebase N Podfriendly Ghost Monkey.jpg",
+                "image" => $imageBaseURL . "Freebase N Podfriendly Ghost Monkey.jpg",
                 "description" => "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Animi dolor fugit fugiat ipsa at eos vel ut id accusantium iusto error, optio veritatis perferendis, nobis ipsum, aut ullam eum consequatur! \n\n Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt rem tempore atque consequatur ducimus beatae pariatur nihil amet debitis architecto!",
                 "rating" => 5,
                 "price" => 121000,
-                "discont_percent" => 10,
                 "stock" => 10,
                 "volume" => "60ml",
                 "category" => "liquid",
-                // "variants" => ["3mg", "6mg"]
+                "variants" => ["3mg", "6mg"]
             ],
             [
                 "id" => 9,
-                "sku" => "",
                 "name" => "HOMPIMPA YOYO BERRY CEREAL BUTTER TART",
-                "image" => "HOMPIMPA YOYO BERRY CEREAL BUTTER TART.jpg",
+                "image" => $imageBaseURL . "HOMPIMPA YOYO BERRY CEREAL BUTTER TART.jpg",
                 "description" => "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Animi dolor fugit fugiat ipsa at eos vel ut id accusantium iusto error, optio veritatis perferendis, nobis ipsum, aut ullam eum consequatur! \n\n Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt rem tempore atque consequatur ducimus beatae pariatur nihil amet debitis architecto!",
                 "rating" => 5,
                 "price" => 90000,
-                "discont_percent" => 10,
                 "stock" => 10,
                 "volume" => "60ml",
                 "category" => "liquid",
-                // "variants" => ["3mg", "6mg"]
+                "variants" => ["3mg", "6mg"]
             ],
             [
                 "id" => 10,
-                "sku" => "",
                 "name" => "Slank March 10",
-                "image" => "Slank March 10.jpg",
+                "image" => $imageBaseURL . "Slank March 10.jpg",
                 "description" => "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Animi dolor fugit fugiat ipsa at eos vel ut id accusantium iusto error, optio veritatis perferendis, nobis ipsum, aut ullam eum consequatur! \n\n Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt rem tempore atque consequatur ducimus beatae pariatur nihil amet debitis architecto!",
                 "rating" => 5,
                 "price" => 125000,
-                "discont_percent" => 10,
                 "stock" => 10,
                 "volume" => "60ml",
                 "category" => "liquid",
-                // "variants" => ["3mg", "6mg"]
+                "variants" => ["3mg", "6mg"]
             ]
         ];
+
+        foreach ($products as $productData) {
+            $category = ProductCategory::where('name', $productData['category'])->first();
+            $product = Product::create([
+                'name' => $productData['name'],
+                'description' => $productData['description'],
+                'rating' => $productData['rating'],
+                'price' => $productData['price'],
+                'discount_percent' => '10',
+                'is_active' => '1',
+                'is_hot_item' => '1',
+                'stock' => $productData['stock'],
+                'volume' => $productData['volume'],
+                'product_category_id' => $category->id,
+            ]);
+
+            ProductImage::create([
+                'product_id' => $productData['id'],
+                'name' => $productData['name'],
+                'image_path' => $productData['image']
+            ]);
+
+            $variantIds = Variant::whereIn('name', $productData['variants'])->pluck('id');
+            $product->variants()->attach($variantIds);
+        }
     }
 }

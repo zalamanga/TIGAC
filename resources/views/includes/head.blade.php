@@ -8,10 +8,10 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
     <title>TIGAC</title>
 
-    {{-- Font Nunito --}}
+    {{-- Font Work Sans --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
 
     {{-- Boostrap css --}}
@@ -19,6 +19,7 @@
 
     {{-- Global css --}}
     <link rel="stylesheet" href="{{ asset('css/global.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/new-global.css') }}">
 
     @yield('heads')
 </head>

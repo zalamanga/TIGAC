@@ -12,9 +12,13 @@ class Product extends Model
     protected $fillable = [
         'name',
         'description',
-        'rating',
         'stock',
-        'volume'
+        'price',
+        'discount_percent',
+        'is_active',
+        'is_hot_item',
+        'sku',
+        'product_category_id'
     ];
 
     public function variants()
@@ -24,11 +28,11 @@ class Product extends Model
 
     public function images()
     {
-        return $this->hasMany(Image::class);
+        return $this->hasMany(ProductImage::class);
     }
 
     public function productCategory()
     {
-        return $this->hasOne(ProductCategory::class);
+        return $this->belongsTo(ProductCategory::class);
     }
 }

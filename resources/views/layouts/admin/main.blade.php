@@ -18,6 +18,7 @@
         </div>
     </div>
     @include('includes.admin.foot')
+    @stack('scripts')
 </body>
 
 </html>
