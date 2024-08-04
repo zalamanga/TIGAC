@@ -19,21 +19,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    $fileProducts = file_get_contents('../public/data/products.json');
-    $data = json_decode($fileProducts, true);
-    $products = $data['products'];
+// Route::get('/', function () {
+//     $fileProducts = file_get_contents('../public/data/products.json');
+//     $data = json_decode($fileProducts, true);
+//     $products = $data['products'];
 
-    return view('pages.index', compact('products'));
-})->name('pages.index');
+//     return view('pages.index', compact('products'));
+// })->name('pages.index');
 
-Route::get('/about', function () {
-    return view('pages.aboutUs');
-})->name('pages.aboutUs');
+// Route::get('/about', function () {
+//     return view('pages.aboutUs');
+// })->name('pages.aboutUs');
 
-Route::get('/news', function () {
-    return view('pages.news');
-})->name('pages.news');
+// Route::get('/news', function () {
+//     return view('pages.news');
+// })->name('pages.news');
 
 Route::get('/landing', function () {
     return view('pages.landing');
@@ -43,28 +43,54 @@ Route::get('/qr', function () {
     return view('pages.qr');
 })->name('pages.qr');
 
-Route::get('/products', function () {
-    $fileProducts = file_get_contents('../public/data/products.json');
-    $data = json_decode($fileProducts, true);
-    $products = $data['products'];
+// Route::get('/products', function () {
+//     $fileProducts = file_get_contents('../public/data/products.json');
+//     $data = json_decode($fileProducts, true);
+//     $products = $data['products'];
 
-    return view('pages.products', compact('products'));
-})->name('pages.products');
+//     return view('pages.products', compact('products'));
+// })->name('pages.products');
 
-Route::get('/products/{id}', function (int $id) {
-    $fileProducts = file_get_contents('../public/data/products.json');
-    $data = json_decode($fileProducts, true);
+// Route::get('/products/{id}', function (int $id) {
+//     $fileProducts = file_get_contents('../public/data/products.json');
+//     $data = json_decode($fileProducts, true);
 
-    $findIndex = array_search($id, array_column($data['products'], 'id'));
+//     $findIndex = array_search($id, array_column($data['products'], 'id'));
 
-    $product = $data['products'][$findIndex];
+//     $product = $data['products'][$findIndex];
 
-    return view('pages.productsDetail', compact('product'));
-})->name('pages.products.detail');
+//     return view('pages.productsDetail', compact('product'));
+// })->name('pages.products.detail');
 
-Route::get('/contact', function () {
-    return view('pages.contactUs');
-})->name('pages.contactUs');
+// Route::get('/contact', function () {
+//     return view('pages.contactUs');
+// })->name('pages.contactUs');
+
+// New FRONTEND
+
+Route::name('pages.frontend.')->group(function () {
+    Route::get('/', function () {
+        return view('pages.frontend.index');
+    })->name('index');
+    Route::get('/product', function () {
+        return view('pages.frontend.index');
+    })->name('product');
+    Route::get('/programs', function () {
+        return view('pages.frontend.index');
+    })->name('programs');
+    Route::get('/discover', function () {
+        return view('pages.frontend.index');
+    })->name('discover');
+    Route::get('/vaporistar', function () {
+        return view('pages.frontend.index');
+    })->name('vaporistar');
+    Route::get('/newsletter', function () {
+        return view('pages.frontend.index');
+    })->name('newsletter');
+    Route::get('/partnership', function () {
+        return view('pages.frontend.index');
+    })->name('partnership');
+});
 
 // Backend
 Route::middleware(['auth'])->group(function () {
