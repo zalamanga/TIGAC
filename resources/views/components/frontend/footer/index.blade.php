@@ -1,5 +1,9 @@
-<footer class="bg-main">
-    <div class="container pt-3 pt-md-5 pb-3">
+<footer class="bg-main mb-3 d-flex align-items-center mb-3 position-relative overflow-hidden">
+    <img src="{{ asset('images/new/Spring_Thin_Tall0001.png') }}" alt="graphic" class="position-absolute img-fluid start-0"
+        style="z-index: 1; bottom: 1%">
+    <img src="{{ asset('images/new/Torus_Concentric_Standing_1_0001.png') }}" alt="torus 2" class="position-absolute img-fluid end-0"
+        style="z-index: 1; bottom: -5%">
+    <div class="container pt-3 pt-md-5 pb-3" style="z-index: 2">
         <div class="row pb-5 mb-4 gap-3 border-bottom">
             <div class="col-12 col-md-5 col-lg-3 mb-3 mb-lg-0">
                 <img src="{{ asset('images/logo.png') }}" alt="Logo" width="250px" class="rounded mb-3" />
