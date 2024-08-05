@@ -6,6 +6,7 @@ use App\Http\Controllers\HeroBannerController;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
+use App\Models\Newsletter;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -127,4 +128,5 @@ Route::prefix('admin')->group(function () {
     Route::delete('/products/{productId}/images/{productImagesId}/destroy', [ProductController::class, 'deleteProductImage'])->name('admin.products.images.delete');
     Route::resource('/products', ProductController::class, ['as' => 'admin']);
     Route::resource('/hero-banners', HeroBannerController::class, ['as' => 'admin']);
+    Route::resource('/newsletters', Newsletter::class, ['as' => 'admin']);
 });
