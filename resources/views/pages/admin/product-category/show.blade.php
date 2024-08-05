@@ -3,22 +3,27 @@
     <div class="card">
         <div class="card-content">
             <div class="card-body">
-                <form class="form form-vertical" action="{{ route('admin.product.product-category.store') }}" method="POST"
-                    enctype="multipart/form-data">
+                <form class="form form-vertical"
+                    action="{{ Route::is('admin.product.product-category.edit', $productCategory->id) ? route('admin.product.product-category.update', $productCategory->id) : route('admin.roduct.product-category.store') }}"p
+                    method="POST" enctype="multipart/form-data">
                     <div class="form-body">
                         <div class="row">
                             @csrf
+                            @if (Route::is('admin.product.product-category.edit', $productCategory->id))
+                                @method('PUT')
+                            @endif
 
                             <div class="col-12">
                                 <x-input name="name" type="text" placeholder="Category Name" title="Name"
-                                    class="form-control" isRequired="true" value="{{ old('name') }}">
+                                    class="form-control" isRequired="true"
+                                    value="{{ old('name', $productCategory->name) }}">
                                 </x-input>
                             </div>
                             <div class="col-12">
                                 <div class="form-group">
                                     <label for="email-id-vertical">Description</label>
                                     <textarea type="text" id="email-id-vertical" class="form-control" name="description"
-                                        placeholder="Category Description">{{ old('description') }}</textarea>
+                                        placeholder="Category Description">{{ old('description', $productCategory->description) }}</textarea>
                                 </div>
                             </div>
                             <div class="col-12">

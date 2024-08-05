@@ -18,6 +18,16 @@ class ProductCategoryService
         return $this->productCategoryRepositoryInterface->getProductCategories();
     }
 
+    public function getProductCategoryById($productCategoryId)
+    {
+        return $this->productCategoryRepositoryInterface->getProductCategoryById($productCategoryId);
+    }
+
+    public function updateProductCategory($productCategoryId, $productCategoryUpdateRequest)
+    {
+        return $this->productCategoryRepositoryInterface->updateProductCategory($productCategoryId, $productCategoryUpdateRequest);
+    }
+
     public function createProductCategory($data)
     {
         return $this->productCategoryRepositoryInterface->createProductCategory($data);

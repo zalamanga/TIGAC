@@ -103,7 +103,9 @@ Route::middleware(['auth'])->group(function () {
     Route::controller(ProductCategoryController::class)->group(function () {
         Route::get('/admin/products/categories', 'index')->name('admin.product.product-category.index');
         Route::get('/admin/products/categories/create', 'create')->name('admin.product.product-category.create');
+        Route::get('/admin/products/categories/{productCategoryId}/edit', 'edit')->name('admin.product.product-category.edit');
         Route::post('/admin/products/categories/store', 'store')->name('admin.product.product-category.store');
+        Route::put('/admin/products/categories/{productCategoryId}/update', 'update')->name('admin.product.product-category.update');
         Route::delete('/admin/products/categories/destroy/{productCategoryId}', 'destroy')->name('admin.product.product-category.destroy');
         Route::put('/admin/products/categories/chagne-active-status/{productCategoryId}', 'changeActiveStatus')->name('admin.product.product-category.change-active-status');
     });

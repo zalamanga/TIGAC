@@ -18,6 +18,13 @@ class ProductCategoryRepository implements ProductCategoryRepositoryInterface
         return ProductCategory::create($productCategoryData);
     }
 
+    public function updateProductCategory($productCategoryId, $productUpdateRequestData)
+    {
+        $productCategory = $this->getProductCategoryById($productCategoryId);
+
+        return $productCategory->update($productUpdateRequestData);
+    }
+
     public function deleteProductCategory($productCategoryId)
     {
         return ProductCategory::where('id', $productCategoryId)->delete();

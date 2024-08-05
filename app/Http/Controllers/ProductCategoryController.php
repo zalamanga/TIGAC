@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\DataTables\ProductCategoryDataTable;
 use App\Http\Requests\ProductCategoryRequest;
+use App\Http\Requests\ProductCategoryUpdateRequest;
 use App\Services\ProductCategoryService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -47,6 +48,27 @@ class ProductCategoryController extends Controller
         $this->productCategoryService->createProductCategory($productCategoryData);
 
         Alert::success('Success', 'Success create new category');
+        return redirect()->route('admin.product.product-category.index');
+    }
+
+    public function edit($productCategoryId)
+    {
+        $title = 'Edit Product Category';
+        $productCategory = $this->productCategoryService->getProductCategoryById($productCategoryId);
+
+        return view('pages.admin.product-category.show', [
+            'title' => $title,
+            'productCategory' => $productCategory
+        ]);
+    }
+
+    public function update($productCategoryId, ProductCategoryUpdateRequest $productCategoryUpdateRequest)
+    {
+        $productCategoryUpdateData = $productCategoryUpdateRequest->validated();
+
+        $this->productCategoryService->updateProductCategory($productCategoryId, $productCategoryUpdateData);
+
+        Alert::success('Success', 'Success edit category');
         return redirect()->route('admin.product.product-category.index');
     }
 
