@@ -11,14 +11,14 @@
 
                             <div class="col-12">
                                 <x-input name="name" type="text" placeholder="Category Name" title="Name"
-                                    class="" isRequired="true">
+                                    class="form-control" isRequired="true" value="{{ old('name') }}">
                                 </x-input>
                             </div>
                             <div class="col-12">
                                 <div class="form-group">
                                     <label for="email-id-vertical">Description</label>
                                     <textarea type="text" id="email-id-vertical" class="form-control" name="description"
-                                        placeholder="Category Description"></textarea>
+                                        placeholder="Category Description">{{ old('description') }}</textarea>
                                 </div>
                             </div>
                             <div class="col-12">
