@@ -13,7 +13,7 @@
         ],
         [
             'title' => 'Tigac STIG',
-            'src' => asset('images/new/masterpiece 1.png'),
+            'src' => asset('images/new/masterpiece 3.png'),
         ],
         [
             'title' => 'Tigac Saltnic Series',
@@ -29,7 +29,12 @@
         <center>
             <h1 class="fw-semibold mb-3">Welcome to TIGAC World</h1>
         </center>
-        <video src="{{ $videoUrl }}" autoplay loop muted class="img-fluid rounded-4"></video>
+        {{-- <video src="{{ $videoUrl }}" autoplay loop muted class="img-fluid rounded-4"></video> --}}
+
+        <video class="img-fluid rounded-4" controls autoplay loop>
+            <source src="{{ $videoUrl }}" type="video/mp4">
+        </video>
+
     </section>
     {{-- section 1 end --}}
 
