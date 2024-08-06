@@ -3,11 +3,23 @@
 namespace App\Http\Controllers;
 
 use App\DataTables\NewsletterDataTable;
+use App\Http\Requests\NewsletterRequest;
+use App\Models\Newsletter;
+use App\Services\NewsletterService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class NewsletterController extends Controller
 {
+    protected $newsletterService;
+
+    public function __construct(NewsletterService $newsletterService)
+    {
+        $this->newsletterService = $newsletterService;
+    }
+
     public function index(NewsletterDataTable $dataTable)
     {
         $title = "Newsletters";
@@ -27,13 +39,18 @@ class NewsletterController extends Controller
         ]);
     }
 
-    public function edit($newsletterId)
+    public function store(NewsletterRequest $newsletterRequest)
     {
+        $newsletterData = $newsletterRequest->validated();
+
+        $this->newsletterService->createNewsletter($newsletterData);
+
+        Alert::success('Success', 'Success create new category');
+        return redirect()->route('admin.newsletters.index');
     }
 
-    public function store(Request $request)
+    public function edit($newsletterId)
     {
-        dd($request);
     }
 
     public function update($newsletterId, Request $request)

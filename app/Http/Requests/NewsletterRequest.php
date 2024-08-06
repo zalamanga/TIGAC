@@ -22,15 +22,22 @@ class NewsletterRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "title" => "required|unique",
-            "content" => "required|unique",
-            "thumbnail" => "required|image",
+            "title" => "required|unique:newsletters,title",
+            "content" => "required|unique:newsletters,content",
+            "thumbnail" => "required|mimes:jpeg,jpg,png",
             "thumbnail_short_description" => "nullable"
         ];
     }
 
     public function messages()
     {
-        return [];
+        return [
+            'title.required' => 'Newsletter title is required',
+            'title.unique' => 'Newsletter title is already exists',
+            'content.required' => 'Newsletter content is already exists',
+            'content.unique' => 'Newsletter content is already exists',
+            'thumbnail.required' => 'Newsletter thumbnail is required',
+            'thumbnail.mimes' => 'Newsletter thumbnail must be an image (jpeg, jpg, or png)',
+        ];
     }
 }

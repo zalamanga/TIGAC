@@ -13,10 +13,12 @@ return new class extends Migration
     {
         Schema::create('newsletters', function (Blueprint $table) {
             $table->id();
+            $table->string('title')->require()->unique();
+            $table->string('slug')->require()->unique();
+            $table->text('content')->require()->unique();
             $table->string('thumbnail')->require();
             $table->string('thumbnail_short_description')->nullable();
-            $table->string('title')->require()->unique();
-            $table->text('content')->require()->unique();
+            $table->boolean('is_active')->default('1');
             $table->timestamps();
         });
     }

@@ -1,9 +1,18 @@
 @extends('layouts.admin.main')
 @section('content')
+    @if ($errors->any())
+        <div>
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <div class="card">
         <div class="card-content">
             <div class="card-body">
-                <form class="form form-vertical" action="{{ route('admin.newsletters.store') }}"p method="POST"
+                <form class="form form-vertical" action="{{ route('admin.newsletters.store') }}" method="POST"
                     enctype="multipart/form-data">
                     <div class="form-body">
                         <div class="row">
@@ -17,12 +26,6 @@
                                     title="Newsletter Title" class="form-control" isRequired="true"
                                     value="{{ old('title') }}">
                                 </x-input>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-group">
-                                    <label for="content">Content <span class="text-danger">*</span></label>
-                                    <textarea type="text" class="form-control richtextarea" name="content" placeholder="Newsletter Content" required>{{ old('content') }}</textarea>
-                                </div>
                             </div>
                             <div class="col-12">
                                 <div class='form-group'>
@@ -39,7 +42,14 @@
                                     <label for="thumbnail_short_description">Thumbnail Short Description <span
                                             class="text-danger">*</span></label>
                                     <textarea type="text" id="thumbnail_short_description" class="form-control" name="thumbnail_short_description"
-                                        placeholder="Thumbnail Short Description" required>{{ old('content') }}</textarea>
+                                        placeholder="Thumbnail Short Description" required>{{ old('thumbnail_short_description') }}</textarea>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="content">Content <span class="text-danger">*</span></label>
+                                    <textarea rows="20" type="text" class="form-control richtextarea" name="content"
+                                        placeholder="Newsletter Content">{{ old('content') }}</textarea>
                                 </div>
                             </div>
                             <div class="col-12">
