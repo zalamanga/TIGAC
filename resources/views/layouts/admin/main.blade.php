@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 @include('includes.admin.head')
+
 <body>
     <script src="{{ asset('static/js/initTheme.js') }}"></script>
     <div id="app">

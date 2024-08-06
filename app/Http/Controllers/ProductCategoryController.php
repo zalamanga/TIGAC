@@ -36,7 +36,7 @@ class ProductCategoryController extends Controller
     {
         $title = 'Create New Product Category';
 
-        return view('pages.admin.product-category.show', [
+        return view('pages.admin.product-category.create', [
             'title' => $title
         ]);
     }

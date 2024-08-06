@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('newsletters', function (Blueprint $table) {
             $table->id();
-            $table->string('thumbnail');
-            $table->string('thumbnail_short_description');
-            $table->string('title');
-            $table->text('content');
+            $table->string('thumbnail')->require();
+            $table->string('thumbnail_short_description')->nullable();
+            $table->string('title')->require()->unique();
+            $table->text('content')->require()->unique();
             $table->timestamps();
         });
     }
