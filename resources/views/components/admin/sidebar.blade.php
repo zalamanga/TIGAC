@@ -115,7 +115,7 @@
                     </ul>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
+                    <a href="{{ route('admin.newsletters.index') }}" class="sidebar-link">
                         <i class="bi bi-newspaper"></i>
                         <span>News</span>
                     </a>

@@ -67,12 +67,11 @@ class HeroBannerService
                 'name' => $heroBannerData['name'],
                 'tagline' => $heroBannerData['tagline'],
                 'tagline_description' => $heroBannerData['tagline_description'],
-                'media_type' => $heroBannerData['media']->getClientMimeType(),
                 'is_active' => $heroBannerData['is_active'],
                 'is_priority' => $heroBannerData['is_priority'],
             ];
         }
 
-        return $this->heroBannerRepositoryInterface->updateHeroBanner($heroBannerData, $heroBannerId);
+        return $this->heroBannerRepositoryInterface->updateHeroBanner($heroBannerData, $heroBanner);
     }
 }
