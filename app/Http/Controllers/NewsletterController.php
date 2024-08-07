@@ -56,11 +56,15 @@ class NewsletterController extends Controller
 
     public function destroy($newsletterId)
     {
+        $this->newsletterService->deleteNewsletter($newsletterId);
+
+        Alert::success('Success', 'Success delete newsletter');
+        return redirect()->route('admin.newsletters.index');
     }
 
     public function newsletterUploadImage(Request $request)
     {
-        $imgpath = $request->file('file')->store('post', 'public');
+        $imgpath = $request->file('file')->store('images/newsletter_contents', 'public');
         return response()->json(['location' => "/storage/$imgpath"]);
     }
 }

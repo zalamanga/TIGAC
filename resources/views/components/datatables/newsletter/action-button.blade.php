@@ -5,11 +5,11 @@
     </button>
 
     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <form action="{{ route('admin.product.product-category.destroy', $id) }}" method="post">
+        <form action="{{ route('admin.newsletters.destroy', $id) }}" method="post">
             @csrf
             @method('DELETE')
             <button class="dropdown-item text-danger" type="submit">Delete</button>
         </form>
-        <a class="dropdown-item" href="{{ route('admin.product.product-category.edit', $id) }}">Edit</a>
+        <a class="dropdown-item" href="{{ route('admin.newsletters.edit', $id) }}">Edit</a>
     </div>
 </div>

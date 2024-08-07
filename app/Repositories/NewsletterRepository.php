@@ -16,4 +16,11 @@ class NewsletterRepository implements NewsletterRepositoryInterface
     {
         return Newsletter::create($requestNewsletterData);
     }
+
+    public function deleteNewsletter($newsletterId)
+    {
+        $newsletter = $this->getNewsletterById($newsletterId);
+
+        return $newsletter->delete();
+    }
 }
