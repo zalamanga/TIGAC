@@ -56,13 +56,20 @@
                                     </div>
                                 @else
                                     <div class='form-group'>
-                                        <label for="thumbnail">Newsletter Thumbnail <span
-                                                class="text-danger">*</span></label>
+                                        <label for="thumbnail">Newsletter Thumbnail</label>
                                         <input type="file" name="thumbnail" class="form-control"
                                             value="{{ old('thumbnail') }}">
                                         @error('thumbnail')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label for="thumbnail_short_description">Thumbnail Short Description <span
+                                                    class="text-danger">*</span></label>
+                                            <textarea type="text" id="thumbnail_short_description" class="form-control" name="thumbnail_short_description"
+                                                placeholder="Thumbnail Short Description" required>{{ old('thumbnail_short_description', $newsletter->thumbnail_short_description) }}</textarea>
+                                        </div>
                                     </div>
                                     <div class="card rounded-0" style="width: 18rem;">
                                         <img src="{{ asset('storage/' . $newsletter->thumbnail) }}"
@@ -76,7 +83,8 @@
                                     <div class="col-12">
                                         <div class="form-group">
                                             <label for="content">Content <span class="text-danger">*</span></label>
-                                            <textarea rows="20" type="text" class="form-control" name="content" placeholder="Newsletter Content">{{ old('content') }}</textarea>
+                                            <textarea rows="30" type="text" class="form-control richtextarea" name="content"
+                                                placeholder="Newsletter Content">{{ old('content', $newsletter->content) }}</textarea>
                                         </div>
                                     </div>
                                     <div class="col-12">
@@ -93,7 +101,8 @@
 
                             <div class="col-12 d-flex justify-content-end">
                                 @if (Route::is('admin.newsletters.show'))
-                                    <a href="#" class="btn btn-primary me-1 mb-1">Edit</a>
+                                    <a href="{{ route('admin.newsletters.edit', $newsletter->id) }}"
+                                        class="btn btn-primary me-1 mb-1">Edit</a>
                                     <a href="{{ route('admin.newsletters.index') }}"
                                         class="btn btn-light-secondary me-1 mb-1">Back</a>
                                 @else

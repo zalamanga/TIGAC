@@ -33,6 +33,53 @@ class NewsletterService
         return $this->newsletterRepositoryInterface->createNewsletter($newsletterData);
     }
 
+    public function updateNewsletter($newsletterId, $newsletterUpdateData)
+    {
+        $newsletter = $this->getNewsletterById($newsletterId);
+
+        // Handle image in newsletter content
+        preg_match_all('/<img[^>]+src="([^">]+)"/', $newsletter->content, $oldImageContents);
+        $oldImagePaths = $oldImageContents[1];
+
+        preg_match_all('/<img[^>]+src="([^">]+)"/', $newsletterUpdateData['content'], $newImageContents);
+        $newImagePaths = $newImageContents[1];
+
+        $imagesToDelete = array_diff($oldImagePaths, $newImagePaths);
+
+        foreach ($imagesToDelete as $imagePath) {
+            $relativeImagePath = str_replace('/storage/', '', $imagePath);
+
+            if (Storage::exists($relativeImagePath)) {
+                Storage::delete($relativeImagePath);
+            }
+        }
+
+        // Handle thumbnail image
+        if (array_key_exists('thumbnail', $newsletterUpdateData)) {
+            if (Storage::disk('public')->exists($newsletter->thumbnail)) {
+                Storage::disk('public')->delete($newsletter->thumbnail);
+            }
+
+            $newMediaPath = $newsletterUpdateData['thumbnail']->store('images/newsletter_thumbnail', 'public');
+
+            // Composer newsletter data
+            $newsletterData = [
+                'title' => $newsletterUpdateData['title'],
+                'content' => $newsletterUpdateData['content'],
+                'thumbnail' => $newMediaPath,
+                'thumbnail_short_description' => $newsletterUpdateData['thumbnail_short_description'],
+            ];
+        } else {
+            $newsletterData = [
+                'title' => $newsletterUpdateData['title'],
+                'content' => $newsletterUpdateData['content'],
+                'thumbnail_short_description' => $newsletterUpdateData['thumbnail_short_description'],
+            ];
+        }
+
+        return $this->newsletterRepositoryInterface->updateNewsletter($newsletter, $newsletterData);
+    }
+
     public function deleteNewsletter($newsletterId)
     {
         $newsletter = $this->getNewsletterById($newsletterId);

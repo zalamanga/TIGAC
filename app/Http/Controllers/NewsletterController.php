@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\DataTables\NewsletterDataTable;
 use App\Http\Requests\NewsletterRequest;
+use App\Http\Requests\NewsletterUpdateRequest;
 use App\Services\NewsletterService;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -59,10 +60,22 @@ class NewsletterController extends Controller
 
     public function edit($newsletterId)
     {
+        $title = "Newsletter Detail";
+        $newsletter = $this->newsletterService->getNewsletterById($newsletterId);
+
+        return view('pages.admin.newsletter.show', [
+            'title' => $title,
+            'newsletter' => $newsletter
+        ]);
     }
 
-    public function update($newsletterId, Request $request)
+    public function update($newsletterId, NewsletterUpdateRequest $newsletterUpdateRequest)
     {
+        $newsletterRequestValidated = $newsletterUpdateRequest->validated();
+
+        $this->newsletterService->updateNewsletter($newsletterId, $newsletterRequestValidated);
+        Alert::success('Success', 'Success Edit Newsletter');
+        return redirect()->route('admin.newsletters.index');
     }
 
     public function destroy($newsletterId)
