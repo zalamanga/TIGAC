@@ -24,9 +24,10 @@ class NewsletterDataTable extends DataTable
         return (new EloquentDataTable($query))
             ->addColumn('action', 'components.datatables.newsletter.action-button')
             ->addColumn('is_active', 'components.datatables.newsletter.active-switch')
+            ->addColumn('thumbnail', 'components.datatables.newsletter.thumbnail')
             ->addIndexColumn()
             ->setRowId('id')
-            ->rawColumns(['action', 'is_active']);
+            ->rawColumns(['action', 'is_active', 'thumbnail']);
     }
 
     /**
@@ -60,7 +61,7 @@ class NewsletterDataTable extends DataTable
             Column::computed('DT_RowIndex')->title('No')->orderable(false)->searchable(false),
             Column::make('title'),
             Column::make('thumbnail'),
-            Column::make('created_at'),
+            Column::make('is_active'),
             Column::make('action'),
         ];
     }

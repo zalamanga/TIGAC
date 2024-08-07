@@ -4,11 +4,8 @@ namespace App\Http\Controllers;
 
 use App\DataTables\NewsletterDataTable;
 use App\Http\Requests\NewsletterRequest;
-use App\Models\Newsletter;
 use App\Services\NewsletterService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class NewsletterController extends Controller
