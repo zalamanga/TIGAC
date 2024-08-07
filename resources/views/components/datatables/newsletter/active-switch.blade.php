@@ -4,9 +4,9 @@
         @csrf
         @method('PUT')
         <input class="form-check-input me-0 product-category-active-switch" type="checkbox" id="toggle-dark" name="status"
-            value="{{ $is_active == '1' ? 0 : 1 }}" style="cursor: pointer"
+            value="{{ $is_active == "1" ? 0 : 1; }}" style="cursor: pointer"
             @if ($is_active == '1') checked @endif>
-        <input type="hidden" name="status" value="{{ $is_active == '1' ? 0 : 1 }}">
+        <input type="hidden" name="status" value="{{ $is_active == "1" ? 0 : 1; }}">
         <label class="form-check-label" for="toggle-dark"></label>
     </form>
 </div>
