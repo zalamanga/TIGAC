@@ -150,12 +150,11 @@
                             <div class="form-group">
                                 @if (Route::is('admin.products.show'))
                                     <label for="email-id-vertical">Description <span class="text-danger">*</span></label>
-                                    <textarea type="text" id="email-id-vertical" class="form-control form-control-plaintext" name="description"
-                                        placeholder="Product Description" rows="4">{{ $product->description }}</textarea>
+                                    <div>{!! $product->description !!}</div>
                                 @else
                                     <label for="email-id-vertical">Description <span class="text-danger">*</span></label>
-                                    <textarea type="text" id="email-id-vertical" class="form-control" name="description"
-                                        placeholder="Product Description" rows="4">{{ old('description', $product->description) }}</textarea>
+                                    <textarea type="text" id="email-id-vertical" class="form-control richtextarea" name="description"
+                                        placeholder="Product Description" rows="30">{{ old('description', $product->description) }}</textarea>
                                     @error('description')
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror

@@ -42,7 +42,9 @@
                                 <select class="choices form-select multiple-remove" name="product_variants[]"
                                     multiple="multiple" data-placeholder="Choose Variants">
                                     @foreach ($productVariants as $productVariant)
-                                        <option value="{{ $productVariant->id }}" {{ (old('product_variants[]') == $productVariant->name ? "selected":"") }}>{{ $productVariant->name }}</option>
+                                        <option value="{{ $productVariant->id }}"
+                                            {{ old('product_variants[]') == $productVariant->name ? 'selected' : '' }}>
+                                            {{ $productVariant->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -100,7 +102,7 @@
                         <div class="col-12">
                             <div class="form-group">
                                 <label for="email-id-vertical">Description <span class="text-danger">*</span></label>
-                                <textarea type="text" id="email-id-vertical" class="form-control" name="description"
+                                <textarea type="text" id="email-id-vertical" class="form-control richtextarea" rows="30" name="description"
                                     placeholder="Product Description" rows="4">{{ old('description') }}</textarea>
                                 @error('description')
                                     <div class="text-danger">{{ $message }}</div>
