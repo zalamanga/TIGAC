@@ -46,6 +46,17 @@ class NewsletterController extends Controller
         return redirect()->route('admin.newsletters.index');
     }
 
+    public function show($newsletterId)
+    {
+        $title = "Newsletter Detail";
+        $newsletter = $this->newsletterService->getNewsletterById($newsletterId);
+
+        return view('pages.admin.newsletter.show', [
+            'title' => $title,
+            'newsletter' => $newsletter
+        ]);
+    }
+
     public function edit($newsletterId)
     {
     }
