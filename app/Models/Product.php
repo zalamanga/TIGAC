@@ -17,6 +17,8 @@ class Product extends Model
         'stock',
         'price',
         'discount_percent',
+        'is_device',
+        'is_collaboration_project',
         'is_active',
         'is_hot_item',
         'sku',

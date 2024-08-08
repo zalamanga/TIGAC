@@ -30,6 +30,8 @@ class ProductRequest extends FormRequest
             'stock' => 'required|integer',
             'is_active' => 'nullable|boolean',
             'is_hot_item' => 'nullable|boolean',
+            'is_device' => 'nullable|boolean',
+            'is_collaboration_project' => 'nullable|boolean',
             'description' => 'required',
             'images' => 'nullable',
             'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',

@@ -37,6 +37,8 @@ class ProductService
                 'discount_percent' => $requestProductData['discount_percent'],
                 'is_active' => $requestProductData['is_active'],
                 'is_hot_item' => $requestProductData['is_hot_item'],
+                'is_device' => $requestProductData['is_device'],
+                'is_collaboration_project' => $requestProductData['is_collaboration_project'],
                 'stock' => $requestProductData['stock']
             ];
 
@@ -90,6 +92,8 @@ class ProductService
             'discount_percent' => $requestProductData['discount_percent'],
             'is_active' => $requestProductData['is_active'],
             'is_hot_item' => $requestProductData['is_hot_item'],
+            'is_device' => $requestProductData['is_device'],
+            'is_collaboration_project' => $requestProductData['is_collaboration_project'],
             'stock' => $requestProductData['stock']
         ];
 

@@ -22,6 +22,8 @@ return new class extends Migration
             $table->float('rating')->nullable();
             $table->bigInteger('price')->nullable();
             $table->float('discount_percent')->nullable();
+            $table->boolean('is_device')->default('0')->require();
+            $table->boolean('is_collaboration_project')->default('0')->require();
             $table->string('is_active', 1)->nullable();
             $table->string('is_hot_item', 1)->nullable();
             $table->integer('stock')->nullable();

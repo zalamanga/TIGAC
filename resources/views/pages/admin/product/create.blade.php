@@ -12,17 +12,17 @@
 
                     <div class="row">
                         <p class="h2">Product Identity Detail</p>
-                        <div class="col-12 lg-col-4">
+                        <div class="col-12 col-lg-4">
                             <x-input name="name" type="text" placeholder="Product Name" title="Name"
                                 class="form-control" isRequired="true" value="{{ old('name') }}">
                             </x-input>
                         </div>
-                        <div class="col-12 lg-col-4">
+                        <div class="col-12 col-lg-4">
                             <x-input name="sku" type="text" placeholder="Product SKU" title="SKU"
                                 class="form-control" isRequired="false" value="{{ old('sku') }}">
                             </x-input>
                         </div>
-                        <div class="col-12 lg-col-4">
+                        <div class="col-12 col-lg-4">
                             <div class="form-group">
                                 <label for="product_category">Product Category <span class="text-danger">*</span></label>
                                 <select class="form-select" id="product_category" name="product_category_id"
@@ -36,7 +36,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-12 lg-col-4">
+                        <div class="col-12 col-lg-4">
                             <div class="form-group">
                                 <label for="product_category">Product Variant</label>
                                 <select class="choices form-select multiple-remove" name="product_variants[]"
@@ -49,7 +49,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-12 lg-col-4">
+                        <div class="col-12 col-lg-4">
                             <div class="form-group">
                                 <label for="price">Base Price <span class="text-danger">*</span></label>
                                 <div class="input-group">
@@ -63,7 +63,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12 lg-col-4">
+                        <div class="col-12 col-lg-4">
                             <div class="form-group">
                                 <label for="discount_percent">Discount in Percent</label>
                                 <div class="input-group">
@@ -76,12 +76,12 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12 lg-col-4">
+                        <div class="col-12 col-lg-4">
                             <x-input name="stock" type="number" placeholder="Product Total Stock" title="Stock"
                                 class="form-control" isRequired="true" value="{{ old('stock') }}">
                             </x-input>
                         </div>
-                        <div class="col-12 lg-col-4">
+                        <div class="col-12 col-lg-4">
                             <div class="form-group">
                                 <label for="is_active">Active Status <span class="text-danger">*</span></label>
                                 <select class="form-select" id="inputGroupSelect02" name="is_active">
@@ -90,12 +90,30 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-12 lg-col-4">
+                        <div class="col-12 col-lg-4">
                             <div class="form-group">
                                 <label for="is_hot_item">Hot Item Status <span class="text-danger">*</span></label>
                                 <select class="form-select" id="inputGroupSelect02" name="is_hot_item">
                                     <option value="1">Hot Item</option>
                                     <option value="0">Not Hot Item</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-4">
+                            <div class="form-group">
+                                <label for="is_hot_item">Is Device <span class="text-danger">*</span></label>
+                                <select class="form-select" id="inputGroupSelect02" name="is_device">
+                                    <option value="1">Yes</option>
+                                    <option value="0">No</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-4">
+                            <div class="form-group">
+                                <label for="is_hot_item">Is TCALL <span class="text-danger">*</span></label>
+                                <select class="form-select" id="inputGroupSelect02" name="is_collaboration_project">
+                                    <option value="1">Yes</option>
+                                    <option value="0">No</option>
                                 </select>
                             </div>
                         </div>
