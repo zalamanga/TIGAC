@@ -15,6 +15,7 @@ class HeroBanner extends Model
         'tagline_description',
         'media_type',
         'media_path',
+        'is_for_product_page',
         'is_active',
         'is_priority'
     ];

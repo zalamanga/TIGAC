@@ -30,6 +30,7 @@ class HeroBannerUpdateRequest extends FormRequest
             'tagline_description' => ['required', Rule::unique('hero_banners', 'tagline_description')->ignore($id)],
             'is_active' => 'required|boolean',
             'is_priority' => 'required|boolean',
+            'is_for_product_page' => 'required|boolean',
             'media' => 'nullable'
         ];
     }

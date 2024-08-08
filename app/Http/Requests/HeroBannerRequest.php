@@ -27,6 +27,7 @@ class HeroBannerRequest extends FormRequest
             'tagline_description' => 'unique:hero_banners,tagline_description|required',
             'is_active' => 'required|boolean',
             'is_priority' => 'required|boolean',
+            'is_for_product_page' => 'required|boolean',
             'media' => 'required'
         ];
     }

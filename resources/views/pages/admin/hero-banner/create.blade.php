@@ -31,6 +31,15 @@
                             </div>
                             <div class="col-4">
                                 <div class="form-group">
+                                    <label for="is_priority">Is For Product Page <span class="text-danger">*</span></label>
+                                    <select class="form-select" id="inputGroupSelect02" name="is_for_product_page">
+                                        <option value="1">Yes</option>
+                                        <option value="0">No</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="form-group">
                                     <label for="is_active">Active Status <span class="text-danger">*</span></label>
                                     <select class="form-select" id="inputGroupSelect02" name="is_active">
                                         <option value="1">Active</option>

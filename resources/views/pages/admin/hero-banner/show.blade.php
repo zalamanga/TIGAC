@@ -1,5 +1,9 @@
 @extends('layouts.admin.main')
 @section('content')
+    {{-- @if ($errors->any())
+        {{ dd($errors->all()) }}
+    @endif --}}
+
     <div class="card">
         <div class="card-content">
             <div class="card-body">
@@ -32,6 +36,21 @@
                                     <textarea type="text" id="email-id-vertical"
                                         class="{{ Route::is('admin.hero-banners.show') ? 'form-control-plaintext' : 'form-control' }}"
                                         name="tagline_description" placeholder="Hero Banner Tagline Description" required>{{ old('tagline_description', $heroBanner->tagline_description) }}</textarea>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <label for="is_active">Is For Product Page <span class="text-danger">*</span></label>
+                                    <select
+                                        class="{{ Route::is('admin.hero-banners.show') ? 'form-control-plaintext' : 'form-select' }}"
+                                        id="inputGroupSelect02" name="is_for_product_page">
+                                        <option value="1"
+                                            {{ $heroBanner->is_for_product_page == '1' ? 'selected' : '' }}>Yes
+                                        </option>
+                                        <option value="0"
+                                            {{ $heroBanner->is_for_product_page == '0' ? 'selected' : '' }}>No
+                                        </option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="col-4">
