@@ -17,20 +17,20 @@
 
                     <div class="row">
                         <p class="h2">Product Identity Detail</p>
-                        <div class="col-4">
+                        <div class="col-12 lg-col-4">
                             <x-input name="name" type="text" placeholder="Product Name" title="Name"
                                 class="{{ $product && Route::is('admin.products.show') ? 'form-control-plaintext' : 'form-control' }}"
                                 isRequired="true" value="{{ $product ? $product->name : old('name') }}">
                             </x-input>
                         </div>
-                        <div class="col-4">
+                        <div class="col-12 lg-col-4">
                             <x-input name="sku" type="text" placeholder="Product SKU" title="SKU"
                                 class="{{ $product && Route::is('admin.products.show') ? 'form-control-plaintext' : 'form-control' }}"
                                 isRequired="false"
                                 value="{{ $product ? ($product->sku ? $product->sku : '-') : old('sku') }}">
                             </x-input>
                         </div>
-                        <div class="col-4">
+                        <div class="col-12 lg-col-4">
                             <div class="form-group">
                                 <label for="product_category">Product Category <span class="text-danger">*</span></label>
                                 @if (Route::is('admin.products.show'))
@@ -51,7 +51,7 @@
                                 @endif
                             </div>
                         </div>
-                        <div class="col-4">
+                        <div class="col-12 lg-col-4">
                             <div class="form-group">
                                 <label for="product_category">Product Variant</label>
                                 @if (Route::is('admin.products.show'))
@@ -69,7 +69,7 @@
                                 @endif
                             </div>
                         </div>
-                        <div class="col-4">
+                        <div class="col-12 lg-col-4">
                             <div class="form-group">
                                 <label for="price">Base Price <span class="text-danger">*</span></label>
                                 <div class="input-group">
@@ -88,7 +88,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-4">
+                        <div class="col-12 lg-col-4">
                             <div class="form-group">
                                 <label for="discount_percent">Discount in Percent</label>
                                 @if (Route::is('admin.products.show'))
@@ -107,13 +107,13 @@
                                 @endif
                             </div>
                         </div>
-                        <div class="col-4">
+                        <div class="col-12 lg-col-4">
                             <x-input name="stock" type="number" placeholder="Product Total Stock" title="Stock"
                                 class="{{ $product && Route::is('admin.products.show') ? 'form-control-plaintext' : 'form-control' }}"
                                 isRequired="true" value="{{ $product ? $product->stock : old('stock') }}">
                             </x-input>
                         </div>
-                        <div class="col-4">
+                        <div class="col-12 lg-col-4">
                             <div class="form-group">
                                 <label for="is_active">Active Status <span class="text-danger">*</span></label>
                                 @if (Route::is('admin.products.show'))
@@ -130,7 +130,7 @@
                                 @endif
                             </div>
                         </div>
-                        <div class="col-4">
+                        <div class="col-12 lg-col-4">
                             <div class="form-group">
                                 <label for="is_hot_item">Hot Item Status <span class="text-danger">*</span></label>
                                 @if (Route::is('admin.products.show'))
