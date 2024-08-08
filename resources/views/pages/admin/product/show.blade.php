@@ -115,6 +115,40 @@
                         </div>
                         <div class="col-12 lg-col-4">
                             <div class="form-group">
+                                <label for="is_active">Is Device <span class="text-danger">*</span></label>
+                                @if (Route::is('admin.products.show'))
+                                    <input type="text" class="form-control-plaintext"
+                                        value="{{ $product->is_device == 1 ? 'Yes' : 'No' }}">
+                                @else
+                                    <select class="form-select" id="inputGroupSelect02" name="is_device">
+                                        <option value="1" {{ $product->is_device == '1' ? 'selected' : '' }}>Yes
+                                        </option>
+                                        <option value="0" {{ $product->is_device == '0' ? 'selected' : '' }}>No
+                                        </option>
+                                    </select>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="col-12 lg-col-4">
+                            <div class="form-group">
+                                <label for="is_active">Is Collaboration Project <span class="text-danger">*</span></label>
+                                @if (Route::is('admin.products.show'))
+                                    <input type="text" class="form-control-plaintext"
+                                        value="{{ $product->is_collaboration_project == 1 ? 'Yes' : 'No' }}">
+                                @else
+                                    <select class="form-select" id="inputGroupSelect02" name="is_collaboration_project">
+                                        <option value="1"
+                                            {{ $product->is_collaboration_project == '1' ? 'selected' : '' }}>Yes
+                                        </option>
+                                        <option value="0"
+                                            {{ $product->is_collaboration_project == '0' ? 'selected' : '' }}>No
+                                        </option>
+                                    </select>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="col-12 lg-col-4">
+                            <div class="form-group">
                                 <label for="is_active">Active Status <span class="text-danger">*</span></label>
                                 @if (Route::is('admin.products.show'))
                                     <input type="text" class="form-control-plaintext"
