@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('sku')->nullable();
             $table->timestamps();
             $table->string('name')->require();
+            $table->string('slug')->require();
             $table->text('description')->require();
             $table->unsignedBigInteger('product_category_id')->require();
             $table->float('rating')->nullable();
