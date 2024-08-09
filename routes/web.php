@@ -2,12 +2,14 @@
 
 use App\Http\Controllers\ProductVariantController;
 use App\Http\Controllers\AdminDashboardController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HeroBannerController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\PartnershipController;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
+use App\Models\Contact;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -97,12 +99,12 @@ Route::name('pages.frontend.')->group(function () {
 // Backend
 Route::middleware(['auth'])->group(function () {
     // Admin
-    Route::controller(AdminDashboardController::class)->group(function () {
+    Route::controller(AdminDashboardController::class)->middleware('auth')->group(function () {
         Route::get('/admin', 'index')->name('admin.index');
     });
 
     // Product Category
-    Route::controller(ProductCategoryController::class)->group(function () {
+    Route::controller(ProductCategoryController::class)->middleware('auth')->group(function () {
         Route::get('/admin/products/categories', 'index')->name('admin.product.product-category.index');
         Route::get('/admin/products/categories/create', 'create')->name('admin.product.product-category.create');
         Route::get('/admin/products/categories/{productCategoryId}/edit', 'edit')->name('admin.product.product-category.edit');
@@ -112,7 +114,7 @@ Route::middleware(['auth'])->group(function () {
         Route::put('/admin/products/categories/chagne-active-status/{productCategoryId}', 'changeActiveStatus')->name('admin.product.product-category.change-active-status');
     });
 
-    Route::controller(ProductVariantController::class)->group(function () {
+    Route::controller(ProductVariantController::class)->middleware('auth')->group(function () {
         Route::get('/admin/products/variants', 'index')->name('admin.product.product-variant.index');
         Route::get('/admin/products/variants/create', 'create')->name('admin.product.product-variant.create');
         Route::get('/admin/products/variants/detail/{productVariantId}', 'show')->name('admin.product.product-variant.show');
@@ -122,15 +124,16 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/admin/products/variants/destroy/{productVariantId}', 'destroy')->name('admin.product.product-variant.destroy');
     });
 
-    Route::resource('userManagement', UserController::class);
+    Route::resource('userManagement', UserController::class)->middleware('auth');
 
-    Route::post('/newsletter-upload-image', [NewsletterController::class, 'newsletterUploadImage'])->name('newsletter-upload-image');
+    Route::post('/newsletter-upload-image', [NewsletterController::class, 'newsletterUploadImage'])->middleware('auth')->name('newsletter-upload-image');
 
-    Route::prefix('admin')->group(function () {
+    Route::prefix('admin')->middleware('auth')->group(function () {
         Route::delete('/products/{productId}/images/{productImagesId}/destroy', [ProductController::class, 'deleteProductImage'])->name('admin.products.images.delete');
         Route::resource('/products', ProductController::class, ['as' => 'admin']);
         Route::resource('/hero-banners', HeroBannerController::class, ['as' => 'admin']);
         Route::resource('/newsletters', NewsletterController::class, ['as' => 'admin']);
         Route::resource('/partnerships', PartnershipController::class, ['as' => 'admin']);
+        Route::resource('/contacts', ContactController::class, ['as' => 'admin']);
     });
 });

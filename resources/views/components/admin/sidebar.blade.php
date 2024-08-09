@@ -133,7 +133,7 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
+                    <a href="{{ route('admin.contacts.index') }}" class="sidebar-link">
                         <i class="bi bi-person-lines-fill"></i>
                         <span>Contact</span>
                     </a>
