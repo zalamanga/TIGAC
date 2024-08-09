@@ -19,5 +19,8 @@ class PartnershipRepository implements PartnershipRepositoryInterface
     {
         return Partnership::create($partnershipData);
     }
-    public function updatePartnership($partnershipUpdateData, $partnershipId) {}
+    public function updatePartnership($partnershipUpdateData, $partnership)
+    {
+        return $partnership->update($partnershipUpdateData);
+    }
 }

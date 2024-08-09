@@ -38,6 +38,8 @@ class PartnershipService
     {
         $partnership = $this->getPartnership($partnershipId);
 
+        // dd($partnershipUpdateData);
+
         // handle image input
         if (array_key_exists('logo', $partnershipUpdateData)) {
             if (Storage::disk('public')->exists($partnership->logo)) {
