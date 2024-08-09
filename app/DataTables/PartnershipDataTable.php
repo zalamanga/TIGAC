@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\HeroBanner;
+use App\Models\Partnership;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -12,7 +12,7 @@ use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class HeroBannerDataTable extends DataTable
+class PartnershipDataTable extends DataTable
 {
     /**
      * Build the DataTable class.
@@ -22,9 +22,9 @@ class HeroBannerDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', 'components.datatables.hero-banner.action-button')
-            ->addColumn('is_active', 'components.datatables.hero-banner.active-switch')
-            ->addColumn('logo_preview', 'components.datatables.hero-banner.media-preview')
+            ->addColumn('action', 'components.datatables.partnership.action-button')
+            ->addColumn('is_active', 'components.datatables.partnership.active-switch')
+            ->addColumn('logo_preview', 'components.datatables.partnership.logo-preview')
             ->addIndexColumn()
             ->setRowId('id')
             ->rawColumns(['action', 'is_active', 'logo_preview']);
@@ -33,7 +33,7 @@ class HeroBannerDataTable extends DataTable
     /**
      * Get the query source of dataTable.
      */
-    public function query(HeroBanner $model): QueryBuilder
+    public function query(Partnership $model): QueryBuilder
     {
         return $model->newQuery();
     }
@@ -44,7 +44,7 @@ class HeroBannerDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-            ->setTableId('herobanner-table')
+            ->setTableId('partnership-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
             ->dom('lfrtip')
@@ -60,9 +60,7 @@ class HeroBannerDataTable extends DataTable
         return [
             Column::computed('DT_RowIndex')->title('No')->orderable(false)->searchable(false),
             Column::make('name'),
-            Column::make('tagline'),
-            Column::make('tagline_description'),
-            Column::make('media_preview'),
+            Column::make('logo_preview'),
             Column::make('is_active'),
             Column::computed('action'),
         ];
@@ -73,6 +71,6 @@ class HeroBannerDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'HeroBanner_' . date('YmdHis');
+        return 'Partnership_' . date('YmdHis');
     }
 }

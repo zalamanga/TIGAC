@@ -4,18 +4,22 @@ namespace App\Providers;
 
 use App\Contracts\HeroBannerRepositoryInterface;
 use App\Contracts\NewsletterRepositoryInterface;
+use App\Contracts\PartnershipRepositoryInterface;
 use App\Contracts\ProductCategoryRepositoryInterface;
 use App\Contracts\ProductRepositoryInterface;
 use App\Contracts\ProductVariantRepositoryInterface;
 use App\Contracts\UserRepositoryInterface;
+use App\Models\Partnership;
 use App\Repositories\HeroBannerRepository;
 use App\Repositories\NewsletterRepository;
+use App\Repositories\PartnershipRepository;
 use App\Repositories\ProductCategoryRepository;
 use App\Repositories\ProductRepository;
 use App\Repositories\ProductVariantRepository;
 use App\Repositories\UserRepository;
 use App\Services\HeroBannerService;
 use App\Services\NewsletterService;
+use App\Services\PartnershipService;
 use App\Services\ProductCategoryService;
 use App\Services\ProductService;
 use App\Services\ProductVariantService;
@@ -63,6 +67,12 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(NewsletterRepositoryInterface::class, NewsletterRepository::class);
         $this->app->bind(NewsletterService::class, function ($app) {
             return new NewsletterService($app->make(NewsletterRepositoryInterface::class));
+        });
+
+        // Partnership
+        $this->app->bind(PartnershipRepositoryInterface::class, PartnershipRepository::class);
+        $this->app->bind(PartnershipService::class, function ($app) {
+            return new PartnershipService($app->make(PartnershipRepositoryInterface::class));
         });
     }
 
