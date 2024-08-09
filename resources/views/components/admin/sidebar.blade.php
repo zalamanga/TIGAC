@@ -121,6 +121,12 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
+                    <a href="{{ route('admin.partnerships.index') }}" class="sidebar-link">
+                        <i class="bi bi-people-fill"></i>
+                        <span>Partnerships</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
                     <a href="#" class="sidebar-link">
                         <i class="bi bi-people-fill"></i>
                         <span>About Us</span>
