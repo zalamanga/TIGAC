@@ -1,4 +1,4 @@
-<footer class="bg-main mb-3 d-flex align-items-center mb-3 position-relative overflow-hidden">
+<footer class="bg-main d-flex align-items-center position-relative overflow-hidden">
     <img src="{{ asset('images/new/Spring_Thin_Tall0001.png') }}" alt="graphic" class="position-absolute img-fluid start-0"
         style="z-index: 1; bottom: 1%">
     <img src="{{ asset('images/new/Torus_Concentric_Standing_1_0001.png') }}" alt="torus 2" class="position-absolute img-fluid end-0"

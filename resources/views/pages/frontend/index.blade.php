@@ -76,11 +76,11 @@
     {{-- section 2 end --}}
 
     {{-- section 3 start --}}
-    <section class="bg-white w-full container py-5">
-        <div class="row flex-column flex-md-row align-items-center justify-content-between gap-3 gap-md-0">
+    <section class="bg-white w-full container-fluid py-5 overflow-hidden">
+        <div class="row flex-column flex-md-row align-items-center justify-content-between gap-3 gap-md-0 container-masterpiece">
             <div class="col col-md-5 col-lg-4 h-full d-flex flex-column justify-content-center"
                 style="height: 80vh !important">
-                <h1 class="display-4 fw-semibold">Our Masterpiece</h1>
+                <h1 class="display-4 fw-semibold" style="line-height: 1em;">Our Masterpiece</h1>
                 <p class="text-black" style="max-width: 390px">This is our masterpiece, combining experience and quality.
                 </p>
                 <div class="mt-3">
@@ -105,11 +105,11 @@
                     </button>
                 </div>
             </div>
-            <div class="col col-md-7 col-lg-8 position-relative">
+            <div class="col col-md-7 col-lg-8 position-relative" style="z-index: 2; ">
                 <div id="masterpiece-container"
                     class="row align-items-center justify-content-start gap-3 flex-nowrap overflow-hidden px-2 px-md-0">
                     @foreach ($cards as $card)
-                        <div class="col-3 p-0 position-relative rounded-4 overflow-hidden shadow card-masterpiece-item">
+                        <div class="col-3 p-0 position-relative rounded-4 overflow-hidden shadow card-masterpiece-item {{$loop->index === count($cards) - 1 ? 'me-3' : ''}}" >
                             <img src="{{ $card['src'] }}" alt="{{ $card['title'] }}" class="img-fluid w-full h-full"
                                 style="object-fit: cover">
                             <div class="position-absolute bottom-0 px-3 pb-5">
@@ -135,7 +135,7 @@
                 </div>
                 <button id="btn-next-masterpiece"
                     class="position-absolute top-50 btn btn-black rounded-circle bg-black text-white d-flex align-items-center justify-content-center"
-                    style="width: 65px; height: 65px; right: 20%; filter: opacity(0.85);">
+                    style="width: 65px; height: 65px; right: 14%; filter: opacity(0.85);">
                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 17 17"
                         fill="none">
                         <g clip-path="url(#clip0_200_255)">
@@ -152,7 +152,7 @@
                 </button>
                 <button id="btn-prev-masterpiece"
                     class="position-absolute d-none top-50 btn btn-black rounded-circle bg-black text-white d-flex align-items-center justify-content-center "
-                    style="width: 65px; height: 65px; right: 20%; filter: opacity(0.85); rotate: 180deg">
+                    style="width: 65px; height: 65px; right: 14%; filter: opacity(0.85); rotate: 180deg">
                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 17 17"
                         fill="none">
                         <g clip-path="url(#clip0_200_255)">
