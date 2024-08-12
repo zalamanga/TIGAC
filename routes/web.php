@@ -94,6 +94,9 @@ Route::name('pages.frontend.')->group(function () {
     Route::get('/partnership', function () {
         return view('pages.frontend.index');
     })->name('partnership');
+    Route::get('/contact', function () {
+        return view('pages.frontend.contact');
+    })->name('contact');
 });
 
 // Backend
