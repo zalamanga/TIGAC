@@ -72,8 +72,7 @@
                                         </div>
                                     </div>
                                     <div class='form-group'>
-                                        <label for="images">Masterpiece Thumbnail <span
-                                                class="text-danger">*</span></label>
+                                        <label for="images">Masterpiece Thumbnail</label>
                                         <input type="file" name="thumbnail" class="form-control"
                                             value="{{ old('thumbnail') }}">
                                         @error('thumbnail')

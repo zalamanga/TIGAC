@@ -25,10 +25,9 @@ class MasterpieceUpdateRequest extends FormRequest
         $id = $this->route('masterpiece');
 
         return [
-            "name" =>  ['required', 'max:100',  Rule::unique('masterpieces', 'name')->ignore($id)],
-            "slug" =>  ['required', 'max:100',  Rule::unique('masterpieces', 'slug')->ignore($id)],
-            "detail_link" =>  ['required', 'max:100',  Rule::unique('masterpieces', 'detail_link')->ignore($id)],
-            "thumbnail" => "required|mimes:jpeg,jpg,png",
+            "name" =>  ['required', Rule::unique('masterpieces', 'name')->ignore($id)],
+            "detail_link" =>  ['required', Rule::unique('masterpieces', 'detail_link')->ignore($id)],
+            "thumbnail" => "nullable|mimes:jpeg,jpg,png",
             "thumbnail_short_description" => "nullable",
             "is_active" => "boolean|required"
         ];

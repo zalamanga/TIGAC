@@ -34,10 +34,8 @@ class MasterpieceService
         return $this->masterpieceRepositoryInterface->createMasterpiece($masterpieceData);
     }
 
-    public function editMasterpiece($masterpieceUpdateData, $masterpieceId)
+    public function updateMasterpiece($masterpieceUpdateData, $masterpiece)
     {
-        $masterpiece = $this->getMasterpieceById($masterpieceId);
-
         if (array_key_exists('thumbnail', $masterpieceUpdateData)) {
             if (Storage::disk('public')->exists($masterpiece->thumbnail)) {
                 Storage::disk('public')->delete($masterpiece->thumbnail);

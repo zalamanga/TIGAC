@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\DataTables\MasterpieceDataTable;
 use App\Http\Requests\MasterpieceRequest;
+use App\Http\Requests\MasterpieceUpdateRequest;
 use App\Services\MasterpieceService;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -62,5 +63,27 @@ class MasterpieceController extends Controller
         return view('pages.admin.masterpiece.show', $data);
     }
 
-    public function edit($masterpieceId) {}
+    public function edit($masterpieceId)
+    {
+        $title = "Masterpiece Detail";
+        $masterpiece = $this->masterpieceService->getMasterpieceById($masterpieceId);
+
+        $data = [
+            'title' => $title,
+            'masterpiece' => $masterpiece
+        ];
+
+        return view('pages.admin.masterpiece.show', $data);
+    }
+
+    public function update(MasterpieceUpdateRequest $masterpieceUpdateRequest, $masterpieceId)
+    {
+        $masterpieceUpdateData = $masterpieceUpdateRequest->validated();
+
+        $masterpiece = $this->masterpieceService->getMasterpieceById($masterpieceId);
+
+        $this->masterpieceService->updateMasterpiece($masterpieceUpdateData, $masterpiece);
+        Alert::success('Success', 'Success Edit Masterpiece');
+        return redirect()->route('admin.masterpieces.index');
+    }
 }
