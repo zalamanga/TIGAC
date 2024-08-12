@@ -20,7 +20,7 @@ class MasterpieceService
 
     public function createMasterpiece($masterpieceRequestData)
     {
-        $thumbnailPath = $masterpieceRequestData['thumbnail']->store('images/products', 'public');
+        $thumbnailPath = $masterpieceRequestData['thumbnail']->store('images/masterpiece_thumbnail', 'public');
 
         $masterpieceData = [
             'name' => $masterpieceRequestData['name'],
