@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Contracts\ContactRepositoryInterface;
 use App\Contracts\HeroBannerRepositoryInterface;
+use App\Contracts\MasterpieceRepositoryInterface;
 use App\Contracts\NewsletterRepositoryInterface;
 use App\Contracts\PartnershipRepositoryInterface;
 use App\Contracts\ProductCategoryRepositoryInterface;
@@ -12,6 +13,7 @@ use App\Contracts\ProductVariantRepositoryInterface;
 use App\Contracts\UserRepositoryInterface;
 use App\Repositories\ContactRepository;
 use App\Repositories\HeroBannerRepository;
+use App\Repositories\MasterpieceRepository;
 use App\Repositories\NewsletterRepository;
 use App\Repositories\PartnershipRepository;
 use App\Repositories\ProductCategoryRepository;
@@ -20,6 +22,7 @@ use App\Repositories\ProductVariantRepository;
 use App\Repositories\UserRepository;
 use App\Services\ContactService;
 use App\Services\HeroBannerService;
+use App\Services\MasterpieceService;
 use App\Services\NewsletterService;
 use App\Services\PartnershipService;
 use App\Services\ProductCategoryService;
@@ -81,6 +84,12 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(ContactRepositoryInterface::class, ContactRepository::class);
         $this->app->bind(ContactService::class, function ($app) {
             return new ContactService($app->make(ContactRepositoryInterface::class));
+        });
+
+        // Masterpiece
+        $this->app->bind(MasterpieceRepositoryInterface::class, MasterpieceRepository::class);
+        $this->app->bind(MasterpieceService::class, function ($app) {
+            return new MasterpieceService($app->make(MasterpieceRepositoryInterface::class));
         });
     }
 
