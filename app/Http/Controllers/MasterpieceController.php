@@ -86,4 +86,11 @@ class MasterpieceController extends Controller
         Alert::success('Success', 'Success Edit Masterpiece');
         return redirect()->route('admin.masterpieces.index');
     }
+
+    public function destroy($masterpieceId)
+    {
+        $this->masterpieceService->deleteMasterpiece($masterpieceId);
+        Alert::success('Success', 'Success Delete Masterpiece');
+        return redirect()->route('admin.masterpieces.index');
+    }
 }

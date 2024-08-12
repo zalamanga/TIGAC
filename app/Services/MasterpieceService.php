@@ -54,11 +54,16 @@ class MasterpieceService
             $masterpieceData = [
                 'name' => $masterpieceUpdateData['name'],
                 'detail_link' => $masterpieceUpdateData['detail_link'],
-                'thumbnail_short_description' => $masterpieceUpdateData['thumbnail_short_description'],
+                'thumbnail_short_desmasterpieceUpdateDatacription' => $masterpieceUpdateData['thumbnail_short_description'],
                 'is_active' => $masterpieceUpdateData['is_active'],
             ];
         }
 
         return $this->masterpieceRepositoryInterface->updateMasterpiece($masterpieceData, $masterpiece);
+    }
+
+    public function deleteMasterpiece($masterpieceId)
+    {
+        return $this->masterpieceRepositoryInterface->deleteMasterpiece($masterpieceId);
     }
 }

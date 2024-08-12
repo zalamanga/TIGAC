@@ -21,8 +21,10 @@ class MasterpieceRepository implements MasterpieceRepositoryInterface
         return $masterpiece->update($masterpieceRequestUpdateData);
     }
 
-    public function deleteMasterpiece($masterpiece)
+    public function deleteMasterpiece($masterpieceId)
     {
+        $masterpiece = $this->getMasterpieceById($masterpieceId);
+
         return $masterpiece->delete();
     }
 }
