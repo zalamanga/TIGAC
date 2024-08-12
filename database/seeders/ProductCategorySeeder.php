@@ -15,28 +15,24 @@ class ProductCategorySeeder extends Seeder
     {
         $productCategories = [
             [
-                "name" => "HexOhm",
+                "name" => "Tigac Saltnic",
                 "description" => "lorem impsum dolor sit description"
             ],
             [
-                "name" => "eLiquids",
+                "name" => "Pod Device",
                 "description" => "lorem impsum dolor sit description"
             ],
             [
-                "name" => "Molicel Vape Battery",
+                "name" => "Creme & Crime",
                 "description" => "lorem impsum dolor sit description"
             ],
             [
-                "name" => "EZDripper",
-                "description" => "lorem impsum dolor sit description"
-            ],
-            [
-                "name" => "liquid",
+                "name" => "Pocket Rockid",
                 "description" => "lorem impsum dolor sit description"
             ],
         ];
 
-        foreach($productCategories as $productCategory) {
+        foreach ($productCategories as $productCategory) {
             ProductCategory::create($productCategory);
         }
     }
