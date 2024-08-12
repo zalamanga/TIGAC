@@ -48,4 +48,19 @@ class MasterpieceController extends Controller
         Alert::success('Success', 'Success create new category');
         return redirect()->route('admin.masterpieces.index');
     }
+
+    public function show($masterpieceId)
+    {
+        $title = "Masterpiece Detail";
+        $masterpiece = $this->masterpieceService->getMasterpieceById($masterpieceId);
+
+        $data = [
+            'title' => $title,
+            'masterpiece' => $masterpiece
+        ];
+
+        return view('pages.admin.masterpiece.show', $data);
+    }
+
+    public function edit($masterpieceId) {}
 }

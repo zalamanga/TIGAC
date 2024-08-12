@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Contracts\MasterpieceRepositoryInterface;
+use Illuminate\Support\Facades\Storage;
 
 class MasterpieceService
 {
@@ -31,5 +32,35 @@ class MasterpieceService
         ];
 
         return $this->masterpieceRepositoryInterface->createMasterpiece($masterpieceData);
+    }
+
+    public function editMasterpiece($masterpieceUpdateData, $masterpieceId)
+    {
+        $masterpiece = $this->getMasterpieceById($masterpieceId);
+
+        if (array_key_exists('thumbnail', $masterpieceUpdateData)) {
+            if (Storage::disk('public')->exists($masterpiece->thumbnail)) {
+                Storage::disk('public')->delete($masterpiece->thumbnail);
+            }
+
+            $newThumbnailPath = $masterpieceUpdateData['thumbnail']->store('images/masterpiece_thumbnail', 'public');
+
+            $masterpieceData = [
+                'name' => $masterpieceUpdateData['name'],
+                'detail_link' => $masterpieceUpdateData['detail_link'],
+                'thumbnail' => $newThumbnailPath,
+                'thumbnail_short_description' => $masterpieceUpdateData['thumbnail_short_description'],
+                'is_active' => $masterpieceUpdateData['is_active'],
+            ];
+        } else {
+            $masterpieceData = [
+                'name' => $masterpieceUpdateData['name'],
+                'detail_link' => $masterpieceUpdateData['detail_link'],
+                'thumbnail_short_description' => $masterpieceUpdateData['thumbnail_short_description'],
+                'is_active' => $masterpieceUpdateData['is_active'],
+            ];
+        }
+
+        return $this->masterpieceRepositoryInterface->updateMasterpiece($masterpieceData, $masterpiece);
     }
 }
