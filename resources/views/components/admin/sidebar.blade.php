@@ -112,6 +112,9 @@
                         <li class="submenu-item">
                             <a href="{{ route('admin.hero-banners.index') }}" class="submenu-link">Hero Banner</a>
                         </li>
+                        <li class="submenu-item">
+                            <a href="{{ route('admin.masterpieces.index') }}" class="submenu-link">Masterpiece</a>
+                        </li>
                     </ul>
                 </li>
                 <li class="sidebar-item">

@@ -4,12 +4,12 @@ use App\Http\Controllers\ProductVariantController;
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HeroBannerController;
+use App\Http\Controllers\MasterpieceController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\PartnershipController;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
-use App\Models\Contact;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -135,5 +135,6 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('/newsletters', NewsletterController::class, ['as' => 'admin']);
         Route::resource('/partnerships', PartnershipController::class, ['as' => 'admin']);
         Route::resource('/contacts', ContactController::class, ['as' => 'admin']);
+        Route::resource('/masterpieces', MasterpieceController::class, ['as' => 'admin']);
     });
 });
