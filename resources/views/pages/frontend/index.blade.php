@@ -1,6 +1,6 @@
 @php
     $videoUrl =
-        'https://s3-figma-videos-production-sig.figma.com/video/1377240793861400146/TEAM/21ed/4f21/-0976-456b-83fc-01bd435a3264?Expires=1723420800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=OTnYV-Wgy3~ixsZf1dm4YjN~LhlGh2rqG8TLDkkw2kk0FwkRmNwuugHvFhuraMYfcLFILZB8jyrROCLX9C9gdMIOPpUBM1PBYiFJ2c6DqE53ujzmWojjsVUfLfBCcOrwQx46Ocy4jS4V2wd42IbpCBZM3U63o7NkW~B--2JMBcVa8~zsYkHYQetMz7QbWpnJB5UAgsbhYCzpZITsQBPly7NX4yfa7Ha2v3NomE3y7cJso1WuLdYDRYeScH7bxi2TJTA1hsnFLGrCL1QcvxlV95T32GWiY-fXO~cK-AfNY5akEAmEU0KuXV1Z5dC-yW-U2JPdSoRjJ~x8DSSgj5tYiA__';
+        'https://s3-figma-videos-production-sig.figma.com/video/1377240793861400146/TEAM/21ed/4f21/-0976-456b-83fc-01bd435a3264?Expires=1724630400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=oF6yT6m4lUEZ4USosBVA6MxjLMv5oBdNrrMBP6qgs429qadQag6QZ0~Wb0q9n3Uj5J8bkvft3~YaqlqaRTzpUxXAwUhM~Uj4rDIhmLDMsCk7t7YN3mMAVNqk1iM6nd6vA20cp4FqRYnRtgEFKgA3ugdOD1Iq~T9TXzZgmr8LiaRLwkZMbCkTKxTp7GnTJUk4Xi772LuStqnNoo9vcvgw~WefwezqclfIBit~7eWKl2Fn6Qu2N6EHnP7yeDnUoVsn~mx~ERuqKjrcK0mZEU~GitRMYAIJ~yyBbtACIfZ8JT0j2JsSHZozCMEK30k5EHmStbRyaOs-DA7uTe~6bv6knw__';
 
     $cards = [
         [
