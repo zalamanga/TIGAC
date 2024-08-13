@@ -17,17 +17,27 @@ class VariantSeeder extends Seeder
         $productVariants = [
             [
                 "id" => "1",
-                "name" => "3mg",
+                "name" => "Saltnic",
                 "description" => "lorem impsum dolor sit description"
             ],
             [
                 "id" => "2",
-                "name" => "6mg",
+                "name" => "Freebase",
+                "description" => "lorem impsum dolor sit description"
+            ],
+            [
+                "id" => "3",
+                "name" => "Fruity Series",
+                "description" => "lorem impsum dolor sit description"
+            ],
+            [
+                "id" => "4",
+                "name" => "Pod Device",
                 "description" => "lorem impsum dolor sit description"
             ],
         ];
 
-        foreach($productVariants as $productVariant) {
+        foreach ($productVariants as $productVariant) {
             Variant::create($productVariant);
         }
     }
