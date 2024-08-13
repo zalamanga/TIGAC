@@ -16,12 +16,13 @@ return new class extends Migration
             $table->timestamps();
             $table->string('name')->require()->unique();
             $table->string('tagline')->require()->unique();
-            $table->text('tagline_description',500)->require()->unique();
+            $table->text('tagline_description')->require()->unique();
             $table->boolean('is_for_product_page')->default('0')->require();
             $table->string('media_type')->require();
             $table->string('media_path')->require();
             $table->string('is_active')->require()->default(0);
             $table->string('is_priority')->require()->default(0);
+            $table->unique(['tagline_description(255)']);
         });
     }
 
