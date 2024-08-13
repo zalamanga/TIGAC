@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title')->require()->unique();
             $table->string('slug')->require()->unique();
-            $table->text('content')->require()->unique();
+            $table->text('content')->require();
             $table->string('thumbnail')->require();
             $table->string('thumbnail_short_description')->nullable();
             $table->boolean('is_active')->default('1');

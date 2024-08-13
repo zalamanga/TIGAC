@@ -22,7 +22,6 @@ return new class extends Migration
             $table->string('media_path')->require();
             $table->string('is_active')->require()->default(0);
             $table->string('is_priority')->require()->default(0);
-            $table->unique(['tagline_description']);
         });
     }
 
