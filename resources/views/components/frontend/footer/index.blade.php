@@ -72,7 +72,7 @@
                             </path>
                         </svg>
                     </a>
-                    <a href="#" class="text-decoration-none footer-link text-white fw-semibold">Contact Us
+                    <a href="{{ route('pages.frontend.contact') }}" class="text-decoration-none footer-link text-white fw-semibold">Contact Us
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                             viewBox="0 0 256 256">
                             <path
