@@ -5,8 +5,8 @@
             'url' => route('pages.frontend.product')
         ),
         array(
-            'title' => 'programs',
-            'url' => route('pages.frontend.programs')
+            'title' => 'program',
+            'url' => route('pages.frontend.program')
         ),
         array(
             'title' => 'discover tigac',
@@ -39,7 +39,7 @@
             <a class="navbar-brand" href="{{Route('pages.frontend.index')}}">
                 <img src="{{ asset('images/logo-2.png') }}" alt="Logo" style="width: 100px"/>
             </a>
-            <button class="navbar-toggler text-white" type="button" aria-label="Toggle navigation">
+            <button class="navbar-toggler text-primary position-absolute top-0 end-0 me-3 mt-3" style="z-index: 9999" type="button" aria-label="Toggle navigation">
                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                     viewBox="0 0 256 256">
                     <path
@@ -48,7 +48,7 @@
                 </svg>
             </button>
             
-            <ul id="navMenu" class="navbar-nav ms-auto gap-3 ps-2 ps-md-0 bg-white">
+            <ul id="navMenu" class="navbar-nav ms-auto gap-3 ps-2 ps-md-0 bg-white pe-3 pe-lg-0 pt-4">
                 @foreach ($menus as $menu)
                 <li class="nav-item">
                     <a class="nav-link text-secondary fs-7 fw-semibold text-uppercase {{Route::is('pages.frontend.'.$menu['title']) ? 'active' : ''}}" aria-current="page" href="{{$menu['url']}}">{{ $menu['title'] }}</a>

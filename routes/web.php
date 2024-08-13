@@ -77,11 +77,11 @@ Route::name('pages.frontend.')->group(function () {
         return view('pages.frontend.index');
     })->name('index');
     Route::get('/product', function () {
-        return view('pages.frontend.index');
+        return view('pages.frontend.product');
     })->name('product');
-    Route::get('/programs', function () {
+    Route::get('/program', function () {
         return view('pages.frontend.index');
-    })->name('programs');
+    })->name('program');
     Route::get('/discover', function () {
         return view('pages.frontend.index');
     })->name('discover');
