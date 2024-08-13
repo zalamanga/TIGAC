@@ -252,7 +252,7 @@
             quality.
         </h1>
         <div class="mb-3">
-            <img src="https://s3-alpha-sig.figma.com/img/ba6a/d32d/b4262303f64f592904fef7cb38356643?Expires=1724630400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=K9Efq463Hq2ZnnqMHGCARUtQeq4MjzRJ5CPw079~gaZXgrASIFmLyNRMO6UtbNzmwLFaXXdlxMyLw01efehIqeFuk7QXCpa7g~HhzNbDtiV7A~urEGTUOvsx4Y4eyyvmMIxnAXclLGXfDzBAM-FvIYBJFaJdA2PT~vcmAMNVBeNCXsC9XwKjvMBjv2WoZjBMhzubyTJT1hKsnB-8qfFbJYc61t8y6yVx5Yot7S~uLsOhxZziVaIzok~mNmrbHcuF7dL6qtD1RqL5TP7uyiMXYPQvJzc-Tyk~szM6yrH5VOCvi4pHa3twnclA4V1HGMD~kVHfzPqeHZnOV4xUQrlosA__"
+            <img src="{{asset('images/logo-3.png')}}"
                 alt="Logo" class="img-fluid mb-4 img-logo" />
 
             <div id="carouselProduct" class="carousel slide">
@@ -261,15 +261,15 @@
                         <div class="carousel-item carousel-item-product {{ $loop->index == 0 ? 'active' : '' }}">
                             <div class="d-flex align-items-center justify-content-around flex-nowrap gap-2 gap-md-3">
                                 @foreach ($product as $item)
-                                    <div
+                                    <a href="#"
                                         class="border rounded-4 overflow-hidden card-product-item position-relative d-flex align-items-center justify-content-center shadow-sm">
-                                        <img src="{{ $item['image'] }}" alt="{{ $item['name'] }}" class="img-fluid">
+                                        <img src="{{ $item['image'] }}" alt="{{ $item['name'] }}" class="img-fluid transition-all">
                                         <div
                                             class="bg-body-secondary text-secondary position-absolute bottom-0 w-full p-3">
                                             <h3 class="product-title fw-semibold m-0 text-truncate">{{ $item['name'] }}</h3>
                                             <span class="d-block fs-7 text-truncate">{{ $item['category'] }}</span>
                                         </div>
-                                    </div>
+                                    </a>
                                 @endforeach
                             </div>
                         </div>
@@ -333,15 +333,15 @@
                         <div class="carousel-item carousel-item-product {{ $loop->index == 0 ? 'active' : '' }}">
                             <div class="d-flex align-items-center justify-content-around flex-nowrap gap-2 gap-md-3">
                                 @foreach ($product as $item)
-                                    <div
+                                    <a href="#"
                                         class="border rounded-4 overflow-hidden card-product-item position-relative d-flex align-items-center justify-content-center shadow-sm">
-                                        <img src="{{ $item['image'] }}" alt="{{ $item['name'] }}" class="img-fluid">
+                                        <img src="{{ $item['image'] }}" alt="{{ $item['name'] }}" class="img-fluid transition-all">
                                         <div
                                             class="bg-body-secondary text-secondary position-absolute bottom-0 w-full p-3">
                                             <h3 class="product-title fw-semibold m-0 text-truncate">{{ $item['name'] }}</h3>
                                             <span class="d-block fs-7 text-truncate">{{ $item['category'] }}</span>
                                         </div>
-                                    </div>
+                                    </a>
                                 @endforeach
                             </div>
                         </div>

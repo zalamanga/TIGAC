@@ -92,6 +92,10 @@ body {
     height: 306px;
 }
 
+.card-product-item:hover img {
+    scale: 1.2;
+}
+
 .card-product-item:nth-child(n+3){
     display: none !important;
 }
