@@ -26,15 +26,6 @@
             <div class="col-12 col-md-3 col-lg-2 mb-3 mb-md-0">
                 <div class="d-flex flex-column h-full justify-content-center gap-3 fs-5">
                     <a href="{{ route('pages.frontend.index') }}"
-                        class="text-decoration-none footer-link text-white fw-semibold">Work
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
-                            viewBox="0 0 256 256">
-                            <path
-                                d="M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z">
-                            </path>
-                        </svg>
-                    </a>
-                    <a href="{{ route('pages.frontend.index') }}"
                         class="text-decoration-none footer-link text-white fw-semibold">About
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                             viewBox="0 0 256 256">
@@ -44,7 +35,16 @@
                         </svg>
                     </a>
                     <a href="{{ route('pages.frontend.index') }}"
-                        class="text-decoration-none footer-link text-white fw-semibold">Carrers
+                        class="text-decoration-none footer-link text-white fw-semibold">FAQ
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                            viewBox="0 0 256 256">
+                            <path
+                                d="M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z">
+                            </path>
+                        </svg>
+                    </a>
+                    <a href="{{ route('pages.frontend.index') }}"
+                        class="text-decoration-none footer-link text-white fw-semibold">Tcall
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                             viewBox="0 0 256 256">
                             <path
@@ -64,7 +64,7 @@
                             </path>
                         </svg>
                     </a>
-                    <a href="#" class="text-decoration-none footer-link text-white fw-semibold">Blogs
+                    <a href="#" class="text-decoration-none footer-link text-white fw-semibold">Find Us
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                             viewBox="0 0 256 256">
                             <path
@@ -91,7 +91,7 @@
                             <input type="text" class="form-control fs-6 p-3 rounded-" placeholder="ENTER EMAIL"
                                 style="height: 66px">
                             <button type="submit" class="input-group-text btn btn-lg btn-danger text-white fs-6"
-                                style="height: 66px">Subscribe</button>
+                                style="height: 66px">Submit</button>
                         </div>
                     </form>
                 </div>
