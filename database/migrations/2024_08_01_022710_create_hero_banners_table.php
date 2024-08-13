@@ -16,7 +16,7 @@ return new class extends Migration
             $table->timestamps();
             $table->string('name')->require()->unique();
             $table->string('tagline')->require()->unique();
-            $table->text('tagline_description')->require()->unique();
+            $table->text('tagline_description')->require();
             $table->boolean('is_for_product_page')->default('0')->require();
             $table->string('media_type')->require();
             $table->string('media_path')->require();
