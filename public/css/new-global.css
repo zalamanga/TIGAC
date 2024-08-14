@@ -182,6 +182,7 @@ body {
     .card-product-item:last-child {
         display: flex !important;
     }
+
 }
 
 @media screen and (min-width: 1400px) {
@@ -199,5 +200,12 @@ body {
 
     .card-product-item:last-child {
         display: flex !important;
+    }
+}
+@media (min-width: 1024px) {
+    .video-product {
+        width: 1280px;
+        height: 585px;
+        object-fit: cover;
     }
 }
