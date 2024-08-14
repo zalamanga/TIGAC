@@ -80,7 +80,7 @@ Route::name('pages.frontend.')->group(function () {
         return view('pages.frontend.product');
     })->name('product');
     Route::get('/program', function () {
-        return view('pages.frontend.index');
+        return view('pages.frontend.program');
     })->name('program');
     Route::get('/discover', function () {
         return view('pages.frontend.index');
