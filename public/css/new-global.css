@@ -29,6 +29,7 @@
 
 body {
     background: white;
+
 }
 
 .text-ogg {
@@ -147,8 +148,9 @@ body {
     background: linear-gradient(
         90deg,
         rgba(188, 191, 232, 1) 0%,
-        rgba(255, 255, 255, 0.9866071428571429) 51%,
-        rgba(247, 247, 247, 1) 99%
+        rgba(255, 255, 255, 0.9866071428571429) 38%,
+        rgba(255, 255, 255, 1) 55%,
+        rgba(218, 219, 241, 1) 99%
     );
 }
 
@@ -159,6 +161,22 @@ body {
 .img-banner-program {
     top: 65px;
 }
+
+
+/* Vaporistar Page */
+.bg-vaporistar {
+    background: url('../images/new/banner-vaporistar.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 745px;
+}
+
+.list-group-item {
+    border-bottom-width: 3px !important;
+    border-color: #B5B5B5 !important;
+}
+
 
 @media screen and (min-width: 700px) {
     .carousel-item {
@@ -192,23 +210,23 @@ body {
     }
 
     .tagline-xxl {
-        font-size: calc(3rem + .5vw) !important;
+        font-size: calc(3rem + 0.5vw) !important;
     }
 
     .tagline-xl {
-        font-size: calc(2rem + .5vw) !important;
+        font-size: calc(2rem + 0.5vw) !important;
     }
 
     .tagline-lg {
-        font-size: calc(1.4rem + .5vw) !important;
+        font-size: calc(1.4rem + 0.5vw) !important;
     }
 
     .tagline-base {
-        font-size: calc(1rem + .5vw) !important;
+        font-size: calc(1rem + 0.5vw) !important;
     }
 
     .tagline-sm {
-        font-size: calc(0.7rem + .5vw) !important;
+        font-size: calc(0.7rem + 0.5vw) !important;
     }
 }
 
@@ -264,7 +282,7 @@ body {
     }
 
     .tagline-xxl {
-        font-size: calc(3rem + 2vw) !important;
+        font-size: calc(2.7rem + 2vw) !important;
     }
 
     .tagline-xl {
