@@ -112,7 +112,7 @@
                 'category' => 'Creme & Crime - Freebase',
             ],
             [
-                'name' => 'Cospic Strawberry Fizz',
+                'name' => 'Cosmic Strawberry Fizz',
                 'image' =>
                     'https://s3-alpha-sig.figma.com/img/f269/eeb5/e4d6dee3cfc2a4f04c1725e8450c720f?Expires=1724630400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=QskngmfQyktG1wWvpjIz70TiZUuhl1lmzZjWZepNGS99QkyWg7kSflhrWnVXan7CVWlMwq-wqAxLTwe2hGkhued6kKOCYz0209vAhpnWAMs8T4fhJB6g7zryalbanTCCLXtrD7OHX0tTnvDX5K33IkCzZCTHmUJLbhcQl86ZW0eV0nigkm7E0Y6mGqli7U0rhJ9LC87-Eb8KopbfJLRVSEhmeNAkEWzcNHZl33ssHZCt-qP4pvfIABkI0E5gHCId-df3Mh4Jgy6DKgq7oWdopyZvG7QCwpYnIlo9PyHxaxUJgp56TmW-fNEGQySiXwZMwg~ImPs4anltVe2XLGGfmA__',
                 'category' => 'Pocket Rockid - Freebase',
@@ -247,9 +247,9 @@
 
     {{-- Section 2 start --}}
     <div class="container pb-3 pb-md-4 py-lg-5">
-        <h1 class="fw-semibold text-center mb-3 mb-lg-5 tagline-lg">This is our <span
-                class="text-capitalize text-ogg fw-semibold fst-italic lh-sm">masterpiece</span>, combining experience &
-            quality.
+        <h1 class="fw-semibold text-center mb-3 mb-lg-5 tagline-lg">This Is Our <span
+                class="text-capitalize text-ogg fw-semibold fst-italic lh-sm">Masterpiece</span>, Combining Experience &
+            Quality.
         </h1>
         <div class="mb-3">
             <img src="{{asset('images/logo-3.png')}}"
