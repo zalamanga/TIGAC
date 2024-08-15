@@ -177,6 +177,14 @@ body {
     border-color: #B5B5B5 !important;
 }
 
+/* About page */
+.about-title {
+    font-size: 3.7em !important;;
+}
+
+.img-logo-about {
+    width: 150px;
+}
 
 @media screen and (min-width: 700px) {
     .carousel-item {
@@ -227,6 +235,11 @@ body {
 
     .tagline-sm {
         font-size: calc(0.7rem + 0.5vw) !important;
+    }
+
+    .img-about {
+        left: -8%;
+        height: 1400px;
     }
 }
 
@@ -300,6 +313,19 @@ body {
     .tagline-sm {
         font-size: calc(0.7rem + 2vw) !important;
     }
+
+    .img-about {
+        left: calc(1320px - 1440px);
+        height: 1450px;
+    }
+
+    .img-logo-about {
+        width: 170px;
+    }
+
+    .about-title {
+        font-size: 4.5em !important;;
+    }
 }
 
 @media screen and (min-width: 1400px) {
@@ -317,6 +343,18 @@ body {
 
     .card-product-item:last-child {
         display: flex !important;
+    }
+
+    .img-logo-about {
+        width: 222px;
+    }
+
+    .about-title {
+        font-size: 5.5em !important;;
+    }
+
+    .img-about {
+        height: 1300px;
     }
 }
 @media (min-width: 1024px) {

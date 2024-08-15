@@ -25,7 +25,7 @@
             </div>
             <div class="col-12 col-md-3 col-lg-2 mb-3 mb-md-0">
                 <div class="d-flex flex-column h-full justify-content-center gap-3 fs-5">
-                    <a href="{{ route('pages.frontend.index') }}"
+                    <a href="{{ route('pages.frontend.about') }}"
                         class="text-decoration-none footer-link text-white fw-semibold">About
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                             viewBox="0 0 256 256">
