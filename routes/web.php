@@ -89,7 +89,7 @@ Route::name('pages.frontend.')->group(function () {
         return view('pages.frontend.vaporistar');
     })->name('vaporistar');
     Route::get('/newsletter', function () {
-        return view('pages.frontend.index');
+        return view('pages.frontend.newsletter');
     })->name('newsletter');
     Route::get('/partnership', function () {
         return view('pages.frontend.index');

@@ -29,7 +29,6 @@
 
 body {
     background: white;
-
 }
 
 .text-ogg {
@@ -111,6 +110,24 @@ body {
     box-shadow: none !important;
 }
 
+.text-ellipsis-3 {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.text-ellipsis-4 {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+    line-clamp: 4;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 /* Card Product */
 .card-product-item {
     width: 170px;
@@ -162,10 +179,9 @@ body {
     top: 65px;
 }
 
-
 /* Vaporistar Page */
 .bg-vaporistar {
-    background: url('../images/new/banner-vaporistar.jpg');
+    background: url("../images/new/banner-vaporistar.jpg");
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -174,16 +190,31 @@ body {
 
 .list-group-item {
     border-bottom-width: 3px !important;
-    border-color: #B5B5B5 !important;
+    border-color: #b5b5b5 !important;
 }
 
 /* About page */
 .about-title {
-    font-size: 3.7em !important;;
+    font-size: 3.7em !important;
 }
 
 .img-logo-about {
     width: 150px;
+}
+
+/* Newsletter page */
+.card-newsletter-item {
+    width: 100%;
+    height: auto;
+}
+
+.card-newsletter-title {
+    font-size: 2.125em;
+}
+
+.card-newsletter-img {
+    height: 290px;
+    width: 100%;
 }
 
 @media screen and (min-width: 700px) {
@@ -240,6 +271,19 @@ body {
     .img-about {
         left: -8%;
         height: 1400px;
+    }
+
+    .card-newsletter-item {
+        width: 48%;
+        height: auto;
+    }
+
+    .card-newsletter-title {
+        font-size: 1.65em;
+    }
+
+    .card-newsletter-img {
+        height: 240px;
     }
 }
 
@@ -324,7 +368,15 @@ body {
     }
 
     .about-title {
-        font-size: 4.5em !important;;
+        font-size: 4.5em !important;
+    }
+
+    .card-newsletter-item {
+        width: 48%;
+    }
+
+    .card-newsletter-img {
+        height: 330px;
     }
 }
 
@@ -350,11 +402,24 @@ body {
     }
 
     .about-title {
-        font-size: 5.5em !important;;
+        font-size: 5.5em !important;
     }
 
     .img-about {
         height: 1300px;
+    }
+
+    .card-newsletter-item {
+        width: 563px;
+        height: 730px;
+    }
+
+    .card-newsletter-title {
+        font-size: 36px;
+    }
+
+    .card-newsletter-img {
+        height: 365px;
     }
 }
 @media (min-width: 1024px) {
