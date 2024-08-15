@@ -92,7 +92,7 @@ Route::name('pages.frontend.')->group(function () {
         return view('pages.frontend.newsletter');
     })->name('newsletter');
     Route::get('/partnership', function () {
-        return view('pages.frontend.index');
+        return view('pages.frontend.partnership');
     })->name('partnership');
     Route::get('/contact', function () {
         return view('pages.frontend.contact');

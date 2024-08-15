@@ -128,6 +128,10 @@ body {
     text-overflow: ellipsis;
 }
 
+.list-style-none {
+    list-style: none;
+}
+
 /* Card Product */
 .card-product-item {
     width: 170px;
@@ -217,6 +221,19 @@ body {
     width: 100%;
 }
 
+/* Partnership page */
+.card-partnership-item {
+    width: 181px;
+    height: 189px;
+    border-radius: 20px;
+    border: 2px solid #dfdfdf;
+    background: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0) 75.11%,
+        rgba(197, 197, 197, 0.2) 100%
+    );
+}
+
 @media screen and (min-width: 700px) {
     .carousel-item {
         height: auto !important;
@@ -284,6 +301,11 @@ body {
 
     .card-newsletter-img {
         height: 240px;
+    }
+
+    .card-partnership-item {
+        width: 211px;
+        height: 219px;
     }
 }
 
@@ -378,6 +400,12 @@ body {
     .card-newsletter-img {
         height: 330px;
     }
+
+    
+    .card-partnership-item {
+        width: 271px;
+        height: 279px;
+    }
 }
 
 @media screen and (min-width: 1400px) {
@@ -420,6 +448,11 @@ body {
 
     .card-newsletter-img {
         height: 365px;
+    }
+
+    .card-partnership-item {
+        width: 371px;
+        height: 339px;
     }
 }
 @media (min-width: 1024px) {
