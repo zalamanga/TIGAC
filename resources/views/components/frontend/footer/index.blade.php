@@ -34,7 +34,7 @@
                             </path>
                         </svg>
                     </a>
-                    <a href="{{ route('pages.frontend.index') }}"
+                    <a href="{{ route('pages.frontend.faq') }}"
                         class="text-decoration-none footer-link text-white fw-semibold">FAQ
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                             viewBox="0 0 256 256">

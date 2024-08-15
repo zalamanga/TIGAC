@@ -100,6 +100,9 @@ Route::name('pages.frontend.')->group(function () {
     Route::get('/about', function () {
         return view('pages.frontend.about');
     })->name('about');
+    Route::get('/faq', function () {
+        return view('pages.frontend.faq');
+    })->name('faq');
 });
 
 // Backend
