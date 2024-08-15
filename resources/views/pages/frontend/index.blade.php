@@ -25,17 +25,27 @@
 @extends('layouts.frontend.main')
 @section('content')
     {{-- section 1 start --}}
+    {{-- <section class="mt-3 mb-3 container">
+        <center>
+            <h1 class="fw-semibold mb-3">Welcome to TIGAC World</h1>
+        </center>
+
+        <video class="img-fluid rounded-4" controls autoplay loop>
+            <source src="{{ $videoUrl }}" type="video/mp4">
+        </video>
+
+    </section> --}}
     <section class="mt-3 mb-3 container">
         <center>
             <h1 class="fw-semibold mb-3">Welcome to TIGAC World</h1>
         </center>
         {{-- <video src="{{ $videoUrl }}" autoplay loop muted class="img-fluid rounded-4"></video> --}}
 
-        <video class="img-fluid rounded-4" controls autoplay loop>
+        <video class="img-fluid rounded-4 video-product" controls autoplay loop>
             <source src="{{ $videoUrl }}" type="video/mp4">
         </video>
-
     </section>
+
     {{-- section 1 end --}}
 
     {{-- section 2 start --}}
