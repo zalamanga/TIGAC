@@ -13,7 +13,7 @@
             <div class="col-md-10">
                 <form action="" class="d-flex flex-column gap-3">
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-6 mb-3">
                             <input type="text" class="form-control fs-6 p-3 bg-light" placeholder="Your name" required>
                         </div>
                         <div class="col-md-6">

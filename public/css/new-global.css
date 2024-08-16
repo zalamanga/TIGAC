@@ -328,6 +328,11 @@ body {
         width: 211px;
         height: 219px;
     }
+    /* Find Us Page */
+    .map-location{
+        width: 464px;
+        height:668px;
+    }
 }
 
 @media screen and (min-width: 800px) {
@@ -479,6 +484,11 @@ body {
         width: 636px;
         height: 636px;
         border-radius: 20px;
+    }
+    /* Find Us Page */
+    .map-location{
+        width: 928px;
+        height:668px;
     }
 }
 @media (min-width: 1024px) {
