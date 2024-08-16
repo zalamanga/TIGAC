@@ -64,7 +64,7 @@
                             </path>
                         </svg>
                     </a>
-                    <a href="#" class="text-decoration-none footer-link text-white fw-semibold">Find Us
+                    <a href="{{ route('pages.frontend.find') }}" class="text-decoration-none footer-link text-white fw-semibold">Find Us
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                             viewBox="0 0 256 256">
                             <path
