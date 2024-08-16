@@ -103,6 +103,9 @@ Route::name('pages.frontend.')->group(function () {
     Route::get('/faq', function () {
         return view('pages.frontend.faq');
     })->name('faq');
+    Route::get('/product/{slug}', function (String $slug) {
+        return view('pages.frontend.productDetail', compact('slug'));
+    })->name('product.detail');
 });
 
 // Backend

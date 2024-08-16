@@ -267,7 +267,7 @@
                             <div class="carousel-item carousel-item-product {{ $loop->index == 0 ? 'active' : '' }}">
                                 <div class="d-flex align-items-center justify-content-around flex-nowrap gap-2 gap-md-3">
                                     @foreach ($product as $item)
-                                        <a href="#"
+                                        <a href="{{Route('pages.frontend.product.detail', $item['name'])}}"
                                             class="border rounded-4 overflow-hidden card-product-item position-relative d-flex align-items-center justify-content-center shadow-sm">
                                             <img src="{{ $item['image'] }}" alt="{{ $item['name'] }}"
                                                 class="img-fluid transition-all">
@@ -343,7 +343,7 @@
                             <div class="carousel-item carousel-item-product {{ $loop->index == 0 ? 'active' : '' }}">
                                 <div class="d-flex align-items-center justify-content-around flex-nowrap gap-2 gap-md-3">
                                     @foreach ($product as $item)
-                                        <a href="#"
+                                        <a href="{{Route('pages.frontend.product.detail', $item['name'])}}"
                                             class="border rounded-4 overflow-hidden card-product-item position-relative d-flex align-items-center justify-content-center shadow-sm">
                                             <img src="{{ $item['image'] }}" alt="{{ $item['name'] }}"
                                                 class="img-fluid transition-all">
