@@ -200,4 +200,5 @@ return [
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 
+    'map_embed_url' => 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.588673660494!2d106.75247197475024!3d-6.185763493801786!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f7000bdb3d2b%3A0xf716c812e6b67c9a!2sTIGAC%20Office%20Tower!5e0!3m2!1sid!2sid!4v1723788643699!5m2!1sid!2sid" width="928" height="668" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"',
 ];
