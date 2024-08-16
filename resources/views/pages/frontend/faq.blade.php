@@ -73,7 +73,7 @@
         </div>
         <h3 class="text-center fs-3 text-black fw-semibold mb-5">Jika kamu masih ada pertanyaan lain silakan menghubungi kami </h3>
         <div class="text-center">
-            <a type="button" class="btn btn-lg btn-danger text-white mx-auto d-inline-flex align-items-center justify-content-between py-3 gap-3" href="https://wa.me/6289651147065" target="_blank">Chat on WhatsApp
+            <a type="button" class="btn btn-lg btn-danger text-white mx-auto d-inline-flex align-items-center justify-content-between py-3 gap-3" href="https://wa.me/6289651147065" target="_blank">CONTACT US
                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 35 35"
                 fill="currentColor">
                 <g clip-path="url(#clip0_1_30)">
