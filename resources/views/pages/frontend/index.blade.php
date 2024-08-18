@@ -201,7 +201,7 @@
                 <p class="text-white fs-4" style="max-width: 600px">Finding your inner value, because everyone is
                     precious.</p>
                 <div class="mt-4">
-                    <button class="btn btn-lg btn-light d-flex align-items-center justify-content-between gap-2"
+                    <a href="{{Route('pages.frontend.consumer.program')}}" class="btn btn-lg btn-light d-inline-flex align-items-center justify-content-between gap-2"
                         style="min-width: 13rem; height: 3.5rem;">
                         <span class="fs-6">GAIN YOUR BENEFIT</span>
                         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 35 35"
@@ -218,7 +218,7 @@
                                 </clipPath>
                             </defs>
                         </svg>
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>

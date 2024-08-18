@@ -12,7 +12,7 @@
                 <span class="text-ogg fst-italic fw-semibold">Cincai</span> & Extra<span
                     class="text-ogg fst-italic fw-semibold">Cengli</span>
             </h1>
-            <p class="text-black fs-4 lh-lg mb-4 mx-auto mb-md-5" style="max-width: 1200px">Maximize your profit with TIGAC - Enjoy extra earnings, unbeatable deals,
+            <p class="text-black fs-4 lh-base mb-4 mx-auto mb-md-5" style="max-width: 1200px">Maximize your profit with TIGAC - Enjoy extra earnings, unbeatable deals,
                 and complete transparency. Partner
                 with us now and seet the difference!
             </p>
