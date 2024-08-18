@@ -12,7 +12,9 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-9 mb-5">
-                <iframe src="{{ config('app.map_embed_url') }}" width="928" height="668" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <center>
+                    <iframe class="map-location"src="{{ config('app.map_embed_url') }}" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </center>
             </div>
             <div class="col-md-3">
                 <img src="{{ asset('images/new/find.png') }}" alt="Find Us" class="img-fluid">
