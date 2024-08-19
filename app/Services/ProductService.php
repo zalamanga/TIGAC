@@ -29,6 +29,11 @@ class ProductService
         return $this->productRepositoryInterface->getProductById($productId);
     }
 
+    public function getProductBySlug($productSlug)
+    {
+        return $this->productRepositoryInterface->getProductBySlug($productSlug);
+    }
+
     public function storeProductData($requestProductData)
     {
         DB::beginTransaction();

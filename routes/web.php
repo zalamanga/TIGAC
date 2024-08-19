@@ -107,9 +107,7 @@ Route::name('pages.frontend.')->group(function () {
     Route::get('/faq', function () {
         return view('pages.frontend.faq');
     })->name('faq');
-    Route::get('/product/{slug}', function (String $slug) {
-        return view('pages.frontend.productDetail', compact('slug'));
-    })->name('product.detail');
+    Route::get('/product/{slug}', [ProductController::class, 'productDetailPage'])->name('product.detail');
     Route::get('/consumer-program', function () {
         return view('pages.frontend.consumerProgram');
     })->name('consumer.program');

@@ -47,6 +47,19 @@ class ProductController extends Controller
         return view('pages.frontend.product', $data);
     }
 
+    public function productDetailPage($productSlug)
+    {
+        $product = $this->productService->getProductBySlug($productSlug);
+        $relatedProducts = $this->productService->getProducts();
+
+        $data = [
+            'product' => $product,
+            'relatedProducts' => $relatedProducts
+        ];
+
+        return view('pages.frontend.productDetail', $data);
+    }
+
     public function index(ProductDataTable $dataTable)
     {
         $title = 'Product List';

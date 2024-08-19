@@ -5,6 +5,7 @@ namespace App\Contracts;
 interface ProductRepositoryInterface
 {
     public function getAllProducts();
+    public function getProductBySlug($productSlug);
     public function getIsCollaborationProducts($isCollaborationProducts);
     public function createProduct($requestCreateData);
     public function storeProductImage($product, $requestImageData);
