@@ -35,6 +35,7 @@ class HeroBannerService
             'media_type' => $requestHeroBannerData['media']->getClientMimeType(),
             'media_path' => $mediaPath,
             'is_active' => $requestHeroBannerData['is_active'],
+            'is_for_product_page' => $requestHeroBannerData['is_for_product_page'],
             'is_priority' => $requestHeroBannerData['is_priority'],
         ];
 
@@ -60,6 +61,7 @@ class HeroBannerService
                 'media_type' => $heroBannerData['media']->getClientMimeType(),
                 'media_path' => $newMediaPath,
                 'is_active' => $heroBannerData['is_active'],
+                'is_for_product_page' => $heroBannerData['is_for_product_page'],
                 'is_priority' => $heroBannerData['is_priority'],
             ];
         } else {
@@ -68,6 +70,7 @@ class HeroBannerService
                 'tagline' => $heroBannerData['tagline'],
                 'tagline_description' => $heroBannerData['tagline_description'],
                 'is_active' => $heroBannerData['is_active'],
+                'is_for_product_page' => $heroBannerData['is_for_product_page'],
                 'is_priority' => $heroBannerData['is_priority'],
             ];
         }
