@@ -14,6 +14,11 @@ class ProductRepository implements ProductRepositoryInterface
         return Product::orderBy('is_hot_item')->get();
     }
 
+    public function getIsCollaborationProducts($isCollaborationProducts)
+    {
+        return Product::where('is_collaboration_project', $isCollaborationProducts)->get();
+    }
+
     public function getProductById($productId)
     {
         return Product::where('id', $productId)->first();

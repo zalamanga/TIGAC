@@ -35,9 +35,13 @@ class ProductController extends Controller
     public function frontEndPage()
     {
         $productPageHeroBanners = $this->heroBannerService->getActiveProductPageHeroBanners();
+        $nonCollaborationProducts = $this->productService->getIsCollaborationProducts(false);
+        $collaborationProducts = $this->productService->getIsCollaborationProducts(true);
 
         $data = [
-            'productPageHeroBanners' => $productPageHeroBanners
+            'productPageHeroBanners' => $productPageHeroBanners,
+            'nonCollaborationProducts' => $nonCollaborationProducts,
+            'collaborationProducts' => $collaborationProducts
         ];
 
         return view('pages.frontend.product', $data);

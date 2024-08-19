@@ -19,6 +19,11 @@ class ProductService
         return $this->productRepositoryInterface->getAllProducts();
     }
 
+    public function getIsCollaborationProducts($isCollaborationProducts)
+    {
+        return $this->productRepositoryInterface->getIsCollaborationProducts($isCollaborationProducts);
+    }
+
     public function getProductById($productId)
     {
         return $this->productRepositoryInterface->getProductById($productId);
