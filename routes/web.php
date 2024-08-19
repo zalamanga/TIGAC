@@ -76,9 +76,7 @@ Route::name('pages.frontend.')->group(function () {
     Route::get('/', function () {
         return view('pages.frontend.index');
     })->name('index');
-    Route::get('/product', function () {
-        return view('pages.frontend.product');
-    })->name('product');
+    Route::get('/product', [ProductController::class, 'frontEndPage'])->name('product');
     Route::get('/program', function () {
         return view('pages.frontend.program');
     })->name('program');

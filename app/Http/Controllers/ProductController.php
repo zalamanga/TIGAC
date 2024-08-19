@@ -6,6 +6,7 @@ use App\DataTables\ProductDataTable;
 use App\Http\Requests\ProductRequest;
 use App\Http\Requests\ProductUpdateRequest;
 use App\Models\Product;
+use App\Services\HeroBannerService;
 use App\Services\ProductCategoryService;
 use App\Services\ProductService;
 use App\Services\ProductVariantService;
@@ -17,12 +18,29 @@ class ProductController extends Controller
     protected $productService;
     protected $productCategoryService;
     protected $productVariantService;
+    protected $heroBannerService;
 
-    public function __construct(ProductService $productService, ProductCategoryService $productCategoryService, ProductVariantService $productVariantService)
-    {
+    public function __construct(
+        ProductService $productService,
+        ProductCategoryService $productCategoryService,
+        ProductVariantService $productVariantService,
+        HeroBannerService $heroBannerService
+    ) {
         $this->productService = $productService;
         $this->productCategoryService = $productCategoryService;
         $this->productVariantService = $productVariantService;
+        $this->heroBannerService = $heroBannerService;
+    }
+
+    public function frontEndPage()
+    {
+        $productPageHeroBanners = $this->heroBannerService->getActiveProductPageHeroBanners();
+
+        $data = [
+            'productPageHeroBanners' => $productPageHeroBanners
+        ];
+
+        return view('pages.frontend.product', $data);
     }
 
     public function index(ProductDataTable $dataTable)

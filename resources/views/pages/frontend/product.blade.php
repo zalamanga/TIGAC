@@ -1,21 +1,21 @@
 @php
-    $carousels = [
-        [
-            'id' => 1,
-            'image' =>
-                'https://s3-alpha-sig.figma.com/img/e707/44c9/e34390a232dffe89c77a30b1c03a2284?Expires=1724630400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=MAnQA4cNWdAX6UI9eb71p3klrHfZVJy~7DXfpwyuyOv9LpiPGQnsHoFR2dx6LD8Z5puWwhsW72-1GoHZvOboYKEzoJ-rusFSyCo~O4oi2bJAtwmMpKj1qN26sLmKqjmftClf-bVTAzrJOCHCWSCRlyROODdevfj8YH0D8gfVG7uRm7c31oahVfLfJn3QVL6tec0E2gIfNwpbQ8tYAJlDFoyLC7fVhA-mfLi116IvuuWDf5VRA83xauegsvW3DxvfFh7QZBNO03S2Ob-mo6MeLqBE9lRXREZltyYueHYbv5VlWlQMScNi4nxvdrJVp28BvL49nQSSZkSWwTxgWae7pg__',
-        ],
-        [
-            'id' => 2,
-            'image' =>
-                'https://s3-alpha-sig.figma.com/img/8b0c/e3db/ef1b9dff59c93256adbd57732f4bcaf5?Expires=1724630400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Q-ueGNIBHntKMF0v9vzLO3x0wjQwUsw~BRHezN07AV~Htxn1TenJdHmmH8lsOm8zPyYdzXJbgb4jVGBiZhKD9Xq-VgUYG~E2nlNghQeMVmGIVAL9pDMg~lP9UFnZL-xCJKOPslYVvprpYzrk5d1e2ttxyv9YtZ7SOLGnTP577T63SHPbBu7NpPzEzGWQ42aRNy4aLCjEwPhlWHsHfVqhBFCI8gvWRhmCPGtGMWTEd7xBM19Ys7OZI42ipNkI0hcAMTY9TO2b00HECBqwIRfrXyZEoF4X3rdBOsQ4McdMnMD9s7SX7dBrZi6cXHFneQNAm8p4VkdPmaba1k40de3bhQ__',
-        ],
-        [
-            'id' => 3,
-            'image' =>
-                'https://s3-alpha-sig.figma.com/img/2c26/a073/7594fbfa7cc95e6f33a0249bae2006a8?Expires=1724630400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=AZUKtvMBDvjvXw213AwDfDPanOzwn32q21Uur9MMNyv8nTwfTLoXzuW9LH7Q4lt2cmHzsvI4DcsFIV44Eq2O3tU8hAn9v3r9vi8jerP3CT4Ld6yqWqO5VDfxo7G7FwGPq12WJi2uUuSHqKSYmpNEWiT4~PaSSbG3cEk4UKfABAuSlcRaL2WB6~cDFKrn5o3ghyxv-W9~UcQdeNKW8TuX8TXvDRdDJvBepOBAt2Pb4WDXyoL8hwew-NmMWtPKAC-7qIAxhpxWGOQtGVULE3DL72LtTkRDOFJfDjnGBoC0vD~6-XtO~rKwGts~MNDdWqLhW6hKCOqH0kpO0AYXmd9MiA__',
-        ],
-    ];
+    // $carousels = [
+    //     [
+    //         'id' => 1,
+    //         'image' =>
+    //             'https://s3-alpha-sig.figma.com/img/e707/44c9/e34390a232dffe89c77a30b1c03a2284?Expires=1724630400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=MAnQA4cNWdAX6UI9eb71p3klrHfZVJy~7DXfpwyuyOv9LpiPGQnsHoFR2dx6LD8Z5puWwhsW72-1GoHZvOboYKEzoJ-rusFSyCo~O4oi2bJAtwmMpKj1qN26sLmKqjmftClf-bVTAzrJOCHCWSCRlyROODdevfj8YH0D8gfVG7uRm7c31oahVfLfJn3QVL6tec0E2gIfNwpbQ8tYAJlDFoyLC7fVhA-mfLi116IvuuWDf5VRA83xauegsvW3DxvfFh7QZBNO03S2Ob-mo6MeLqBE9lRXREZltyYueHYbv5VlWlQMScNi4nxvdrJVp28BvL49nQSSZkSWwTxgWae7pg__',
+    //     ],
+    //     [
+    //         'id' => 2,
+    //         'image' =>
+    //             'https://s3-alpha-sig.figma.com/img/8b0c/e3db/ef1b9dff59c93256adbd57732f4bcaf5?Expires=1724630400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Q-ueGNIBHntKMF0v9vzLO3x0wjQwUsw~BRHezN07AV~Htxn1TenJdHmmH8lsOm8zPyYdzXJbgb4jVGBiZhKD9Xq-VgUYG~E2nlNghQeMVmGIVAL9pDMg~lP9UFnZL-xCJKOPslYVvprpYzrk5d1e2ttxyv9YtZ7SOLGnTP577T63SHPbBu7NpPzEzGWQ42aRNy4aLCjEwPhlWHsHfVqhBFCI8gvWRhmCPGtGMWTEd7xBM19Ys7OZI42ipNkI0hcAMTY9TO2b00HECBqwIRfrXyZEoF4X3rdBOsQ4McdMnMD9s7SX7dBrZi6cXHFneQNAm8p4VkdPmaba1k40de3bhQ__',
+    //     ],
+    //     [
+    //         'id' => 3,
+    //         'image' =>
+    //             'https://s3-alpha-sig.figma.com/img/2c26/a073/7594fbfa7cc95e6f33a0249bae2006a8?Expires=1724630400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=AZUKtvMBDvjvXw213AwDfDPanOzwn32q21Uur9MMNyv8nTwfTLoXzuW9LH7Q4lt2cmHzsvI4DcsFIV44Eq2O3tU8hAn9v3r9vi8jerP3CT4Ld6yqWqO5VDfxo7G7FwGPq12WJi2uUuSHqKSYmpNEWiT4~PaSSbG3cEk4UKfABAuSlcRaL2WB6~cDFKrn5o3ghyxv-W9~UcQdeNKW8TuX8TXvDRdDJvBepOBAt2Pb4WDXyoL8hwew-NmMWtPKAC-7qIAxhpxWGOQtGVULE3DL72LtTkRDOFJfDjnGBoC0vD~6-XtO~rKwGts~MNDdWqLhW6hKCOqH0kpO0AYXmd9MiA__',
+    //     ],
+    // ];
 
     $products = [
         '1' => [
@@ -193,9 +193,10 @@
                     aria-label="Slide 3"></button>
             </div>
             <div class="carousel-inner">
-                @foreach ($carousels as $carousel)
+                @foreach ($productPageHeroBanners as $productPageHeroBanner)
                     <div class="carousel-item carousel-item-banner {{ $loop->index == 0 ? 'active' : '' }}">
-                        <img src="{{ $carousel['image'] }}" class="d-block w-100" alt="carousel-{{ $carousel['id'] }}">
+                        <img src="{{ asset('storage/' . $productPageHeroBanner->media_path) }}" class="d-block w-100"
+                            alt="{{ $productPageHeroBanner->tagline }}">
                     </div>
                 @endforeach
             </div>
@@ -267,7 +268,7 @@
                             <div class="carousel-item carousel-item-product {{ $loop->index == 0 ? 'active' : '' }}">
                                 <div class="d-flex align-items-center justify-content-around flex-nowrap gap-2 gap-md-3">
                                     @foreach ($product as $item)
-                                        <a href="{{Route('pages.frontend.product.detail', $item['name'])}}"
+                                        <a href="{{ Route('pages.frontend.product.detail', $item['name']) }}"
                                             class="border rounded-4 overflow-hidden card-product-item position-relative d-flex align-items-center justify-content-center shadow-sm">
                                             <img src="{{ $item['image'] }}" alt="{{ $item['name'] }}"
                                                 class="img-fluid transition-all">
@@ -343,7 +344,7 @@
                             <div class="carousel-item carousel-item-product {{ $loop->index == 0 ? 'active' : '' }}">
                                 <div class="d-flex align-items-center justify-content-around flex-nowrap gap-2 gap-md-3">
                                     @foreach ($product as $item)
-                                        <a href="{{Route('pages.frontend.product.detail', $item['name'])}}"
+                                        <a href="{{ Route('pages.frontend.product.detail', $item['name']) }}"
                                             class="border rounded-4 overflow-hidden card-product-item position-relative d-flex align-items-center justify-content-center shadow-sm">
                                             <img src="{{ $item['image'] }}" alt="{{ $item['name'] }}"
                                                 class="img-fluid transition-all">
