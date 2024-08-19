@@ -33,4 +33,12 @@ class HeroBannerRepository implements HeroBannerRepositoryInterface
     {
         return $heroBanner->update($heroBannerUpdateData);
     }
+
+    public function getActiveProductPageHeroBanners()
+    {
+        return HeroBanner::where([
+            ['is_active', true],
+            ['is_for_product_page', true]
+        ])->get();
+    }
 }

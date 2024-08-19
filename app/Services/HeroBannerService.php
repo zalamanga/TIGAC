@@ -14,6 +14,11 @@ class HeroBannerService
         $this->heroBannerRepositoryInterface = $heroBannerRepositoryInterface;
     }
 
+    public function getActiveProductPageHeroBanners()
+    {
+        return $this->heroBannerRepositoryInterface->getActiveProductPageHeroBanners();
+    }
+
     public function getHeroBanner($heroBannerId)
     {
         return $this->heroBannerRepositoryInterface->getHeroBanner($heroBannerId);
