@@ -1,182 +1,6 @@
 @php
-    // $carousels = [
-    //     [
-    //         'id' => 1,
-    //         'image' =>
-    //             'https://s3-alpha-sig.figma.com/img/e707/44c9/e34390a232dffe89c77a30b1c03a2284?Expires=1724630400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=MAnQA4cNWdAX6UI9eb71p3klrHfZVJy~7DXfpwyuyOv9LpiPGQnsHoFR2dx6LD8Z5puWwhsW72-1GoHZvOboYKEzoJ-rusFSyCo~O4oi2bJAtwmMpKj1qN26sLmKqjmftClf-bVTAzrJOCHCWSCRlyROODdevfj8YH0D8gfVG7uRm7c31oahVfLfJn3QVL6tec0E2gIfNwpbQ8tYAJlDFoyLC7fVhA-mfLi116IvuuWDf5VRA83xauegsvW3DxvfFh7QZBNO03S2Ob-mo6MeLqBE9lRXREZltyYueHYbv5VlWlQMScNi4nxvdrJVp28BvL49nQSSZkSWwTxgWae7pg__',
-    //     ],
-    //     [
-    //         'id' => 2,
-    //         'image' =>
-    //             'https://s3-alpha-sig.figma.com/img/8b0c/e3db/ef1b9dff59c93256adbd57732f4bcaf5?Expires=1724630400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Q-ueGNIBHntKMF0v9vzLO3x0wjQwUsw~BRHezN07AV~Htxn1TenJdHmmH8lsOm8zPyYdzXJbgb4jVGBiZhKD9Xq-VgUYG~E2nlNghQeMVmGIVAL9pDMg~lP9UFnZL-xCJKOPslYVvprpYzrk5d1e2ttxyv9YtZ7SOLGnTP577T63SHPbBu7NpPzEzGWQ42aRNy4aLCjEwPhlWHsHfVqhBFCI8gvWRhmCPGtGMWTEd7xBM19Ys7OZI42ipNkI0hcAMTY9TO2b00HECBqwIRfrXyZEoF4X3rdBOsQ4McdMnMD9s7SX7dBrZi6cXHFneQNAm8p4VkdPmaba1k40de3bhQ__',
-    //     ],
-    //     [
-    //         'id' => 3,
-    //         'image' =>
-    //             'https://s3-alpha-sig.figma.com/img/2c26/a073/7594fbfa7cc95e6f33a0249bae2006a8?Expires=1724630400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=AZUKtvMBDvjvXw213AwDfDPanOzwn32q21Uur9MMNyv8nTwfTLoXzuW9LH7Q4lt2cmHzsvI4DcsFIV44Eq2O3tU8hAn9v3r9vi8jerP3CT4Ld6yqWqO5VDfxo7G7FwGPq12WJi2uUuSHqKSYmpNEWiT4~PaSSbG3cEk4UKfABAuSlcRaL2WB6~cDFKrn5o3ghyxv-W9~UcQdeNKW8TuX8TXvDRdDJvBepOBAt2Pb4WDXyoL8hwew-NmMWtPKAC-7qIAxhpxWGOQtGVULE3DL72LtTkRDOFJfDjnGBoC0vD~6-XtO~rKwGts~MNDdWqLhW6hKCOqH0kpO0AYXmd9MiA__',
-    //     ],
-    // ];
-
-    $products = [
-        '1' => [
-            [
-                'name' => 'Melon Mystic',
-                'image' =>
-                    'https://s3-alpha-sig.figma.com/img/b4f8/cfdf/198571ae9bd2946549efe3d6377732ac?Expires=1724630400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=EFdM0DuxUFAGVjcP3APNkhXcO6edQjaRnQiDWdONtqm1ikidCOhvlDPDDtIqwXVYLIRPtgthdQozYYYi4NiM-6-H-Ze~0ZbZkgTFw42hGe7SNL-NnOTla0NU3PKZsT8dTKNJHVfAi444xHQO967Hx0cAj0kagu1FxMygmoW1Swzg1TJOo2YOxyDeigv7ZSJoO8P64xiZQQCAD8OmXxsAGXnIotkOeAbqOfVslouPk4zBchDf7eXNdvwR-BrzUollG6bQED8uXidYNY~-nKm9oTLpVI7x76Fi9Du7HMdfJZK~C9u~QQGH~ns7b~xblSu2Ue54Q3yHirFOC6reH8mESA__',
-                'category' => 'Tigac Saltnic - Fruity Series',
-            ],
-            [
-                'name' => 'JUICY SELECTION',
-                'image' =>
-                    'https://s3-alpha-sig.figma.com/img/357c/f150/caa46c95da8d27711eb7bcdf004f85e7?Expires=1724630400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=QimE31Ddda1Fez-Wx-XYxnPzXFP8JoE0tqQ8u9UHuRIL-~DypELXuT52EgMMOvi234WHCY1YoblTlWbl6dsuZMFhqEmCELokwvQiYdh4jdUKpczgEzIM1qQ1oZJtcO7DznXqe3CTRcW-Cnze0OutGNZCDVrCE2RTg-GOYn0~h7TBEetaExJ9N1JLs-sASz~kQkAmjyl2b4CVsk81mhhqFxlpQSS1erLB1xYOt2-q7WQZXZJwZexvJzv0Zy8Fe3zgLhERknZTvsKTBiFJdD6UTinwnO7DNecF7RVoj55gjO1HeRlVngtBbi2YVcV6STCAekZtiTgdDoVPC-uJml5gbw__',
-                'category' => 'Melon Madness',
-            ],
-            [
-                'name' => 'TIGAC',
-                'image' =>
-                    'https://s3-alpha-sig.figma.com/img/b407/3156/5e5cc23a6a8dcb60f7f31071e58043b7?Expires=1724630400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=fhDMSUdNJn6oHnOUr45FxzJMLT1ObUZ9aCeFFtSYsSEmN3Ld6z2Hk90KOmnEPoYCBbFceS27TvURgUU3OwzEeZoDMks86kMRVA1jrbe5nlB9MZjEu3Pm40kCazgzXzYF4WNmbUyIRJ3Q83fdHYXlsYmceY1Qf6A9KxKqp2e0WpFnCrkQ0aYs-GuZ2tjgxbJDP97~yRy3DPY9yL7JtVd86sa~l2SSJmZ4wpK~31GCZ1KLPvmbSGYfybQQe29i0ahQbB0LaG8yFaF2Egq1mamzjBB9ba3AKqRUn08QYoiwON~lKrl0xug9SrkpqzUsbR8ht-gWwMD~6RHGf8G0Gde-Dw__',
-                'category' => 'Sando Cream Sandwich',
-            ],
-            [
-                'name' => 'Tigac STIG Pod Kit',
-                'image' =>
-                    'https://s3-alpha-sig.figma.com/img/be1d/96d6/92de1e7a514aae6d50a009c8f880aa62?Expires=1724630400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=X-U6URkDAJSYWijj7T-cqiEe-2yzG-04kJS9AEDWaCpwoetlE9-AARO60v52pgCCkV0QYocXWeqTbA9V3VTRMLLExGo~hDMUzr8QVC43Q8XgIOFH2IkQO3ChOP0nv4ZRZWTZwq8AlXrJcybXNKYw932FFpDJqDzsbeLM7b07jVJgnewnHRcpkaIVRhGdSVIAYaBPWnZ5fmN~5lkjyGE~AYVnD3z9mG-sphSzYXVspsqPR-DRPvHM~wieYoN-UX48H5WNVgn6w2EsoWNxXUz79W-wN0udkhxKi3OmG6IUMmm0WEKOSqKFCO98K4um2vd76PnF3yBRo4lXvErynLc32g__',
-                'category' => 'Pod Device',
-            ],
-        ],
-        '2' => [
-            [
-                'name' => 'Melon Mystic',
-                'image' =>
-                    'https://s3-alpha-sig.figma.com/img/b4f8/cfdf/198571ae9bd2946549efe3d6377732ac?Expires=1724630400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=EFdM0DuxUFAGVjcP3APNkhXcO6edQjaRnQiDWdONtqm1ikidCOhvlDPDDtIqwXVYLIRPtgthdQozYYYi4NiM-6-H-Ze~0ZbZkgTFw42hGe7SNL-NnOTla0NU3PKZsT8dTKNJHVfAi444xHQO967Hx0cAj0kagu1FxMygmoW1Swzg1TJOo2YOxyDeigv7ZSJoO8P64xiZQQCAD8OmXxsAGXnIotkOeAbqOfVslouPk4zBchDf7eXNdvwR-BrzUollG6bQED8uXidYNY~-nKm9oTLpVI7x76Fi9Du7HMdfJZK~C9u~QQGH~ns7b~xblSu2Ue54Q3yHirFOC6reH8mESA__',
-                'category' => 'Tigac Saltnic - Fruity Series',
-            ],
-            [
-                'name' => 'JUICY SELECTION',
-                'image' =>
-                    'https://s3-alpha-sig.figma.com/img/357c/f150/caa46c95da8d27711eb7bcdf004f85e7?Expires=1724630400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=QimE31Ddda1Fez-Wx-XYxnPzXFP8JoE0tqQ8u9UHuRIL-~DypELXuT52EgMMOvi234WHCY1YoblTlWbl6dsuZMFhqEmCELokwvQiYdh4jdUKpczgEzIM1qQ1oZJtcO7DznXqe3CTRcW-Cnze0OutGNZCDVrCE2RTg-GOYn0~h7TBEetaExJ9N1JLs-sASz~kQkAmjyl2b4CVsk81mhhqFxlpQSS1erLB1xYOt2-q7WQZXZJwZexvJzv0Zy8Fe3zgLhERknZTvsKTBiFJdD6UTinwnO7DNecF7RVoj55gjO1HeRlVngtBbi2YVcV6STCAekZtiTgdDoVPC-uJml5gbw__',
-                'category' => 'Melon Madness',
-            ],
-            [
-                'name' => 'TIGAC',
-                'image' =>
-                    'https://s3-alpha-sig.figma.com/img/b407/3156/5e5cc23a6a8dcb60f7f31071e58043b7?Expires=1724630400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=fhDMSUdNJn6oHnOUr45FxzJMLT1ObUZ9aCeFFtSYsSEmN3Ld6z2Hk90KOmnEPoYCBbFceS27TvURgUU3OwzEeZoDMks86kMRVA1jrbe5nlB9MZjEu3Pm40kCazgzXzYF4WNmbUyIRJ3Q83fdHYXlsYmceY1Qf6A9KxKqp2e0WpFnCrkQ0aYs-GuZ2tjgxbJDP97~yRy3DPY9yL7JtVd86sa~l2SSJmZ4wpK~31GCZ1KLPvmbSGYfybQQe29i0ahQbB0LaG8yFaF2Egq1mamzjBB9ba3AKqRUn08QYoiwON~lKrl0xug9SrkpqzUsbR8ht-gWwMD~6RHGf8G0Gde-Dw__',
-                'category' => 'Sando Cream Sandwich',
-            ],
-            [
-                'name' => 'Tigac STIG Pod Kit',
-                'image' =>
-                    'https://s3-alpha-sig.figma.com/img/be1d/96d6/92de1e7a514aae6d50a009c8f880aa62?Expires=1724630400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=X-U6URkDAJSYWijj7T-cqiEe-2yzG-04kJS9AEDWaCpwoetlE9-AARO60v52pgCCkV0QYocXWeqTbA9V3VTRMLLExGo~hDMUzr8QVC43Q8XgIOFH2IkQO3ChOP0nv4ZRZWTZwq8AlXrJcybXNKYw932FFpDJqDzsbeLM7b07jVJgnewnHRcpkaIVRhGdSVIAYaBPWnZ5fmN~5lkjyGE~AYVnD3z9mG-sphSzYXVspsqPR-DRPvHM~wieYoN-UX48H5WNVgn6w2EsoWNxXUz79W-wN0udkhxKi3OmG6IUMmm0WEKOSqKFCO98K4um2vd76PnF3yBRo4lXvErynLc32g__',
-                'category' => 'Pod Device',
-            ],
-        ],
-        '3' => [
-            [
-                'name' => 'Melon Mystic',
-                'image' =>
-                    'https://s3-alpha-sig.figma.com/img/b4f8/cfdf/198571ae9bd2946549efe3d6377732ac?Expires=1724630400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=EFdM0DuxUFAGVjcP3APNkhXcO6edQjaRnQiDWdONtqm1ikidCOhvlDPDDtIqwXVYLIRPtgthdQozYYYi4NiM-6-H-Ze~0ZbZkgTFw42hGe7SNL-NnOTla0NU3PKZsT8dTKNJHVfAi444xHQO967Hx0cAj0kagu1FxMygmoW1Swzg1TJOo2YOxyDeigv7ZSJoO8P64xiZQQCAD8OmXxsAGXnIotkOeAbqOfVslouPk4zBchDf7eXNdvwR-BrzUollG6bQED8uXidYNY~-nKm9oTLpVI7x76Fi9Du7HMdfJZK~C9u~QQGH~ns7b~xblSu2Ue54Q3yHirFOC6reH8mESA__',
-                'category' => 'Tigac Saltnic - Fruity Series',
-            ],
-            [
-                'name' => 'JUICY SELECTION',
-                'image' =>
-                    'https://s3-alpha-sig.figma.com/img/357c/f150/caa46c95da8d27711eb7bcdf004f85e7?Expires=1724630400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=QimE31Ddda1Fez-Wx-XYxnPzXFP8JoE0tqQ8u9UHuRIL-~DypELXuT52EgMMOvi234WHCY1YoblTlWbl6dsuZMFhqEmCELokwvQiYdh4jdUKpczgEzIM1qQ1oZJtcO7DznXqe3CTRcW-Cnze0OutGNZCDVrCE2RTg-GOYn0~h7TBEetaExJ9N1JLs-sASz~kQkAmjyl2b4CVsk81mhhqFxlpQSS1erLB1xYOt2-q7WQZXZJwZexvJzv0Zy8Fe3zgLhERknZTvsKTBiFJdD6UTinwnO7DNecF7RVoj55gjO1HeRlVngtBbi2YVcV6STCAekZtiTgdDoVPC-uJml5gbw__',
-                'category' => 'Melon Madness',
-            ],
-            [
-                'name' => 'TIGAC',
-                'image' =>
-                    'https://s3-alpha-sig.figma.com/img/b407/3156/5e5cc23a6a8dcb60f7f31071e58043b7?Expires=1724630400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=fhDMSUdNJn6oHnOUr45FxzJMLT1ObUZ9aCeFFtSYsSEmN3Ld6z2Hk90KOmnEPoYCBbFceS27TvURgUU3OwzEeZoDMks86kMRVA1jrbe5nlB9MZjEu3Pm40kCazgzXzYF4WNmbUyIRJ3Q83fdHYXlsYmceY1Qf6A9KxKqp2e0WpFnCrkQ0aYs-GuZ2tjgxbJDP97~yRy3DPY9yL7JtVd86sa~l2SSJmZ4wpK~31GCZ1KLPvmbSGYfybQQe29i0ahQbB0LaG8yFaF2Egq1mamzjBB9ba3AKqRUn08QYoiwON~lKrl0xug9SrkpqzUsbR8ht-gWwMD~6RHGf8G0Gde-Dw__',
-                'category' => 'Sando Cream Sandwich',
-            ],
-            [
-                'name' => 'Tigac STIG Pod Kit',
-                'image' =>
-                    'https://s3-alpha-sig.figma.com/img/be1d/96d6/92de1e7a514aae6d50a009c8f880aa62?Expires=1724630400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=X-U6URkDAJSYWijj7T-cqiEe-2yzG-04kJS9AEDWaCpwoetlE9-AARO60v52pgCCkV0QYocXWeqTbA9V3VTRMLLExGo~hDMUzr8QVC43Q8XgIOFH2IkQO3ChOP0nv4ZRZWTZwq8AlXrJcybXNKYw932FFpDJqDzsbeLM7b07jVJgnewnHRcpkaIVRhGdSVIAYaBPWnZ5fmN~5lkjyGE~AYVnD3z9mG-sphSzYXVspsqPR-DRPvHM~wieYoN-UX48H5WNVgn6w2EsoWNxXUz79W-wN0udkhxKi3OmG6IUMmm0WEKOSqKFCO98K4um2vd76PnF3yBRo4lXvErynLc32g__',
-                'category' => 'Pod Device',
-            ],
-        ],
-    ];
-    $products_collaborations = [
-        '1' => [
-            [
-                'name' => 'Electra Quinn',
-                'image' =>
-                    'https://s3-alpha-sig.figma.com/img/bf28/5f1c/6c1daf23e05e6b14117c36d5f53f6392?Expires=1724630400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=QCSmIMjKYrD1q35nhjp6rs2ymEMZoOStDLRhsBHuQE9cwey4DkMeSGM-cowRmscjGbICuPKgXWcUCpRaEpg8KLl1UFG9bWKPMFTy7oeSqJNJ2t05qVIwx-zIpvTok3Gz0xJkDhSQYdoBf05fD-EUeV6HJMeod9KCDuBEntWpVtSc~7kcjJ3CGAAqXVF5Veedzs9i0QURpZYCeGZIDPUsIwW1t6w7hoUvPz8RjhheyIqInl21V9gP9axr7O2-eFoy-sh2qetYigIDibqT-SAukbmTiBzBrFc7s1VtQEzvZYy9Co7xo5GSRg7Nl790~l8BeNcofJAKGbzKVoNe9~Ullg__',
-                'category' => 'Creme & Crime - Freebase',
-            ],
-            [
-                'name' => 'Orion Shadow',
-                'image' =>
-                    'https://s3-alpha-sig.figma.com/img/bee3/9dec/ae969537ba3cdb886aa034363c331ff4?Expires=1724630400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=c6X6~jKUZJdXTHw4jcNO0XeM41HNO9jBKhCJ-gdM5mFmzkRh6VyYQPYcvwmag1cqLL~5RGxoH-LsIieQv1bw07tl0yYINeB1wcXwIFA10xOnDB2jfZj2sJpO45k8ZMhidaz-tv7J1rMvR5X8MSUw6MGz2F2VHeJHe0v4B9a8yZzWXwhhXK0thzrs3EyiSuez2vTh65EAK~cVpi6W9eB~tOtHCyFLT7BV-X~7x1TMvG1~uXdhgHUhxWnKEAXQGaOcAdPZ0INSBj9skH30sU6Xc2M6IeN1wPe7fwBp6JMHuu~TNWvhYIvb5EBQCmLu4bWLx6DWEUDMP4iPWvcoKp8cTQ__',
-                'category' => 'Creme & Crime - Freebase',
-            ],
-            [
-                'name' => 'Cosmic Strawberry Fizz',
-                'image' =>
-                    'https://s3-alpha-sig.figma.com/img/f269/eeb5/e4d6dee3cfc2a4f04c1725e8450c720f?Expires=1724630400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=QskngmfQyktG1wWvpjIz70TiZUuhl1lmzZjWZepNGS99QkyWg7kSflhrWnVXan7CVWlMwq-wqAxLTwe2hGkhued6kKOCYz0209vAhpnWAMs8T4fhJB6g7zryalbanTCCLXtrD7OHX0tTnvDX5K33IkCzZCTHmUJLbhcQl86ZW0eV0nigkm7E0Y6mGqli7U0rhJ9LC87-Eb8KopbfJLRVSEhmeNAkEWzcNHZl33ssHZCt-qP4pvfIABkI0E5gHCId-df3Mh4Jgy6DKgq7oWdopyZvG7QCwpYnIlo9PyHxaxUJgp56TmW-fNEGQySiXwZMwg~ImPs4anltVe2XLGGfmA__',
-                'category' => 'Pocket Rockid - Freebase',
-            ],
-            [
-                'name' => 'Banana Space Cream',
-                'image' =>
-                    'https://s3-alpha-sig.figma.com/img/483c/2c99/d08b33d1c0ff0c326ca85735dfbc3ac4?Expires=1724630400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Ywf7lhhrX-Dfv97W6-7Wd5AZp-tjf8pBQuI3pDVZvxwFZjIPisMqUlX3R1ml7kX~dncLcHAhA8Mm6RU4n5qmdhNPw2sMgovqG-OdkkuGbG7RHWqj5N3Bhi4s~FHBeFdWYkEB7tThjASJzdH26m9~BJ9WXeh3SA6kR3Incr0XV9A-PrjNW-33HVQuCX3NZCsae-V~sdMWZ~NiuldBEcRsleL1QJjimOsjZCzxToYeRheXofEuGpISttge5ykWV2vt1pSzvBn~HSlc0Kelu1ScxtNpzhxyS~CnxcxJ-LRv4QnucTjjwmlEwbt~XeUSUtGY-4UpsK5uiBXwFYPJrwCz3A__',
-                'category' => 'Pocket Rockid - Freebase',
-            ],
-        ],
-        '2' => [
-            [
-                'name' => 'Electra Quinn',
-                'image' =>
-                    'https://s3-alpha-sig.figma.com/img/bf28/5f1c/6c1daf23e05e6b14117c36d5f53f6392?Expires=1724630400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=QCSmIMjKYrD1q35nhjp6rs2ymEMZoOStDLRhsBHuQE9cwey4DkMeSGM-cowRmscjGbICuPKgXWcUCpRaEpg8KLl1UFG9bWKPMFTy7oeSqJNJ2t05qVIwx-zIpvTok3Gz0xJkDhSQYdoBf05fD-EUeV6HJMeod9KCDuBEntWpVtSc~7kcjJ3CGAAqXVF5Veedzs9i0QURpZYCeGZIDPUsIwW1t6w7hoUvPz8RjhheyIqInl21V9gP9axr7O2-eFoy-sh2qetYigIDibqT-SAukbmTiBzBrFc7s1VtQEzvZYy9Co7xo5GSRg7Nl790~l8BeNcofJAKGbzKVoNe9~Ullg__',
-                'category' => 'Creme & Crime - Freebase',
-            ],
-            [
-                'name' => 'Orion Shadow',
-                'image' =>
-                    'https://s3-alpha-sig.figma.com/img/bee3/9dec/ae969537ba3cdb886aa034363c331ff4?Expires=1724630400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=c6X6~jKUZJdXTHw4jcNO0XeM41HNO9jBKhCJ-gdM5mFmzkRh6VyYQPYcvwmag1cqLL~5RGxoH-LsIieQv1bw07tl0yYINeB1wcXwIFA10xOnDB2jfZj2sJpO45k8ZMhidaz-tv7J1rMvR5X8MSUw6MGz2F2VHeJHe0v4B9a8yZzWXwhhXK0thzrs3EyiSuez2vTh65EAK~cVpi6W9eB~tOtHCyFLT7BV-X~7x1TMvG1~uXdhgHUhxWnKEAXQGaOcAdPZ0INSBj9skH30sU6Xc2M6IeN1wPe7fwBp6JMHuu~TNWvhYIvb5EBQCmLu4bWLx6DWEUDMP4iPWvcoKp8cTQ__',
-                'category' => 'Creme & Crime - Freebase',
-            ],
-            [
-                'name' => 'Cospic Strawberry Fizz',
-                'image' =>
-                    'https://s3-alpha-sig.figma.com/img/f269/eeb5/e4d6dee3cfc2a4f04c1725e8450c720f?Expires=1724630400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=QskngmfQyktG1wWvpjIz70TiZUuhl1lmzZjWZepNGS99QkyWg7kSflhrWnVXan7CVWlMwq-wqAxLTwe2hGkhued6kKOCYz0209vAhpnWAMs8T4fhJB6g7zryalbanTCCLXtrD7OHX0tTnvDX5K33IkCzZCTHmUJLbhcQl86ZW0eV0nigkm7E0Y6mGqli7U0rhJ9LC87-Eb8KopbfJLRVSEhmeNAkEWzcNHZl33ssHZCt-qP4pvfIABkI0E5gHCId-df3Mh4Jgy6DKgq7oWdopyZvG7QCwpYnIlo9PyHxaxUJgp56TmW-fNEGQySiXwZMwg~ImPs4anltVe2XLGGfmA__',
-                'category' => 'Pocket Rockid - Freebase',
-            ],
-            [
-                'name' => 'Banana Space Cream',
-                'image' =>
-                    'https://s3-alpha-sig.figma.com/img/483c/2c99/d08b33d1c0ff0c326ca85735dfbc3ac4?Expires=1724630400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Ywf7lhhrX-Dfv97W6-7Wd5AZp-tjf8pBQuI3pDVZvxwFZjIPisMqUlX3R1ml7kX~dncLcHAhA8Mm6RU4n5qmdhNPw2sMgovqG-OdkkuGbG7RHWqj5N3Bhi4s~FHBeFdWYkEB7tThjASJzdH26m9~BJ9WXeh3SA6kR3Incr0XV9A-PrjNW-33HVQuCX3NZCsae-V~sdMWZ~NiuldBEcRsleL1QJjimOsjZCzxToYeRheXofEuGpISttge5ykWV2vt1pSzvBn~HSlc0Kelu1ScxtNpzhxyS~CnxcxJ-LRv4QnucTjjwmlEwbt~XeUSUtGY-4UpsK5uiBXwFYPJrwCz3A__',
-                'category' => 'Pocket Rockid - Freebase',
-            ],
-        ],
-        '3' => [
-            [
-                'name' => 'Electra Quinn',
-                'image' =>
-                    'https://s3-alpha-sig.figma.com/img/bf28/5f1c/6c1daf23e05e6b14117c36d5f53f6392?Expires=1724630400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=QCSmIMjKYrD1q35nhjp6rs2ymEMZoOStDLRhsBHuQE9cwey4DkMeSGM-cowRmscjGbICuPKgXWcUCpRaEpg8KLl1UFG9bWKPMFTy7oeSqJNJ2t05qVIwx-zIpvTok3Gz0xJkDhSQYdoBf05fD-EUeV6HJMeod9KCDuBEntWpVtSc~7kcjJ3CGAAqXVF5Veedzs9i0QURpZYCeGZIDPUsIwW1t6w7hoUvPz8RjhheyIqInl21V9gP9axr7O2-eFoy-sh2qetYigIDibqT-SAukbmTiBzBrFc7s1VtQEzvZYy9Co7xo5GSRg7Nl790~l8BeNcofJAKGbzKVoNe9~Ullg__',
-                'category' => 'Creme & Crime - Freebase',
-            ],
-            [
-                'name' => 'Orion Shadow',
-                'image' =>
-                    'https://s3-alpha-sig.figma.com/img/bee3/9dec/ae969537ba3cdb886aa034363c331ff4?Expires=1724630400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=c6X6~jKUZJdXTHw4jcNO0XeM41HNO9jBKhCJ-gdM5mFmzkRh6VyYQPYcvwmag1cqLL~5RGxoH-LsIieQv1bw07tl0yYINeB1wcXwIFA10xOnDB2jfZj2sJpO45k8ZMhidaz-tv7J1rMvR5X8MSUw6MGz2F2VHeJHe0v4B9a8yZzWXwhhXK0thzrs3EyiSuez2vTh65EAK~cVpi6W9eB~tOtHCyFLT7BV-X~7x1TMvG1~uXdhgHUhxWnKEAXQGaOcAdPZ0INSBj9skH30sU6Xc2M6IeN1wPe7fwBp6JMHuu~TNWvhYIvb5EBQCmLu4bWLx6DWEUDMP4iPWvcoKp8cTQ__',
-                'category' => 'Creme & Crime - Freebase',
-            ],
-            [
-                'name' => 'Cospic Strawberry Fizz',
-                'image' =>
-                    'https://s3-alpha-sig.figma.com/img/f269/eeb5/e4d6dee3cfc2a4f04c1725e8450c720f?Expires=1724630400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=QskngmfQyktG1wWvpjIz70TiZUuhl1lmzZjWZepNGS99QkyWg7kSflhrWnVXan7CVWlMwq-wqAxLTwe2hGkhued6kKOCYz0209vAhpnWAMs8T4fhJB6g7zryalbanTCCLXtrD7OHX0tTnvDX5K33IkCzZCTHmUJLbhcQl86ZW0eV0nigkm7E0Y6mGqli7U0rhJ9LC87-Eb8KopbfJLRVSEhmeNAkEWzcNHZl33ssHZCt-qP4pvfIABkI0E5gHCId-df3Mh4Jgy6DKgq7oWdopyZvG7QCwpYnIlo9PyHxaxUJgp56TmW-fNEGQySiXwZMwg~ImPs4anltVe2XLGGfmA__',
-                'category' => 'Pocket Rockid - Freebase',
-            ],
-            [
-                'name' => 'Banana Space Cream',
-                'image' =>
-                    'https://s3-alpha-sig.figma.com/img/483c/2c99/d08b33d1c0ff0c326ca85735dfbc3ac4?Expires=1724630400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Ywf7lhhrX-Dfv97W6-7Wd5AZp-tjf8pBQuI3pDVZvxwFZjIPisMqUlX3R1ml7kX~dncLcHAhA8Mm6RU4n5qmdhNPw2sMgovqG-OdkkuGbG7RHWqj5N3Bhi4s~FHBeFdWYkEB7tThjASJzdH26m9~BJ9WXeh3SA6kR3Incr0XV9A-PrjNW-33HVQuCX3NZCsae-V~sdMWZ~NiuldBEcRsleL1QJjimOsjZCzxToYeRheXofEuGpISttge5ykWV2vt1pSzvBn~HSlc0Kelu1ScxtNpzhxyS~CnxcxJ-LRv4QnucTjjwmlEwbt~XeUSUtGY-4UpsK5uiBXwFYPJrwCz3A__',
-                'category' => 'Pocket Rockid - Freebase',
-            ],
-        ],
-    ];
+    $nonCollaborationProductChunks = $nonCollaborationProducts->chunk(4);
+    $collaborationProductChunks = $collaborationProducts->chunk(4);
 @endphp
 
 @extends('layouts.frontend.main')
@@ -264,19 +88,23 @@
 
                 <div id="carouselProduct" class="carousel slide">
                     <div class="carousel-inner">
-                        @foreach ($products as $no => $product)
-                            <div class="carousel-item carousel-item-product {{ $loop->index == 0 ? 'active' : '' }}">
+                        @foreach ($nonCollaborationProductChunks as $index => $nonCollaborationProductChunk)
+                            <div class="carousel-item carousel-item-product {{ $index == 0 ? 'active' : '' }}">
                                 <div class="d-flex align-items-center justify-content-around flex-nowrap gap-2 gap-md-3">
-                                    @foreach ($product as $item)
-                                        <a href="{{ Route('pages.frontend.product.detail', $item['name']) }}"
+                                    @foreach ($nonCollaborationProducts as $nonCollaborationProduct)
+                                        <a href="{{ Route('pages.frontend.product.detail', $nonCollaborationProduct->slug) }}"
                                             class="border rounded-4 overflow-hidden card-product-item position-relative d-flex align-items-center justify-content-center shadow-sm">
-                                            <img src="{{ $item['image'] }}" alt="{{ $item['name'] }}"
+                                            <img src="{{ asset('storage/' . $nonCollaborationProduct->images->first()->image_path) }}"
+                                                alt="{{ $nonCollaborationProduct->name }}"
                                                 class="img-fluid transition-all">
                                             <div
                                                 class="bg-body-secondary text-secondary position-absolute bottom-0 w-full p-3">
-                                                <h3 class="product-title fw-semibold m-0 text-truncate">{{ $item['name'] }}
+                                                <h3 class="product-title fw-semibold m-0 text-truncate">
+                                                    {{ $nonCollaborationProduct->name }}
                                                 </h3>
-                                                <span class="d-block fs-7 text-truncate">{{ $item['category'] }}</span>
+                                                <span
+                                                    class="d-block fs-7 text-truncate">{{ $nonCollaborationProduct->productCategory->name }}
+                                                    {{ $nonCollaborationProduct->variants->first() ? ' - ' . $nonCollaborationProduct->variants->first()->name : '' }}</span>
                                             </div>
                                         </a>
                                     @endforeach
@@ -340,19 +168,21 @@
 
                 <div id="carouselProductCollaboration" class="carousel slide">
                     <div class="carousel-inner">
-                        @foreach ($products_collaborations as $no => $product)
-                            <div class="carousel-item carousel-item-product {{ $loop->index == 0 ? 'active' : '' }}">
+                        @foreach ($collaborationProductChunks as $index => $collaborationProductChunk)
+                            <div class="carousel-item carousel-item-product {{ $index == 0 ? 'active' : '' }}">
                                 <div class="d-flex align-items-center justify-content-around flex-nowrap gap-2 gap-md-3">
-                                    @foreach ($product as $item)
-                                        <a href="{{ Route('pages.frontend.product.detail', $item['name']) }}"
+                                    @foreach ($collaborationProducts as $collaborationProduct)
+                                        <a href="{{ Route('pages.frontend.product.detail', $collaborationProduct->slug) }}"
                                             class="border rounded-4 overflow-hidden card-product-item position-relative d-flex align-items-center justify-content-center shadow-sm">
-                                            <img src="{{ $item['image'] }}" alt="{{ $item['name'] }}"
-                                                class="img-fluid transition-all">
+                                            <img src="{{ asset('storage/' . $collaborationProduct->images->first()->image_path) }}"
+                                                alt="{{ $collaborationProduct->name }}" class="img-fluid transition-all">
                                             <div
                                                 class="bg-body-secondary text-secondary position-absolute bottom-0 w-full p-3">
                                                 <h3 class="product-title fw-semibold m-0 text-truncate">
-                                                    {{ $item['name'] }}</h3>
-                                                <span class="d-block fs-7 text-truncate">{{ $item['category'] }}</span>
+                                                    {{ $collaborationProduct->name }}</h3>
+                                                <span
+                                                    class="d-block fs-7 text-truncate">{{ $collaborationProduct->productCategory->name }}
+                                                    {{ $collaborationProduct->variants->first() ? ' - ' . $collaborationProduct->variants->first()->name : '' }}</span>
                                             </div>
                                         </a>
                                     @endforeach
