@@ -13,56 +13,39 @@ class HeroBannerSeeder extends Seeder
      */
     public function run(): void
     {
-        $imageBaseURL = 'images/products/';
+        $imageBaseURL = 'images/hero_banners/';
 
         $heroBanners = [
             [
                 "id" => "1",
-                "name" => "idcard.png",
+                "name" => "1.png",
                 "tagline" => "Test 1",
                 "tagline_description" => "Test 1",
+                "is_for_product_page" => "1",
                 "media_type" => "photo",
-                "media_path" => $imageBaseURL . "idcard.png",
+                "media_path" => $imageBaseURL . "1.png",
                 "is_active" => 1,
                 "is_priority" => 1,
             ],
             [
                 "id" => "2",
-                "name" => "liquid.png",
+                "name" => "2.png",
                 "tagline" => "Test 2",
                 "tagline_description" => "Test 2",
+                "is_for_product_page" => "1",
                 "media_type" => "photo",
-                "media_path" => $imageBaseURL . "liquid.png",
+                "media_path" => $imageBaseURL . "2.png",
                 "is_active" => 1,
                 "is_priority" => 1,
             ],
             [
                 "id" => "3",
-                "name" => "totebag.png",
+                "name" => "3.png",
                 "tagline" => "Test 3",
+                "is_for_product_page" => "1",
                 "tagline_description" => "Test 3",
                 "media_type" => "photo",
-                "media_path" => $imageBaseURL . "totebag.png",
-                "is_active" => 1,
-                "is_priority" => 1,
-            ],
-            [
-                "id" => "4",
-                "name" => "tumbler.png",
-                "tagline" => "Test 4",
-                "tagline_description" => "Test 4",
-                "media_type" => "photo",
-                "media_path" => $imageBaseURL . "tumbler.png",
-                "is_active" => 1,
-                "is_priority" => 1,
-            ],
-            [
-                "id" => "5",
-                "name" => "varsity.png",
-                "tagline" => "Test 5",
-                "tagline_description" => "Test 5",
-                "media_type" => "photo",
-                "media_path" => $imageBaseURL . "varsity.png",
+                "media_path" => $imageBaseURL . "3.png",
                 "is_active" => 1,
                 "is_priority" => 1,
             ],

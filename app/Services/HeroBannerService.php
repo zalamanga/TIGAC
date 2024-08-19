@@ -31,7 +31,7 @@ class HeroBannerService
 
     public function createHeroBanner($requestHeroBannerData)
     {
-        $mediaPath = $requestHeroBannerData['media']->store('images/products', 'public');
+        $mediaPath = $requestHeroBannerData['media']->store('images/hero_banners', 'public');
 
         $heroBannerData = [
             'name' => $requestHeroBannerData['name'],
@@ -57,7 +57,7 @@ class HeroBannerService
                 Storage::disk('public')->delete($heroBanner->media_path);
             }
 
-            $newMediaPath = $heroBannerData['media']->store('images/products', 'public');
+            $newMediaPath = $heroBannerData['media']->store('images/hero_banners', 'public');
 
             $heroBannerData = [
                 'name' => $heroBannerData['name'],

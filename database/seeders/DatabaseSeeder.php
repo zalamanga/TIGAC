@@ -24,12 +24,12 @@ class DatabaseSeeder extends Seeder
             'password' => static::$password ??= Hash::make('admin123'),
         ]);
 
-        // $this->call([
-        //     MasterpieceSeeder::class,
-        //     ProductCategorySeeder::class,
-        //     VariantSeeder::class,
-        //     ProductSeeder::class,
-        //     HeroBannerSeeder::class
-        // ]);
+        $this->call([
+            MasterpieceSeeder::class,
+            ProductCategorySeeder::class,
+            VariantSeeder::class,
+            ProductSeeder::class,
+            HeroBannerSeeder::class
+        ]);
     }
 }
