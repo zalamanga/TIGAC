@@ -29,6 +29,17 @@ class PartnershipController extends Controller
         return $dataTable->render('pages.admin.partnership.index', $data);
     }
 
+    public function frontEndPage()
+    {
+        $partnerships = $this->partnershipService->getAllPartnerships();
+
+        $data = [
+            'partnerships' => $partnerships
+        ];
+
+        return view('pages.frontend.partnership', $data);
+    }
+
     public function create()
     {
         $title = 'Add New Partnership';

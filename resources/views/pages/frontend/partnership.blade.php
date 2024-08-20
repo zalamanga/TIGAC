@@ -1,42 +1,5 @@
 @php
-    $partnerships = [
-        [
-            'name' => 'logo-vb',
-            'image' => 'logo-vb.png',
-        ],
-        [
-            'name' => 'logo-vapeboss',
-            'image' => 'logo-vapeboss.png',
-        ],
-        [
-            'name' => 'logo-ejvape',
-            'image' => 'logo-ejvape.png',
-        ],
-        [
-            'name' => 'logo-vapeon',
-            'image' => 'logo-vapeon.png',
-        ],
-        [
-            'name' => 'logo-tom',
-            'image' => 'logo-tom.png',
-        ],
-        [
-            'name' => 'logo-vb2',
-            'image' => 'logo-vb2.png',
-        ],
-        [
-            'name' => 'logo-cmw',
-            'image' => 'logo-cmw.png',
-        ],
-        [
-            'name' => 'logo-vaporking',
-            'image' => 'logo-vaporking.png',
-        ],
-        [
-            'name' => 'logo-cloudvaping',
-            'image' => 'logo-cloudvaping.png',
-        ],
-    ];
+
 @endphp
 
 @extends('layouts.frontend.main')
@@ -55,8 +18,8 @@
                 @foreach ($partnerships as $partnership)
                     <div
                         class="card-partnership-item d-flex align-items-center justify-content-center overflow-hidden p-2 p-md-4">
-                        <img src="{{ asset('images/new/partnership') . '/' . $partnership['image'] }}"
-                            alt="{{ $partnership['name'] }}" class="img-fluid w-full h-full object-fit-contain">
+                        <img src="{{ file_exists(public_path('storage/' . $partnership->logo)) ? asset('storage/' . $partnership->logo) : asset('images/new/partnership') . '/' . $partnership->name . '.png' }}"
+                            alt="{{ $partnership->name }}" class="img-fluid w-full h-full object-fit-contain">
                     </div>
                 @endforeach
             </div>
