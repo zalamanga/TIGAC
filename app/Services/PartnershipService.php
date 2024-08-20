@@ -19,6 +19,11 @@ class PartnershipService
         return $this->partnershipRepositoryInterface->getPartnership($partnershipId);
     }
 
+    public function getAllPartnerships()
+    {
+        return $this->partnershipRepositoryInterface->getAllPartnerships();
+    }
+
     public function createPartnership($requestPartnershipData)
     {
         $logoPath = $requestPartnershipData['logo']->store('images/partnership_logo', 'public');

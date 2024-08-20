@@ -11,14 +11,22 @@ class PartnershipRepository implements PartnershipRepositoryInterface
     {
         return Partnership::where('id', $partnershipId)->first();
     }
+
+    public function getAllPartnerships()
+    {
+        return Partnership::all();
+    }
+
     public function deletePartnership($partnership)
     {
         return $partnership->delete();
     }
+
     public function createPartnership($partnershipData)
     {
         return Partnership::create($partnershipData);
     }
+
     public function updatePartnership($partnershipUpdateData, $partnership)
     {
         return $partnership->update($partnershipUpdateData);
