@@ -95,7 +95,7 @@
                                     <a href="{{ route('admin.masterpieces.edit', $masterpiece->id) }}"
                                         class="btn btn-primary me-1 mb-1">Edit</a>
                                     <button type="reset" class="btn btn-light me-1 mb-1">Reset</button>
-                                    <a href="{{ route('admin.product.product-variant.index') }}"
+                                    <a href="{{ route('admin.masterpieces.index') }}"
                                         class="btn btn-light-secondary me-1 mb-1">Back</a>
                                 </div>
                             @else
@@ -111,7 +111,7 @@
                                 <div class="col-12 d-flex justify-content-end">
                                     <button type="submit" class="btn btn-primary me-1 mb-1">Submit</button>
                                     <button type="reset" class="btn btn-light me-1 mb-1">Reset</button>
-                                    <a href="{{ route('admin.product.product-variant.index') }}"
+                                    <a href="{{ route('admin.masterpieces.index') }}"
                                         class="btn btn-light-secondary me-1 mb-1">Back</a>
                                 </div>
                             @endif
