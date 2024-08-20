@@ -11,18 +11,26 @@ class ContactRepository implements ContactRepositoryInterface
     {
         return Contact::where('id', $contactId)->first();
     }
+
     public function deleteContact($contactId)
     {
         $contact = $this->getContact($contactId);
 
         return $contact->delete();
     }
+
     public function createContact($contactData)
     {
         return Contact::create($contactData);
     }
+
     public function updateContact($contactUpdateData, $contact)
     {
         return $contact->update($contactUpdateData);
+    }
+
+    public function getAllContacts()
+    {
+        return Contact::all();
     }
 }

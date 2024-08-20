@@ -54,7 +54,6 @@ class ContactDataTable extends DataTable
     {
         return [
             Column::computed('DT_RowIndex')->title('No')->orderable(false)->searchable(false),
-            Column::make('id'),
             Column::make('name'),
             Column::make('link'),
             Column::make('action'),

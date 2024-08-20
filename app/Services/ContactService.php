@@ -19,6 +19,11 @@ class ContactService
         return $this->contactRepositoryInterface->getContact($contactId);
     }
 
+    public function getAllContacts()
+    {
+        return $this->contactRepositoryInterface->getAllContacts();
+    }
+
     public function createContact($requestContactData)
     {
         $logoPath = $requestContactData['logo']->store('images/contact_logo', 'public');
