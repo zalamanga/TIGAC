@@ -28,6 +28,17 @@ class NewsletterController extends Controller
         return $dataTable->render('pages.admin.newsletter.index', $data);
     }
 
+    public function frontEndPage()
+    {
+        $newsletters = $this->newsletterService->getActiveNewsletters();
+
+        $data = [
+            'newsletters' => $newsletters
+        ];
+
+        return view('pages.frontend.newsletter', $data);
+    }
+
     public function create()
     {
         $title = "Create New Newsletter";
