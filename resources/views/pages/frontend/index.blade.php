@@ -1,25 +1,6 @@
 @php
     $videoUrl =
         'https://s3-figma-videos-production-sig.figma.com/video/1377240793861400146/TEAM/21ed/4f21/-0976-456b-83fc-01bd435a3264?Expires=1724630400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=oF6yT6m4lUEZ4USosBVA6MxjLMv5oBdNrrMBP6qgs429qadQag6QZ0~Wb0q9n3Uj5J8bkvft3~YaqlqaRTzpUxXAwUhM~Uj4rDIhmLDMsCk7t7YN3mMAVNqk1iM6nd6vA20cp4FqRYnRtgEFKgA3ugdOD1Iq~T9TXzZgmr8LiaRLwkZMbCkTKxTp7GnTJUk4Xi772LuStqnNoo9vcvgw~WefwezqclfIBit~7eWKl2Fn6Qu2N6EHnP7yeDnUoVsn~mx~ERuqKjrcK0mZEU~GitRMYAIJ~yyBbtACIfZ8JT0j2JsSHZozCMEK30k5EHmStbRyaOs-DA7uTe~6bv6knw__';
-
-    $cards = [
-        [
-            'title' => 'Tigac Saltnic Series',
-            'src' => asset('images/new/masterpiece 1.png'),
-        ],
-        [
-            'title' => 'Tigac Saltnic Series',
-            'src' => asset('images/new/masterpiece 2.png'),
-        ],
-        [
-            'title' => 'Tigac STIG',
-            'src' => asset('images/new/masterpiece 3.png'),
-        ],
-        [
-            'title' => 'Tigac Saltnic Series',
-            'src' => asset('images/new/masterpiece 2.png'),
-        ],
-    ];
 @endphp
 
 @extends('layouts.frontend.main')
@@ -87,7 +68,8 @@
 
     {{-- section 3 start --}}
     <section class="bg-white w-full container-fluid py-5 overflow-hidden">
-        <div class="row flex-column flex-md-row align-items-center justify-content-between gap-3 gap-md-0 container-masterpiece">
+        <div
+            class="row flex-column flex-md-row align-items-center justify-content-between gap-3 gap-md-0 container-masterpiece">
             <div class="col col-md-5 col-lg-4 h-full d-flex flex-column justify-content-center"
                 style="height: 80vh !important">
                 <h1 class="display-4 fw-semibold" style="line-height: 1em;">Our Masterpiece</h1>
@@ -118,12 +100,14 @@
             <div class="col col-md-7 col-lg-8 position-relative" style="z-index: 2; ">
                 <div id="masterpiece-container"
                     class="row align-items-center justify-content-start gap-3 flex-nowrap overflow-hidden px-2 px-md-0">
-                    @foreach ($cards as $card)
-                        <div class="col-3 p-0 position-relative rounded-4 overflow-hidden shadow card-masterpiece-item {{$loop->index === count($cards) - 1 ? 'me-3' : ''}}" >
-                            <img src="{{ $card['src'] }}" alt="{{ $card['title'] }}" class="img-fluid w-full h-full"
+                    @foreach ($masterpieceBanners as $masterpieceBanner)
+                        <div
+                            class="col-3 p-0 position-relative rounded-4 overflow-hidden shadow card-masterpiece-item {{ $loop->index === count($masterpieceBanners) - 1 ? 'me-3' : '' }}">
+                            <img src="{{ asset('storage/' . $masterpieceBanner->thumbnail) }}"
+                                alt="{{ $masterpieceBanner->name }}" class="img-fluid w-full h-full"
                                 style="object-fit: cover">
                             <div class="position-absolute bottom-0 px-3 pb-5">
-                                <h3 class="fw-semibold fs-5 text-white">{{ $card['title'] }}</h3>
+                                <h3 class="fw-semibold fs-5 text-white">{{ $masterpieceBanner->name }}</h3>
                                 <button
                                     class="btn btn-sm text-white p-0 fs-7 d-flex align-items-center justify-content-center gap-2">Learn
                                     more <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17"
@@ -201,7 +185,8 @@
                 <p class="text-white fs-4" style="max-width: 600px">Finding your inner value, because everyone is
                     precious.</p>
                 <div class="mt-4">
-                    <a href="{{Route('pages.frontend.consumer.program')}}" class="btn btn-lg btn-light d-inline-flex align-items-center justify-content-between gap-2"
+                    <a href="{{ Route('pages.frontend.consumer.program') }}"
+                        class="btn btn-lg btn-light d-inline-flex align-items-center justify-content-between gap-2"
                         style="min-width: 13rem; height: 3.5rem;">
                         <span class="fs-6">GAIN YOUR BENEFIT</span>
                         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 35 35"
