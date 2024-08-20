@@ -12,6 +12,11 @@ class NewsletterRepository implements NewsletterRepositoryInterface
         return Newsletter::where('id', $newsletterId)->first();
     }
 
+    public function getActiveNewsletters()
+    {
+        return Newsletter::where('is_active', true)->get();
+    }
+
     public function createNewsletter($requestNewsletterData)
     {
         return Newsletter::create($requestNewsletterData);

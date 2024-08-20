@@ -19,6 +19,11 @@ class NewsletterService
         return $this->newsletterRepositoryInterface->getNewsletterById($newsletterId);
     }
 
+    public function getActiveNewsletters()
+    {
+        return $this->newsletterRepositoryInterface->getActiveNewsletters();
+    }
+
     public function createNewsletter($requestNewsletterData)
     {
         $thumbnailPath = $requestNewsletterData['thumbnail']->store('images/newsletters', 'public');
