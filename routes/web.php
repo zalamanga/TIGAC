@@ -4,6 +4,7 @@ use App\Http\Controllers\ProductVariantController;
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HeroBannerController;
+use App\Http\Controllers\HomePageController;
 use App\Http\Controllers\MasterpieceController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\PartnershipController;
@@ -73,9 +74,7 @@ Route::get('/qr', function () {
 // New FRONTEND
 
 Route::name('pages.frontend.')->group(function () {
-    Route::get('/', function () {
-        return view('pages.frontend.index');
-    })->name('index');
+    Route::get('/', [HomePageController::class, 'index'])->name('index');
     Route::get('/product', [ProductController::class, 'frontEndPage'])->name('product');
     Route::get('/program', function () {
         return view('pages.frontend.program');

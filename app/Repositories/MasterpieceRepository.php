@@ -27,4 +27,9 @@ class MasterpieceRepository implements MasterpieceRepositoryInterface
 
         return $masterpiece->delete();
     }
+
+    public function getActiveMasterpiece()
+    {
+        return Masterpiece::where('is_active', true)->get();
+    }
 }

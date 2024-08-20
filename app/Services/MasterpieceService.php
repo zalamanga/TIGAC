@@ -66,4 +66,9 @@ class MasterpieceService
     {
         return $this->masterpieceRepositoryInterface->deleteMasterpiece($masterpieceId);
     }
+
+    public function getActiveMasterpiece()
+    {
+        return $this->masterpieceRepositoryInterface->getActiveMasterpiece();
+    }
 }
