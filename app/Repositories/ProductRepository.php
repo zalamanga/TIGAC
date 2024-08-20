@@ -73,8 +73,6 @@ class ProductRepository implements ProductRepositoryInterface
 
         if (Storage::disk('public')->exists($productImage->image_path)) {
             Storage::disk('public')->delete($productImage->image_path);
-        } else {
-            return 'file not exists';
         }
 
         return $productImage->delete();
