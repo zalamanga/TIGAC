@@ -26,7 +26,7 @@ class PartnershipService
 
     public function createPartnership($requestPartnershipData)
     {
-        $logoPath = $requestPartnershipData['logo']->store('images/partnership_logo', 'public');
+        $logoPath = $requestPartnershipData['logo']->store();
 
         $partnershipData = [
             'name' => $requestPartnershipData['name'],
@@ -43,15 +43,13 @@ class PartnershipService
     {
         $partnership = $this->getPartnership($partnershipId);
 
-        // dd($partnershipUpdateData);
-
         // handle image input
         if (array_key_exists('logo', $partnershipUpdateData)) {
             if (Storage::disk('public')->exists($partnership->logo)) {
                 Storage::disk('public')->delete($partnership->logo);
             }
 
-            $newLogoPath = $partnershipUpdateData['logo']->store('images/partnership_logo', 'public');
+            $newLogoPath = $partnershipUpdateData['logo']->store();
 
             $partnershipData = [
                 'name' => $partnershipUpdateData['name'],

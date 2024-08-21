@@ -26,7 +26,7 @@ class ContactService
 
     public function createContact($requestContactData)
     {
-        $logoPath = $requestContactData['logo']->store('images/contact_logo', 'public');
+        $logoPath = $requestContactData['logo']->store();
 
         $contactData = [
             'name' => $requestContactData['name'],
@@ -45,7 +45,7 @@ class ContactService
                 Storage::disk('public')->delete($contact->logo);
             }
 
-            $newLogoPath = $requestUpdateContact['logo']->store('images/contact_logo', 'public');
+            $newLogoPath = $requestUpdateContact['logo']->store();
 
             $updateContactData = [
                 'name' => $requestUpdateContact['name'],

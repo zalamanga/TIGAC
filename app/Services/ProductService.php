@@ -57,7 +57,7 @@ class ProductService
             // handle image input
             if (array_key_exists('images', $requestProductData)) {
                 foreach ($requestProductData['images'] as $index => $imageFile) {
-                    $imagePath = $imageFile->store('images/products', 'public');
+                    $imagePath = $imageFile->store();
 
                     $imageData = [
                         'image_path' => $imagePath,
@@ -110,7 +110,7 @@ class ProductService
         // handle image input
         if (array_key_exists('images', $requestProductData)) {
             foreach ($requestProductData['images'] as $index => $imageFile) {
-                $imagePath = $imageFile->store('images/products', 'public');
+                $imagePath = $imageFile->store();
 
                 $imageData = [
                     'image_path' => $imagePath,

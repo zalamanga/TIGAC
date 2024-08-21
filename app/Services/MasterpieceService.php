@@ -21,7 +21,7 @@ class MasterpieceService
 
     public function createMasterpiece($masterpieceRequestData)
     {
-        $thumbnailPath = $masterpieceRequestData['thumbnail']->store('images/masterpiece_thumbnail', 'public');
+        $thumbnailPath = $masterpieceRequestData['thumbnail']->store();
 
         $masterpieceData = [
             'name' => $masterpieceRequestData['name'],
@@ -41,7 +41,7 @@ class MasterpieceService
                 Storage::disk('public')->delete($masterpiece->thumbnail);
             }
 
-            $newThumbnailPath = $masterpieceUpdateData['thumbnail']->store('images/masterpiece_thumbnail', 'public');
+            $newThumbnailPath = $masterpieceUpdateData['thumbnail']->store();
 
             $masterpieceData = [
                 'name' => $masterpieceUpdateData['name'],

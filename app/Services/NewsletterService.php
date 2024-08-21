@@ -26,7 +26,7 @@ class NewsletterService
 
     public function createNewsletter($requestNewsletterData)
     {
-        $thumbnailPath = $requestNewsletterData['thumbnail']->store('images/newsletters', 'public');
+        $thumbnailPath = $requestNewsletterData['thumbnail']->store();
 
         $newsletterData = [
             'title' => $requestNewsletterData['title'],
@@ -65,7 +65,7 @@ class NewsletterService
                 Storage::disk('public')->delete($newsletter->thumbnail);
             }
 
-            $newMediaPath = $newsletterUpdateData['thumbnail']->store('images/newsletter_thumbnail', 'public');
+            $newMediaPath = $newsletterUpdateData['thumbnail']->store();
 
             // Composer newsletter data
             $newsletterData = [
