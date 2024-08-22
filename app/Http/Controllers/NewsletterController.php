@@ -99,7 +99,7 @@ class NewsletterController extends Controller
 
     public function newsletterUploadImage(Request $request)
     {
-        $imgpath = $request->file('file')->store('images/newsletter_contents', 'public');
+        $imgpath = $request->file('file')->store();
         return response()->json(['location' => "/storage/$imgpath"]);
     }
 }
