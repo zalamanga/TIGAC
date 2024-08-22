@@ -79,7 +79,9 @@ Route::name('pages.frontend.')->group(function () {
     Route::get('/program', function () {
         return view('pages.frontend.program');
     })->name('program');
-    Route::get('/discover', [HomePageController::class, 'index'])->name('discover');
+    Route::get('/discover', function () {
+        return view('pages.frontend.about');
+    })->name('discover');
     Route::get('/vaporistar', function () {
         return view('pages.frontend.vaporistar');
     })->name('vaporistar');
