@@ -78,7 +78,7 @@ Route::name('pages.frontend.')->group(function () {
     Route::get('/', [HomePageController::class, 'index'])->name('index');
     Route::get('/product', [ProductController::class, 'frontEndPage'])->name('product');
     Route::get('/program', [ProgramController::class, 'frontEndPage'])->name('program');
-    Route::post('/program', [ProgramController::class, 'stpre']);
+    Route::post('/program', [ProgramController::class, 'store'])->name('program.store');
     Route::get('/discover', function () {
         return view('pages.frontend.about');
     })->name('discover');
