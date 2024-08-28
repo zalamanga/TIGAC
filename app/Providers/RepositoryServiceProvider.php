@@ -10,7 +10,9 @@ use App\Contracts\PartnershipRepositoryInterface;
 use App\Contracts\ProductCategoryRepositoryInterface;
 use App\Contracts\ProductRepositoryInterface;
 use App\Contracts\ProductVariantRepositoryInterface;
+use App\Contracts\ProgramRepositoryInterface;
 use App\Contracts\UserRepositoryInterface;
+use App\Models\Program;
 use App\Repositories\ContactRepository;
 use App\Repositories\HeroBannerRepository;
 use App\Repositories\MasterpieceRepository;
@@ -19,6 +21,7 @@ use App\Repositories\PartnershipRepository;
 use App\Repositories\ProductCategoryRepository;
 use App\Repositories\ProductRepository;
 use App\Repositories\ProductVariantRepository;
+use App\Repositories\ProgramRepository;
 use App\Repositories\UserRepository;
 use App\Services\ContactService;
 use App\Services\HeroBannerService;
@@ -28,6 +31,7 @@ use App\Services\PartnershipService;
 use App\Services\ProductCategoryService;
 use App\Services\ProductService;
 use App\Services\ProductVariantService;
+use App\Services\ProgramService;
 use App\Services\UserService;
 use Illuminate\Support\ServiceProvider;
 
@@ -90,6 +94,12 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(MasterpieceRepositoryInterface::class, MasterpieceRepository::class);
         $this->app->bind(MasterpieceService::class, function ($app) {
             return new MasterpieceService($app->make(MasterpieceRepositoryInterface::class));
+        });
+
+        // Program
+        $this->app->bind(ProgramRepositoryInterface::class, ProgramRepository::class);
+        $this->app->bind(ProgramService::class, function ($app) {
+            return new ProgramService($app->make(ProgramRepositoryInterface::class));
         });
     }
 

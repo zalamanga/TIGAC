@@ -11,6 +11,7 @@ use App\Http\Controllers\PartnershipController;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProgramController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -76,9 +77,8 @@ Route::get('/qr', function () {
 Route::name('pages.frontend.')->group(function () {
     Route::get('/', [HomePageController::class, 'index'])->name('index');
     Route::get('/product', [ProductController::class, 'frontEndPage'])->name('product');
-    Route::get('/program', function () {
-        return view('pages.frontend.program');
-    })->name('program');
+    Route::get('/program', [ProgramController::class, 'frontEndPage'])->name('program');
+    Route::post('/program', [ProgramController::class, 'stpre']);
     Route::get('/discover', function () {
         return view('pages.frontend.about');
     })->name('discover');
