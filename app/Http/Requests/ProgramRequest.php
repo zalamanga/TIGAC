@@ -2,7 +2,10 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ProgramRequest extends FormRequest
 {
@@ -23,10 +26,22 @@ class ProgramRequest extends FormRequest
     {
         return [
             'pic' => 'required|max:100',
-            'store_name' => 'required|max:100',
-            'phone_number' => 'required|max:100|numeric',
+            'store_name' => 'required|max:100|unique:programs,store_name',
+            'phone_number' => 'required|max_digits:20|numeric',
             'email' => 'required|max:100|email',
             'address' => 'required',
         ];
+    }
+
+    protected function failedValidation(Validator $validator)
+    {
+        Alert::error('Error', 'Failed Register to Program, Please Check Register Form Below');
+
+        throw new HttpResponseException(
+            redirect()
+                ->route('pages.frontend.program')
+                ->withErrors($validator)
+                ->withInput()
+        );
     }
 }
