@@ -14,6 +14,11 @@ return new class extends Migration
         Schema::create('programs', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->string('pic', 100)->require()->unique();
+            $table->string('store_name', 100)->require()->unique();
+            $table->string('phone_number', 20)->require();
+            $table->string('email', 100)->require();
+            $table->text('address')->require();
         });
     }
 
