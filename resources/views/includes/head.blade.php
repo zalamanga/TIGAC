@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
 
     {{-- Global css --}}
+    <link rel=”stylesheet” href=" https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">
     <link rel="stylesheet" href="{{ asset('css/global.css') }}">
     <link rel="stylesheet" href="{{ asset('css/new-global.css') }}">
 

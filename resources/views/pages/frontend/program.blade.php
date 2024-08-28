@@ -18,29 +18,46 @@
                 and complete transparency. Partner
                 with us now and seet the difference!
             </p>
-            <form action="" class="pb-5">
+            <form action="{{ route('pages.frontend.program.store') }}" class="pb-5" method="POST"
+                enctype="multipart/form-data">
+                @csrf
                 <h3 class="mb-3 fw-semibold fs-3 text-black">Contact Us for More Detail</h3>
                 <div class="row justify-content-center align-items-center flex-column gap-3 mb-3">
                     <div class="col-10 col-md-8 col-lg-7 col-xl-5 ">
                         <input name="pic" type="text" class="form-control rounded-3 fs-7 bg-white"
                             style="height: 57px; border-radius: 10px;" placeholder="PIC NAME">
+                        @error('pic')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="col-10 col-md-8 col-lg-7 col-xl-5 ">
                         <input name="store_name" type="text" class="form-control rounded-3 fs-7 bg-white"
                             style="height: 57px; border-radius: 10px;" placeholder="STORE NAME">
+                        @error('store_name')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="col-10 col-md-8 col-lg-7 col-xl-5 ">
                         <input name="phone_number" type="text" inputmode="numeric"
                             class="form-control rounded-3 fs-7 bg-white" style="height: 57px; border-radius: 10px;"
                             placeholder="PHONE NUMBER">
+                        @error('phone_number')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="col-10 col-md-8 col-lg-7 col-xl-5 ">
                         <input name="email" type="email" class="form-control rounded-3 fs-7 bg-white"
                             style="height: 57px; border-radius: 10px;" placeholder="ENTER EMAIL">
+                        @error('email')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="col-10 col-md-8 col-lg-7 col-xl-5 ">
                         <input name="address" type="text" class="form-control rounded-3 fs-7 bg-white"
                             style="height: 57px; border-radius: 10px;" placeholder="ADDRESS">
+                        @error('address')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
                 <small class="text-danger text-center fw-semibold d-block mb-3">PROGRAM INI HANYA BERLAKU UNTUK TOKO VAPE
