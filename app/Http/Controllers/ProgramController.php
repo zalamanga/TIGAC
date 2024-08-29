@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\ProgramDataTable;
 use App\Http\Requests\ProgramRequest;
 use App\Services\ProgramService;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -18,6 +19,17 @@ class ProgramController extends Controller
     public function frontEndPage()
     {
         return view('pages.frontend.program');
+    }
+
+    public function index(ProgramDataTable $dataTable)
+    {
+        $title = 'Product Variant List';
+
+        $data = [
+            'title' => $title,
+        ];
+
+        return $dataTable->render("pages.admin.program.index", $data);
     }
 
     public function store(ProgramRequest $request)

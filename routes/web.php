@@ -148,5 +148,6 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('/partnerships', PartnershipController::class, ['as' => 'admin']);
         Route::resource('/contacts', ContactController::class, ['as' => 'admin']);
         Route::resource('/masterpieces', MasterpieceController::class, ['as' => 'admin']);
+        Route::resource('/programs', ProgramController::class, ['as' => 'admin']);
     });
 });

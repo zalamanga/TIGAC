@@ -118,6 +118,12 @@
                     </ul>
                 </li>
                 <li class="sidebar-item">
+                    <a href="{{ route('admin.programs.index') }}" class="sidebar-link">
+                        <i class="bi bi-newspaper"></i>
+                        <span>Program</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
                     <a href="{{ route('admin.newsletters.index') }}" class="sidebar-link">
                         <i class="bi bi-newspaper"></i>
                         <span>News</span>

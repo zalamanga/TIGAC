@@ -2,8 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\ProductVariant;
-use App\Models\Variant;
+use App\Models\Program;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -13,7 +12,7 @@ use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class ProductVariantDataTable extends DataTable
+class ProgramDataTable extends DataTable
 {
     /**
      * Build the DataTable class.
@@ -23,7 +22,7 @@ class ProductVariantDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', 'components.datatables.product-variant.action-button')
+            ->addColumn('action', 'components.datatables.program.action-button')
             ->addIndexColumn()
             ->rawColumns(['action'])
             ->setRowId('id');
@@ -32,7 +31,7 @@ class ProductVariantDataTable extends DataTable
     /**
      * Get the query source of dataTable.
      */
-    public function query(Variant $model): QueryBuilder
+    public function query(Program $model): QueryBuilder
     {
         return $model->newQuery();
     }
@@ -43,7 +42,7 @@ class ProductVariantDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-            ->setTableId('productvariant-table')
+            ->setTableId('program-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
             ->dom('lfrtip');
@@ -56,8 +55,10 @@ class ProductVariantDataTable extends DataTable
     {
         return [
             Column::computed('DT_RowIndex')->title('No')->orderable(false)->searchable(false),
-            Column::make('name'),
-            Column::make('description'),
+            Column::make('pic'),
+            Column::make('store_name'),
+            Column::make('email'),
+            Column::make('address'),
             Column::make('action'),
         ];
     }
@@ -67,6 +68,6 @@ class ProductVariantDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'ProductVariant_' . date('YmdHis');
+        return 'Program_' . date('YmdHis');
     }
 }
