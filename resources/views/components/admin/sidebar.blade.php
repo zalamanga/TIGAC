@@ -110,6 +110,10 @@
 
                     <ul class="submenu">
                         <li class="submenu-item">
+                            <a href="{{ route('admin.video-home-banners.index') }}" class="submenu-link">Video Home
+                                Banner</a>
+                        </li>
+                        <li class="submenu-item">
                             <a href="{{ route('admin.hero-banners.index') }}" class="submenu-link">Hero Banner</a>
                         </li>
                         <li class="submenu-item">

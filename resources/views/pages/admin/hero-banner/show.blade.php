@@ -26,7 +26,7 @@
                                 <x-input name="tagline" type="text" placeholder="Hero Banner Tagline"
                                     title="Hero Banner Tagline"
                                     class="{{ Route::is('admin.hero-banners.show') ? 'form-control-plaintext' : 'form-control' }}"
-                                    isRequired="true" value="{{ old('name', $heroBanner->tagline) }}">
+                                    isRequired="true" value="{{ old('tagline', $heroBanner->tagline) }}">
                                 </x-input>
                             </div>
                             <div class="col-12">

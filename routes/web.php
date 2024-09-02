@@ -12,6 +12,7 @@ use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProgramController;
+use App\Http\Controllers\VideoHomeBannerController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -149,5 +150,6 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('/contacts', ContactController::class, ['as' => 'admin']);
         Route::resource('/masterpieces', MasterpieceController::class, ['as' => 'admin']);
         Route::resource('/programs', ProgramController::class, ['as' => 'admin']);
+        Route::resource('/video-home-banners', VideoHomeBannerController::class, ['as' => 'admin']);
     });
 });

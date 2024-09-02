@@ -5,12 +5,10 @@ namespace App\Http\Controllers;
 use App\DataTables\ProductDataTable;
 use App\Http\Requests\ProductRequest;
 use App\Http\Requests\ProductUpdateRequest;
-use App\Models\Product;
 use App\Services\HeroBannerService;
 use App\Services\ProductCategoryService;
 use App\Services\ProductService;
 use App\Services\ProductVariantService;
-use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class ProductController extends Controller

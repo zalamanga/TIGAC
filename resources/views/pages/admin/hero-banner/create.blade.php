@@ -18,7 +18,7 @@
                             <div class="col-12">
                                 <x-input name="tagline" type="text" placeholder="Hero Banner Tagline"
                                     title="Hero Banner Tagline" class="form-control" isRequired="true"
-                                    value="{{ old('name') }}">
+                                    value="{{ old('tagline') }}">
                                 </x-input>
                             </div>
                             <div class="col-12">

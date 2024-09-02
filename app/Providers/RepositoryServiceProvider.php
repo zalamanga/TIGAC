@@ -12,7 +12,7 @@ use App\Contracts\ProductRepositoryInterface;
 use App\Contracts\ProductVariantRepositoryInterface;
 use App\Contracts\ProgramRepositoryInterface;
 use App\Contracts\UserRepositoryInterface;
-use App\Models\Program;
+use App\Contracts\VideoHomeBannerRepositoryInterface;
 use App\Repositories\ContactRepository;
 use App\Repositories\HeroBannerRepository;
 use App\Repositories\MasterpieceRepository;
@@ -23,6 +23,7 @@ use App\Repositories\ProductRepository;
 use App\Repositories\ProductVariantRepository;
 use App\Repositories\ProgramRepository;
 use App\Repositories\UserRepository;
+use App\Repositories\VideoHomeBannerRepository;
 use App\Services\ContactService;
 use App\Services\HeroBannerService;
 use App\Services\MasterpieceService;
@@ -33,6 +34,7 @@ use App\Services\ProductService;
 use App\Services\ProductVariantService;
 use App\Services\ProgramService;
 use App\Services\UserService;
+use App\Services\VideoHomeBannerService;
 use Illuminate\Support\ServiceProvider;
 
 class RepositoryServiceProvider extends ServiceProvider
@@ -100,6 +102,12 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(ProgramRepositoryInterface::class, ProgramRepository::class);
         $this->app->bind(ProgramService::class, function ($app) {
             return new ProgramService($app->make(ProgramRepositoryInterface::class));
+        });
+
+        // VideoHomeBanner
+        $this->app->bind(VideoHomeBannerRepositoryInterface::class, VideoHomeBannerRepository::class);
+        $this->app->bind(VideoHomeBannerService::class, function ($app) {
+            return new VideoHomeBannerService($app->make(VideoHomeBannerRepositoryInterface::class));
         });
     }
 
