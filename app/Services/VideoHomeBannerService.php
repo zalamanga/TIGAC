@@ -15,7 +15,7 @@ class VideoHomeBannerService
 
     public function getFirstVideoHomeBanner()
     {
-        $this->videoHomeBannerRepositoryInterface->getFirstVideoHomeBanner();
+        return $this->videoHomeBannerRepositoryInterface->getFirstVideoHomeBanner();
     }
 
     public function createVideoHomeBanner($requestVideoHomeBannerData)
