@@ -13,6 +13,11 @@ class VideoHomeBannerService
         $this->videoHomeBannerRepositoryInterface = $videoHomeBannerRepositoryInterface;
     }
 
+    public function getFirstVideoHomeBanner()
+    {
+        $this->videoHomeBannerRepositoryInterface->getFirstVideoHomeBanner();
+    }
+
     public function createVideoHomeBanner($requestVideoHomeBannerData)
     {
         if (array_key_exists('video', $requestVideoHomeBannerData)) {

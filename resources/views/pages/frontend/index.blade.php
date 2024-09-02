@@ -23,7 +23,9 @@
         {{-- <video src="{{ $videoUrl }}" autoplay loop muted class="img-fluid rounded-4"></video> --}}
 
         <video class="img-fluid rounded-4 video-product" controls autoplay loop>
-            <source src="{{ $videoUrl }}" type="video/mp4">
+            <source
+                src="{{ asset('storage/' . $videoHomeBanner->video_path) ? asset('storage/' . $videoHomeBanner->video_path) : $videoUrl }}"
+                type="video/mp4">
         </video>
     </section>
 

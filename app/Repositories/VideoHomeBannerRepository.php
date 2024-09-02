@@ -32,4 +32,9 @@ class VideoHomeBannerRepository implements VideoHomeBannerRepositoryInterface
 
         return $videoHomeBanner->delete();
     }
+
+    public function getFirstVideoHomeBanner()
+    {
+        return VideoHomeBanner::first();
+    }
 }
