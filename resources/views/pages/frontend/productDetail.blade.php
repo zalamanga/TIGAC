@@ -33,7 +33,8 @@
                 </div>
                 <button type="button" class="btn btn-lg btn-primary border-0 text-white"
                     style="min-width: 12.5rem; height: 3.5rem;">
-                    <span class="fs-5">Grab It Now</span>
+                    <span class="fs-5"><a href="{{ $product->product_external_link }}"
+                            class="text-reset text-decoration-none">Grab It Now</a></span>
                 </button>
             </div>
         </div>
