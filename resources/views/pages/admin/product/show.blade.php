@@ -30,6 +30,14 @@
                                 value="{{ $product ? ($product->sku ? $product->sku : '-') : old('sku') }}">
                             </x-input>
                         </div>
+                        <div class="col-12 col-lg-4">
+                            <x-input name="product_external_link" type="text" placeholder="Product External Link"
+                                title="Product External Link"
+                                class="{{ $product && Route::is('admin.products.show') ? 'form-control-plaintext' : 'form-control' }}"
+                                isRequired="false"
+                                value="{{ $product ? ($product->sku ? $product->sku : '-') : old('sku') }}">
+                            </x-input>
+                        </div>
                         <div class="col-4 lg-col-12">
                             <div class="form-group">
                                 <label for="product_category">Product Category <span class="text-danger">*</span></label>

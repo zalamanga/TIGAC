@@ -18,6 +18,12 @@
                             </x-input>
                         </div>
                         <div class="col-12 col-lg-4">
+                            <x-input name="product_external_link" type="text" placeholder="Product External Link"
+                                title="Product External Link" class="form-control" isRequired="false"
+                                value="{{ old('product_external_link') }}">
+                            </x-input>
+                        </div>
+                        <div class="col-12 col-lg-4">
                             <x-input name="sku" type="text" placeholder="Product SKU" title="SKU"
                                 class="form-control" isRequired="false" value="{{ old('sku') }}">
                             </x-input>
@@ -68,7 +74,7 @@
                                 <label for="discount_percent">Discount in Percent</label>
                                 <div class="input-group">
                                     <input type="number" max="100" class="form-control" name="discount_percent"
-                                        value="{{ old('discount_percent') }}">
+                                        value="{{ old('discount_percent') }}" placeholder="ex: 10">
                                     <span class="input-group-text">%</span>
                                     @error('discount_percent')
                                         <div class="text-danger">{{ $message }}</div>

@@ -49,7 +49,8 @@ class ProductService
                 'is_hot_item' => $requestProductData['is_hot_item'],
                 'is_device' => $requestProductData['is_device'],
                 'is_collaboration_project' => $requestProductData['is_collaboration_project'],
-                'stock' => $requestProductData['stock']
+                'stock' => $requestProductData['stock'],
+                'product_external_link' => $requestProductData['product_external_link'],
             ];
 
             $product = $this->productRepositoryInterface->createProduct($productData);
@@ -104,7 +105,8 @@ class ProductService
             'is_hot_item' => $requestProductData['is_hot_item'],
             'is_device' => $requestProductData['is_device'],
             'is_collaboration_project' => $requestProductData['is_collaboration_project'],
-            'stock' => $requestProductData['stock']
+            'stock' => $requestProductData['stock'],
+            'product_external_link' => $requestProductData['product_external_link'],
         ];
 
         // handle image input

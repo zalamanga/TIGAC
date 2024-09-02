@@ -42,7 +42,8 @@ class ProductUpdateRequest extends FormRequest
             'image_description' => 'nullable',
             'image_name.*' => 'nullable',
             'image_description.*' => 'nullable',
-            'product_variants' => 'nullable|array'
+            'product_variants' => 'nullable|array',
+            'product_external_link' => 'nullable',
         ];
     }
 

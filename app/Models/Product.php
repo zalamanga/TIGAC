@@ -22,7 +22,8 @@ class Product extends Model
         'is_active',
         'is_hot_item',
         'sku',
-        'product_category_id'
+        'product_category_id',
+        'product_external_link',
     ];
 
     public function setNameAttribute($value)

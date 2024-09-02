@@ -28,6 +28,7 @@ return new class extends Migration
             $table->string('is_hot_item', 1)->nullable();
             $table->integer('stock')->nullable();
             $table->string('volume')->nullable();
+            $table->string('product_external_link')->nullable();
 
             $table->foreign('product_category_id')->references('id')->on('product_categories')->onDelete('cascade');
         });
