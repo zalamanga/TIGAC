@@ -26,7 +26,7 @@ class ContactService
 
     public function createContact($requestContactData)
     {
-        $logoPath = $requestContactData['logo']->store();
+        $logoPath = $requestContactData['logo']->store('contact');
 
         $contactData = [
             'name' => $requestContactData['name'],

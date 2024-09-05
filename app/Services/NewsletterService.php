@@ -26,7 +26,7 @@ class NewsletterService
 
     public function createNewsletter($requestNewsletterData)
     {
-        $thumbnailPath = $requestNewsletterData['thumbnail']->store();
+        $thumbnailPath = $requestNewsletterData['thumbnail']->store('newsletter');
 
         $newsletterData = [
             'title' => $requestNewsletterData['title'],

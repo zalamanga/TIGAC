@@ -26,7 +26,7 @@ class PartnershipService
 
     public function createPartnership($requestPartnershipData)
     {
-        $logoPath = $requestPartnershipData['logo']->store();
+        $logoPath = $requestPartnershipData['logo']->store('partnership');
 
         $partnershipData = [
             'name' => $requestPartnershipData['name'],

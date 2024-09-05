@@ -31,7 +31,7 @@ class HeroBannerService
 
     public function createHeroBanner($requestHeroBannerData)
     {
-        $mediaPath = $requestHeroBannerData['media']->store();
+        $mediaPath = $requestHeroBannerData['media']->store('banner');
 
         $heroBannerData = [
             'name' => $requestHeroBannerData['name'],

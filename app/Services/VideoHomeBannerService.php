@@ -21,7 +21,7 @@ class VideoHomeBannerService
     public function createVideoHomeBanner($requestVideoHomeBannerData)
     {
         if (array_key_exists('video', $requestVideoHomeBannerData)) {
-            $videoPath = $requestVideoHomeBannerData['video']->store();
+            $videoPath = $requestVideoHomeBannerData['video']->store('video_banner');
 
             $videoHomeBannerData = [
                 "name" => $requestVideoHomeBannerData['name'],
