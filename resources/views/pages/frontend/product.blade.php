@@ -91,7 +91,7 @@
                         @foreach ($nonCollaborationProductChunks as $index => $nonCollaborationProductChunk)
                             <div class="carousel-item carousel-item-product {{ $index == 0 ? 'active' : '' }}">
                                 <div class="d-flex align-items-center justify-content-around flex-nowrap gap-2 gap-md-3">
-                                    @foreach ($nonCollaborationProducts as $nonCollaborationProduct)
+                                    @foreach ($nonCollaborationProductChunk as $nonCollaborationProduct)
                                         <a href="{{ Route('pages.frontend.product.detail', $nonCollaborationProduct->slug) }}"
                                             class="border rounded-4 overflow-hidden card-product-item position-relative d-flex align-items-center justify-content-center shadow-sm">
                                             <img src="{{ asset('storage/' . $nonCollaborationProduct->images->first()->image_path) }}"
@@ -171,7 +171,7 @@
                         @foreach ($collaborationProductChunks as $index => $collaborationProductChunk)
                             <div class="carousel-item carousel-item-product {{ $index == 0 ? 'active' : '' }}">
                                 <div class="d-flex align-items-center justify-content-around flex-nowrap gap-2 gap-md-3">
-                                    @foreach ($collaborationProducts as $collaborationProduct)
+                                    @foreach ($collaborationProductChunk as $collaborationProduct)
                                         <a href="{{ Route('pages.frontend.product.detail', $collaborationProduct->slug) }}"
                                             class="border rounded-4 overflow-hidden card-product-item position-relative d-flex align-items-center justify-content-center shadow-sm">
                                             <img src="{{ asset('storage/' . $collaborationProduct->images->first()->image_path) }}"
