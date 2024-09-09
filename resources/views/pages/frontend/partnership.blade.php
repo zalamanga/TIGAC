@@ -18,7 +18,9 @@
                 @foreach ($partnerships as $partnership)
                     <div
                         class="card-partnership-item d-flex align-items-center justify-content-center overflow-hidden p-2 p-md-4">
-                        <img src="{{ file_exists(public_path('storage/' . $partnership->logo)) ? asset('storage/' . $partnership->logo) : asset('images/new/partnership') . '/' . $partnership->name . '.png' }}"
+                        {{-- <img src="{{ file_exists(public_path('storage/' . $partnership->logo)) ? asset('storage/' . $partnership->logo) : asset('images/new/partnership') . '/' . $partnership->name . '.png' }}"
+                            alt="{{ $partnership->name }}" class="img-fluid w-full h-full object-fit-contain"> --}}
+                        <img src="{{ asset('storage/' . $partnership->logo) }}"
                             alt="{{ $partnership->name }}" class="img-fluid w-full h-full object-fit-contain">
                     </div>
                 @endforeach

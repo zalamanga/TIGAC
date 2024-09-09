@@ -49,7 +49,7 @@ class PartnershipService
                 Storage::disk('public')->delete($partnership->logo);
             }
 
-            $newLogoPath = $partnershipUpdateData['logo']->store();
+            $newLogoPath = $partnershipUpdateData['logo']->store('partnership');
 
             $partnershipData = [
                 'name' => $partnershipUpdateData['name'],
