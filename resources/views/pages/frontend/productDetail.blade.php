@@ -56,7 +56,7 @@
                     @foreach ($relatedProductChunks as $index => $relatedProductChunk)
                         <div class="carousel-item carousel-item-product {{ $loop->index == 0 ? 'active' : '' }}">
                             <div class="d-flex align-items-center justify-content-around flex-nowrap gap-2 gap-md-3">
-                                @foreach ($relatedProducts as $relatedProduct)
+                                @foreach ($relatedProductChunk as $relatedProduct)
                                     <a href="{{ Route('pages.frontend.product.detail', $relatedProduct->slug) }}"
                                         class="border rounded-4 overflow-hidden card-product-item position-relative d-flex align-items-center justify-content-center shadow-sm">
                                         <img src="{{ asset('storage/' . $relatedProduct->images->first()->image_path) }}"
