@@ -1,7 +1,7 @@
-@php
+{{-- @php
     $nonCollaborationProductChunks = $nonCollaborationProducts->chunk(4);
     $collaborationProductChunks = $collaborationProducts->chunk(4);
-@endphp
+@endphp --}}
 
 @extends('layouts.frontend.main')
 @section('content')
@@ -88,7 +88,7 @@
 
                 <div id="carouselProduct" class="carousel slide">
                     <div class="carousel-inner">
-                        @foreach ($nonCollaborationProductChunks as $index => $nonCollaborationProductChunk)
+                        @foreach ($nonCollaborationProducts as $index => $nonCollaborationProduct)
                             <div class="carousel-item carousel-item-product {{ $index == 0 ? 'active' : '' }}">
                                 <div class="d-flex align-items-center justify-content-around flex-nowrap gap-2 gap-md-3">
                                     @foreach ($nonCollaborationProducts as $nonCollaborationProduct)
@@ -168,7 +168,7 @@
 
                 <div id="carouselProductCollaboration" class="carousel slide">
                     <div class="carousel-inner">
-                        @foreach ($collaborationProductChunks as $index => $collaborationProductChunk)
+                        @foreach ($collaborationProducts as $index => $collaborationProduct)
                             <div class="carousel-item carousel-item-product {{ $index == 0 ? 'active' : '' }}">
                                 <div class="d-flex align-items-center justify-content-around flex-nowrap gap-2 gap-md-3">
                                     @foreach ($collaborationProducts as $collaborationProduct)
