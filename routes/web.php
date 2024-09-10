@@ -25,7 +25,10 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
+Route::get('/linkstorage', function () {
+    Artisan::call('storage:link');
+    echo 'ok';
+});
 // Route::get('/', function () {
 //     $fileProducts = file_get_contents('../public/data/products.json');
 //     $data = json_decode($fileProducts, true);
