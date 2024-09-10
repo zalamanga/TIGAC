@@ -17,6 +17,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
     <title>TIGAC</title>
+    <link rel="icon" type="image/x-icon" href="{{ asset('images/logo.png') }}">
 
     {{-- Font Work Sans --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">
