@@ -44,7 +44,7 @@
                     enhance your vaping experience.</p>
                 <div class="mt-4">
                     <button class="btn btn-lg btn-light d-flex align-items-center justify-content-between gap-2"
-                        style="min-width: 13rem; height: 3.5rem;">
+                        style="min-width: 13rem; height: 3.5rem;" onclick="window.location.href='{{ route('pages.frontend.product.detail','tigac-pod-kit') }}';">
                         <span class="fs-6">GET STARTED</span>
                         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 35 35"
                             fill="none">
@@ -80,7 +80,8 @@
                 <div class="mt-3">
                     <button
                         class="btn btn-lg btn-primary border-0 d-flex align-items-center justify-content-between gap-2 text-white"
-                        style="min-width: 13rem; height: 3.5rem;">
+                        style="min-width: 13rem; height: 3.5rem;"
+                        onclick="window.location.href='{{ route('pages.frontend.product') }}';">
                         <span class="fs-6">MORE INFORMATION</span>
                         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 35 35"
                             fill="currentColor">
@@ -224,7 +225,7 @@
                 distributors of premium E-Juices. Our dedication to producing high-quality E-Juices that consistently
                 deliver an exceptional vaping experience has solidified our place in the hearts of consumers.
             </p>
-            <button class="btn btn-lg py-3 border-0 btn-primary px-5" type="button">DISCOVER ABOUT US</button>
+            <button class="btn btn-lg py-3 border-0 btn-primary px-5" type="button" onclick="window.location.href='{{ route('pages.frontend.about') }}';">DISCOVER ABOUT US</button>
         </div>
     </section>
     {{-- Section 5 end --}}
@@ -240,7 +241,8 @@
             <h4 class="mb-3">START A PROJECT</h4>
             <h1 class="mb-5 display-4 fw-semibold">Let's work together</h1>
             <button class="btn mx-auto btn-lg btn-light d-flex align-items-center justify-content-between gap-2 px-4"
-                style="min-width: 13rem; height: 3.5rem;">
+                style="min-width: 13rem; height: 3.5rem;"
+                onclick="window.location.href='{{ route('pages.frontend.contact') }}';">
                 <span class="fs-6">GET IN TOUCH</span>
                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 35 35"
                     fill="none">
