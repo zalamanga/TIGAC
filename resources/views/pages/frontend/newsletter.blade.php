@@ -5,8 +5,8 @@
 @extends('layouts.frontend.main')
 @section('content')
     <section class="container mt-3 mt-xl-4 pb-5">
-        <h1 class="tagline-xxl w-100 fw-semibold mb-3 px-xl-5">Newsletter</h1>
-        <div class="d-flex flex-column flex-md-row justify-content-start px-xl-5 w-full gap-5 gap-md-4  gap-xl-5 flex-wrap">
+        <h1 class="tagline-xxl w-100 fw-semibold mb-3 px-xl-5" data-aos="fade-right">Newsletter</h1>
+        <div class="d-flex flex-column flex-md-row justify-content-start px-xl-5 w-full gap-5 gap-md-4  gap-xl-5 flex-wrap" data-aos="fade-down">
             @foreach ($newsletters as $newsletter)
                 <div class="card-newsletter-item overflow-hidden">
                     <img src="{{ asset('storage/' . $newsletter->thumbnail) }}"

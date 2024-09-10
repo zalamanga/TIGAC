@@ -26,6 +26,8 @@
 
     {{-- Boostrap css --}}
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/aos.css') }}">
+
 
     {{-- Global css --}}
     <link rel=”stylesheet” href=" https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">

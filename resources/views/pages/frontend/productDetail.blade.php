@@ -38,7 +38,7 @@
                 </button>
             </div>
         </div>
-        <div>
+        <div data-aos="fade-down">
             <div class="d-flex align-items-center justify-content-between mb-3">
                 <h4 class="fw-bold fs-2 text-black">Related Products</h4>
                 <a href="{{ Route('pages.frontend.product') }}"

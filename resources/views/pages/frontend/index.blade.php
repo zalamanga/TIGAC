@@ -1,8 +1,3 @@
-@php
-    $videoUrl =
-        'https://s3-figma-videos-production-sig.figma.com/video/1377240793861400146/TEAM/21ed/4f21/-0976-456b-83fc-01bd435a3264?Expires=1724630400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=oF6yT6m4lUEZ4USosBVA6MxjLMv5oBdNrrMBP6qgs429qadQag6QZ0~Wb0q9n3Uj5J8bkvft3~YaqlqaRTzpUxXAwUhM~Uj4rDIhmLDMsCk7t7YN3mMAVNqk1iM6nd6vA20cp4FqRYnRtgEFKgA3ugdOD1Iq~T9TXzZgmr8LiaRLwkZMbCkTKxTp7GnTJUk4Xi772LuStqnNoo9vcvgw~WefwezqclfIBit~7eWKl2Fn6Qu2N6EHnP7yeDnUoVsn~mx~ERuqKjrcK0mZEU~GitRMYAIJ~yyBbtACIfZ8JT0j2JsSHZozCMEK30k5EHmStbRyaOs-DA7uTe~6bv6knw__';
-@endphp
-
 @extends('layouts.frontend.main')
 @section('content')
     {{-- section 1 start --}}
@@ -18,7 +13,7 @@
     </section> --}}
     <section class="mt-3 mb-3 container">
         <center>
-            <h1 class="fw-semibold mb-3">Welcome to TIGAC World</h1>
+            <h1 data-aos="fade-right" class="fw-semibold mb-3">Welcome to TIGAC World</h1>
         </center>
         {{-- <video src="{{ $videoUrl }}" autoplay loop muted class="img-fluid rounded-4"></video> --}}
 
@@ -36,7 +31,7 @@
         <img src="{{ asset('images/new/Graphics 1.png') }}" alt="graphic" class="position-absolute img-fluid start-0"
             style="z-index: 1; bottom: -10%">
         <div class="position-relative container d-flex flex-column-reverse flex-lg-row justify-content-center align-content-center gap-lg-3 pb-5 pb-lg-0"
-            style="z-index: 2">
+            style="z-index: 2" data-aos="fade-down">
             <div class="d-flex flex-column justify-content-center">
                 <h1 class="text-white display-2 fw-semibold mb-3">Flavorful Vibes, Stylish Rides</h1>
                 <p class="fs-6 text-white" style="max-width: 500px">Our stylish design redefines elegance, blending fashion
@@ -74,10 +69,10 @@
             class="row flex-column flex-md-row align-items-center justify-content-between gap-3 gap-md-0 container-masterpiece">
             <div class="col col-md-5 col-lg-4 h-full d-flex flex-column justify-content-center"
                 style="height: 80vh !important">
-                <h1 class="display-4 fw-semibold" style="line-height: 1em;">Our Masterpiece</h1>
-                <p class="text-black" style="max-width: 390px">This is our masterpiece, combining experience and quality.
+                <h1 class="display-4 fw-semibold" style="line-height: 1em;" data-aos="fade-right">Our Masterpiece</h1>
+                <p class="text-black" style="max-width: 390px" data-aos="fade-right">This is our masterpiece, combining experience and quality.
                 </p>
-                <div class="mt-3">
+                <div class="mt-3" data-aos="fade-right">
                     <button
                         class="btn btn-lg btn-primary border-0 d-flex align-items-center justify-content-between gap-2 text-white"
                         style="min-width: 13rem; height: 3.5rem;"
@@ -102,7 +97,8 @@
             </div>
             <div class="col col-md-7 col-lg-8 position-relative" style="z-index: 2; ">
                 <div id="masterpiece-container"
-                    class="row align-items-center justify-content-start gap-3 flex-nowrap overflow-hidden px-2 px-md-0">
+                    class="row align-items-center justify-content-start gap-3 flex-nowrap overflow-hidden px-2 px-md-0"
+                    data-aos="fade-right">
                     @foreach ($masterpieceBanners as $masterpieceBanner)
                         <div
                             class="col-3 p-0 position-relative rounded-4 overflow-hidden shadow card-masterpiece-item {{ $loop->index === count($masterpieceBanners) - 1 ? 'me-3' : '' }}">
@@ -180,10 +176,10 @@
         </div>
         <div class="position-relative row w-full align-items-center justify-content-between gap-4 gap-md-0"
             style="z-index: 2">
-            <div class="col-12 col-md-6">
+            <div class="col-12 col-md-6" data-aos="fade-down">
                 <img src="{{ asset('images/new/girl 1.png') }}" alt="girl hold vape" class="w-full h-full">
             </div>
-            <div class="col-12 col-md-6 d-flex flex-column justify-content-lg-center h-full ps-lg-5 px-4 px-md-0">
+            <div class="col-12 col-md-6 d-flex flex-column justify-content-lg-center h-full ps-lg-5 px-4 px-md-0" data-aos="fade-right">
                 <h1 class="display-3 fw-semibold text-white">Everyone Matters</h1>
                 <p class="text-white fs-4" style="max-width: 600px">Finding your inner value, because everyone is
                     precious.</p>
@@ -216,7 +212,7 @@
     {{-- Section 5 start --}}
     <section class="bg-white d-flex align-items-center justify-content-center h-full container py-5"
         style="min-height: 80vh">
-        <div class="text-center text-black">
+        <div class="text-center text-black" data-aos="fade-down">
             <h1 class="fw-semibold">WHO WE ARE</h1>
             <p style="max-width: 1166px" class="lh-lg fs-4 mb-5">TIGAC is a well-known E-Juice brand within the vaping
                 community, recognized as a leader in the E-Juice
@@ -237,7 +233,8 @@
         <img src="{{ asset('images/new/torus 2.png') }}" alt="torus 2" class="position-absolute img-fluid end-0"
             style="z-index: 1; bottom: -20%">
         <div class="d-flex align-items-center justify-content-center flex-column h-full text-white position-relative"
-            style="z-index: 2">
+            style="z-index: 2"
+            data-aos="fade-down">
             <h4 class="mb-3">START A PROJECT</h4>
             <h1 class="mb-5 display-4 fw-semibold">Let's work together</h1>
             <button class="btn mx-auto btn-lg btn-light d-flex align-items-center justify-content-between gap-2 px-4"
@@ -267,17 +264,17 @@
     <section class="py-5 container d-flex align-items-center justify-content-center" style="min-height: 40vh">
         <div class="row w-full align-items-center justify-content-center justify-content-lg-between">
             <img src="{{ asset('images/new/logo-tcall.png') }}" alt="logo-tcall" class="col-2 img-fluid"
-                style="width: 370px">
+                style="width: 370px" data-aos="fade-left">
             <img src="{{ asset('images/new/logo-jaxel.png') }}" alt="logo-jaxel" class="col-2 img-fluid"
-                style="aspect-ratio: 1/1; object-fit:contain; width: 100px">
+                style="aspect-ratio: 1/1; object-fit:contain; width: 100px" data-aos="fade-right">
             <img src="{{ asset('images/new/logo-pocket rocket.png') }}" alt="logo-pocket rocket" class="col-2 img-fluid"
-                style="aspect-ratio: 1/1; object-fit:contain; width: 100px">
+                style="aspect-ratio: 1/1; object-fit:contain; width: 100px" data-aos="fade-left">
             <img src="{{ asset('images/new/logo-hompimpa.png') }}" alt="logo-hompimpa" class="col-2 img-fluid"
-                style="aspect-ratio: 1/1; object-fit:contain; width: 100px">
+                style="aspect-ratio: 1/1; object-fit:contain; width: 100px" data-aos="fade-right">
             <img src="{{ asset('images/new/logo-allianz.png') }}" alt="logo-allianz" class="col-2 img-fluid"
-                style="aspect-ratio: 1/1; object-fit:contain; width: 100px">
+                style="aspect-ratio: 1/1; object-fit:contain; width: 100px" data-aos="fade-left">
             <img src="{{ asset('images/new/logo-treev.png') }}" alt="logo-treev" class="col-2 img-fluid"
-                style="aspect-ratio: 1/1; object-fit:contain; width: 100px">
+                style="aspect-ratio: 1/1; object-fit:contain; width: 100px" data-aos="fade-right">
         </div>
     </section>
     {{-- Section 7 end --}}

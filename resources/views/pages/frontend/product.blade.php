@@ -78,7 +78,7 @@
     <section>
 
         <div class="container pb-3 pb-md-4 py-lg-5">
-            <h1 class="fw-semibold text-center mb-3 mb-lg-5 tagline-lg">This is our <span
+            <h1 class="fw-semibold text-center mb-3 mb-lg-5 tagline-lg" data-aos="fade-down">This is our <span
                     class="text-capitalize text-ogg fw-semibold fst-italic lh-sm">masterpiece</span>, combining experience
                 &
                 quality.
@@ -86,14 +86,15 @@
             <div class="mb-3">
                 <img src="{{ asset('images/logo-3.png') }}" alt="Logo" class="img-fluid mb-4 img-logo" />
 
-                <div id="carouselProduct" class="carousel slide">
+                <div id="carouselProduct" class="carousel slide" data-aos="fade-left">
                     <div class="carousel-inner">
                         @foreach ($nonCollaborationProductChunks as $index => $nonCollaborationProductChunk)
                             <div class="carousel-item carousel-item-product {{ $index == 0 ? 'active' : '' }}">
                                 <div class="d-flex align-items-center justify-content-around flex-nowrap gap-2 gap-md-3">
                                     @foreach ($nonCollaborationProductChunk as $nonCollaborationProduct)
                                         <a href="{{ Route('pages.frontend.product.detail', $nonCollaborationProduct->slug) }}"
-                                            class="border rounded-4 overflow-hidden card-product-item position-relative d-flex align-items-center justify-content-center shadow-sm">
+                                            class="border rounded-4 overflow-hidden card-product-item position-relative d-flex align-items-center justify-content-center shadow-sm"
+                                            data-aos="flip-left">
                                             <img src="{{ asset('storage/' . $nonCollaborationProduct->images->first()->image_path) }}"
                                                 alt="{{ $nonCollaborationProduct->name }}"
                                                 class="img-fluid transition-all">
@@ -161,7 +162,7 @@
 
     {{-- Section 3 start --}}
     <section>
-        <div class="container pb-2 pb-md-3 py-lg-5 mb-5">
+        <div class="container pb-2 pb-md-3 py-lg-5 mb-5" data-aos="fade-down">
             <div class="mb-3">
                 <img src="{{ asset('images/new/logo-tcall.png') }}" alt="Logo-tcall" class="img-fluid mb-4"
                     width="300" />
@@ -173,7 +174,8 @@
                                 <div class="d-flex align-items-center justify-content-around flex-nowrap gap-2 gap-md-3">
                                     @foreach ($collaborationProductChunk as $collaborationProduct)
                                         <a href="{{ Route('pages.frontend.product.detail', $collaborationProduct->slug) }}"
-                                            class="border rounded-4 overflow-hidden card-product-item position-relative d-flex align-items-center justify-content-center shadow-sm">
+                                            class="border rounded-4 overflow-hidden card-product-item position-relative d-flex align-items-center justify-content-center shadow-sm"
+                                            data-aos="flip-right">
                                             <img src="{{ asset('storage/' . $collaborationProduct->images->first()->image_path) }}"
                                                 alt="{{ $collaborationProduct->name }}" class="img-fluid transition-all">
                                             <div

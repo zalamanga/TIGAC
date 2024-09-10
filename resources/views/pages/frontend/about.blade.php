@@ -5,12 +5,12 @@
             <img src="{{ asset('images/new/about tigac.png') }}" alt="about tigac"
                 class="col-12 col-md-5 col-lg-6 img-fluid rounded-5 position-relative img-about object-fit-cover">
             <div class="mt-4 mt-lg-5 col-12 col-md-7 col-lg-6">
-                <div class="d-flex align-items-center gap-3 w-full mb-3 mb-lg-5">
+                <div class="d-flex align-items-center gap-3 w-full mb-3 mb-lg-5" data-aos="fade-right">
                     <h1 class="fw-bold m-0 about-title">What <span class="text-ogg fw-bold fst-italic">is</span></h1>
                     <img src="{{ asset('images/logo-3.png') }}" alt="logo tigac"
                         class="img-fluid object-fit-contain img-logo-about">
                 </div>
-                <div class="text-black mb-lg-3 mb-xl-5 pb-3">
+                <div class="text-black mb-lg-3 mb-xl-5 pb-3" data-aos="fade-left">
                     <p class="mb-3 mb-lg-4 pb-3 lh-lg fs-6">
                         TIGAC merupakan sebuah brand E-Liquid yang sudah dikenal dalam komunitas vapers sebagai pemimpin
                         brand E-Liquid di Indonesia. TIGAC telah membawa standar keunggulan dalam distribusi E-Juice.
@@ -38,7 +38,8 @@
                 </div>
                 <button type="button"
                     class="btn btn-lg btn-danger border-0 d-flex align-items-center justify-content-between gap-2 text-white"
-                    style="min-width: 13rem; height: 3.5rem;">
+                    style="min-width: 13rem; height: 3.5rem;"
+                    data-aos="fade-down">
                     <span class="fs-6">CONTACT US</span>
                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 35 35"
                         fill="currentColor">
