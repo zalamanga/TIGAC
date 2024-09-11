@@ -1,4 +1,5 @@
 @extends('layouts.frontend.main')
+@section('title','About TIGAC Page')
 @section('content')
     <section class="container mt-4 mb-5 pb-lg-4">
         <div class="row align-items-start justify-content-center">

@@ -44,6 +44,7 @@
 @endphp
 
 @extends('layouts.frontend.main')
+@section('title','FaQ Page')
 @section('content')
     <section class="container my-3 my-xl-5 pb-5">
         <div class="mb-3 mb-md-5 mb-lg-4 px-xl-5" style="--bs-breadcrumb-divider: '|';" aria-label="breadcrumb">

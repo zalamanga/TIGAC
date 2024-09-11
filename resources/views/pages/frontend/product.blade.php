@@ -4,6 +4,7 @@
 @endphp
 
 @extends('layouts.frontend.main')
+@section('title','Product Page')
 @section('content')
     {{-- Section 1 start --}}
     <section>

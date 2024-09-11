@@ -1,4 +1,5 @@
 @extends('layouts.frontend.main')
+@section('title','Consumer Program Page')
 @section('content')
     <section class="bg-gradient-consumer py-5" style="min-height: 60vh">
         <div class="text-center container-fluid">

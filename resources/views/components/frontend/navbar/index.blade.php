@@ -9,7 +9,7 @@
             'url' => route('pages.frontend.program')
         ),
         array(
-            'title' => 'discover tigac',
+            'title' => 'discover',
             'url' => route('pages.frontend.discover')
         ),
         array(
@@ -47,7 +47,7 @@
                     </path>
                 </svg>
             </button>
-            
+
             <ul id="navMenu" class="navbar-nav ms-auto gap-3 ps-2 ps-md-0 bg-white pe-3 pe-lg-0 pt-4">
                 @foreach ($menus as $menu)
                 <li class="nav-item">

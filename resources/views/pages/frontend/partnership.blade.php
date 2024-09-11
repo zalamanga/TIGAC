@@ -1,8 +1,5 @@
-@php
-
-@endphp
-
 @extends('layouts.frontend.main')
+@section('title','Partnership Page')
 @section('content')
     <section>
         <div class="bg-main mb-5 d-flex align-items-center justify-content-center position-relative overflow-hidden"

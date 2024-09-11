@@ -3,6 +3,7 @@
 @endphp
 
 @extends('layouts.frontend.main')
+@section('title','Product Detail Page')
 @section('content')
     <section class="container mt-3 mb-5 pb-3 my-md-4">
         <div class="mb-4" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">

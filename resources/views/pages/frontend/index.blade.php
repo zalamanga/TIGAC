@@ -1,4 +1,5 @@
 @extends('layouts.frontend.main')
+@section('title','HomePage')
 @section('content')
     {{-- section 1 start --}}
     {{-- <section class="mt-3 mb-3 container">

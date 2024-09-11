@@ -1,4 +1,5 @@
 @extends('layouts.frontend.main')
+@section('title','Program Page')
 @section('content')
     <section class="bg-gradient-main h-screen w-full">
         <div class="position-relative mb-3">

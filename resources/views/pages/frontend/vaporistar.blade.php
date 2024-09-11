@@ -1,4 +1,5 @@
 @extends('layouts.frontend.main')
+@section('title','Vaporistar Page')
 @section('content')
     <section>
         <div class="bg-vaporistar d-flex align-items-center justify-content-center mb-4">

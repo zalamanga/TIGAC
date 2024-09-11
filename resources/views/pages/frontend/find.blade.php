@@ -1,5 +1,5 @@
 @extends('layouts.frontend.main')
-
+@section('title','Find Us Page')
 @section('content')
     {{-- Section 1: Header --}}
     <section class="mt-3 mb-3 container text-center">
