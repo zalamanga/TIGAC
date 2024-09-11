@@ -20,7 +20,6 @@ class HeroBannerDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addColumn('action', 'components.datatables.hero-banner.action-button')
-            ->addColumn('is_active', 'components.datatables.hero-banner.active-switch')
             ->addColumn('media_preview', 'components.datatables.hero-banner.media-preview')
             ->addIndexColumn()
             ->setRowId('id')
@@ -60,7 +59,6 @@ class HeroBannerDataTable extends DataTable
             Column::make('tagline'),
             Column::make('tagline_description'),
             Column::make('media_preview'),
-            Column::make('is_active'),
             Column::computed('action'),
         ];
     }

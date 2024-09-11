@@ -53,7 +53,6 @@ class ProductDataTable extends DataTable
             ->editColumn('created_at', function ($row) {
                 return date('D, d-M-Y', strtotime($row->created_at));
             })
-            ->addColumn('is_active', 'components.datatables.product.active-switch')
             ->addColumn('is_hot_item', 'components.datatables.product.hot-item-switch')
             ->rawColumns(['description', 'name', 'is_active', 'action',])
             ->setRowId('id');
@@ -102,7 +101,6 @@ class ProductDataTable extends DataTable
             Column::make('product_category')->searchable(false)->orderable(false),
             Column::make('product_variant')->searchable(false)->orderable(false),
             Column::make('price')->title('Base Price'),
-            Column::make('is_active'),
             Column::make('created_at'),
             Column::make('action')
         ];

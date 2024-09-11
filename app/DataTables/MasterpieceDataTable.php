@@ -23,7 +23,6 @@ class MasterpieceDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addColumn('action', 'components.datatables.masterpiece.action-button')
-            ->addColumn('is_active', 'components.datatables.masterpiece.active-switch')
             ->addColumn('thumbnail_preview', 'components.datatables.masterpiece.media-preview')
             ->addIndexColumn()
             ->setRowId('id')
@@ -63,7 +62,6 @@ class MasterpieceDataTable extends DataTable
             Column::make('detail_link'),
             Column::make('thumbnail_preview'),
             Column::make('thumbnail_short_description'),
-            Column::make('is_active'),
             Column::computed('action'),
         ];
     }

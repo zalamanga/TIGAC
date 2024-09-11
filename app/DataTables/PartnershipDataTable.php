@@ -23,7 +23,6 @@ class PartnershipDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addColumn('action', 'components.datatables.partnership.action-button')
-            ->addColumn('is_active', 'components.datatables.partnership.active-switch')
             ->addColumn('logo_preview', 'components.datatables.partnership.logo-preview')
             ->addIndexColumn()
             ->setRowId('id')
@@ -61,7 +60,6 @@ class PartnershipDataTable extends DataTable
             Column::computed('DT_RowIndex')->title('No')->orderable(false)->searchable(false),
             Column::make('name'),
             Column::make('logo_preview'),
-            Column::make('is_active'),
             Column::computed('action'),
         ];
     }
