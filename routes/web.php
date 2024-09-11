@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProductVariantController;
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\FaqController;
 use App\Http\Controllers\HeroBannerController;
 use App\Http\Controllers\HomePageController;
 use App\Http\Controllers\MasterpieceController;
@@ -25,6 +26,7 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
 Route::get('/linkstorage', function () {
     Artisan::call('storage:link');
     echo 'ok';
@@ -154,5 +156,6 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('/masterpieces', MasterpieceController::class, ['as' => 'admin']);
         Route::resource('/programs', ProgramController::class, ['as' => 'admin']);
         Route::resource('/video-home-banners', VideoHomeBannerController::class, ['as' => 'admin']);
+        Route::resource('/faqs', FaqController::class, ['as' => 'admin']);
     });
 });

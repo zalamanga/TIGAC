@@ -128,6 +128,12 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
+                    <a href="{{ route('admin.faqs.index') }}" class="sidebar-link">
+                        <i class="bi bi-question-square"></i>
+                        <span>Faq</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
                     <a href="{{ route('admin.newsletters.index') }}" class="sidebar-link">
                         <i class="bi bi-newspaper"></i>
                         <span>News</span>
