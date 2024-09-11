@@ -11,6 +11,17 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class FaqController extends Controller
 {
+    public function frontEndPage()
+    {
+        $faqs = Faq::get();
+
+        $data = [
+            "faqs" => $faqs
+        ];
+
+        return view('pages.frontend.faq', $data);
+    }
+
     public function index(FaqDataTable $dataTable)
     {
         $title = "Faq List";
