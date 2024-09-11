@@ -1,7 +1,5 @@
 @extends('layouts.admin.main')
 @section('content')
-    <a href="{{ route('admin.newsletters.create') }}" class="btn btn-primary mb-3">Add New Program Partnership</a>
-
     @if (session('status') == 'success')
         <div class="alert alert-success">
             {{ session('message') }}

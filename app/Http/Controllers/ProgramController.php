@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\DataTables\ProgramDataTable;
 use App\Http\Requests\ProgramRequest;
+use App\Models\Program;
 use App\Services\ProgramService;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -45,5 +46,13 @@ class ProgramController extends Controller
             Alert::success('Error', 'Failed Register to Program');
             return redirect()->route('pages.frontend.program');
         }
+    }
+
+    public function destroy($programId)
+    {
+        Program::where('id', $programId)->delete();
+
+        Alert::success('Success', 'Success Delete Program');
+        return redirect()->route('admin.programs.index');
     }
 }
