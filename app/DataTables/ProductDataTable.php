@@ -77,7 +77,7 @@ class ProductDataTable extends DataTable
             ->autoWidth('false')
             ->minifiedAjax()
             ->dom('lfrtip')
-            ->orderBy(7)
+            ->orderBy(5)
             ->selectStyleSingle()
             ->parameters([
                 'autoWidth' => false,
