@@ -1,4 +1,5 @@
 @extends('layouts.admin.main')
+@section('title_admin', 'User Page')
 @section('content')
     <a href="{{ route('userManagement.create') }}" class="btn btn-primary mb-3">Add New User</a>
     @if (session('status') == 'success')

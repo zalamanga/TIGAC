@@ -1,4 +1,5 @@
 @extends('layouts.admin.main')
+@section('title_admin', ' Video Home Banner Page Create')
 @section('content')
     <div class="card">
         <div class="card-content">

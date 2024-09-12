@@ -1,4 +1,6 @@
 @extends('layouts.admin.main')
+@section('title_admin', 'Product Variant Page Show')
+@section('title_admin', 'Product Variant Page Show')
 @section('content')
     <div class="card">
         <div class="card-content">

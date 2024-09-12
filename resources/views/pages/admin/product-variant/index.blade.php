@@ -1,4 +1,5 @@
 @extends('layouts.admin.main')
+@section('title_admin', 'Product Variant Page')
 @section('content')
     <a href="{{ route('admin.product.product-variant.create') }}" class="btn btn-primary mb-3">Add New Variant</a>
     @if (session('status') == 'success')

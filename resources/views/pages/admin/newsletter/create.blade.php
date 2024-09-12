@@ -1,4 +1,5 @@
 @extends('layouts.admin.main')
+@section('title_admin', 'Newsletter Page Create')
 @section('content')
     {{-- @if ($errors->any())
         <div>

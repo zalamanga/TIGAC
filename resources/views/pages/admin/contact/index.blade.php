@@ -1,4 +1,5 @@
 @extends('layouts.admin.main')
+@section('title_admin', 'Contact Page')
 @section('content')
     <a href="{{ route('admin.contacts.create') }}" class="btn btn-primary mb-3">Add New Contact</a>
     @if (session('status') == 'success')

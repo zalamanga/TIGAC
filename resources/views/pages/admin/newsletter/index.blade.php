@@ -1,4 +1,5 @@
 @extends('layouts.admin.main')
+@section('title_admin', 'Newsletter Page')
 @section('content')
     <a href="{{ route('admin.newsletters.create') }}" class="btn btn-primary mb-3">Add New Newsletter</a>
     @if (session('status') == 'success')

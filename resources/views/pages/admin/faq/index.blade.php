@@ -1,4 +1,5 @@
 @extends('layouts.admin.main')
+@section('title_admin', 'FaQ Page')
 @section('content')
     <a href="{{ route('admin.faqs.create') }}" class="btn btn-primary mb-3">Add New Faq</a>
     @if (session('status') == 'success')

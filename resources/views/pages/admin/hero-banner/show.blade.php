@@ -1,4 +1,5 @@
 @extends('layouts.admin.main')
+@section('title_admin', 'Hero Banner Page Show')
 @section('content')
     {{-- @if ($errors->any())
         {{ dd($errors->all()) }}

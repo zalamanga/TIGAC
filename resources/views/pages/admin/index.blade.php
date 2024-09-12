@@ -1,4 +1,5 @@
 @extends('layouts.admin.main')
+@section('title_admin', ' Admin Home Page Dashboard')
 @section('content')
     <section class="row">
         <div class="col-12 col-lg-12">

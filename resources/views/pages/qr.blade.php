@@ -3,6 +3,14 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-W00WZJNH49"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-W00WZJNH49');
+    </script>
     <title>{{ 'TIGAC QR Page' }}</title>
     <!-- Favicon -->
     <link rel="icon" href="icon/tigacid.png" type="image/x-icon" />

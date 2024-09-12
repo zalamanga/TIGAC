@@ -1,4 +1,5 @@
 @extends('layouts.admin.main')
+@section('title_admin', 'Program Page')
 @section('content')
     @if (session('status') == 'success')
         <div class="alert alert-success">

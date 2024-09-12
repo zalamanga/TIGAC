@@ -1,4 +1,5 @@
 @extends('layouts.admin.main')
+@section('title_admin', 'Masterpiece Page')
 @section('content')
     <a href="{{ route('admin.masterpieces.create') }}" class="btn btn-primary mb-3">Add New Masterpiece</a>
     @if (session('status') == 'success')

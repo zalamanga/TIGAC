@@ -1,4 +1,5 @@
 @extends('layouts.admin.main')
+@section('title_admin', ' Video Home Banner Page')
 @section('content')
     <a href="{{ route('admin.video-home-banners.create') }}" class="btn btn-primary mb-3">Add New Video Home Banner</a>
     @if (session('status') == 'success')

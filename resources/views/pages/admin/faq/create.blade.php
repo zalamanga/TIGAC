@@ -1,4 +1,5 @@
 @extends('layouts.admin.main')
+@section('title_admin', 'FaQ Page Create')
 @section('content')
     <div class="card">
         <div class="card-content">

@@ -1,4 +1,5 @@
 @extends('layouts.admin.main')
+@section('title_admin', 'Product Page Create')
 @section('content')
     {{-- @if ($errors->any())
         {{ dd($errors->all()) }}

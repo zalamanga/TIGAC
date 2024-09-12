@@ -1,4 +1,5 @@
 @extends('layouts.admin.main')
+@section('title_admin', 'Product Page')
 @section('content')
     <a href="{{ route('admin.products.create') }}" class="btn btn-primary mb-3">Add New Product</a>
     @if (session('status') == 'success')

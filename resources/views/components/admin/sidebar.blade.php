@@ -50,9 +50,9 @@
                     </a>
 
                     <ul class="submenu">
-                        <li class="submenu-item">
-                            <a href="component-accordion.html" class="submenu-link">Prouduct Setting</a>
-                        </li>
+                        {{-- <li class="submenu-item">
+                            <a href="component-accordion.html" class="submenu-link">Product Setting</a>
+                        </li> --}}
 
                         <li class="submenu-item">
                             <a href="{{ route('logout') }}"
@@ -87,7 +87,7 @@
 
                     <ul class="submenu">
                         <li class="submenu-item">
-                            <a href="{{ route('admin.products.index') }}" class="submenu-link">Prouduct</a>
+                            <a href="{{ route('admin.products.index') }}" class="submenu-link">Product</a>
                         </li>
 
                         <li class="submenu-item">
