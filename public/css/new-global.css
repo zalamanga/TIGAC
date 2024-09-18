@@ -523,7 +523,7 @@ body {
 @media (min-width: 1024px) {
     .video-product {
         width: 1280px;
-        height: 585px;
+        height: 485px;
         object-fit: cover;
     }
 }

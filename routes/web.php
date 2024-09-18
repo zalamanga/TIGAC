@@ -13,7 +13,9 @@ use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProgramController;
+use App\Http\Controllers\SubscriberController;
 use App\Http\Controllers\VideoHomeBannerController;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -85,6 +87,7 @@ Route::name('pages.frontend.')->group(function () {
     Route::get('/product', [ProductController::class, 'frontEndPage'])->name('product');
     Route::get('/program', [ProgramController::class, 'frontEndPage'])->name('program');
     Route::post('/program', [ProgramController::class, 'store'])->name('program.store');
+    Route::resource('/subscriber', SubscriberController::class);
     Route::get('/discover', function () {
         return view('pages.frontend.about');
     })->name('discover');
@@ -99,6 +102,9 @@ Route::name('pages.frontend.')->group(function () {
     Route::get('/find', function () {
         return view('pages.frontend.find');
     })->name('find');
+    Route::get('/tcall', function () {
+        return view('pages.frontend.tcall');
+    })->name('tcall');
     Route::get('/contact', function () {
         return view('pages.frontend.contact');
     })->name('contact');

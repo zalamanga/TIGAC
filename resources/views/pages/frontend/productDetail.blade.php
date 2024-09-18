@@ -25,7 +25,7 @@
                 <h1 class="display-3 fw-semibold mb-2">{{ $product->name }}</h1>
                 <div class="d-flex gap-2 align-items-center mb-2">
                     {{-- <p class="bg-body-tertiary fs-5 py-1 px-3 fw-semibold m-0" style="color: #4ABA1E">Frësh</p> --}}
-                    <p class="bg-body-tertiary fs-5 py-1 px-3 fw-semibold m-0" style="color: #4ABA1E">{{ $product->variants->first() != null ? ' - ' . $product->variants->first()->name : '' }}</p>
+                    <p class="bg-body-tertiary fs-5 py-1 px-3 fw-semibold m-0" style="color: #4ABA1E">{{ $product->variants->first() != null ? $product->variants->first()->name .' ->' : ''}}</p>
                     <p class="fs-5 text-secondary m-0 fw-medium">{{ $product->productCategory->name }}</p>
                 </div>
                 <h2 class="display-3 fw-bold mb-3">Rp{{ number_format($product->price, 0, '.', '.') }},-</h2>

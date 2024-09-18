@@ -2,16 +2,7 @@
 @section('title','HomePage')
 @section('content')
     {{-- section 1 start --}}
-    {{-- <section class="mt-3 mb-3 container">
-        <center>
-            <h1 class="fw-semibold mb-3">Welcome to TIGAC World</h1>
-        </center>
 
-        <video class="img-fluid rounded-4" controls autoplay loop>
-            <source src="{{ $videoUrl }}" type="video/mp4">
-        </video>
-
-    </section> --}}
     <section class="mt-3 mb-3 container">
         <center>
             <h1 data-aos="fade-right" class="fw-semibold mb-3">Welcome to TIGAC World</h1>

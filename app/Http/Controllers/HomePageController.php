@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Services\MasterpieceService;
 use App\Services\VideoHomeBannerService;
+use Illuminate\Http\Request;
 
 class HomePageController
 {
