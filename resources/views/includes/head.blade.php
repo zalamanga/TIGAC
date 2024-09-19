@@ -32,7 +32,7 @@
 
     {{-- Global css --}}
     <link rel=”stylesheet” href=" {{ asset('css/sweetalert.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/new-global.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/global.css') }}">
 
     @yield('heads')
 </head>
