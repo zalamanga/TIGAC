@@ -65,8 +65,14 @@
                                 @foreach ($relatedProductChunk as $relatedProduct)
                                     <a href="{{ Route('pages.frontend.product.detail', $relatedProduct->slug) }}"
                                         class="border rounded-4 overflow-hidden card-product-item position-relative d-flex align-items-center justify-content-center shadow-sm">
-                                        <img src="{{ asset('storage/' . $relatedProduct->images->first()->image_path) }}"
+
+                                        @if($relatedProduct->images->first() == null)
+                                            <img src="{{ asset('images/Picture_Not_Yet_Available.png') }}"
                                             alt="{{ $relatedProduct->name }}" class="img-fluid transition-all">
+                                        @else
+                                            <img src="{{ asset('storage/' . $relatedProduct->images->first()->image_path) }}"
+                                            alt="{{ $relatedProduct->name }}" class="img-fluid transition-all">
+                                        @endif
                                         <div class="bg-body-secondary text-secondary position-absolute bottom-0 w-full p-3">
                                             <h3 class="product-title fw-semibold m-0 text-truncate">
                                                 {{ $relatedProduct->name }}</h3>
