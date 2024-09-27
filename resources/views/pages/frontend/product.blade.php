@@ -96,7 +96,7 @@
                                         <a href="{{ Route('pages.frontend.product.detail', $nonCollaborationProduct->slug) }}"
                                             class="border rounded-4 overflow-hidden card-product-item position-relative d-flex align-items-center justify-content-center shadow-sm"
                                             data-aos="flip-left">
-                                            @if($nonCollaborationProduct->images->first()->image_path == null)
+                                            @if($nonCollaborationProduct->images->first() == null)
                                                 <img src="{{ asset('images/Picture_Not_Yet_Available.png') }}"
                                                 alt="{{ $nonCollaborationProduct->name }}"
                                                 class="img-fluid transition-all">
@@ -183,7 +183,7 @@
                                         <a href="{{ Route('pages.frontend.product.detail', $collaborationProduct->slug) }}"
                                             class="border rounded-4 overflow-hidden card-product-item position-relative d-flex align-items-center justify-content-center shadow-sm"
                                             data-aos="flip-right">
-                                            @if($collaborationProduct->images->first()->image_path == null)
+                                            @if($collaborationProduct->images->first() == null)
                                                 <img src="{{ asset('images/Picture_Not_Yet_Available.png') }}"
                                                 alt="{{ $collaborationProduct->name }}" class="img-fluid transition-all">
                                             @else

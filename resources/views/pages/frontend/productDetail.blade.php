@@ -17,7 +17,7 @@
 
         <div class="d-flex flex-column flex-lg-row gap-3 gap-lg-4 gap-xl-5 mb-5">
             <div class="card-product-detail-item d-flex align-items-center justify-content-center p-4">
-                @if($product->images->first()->image_path == null)
+                @if($product->images->first() == null)
                     <img src="{{ asset('images/Picture_Not_Yet_Available.png') }}" alt="{{ $product->name }}"
                     class="img-fluid">
                 @else
