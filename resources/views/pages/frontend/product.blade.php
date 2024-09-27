@@ -96,9 +96,15 @@
                                         <a href="{{ Route('pages.frontend.product.detail', $nonCollaborationProduct->slug) }}"
                                             class="border rounded-4 overflow-hidden card-product-item position-relative d-flex align-items-center justify-content-center shadow-sm"
                                             data-aos="flip-left">
-                                            <img src="{{ asset('storage/' . $nonCollaborationProduct->images->first()->image_path) }}"
+                                            @if($nonCollaborationProduct->images->first()->image_path == null)
+                                                <img src="{{ asset('images/Picture_Not_Yet_Available.png') }}"
                                                 alt="{{ $nonCollaborationProduct->name }}"
                                                 class="img-fluid transition-all">
+                                            @else
+                                                <img src="{{ asset('storage/' . $nonCollaborationProduct->images->first()->image_path) }}"
+                                                alt="{{ $nonCollaborationProduct->name }}"
+                                                class="img-fluid transition-all">
+                                            @endif
                                             <div
                                                 class="bg-body-secondary text-secondary position-absolute bottom-0 w-full p-3">
                                                 <h3 class="product-title fw-semibold m-0 text-truncate">
@@ -177,8 +183,13 @@
                                         <a href="{{ Route('pages.frontend.product.detail', $collaborationProduct->slug) }}"
                                             class="border rounded-4 overflow-hidden card-product-item position-relative d-flex align-items-center justify-content-center shadow-sm"
                                             data-aos="flip-right">
-                                            <img src="{{ asset('storage/' . $collaborationProduct->images->first()->image_path) }}"
+                                            @if($collaborationProduct->images->first()->image_path == null)
+                                                <img src="{{ asset('images/Picture_Not_Yet_Available.png') }}"
                                                 alt="{{ $collaborationProduct->name }}" class="img-fluid transition-all">
+                                            @else
+                                                <img src="{{ asset('storage/' . $collaborationProduct->images->first()->image_path) }}"
+                                                alt="{{ $collaborationProduct->name }}" class="img-fluid transition-all">
+                                            @endif
                                             <div
                                                 class="bg-body-secondary text-secondary position-absolute bottom-0 w-full p-3">
                                                 <h3 class="product-title fw-semibold m-0 text-truncate">
