@@ -15,7 +15,7 @@
             </ol>
         </div>
 
-        <div class="d-flex flex-column flex-lg-row gap-3 gap-lg-4 gap-xl-5 mb-5">
+        <div class="d-flex flex-column flex-lg-row gap-3 gap-lg-2 gap-xl-5 mb-5">
             <div class="card-product-detail-item d-flex align-items-center justify-content-center p-4">
                 @if($product->images->first() == null)
                     <img src="{{ asset('images/Picture_Not_Yet_Available.png') }}" alt="{{ $product->name }}"
@@ -27,14 +27,14 @@
             </div>
 
             <div style="max-width: 589px">
-                <h1 class="display-3 fw-semibold mb-2">{{ $product->name }}</h1>
+                <h1 class="display-7 fw-semibold">{{ $product->name }}</h1>
                 <div class="d-flex gap-2 align-items-center mb-2">
                     {{-- <p class="bg-body-tertiary fs-5 py-1 px-3 fw-semibold m-0" style="color: #4ABA1E">Frësh</p> --}}
-                    <p class="bg-body-tertiary fs-5 py-1 px-3 fw-semibold m-0" style="color: #4ABA1E">{{ $product->variants->first() != null ? $product->variants->first()->name .'' : ''}}</p>
-                    <p class="fs-5 text-secondary m-0 fw-medium">{{ $product->productCategory->name }}</p>
+                    <p class="bg-body-tertiary fs-7 py-1 px-3 fw-semibold m-0" style="color: #4ABA1E">{{ $product->variants->first() != null ? $product->variants->first()->name .'' : ''}}</p>
+                    <p class="fs-7 text-secondary m-0 fw-medium">{{ $product->productCategory->name }}</p>
                 </div>
-                <h2 class="display-3 fw-bold mb-3">Rp{{ number_format($product->price, 0, '.', '.') }},-</h2>
-                <div class="text-secondary mb-3 fs-5 lh-1" id="productDetail">
+                <h2 class="display-7 fw-bold mb-3">Rp{{ number_format($product->price, 0, '.', '.') }},-</h2>
+                <div class="text-secondary mb-3 fs-7 lh-1" id="productDetail">
                     {!! $product->description !!}
                 </div>
                 <button type="button" class="btn btn-lg btn-primary border-0 text-white"

@@ -48,7 +48,7 @@
                 </svg>
             </button>
 
-            <ul id="navMenu" class="navbar-nav ms-auto gap-3 ps-2 ps-md-0 bg-white pe-3 pe-lg-0 pt-4">
+            <ul id="navMenu" class="navbar-nav ms-auto gap-3 ps-2 ps-md-0 bg-white pe-3 pe-lg-0">
                 @foreach ($menus as $menu)
                 <li class="nav-item">
                     <a class="nav-link text-secondary fs-7 text-nowrap fw-semibold text-uppercase {{Route::is('pages.frontend.'.$menu['title']) ? 'active' : ''}}" aria-current="page" href="{{$menu['url']}}">{{ $menu['title'] }}</a>

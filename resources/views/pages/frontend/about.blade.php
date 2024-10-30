@@ -38,6 +38,7 @@
                     </p>
                 </div>
                 <button type="button"
+                    onclick="window.location.href='https://wa.me/6281188882305'"
                     class="btn btn-lg btn-danger border-0 d-flex align-items-center justify-content-between gap-2 text-white"
                     style="min-width: 13rem; height: 3.5rem;"
                     data-aos="fade-down">

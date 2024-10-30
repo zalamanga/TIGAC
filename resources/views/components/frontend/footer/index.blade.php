@@ -12,14 +12,23 @@
                     Ibukota Jakarta 11610
                 </p>
                 <div class="d-flex fs-6 align-items-center gap-3">
-                    <a href="#" class="text-white text-decoration-none" target="_blank" rel="noreferrer noopener">
-                        <img src="{{ asset('images/new/logo-twitter.png') }}" alt="twitter">
+                    {{-- <a href="#" class="text-white text-decoration-none" target="_blank" rel="noreferrer noopener">
+                        <img src="{{ asset('images/new/logo-tiktok.png') }}" alt="tiktok">
                     </a>
                     <a href="#" class="text-white text-decoration-none" target="_blank" rel="noreferrer noopener">
                         <img src="{{ asset('images/new/logo-facebook.png') }}" alt="facebook">
                     </a>
                     <a href="#" class="text-white text-decoration-none" target="_blank" rel="noreferrer noopener">
                         <img src="{{ asset('images/new/logo-instagram.png') }}" alt="instagram">
+                    </a> --}}
+                    <a href="#" class="text-white text-decoration-none" target="_blank" rel="noreferrer noopener">
+                        <img src="{{ asset('images/new/tiktok.png') }}" alt="tiktok">
+                    </a>
+                    <a href="#" class="text-white text-decoration-none" target="_blank" rel="noreferrer noopener">
+                        <img src="{{ asset('images/new/facebook.png') }}" alt="facebook">
+                    </a>
+                    <a href="#" class="text-white text-decoration-none" target="_blank" rel="noreferrer noopener">
+                        <img src="{{ asset('images/new/instagram.png') }}" alt="instagram">
                     </a>
                 </div>
             </div>

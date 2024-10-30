@@ -35,7 +35,7 @@
                             <button type="submit" class="btn btn-lg btn-primary text-white w-100" style="border-radius: 10px;" type="submit">Send Message</button>
                         </div>
                         <div class="col-md-4 mb-4">
-                            <a type="button" class="btn btn-lg btn-danger text-white w-100" style="border-radius: 10px;" href="https://wa.me/6289651147065" target="_blank">Chat on WhatsApp</a>
+                            <a type="button" class="btn btn-lg btn-danger text-white w-100" style="border-radius: 10px;" href="https://wa.me/6281188882305" target="_blank">Chat on WhatsApp</a>
                         </div>
                     </div>
                 </form>

@@ -32,4 +32,16 @@
     <link rel="stylesheet" crossorigin href="{{ asset('extensions/choices.js/public/assets/styles/choices.css') }}" />
 
     @stack('styles')
+    <style>
+        .dataTables_paginate {
+            justify-content: end;
+            display: flex;
+            gap: 10px;
+        }
+
+        .dataTables_paginate > span {
+            display: flex;
+            gap: 10px;
+        }
+    </style>
 </head>
