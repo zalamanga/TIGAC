@@ -2,14 +2,20 @@
 
 use App\Http\Controllers\ProductVariantController;
 use App\Http\Controllers\AdminDashboardController;
+use App\Http\Controllers\AdminOrderController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\HeroBannerController;
 use App\Http\Controllers\HomePageController;
 use App\Http\Controllers\MasterpieceController;
 use App\Http\Controllers\NewsletterController;
+use App\Http\Controllers\OrderLookupController;
 use App\Http\Controllers\PartnershipController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProductCategoryController;
+use App\Http\Controllers\ProductReviewController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProgramController;
@@ -116,6 +122,33 @@ Route::name('pages.frontend.')->group(function () {
     Route::get('/consumer-program', function () {
         return view('pages.frontend.consumerProgram');
     })->name('consumer.program');
+
+    // Cart
+    Route::prefix('cart')->name('cart.')->group(function () {
+        Route::get('/', [CartController::class, 'show'])->name('show');
+        Route::post('/add/{slug}', [CartController::class, 'add'])->name('add');
+        Route::put('/{productId}', [CartController::class, 'update'])->name('update');
+        Route::delete('/{productId}', [CartController::class, 'remove'])->name('remove');
+        Route::delete('/', [CartController::class, 'clear'])->name('clear');
+    });
+
+    // Checkout
+    Route::get('/checkout', [CheckoutController::class, 'show'])->name('checkout.show');
+    Route::post('/checkout', [CheckoutController::class, 'store'])->name('checkout.store');
+
+    // Dummy payment
+    Route::prefix('payment/{orderNumber}')->name('payment.')->group(function () {
+        Route::get('/', [PaymentController::class, 'show'])->name('show');
+        Route::post('/pay', [PaymentController::class, 'pay'])->name('pay');
+        Route::get('/success', [PaymentController::class, 'success'])->name('success');
+    });
+
+    // Order lookup (cek pesanan)
+    Route::get('/cek-pesanan', [OrderLookupController::class, 'show'])->name('order-lookup.show');
+    Route::post('/cek-pesanan', [OrderLookupController::class, 'lookup'])->name('order-lookup.lookup');
+
+    // Product reviews
+    Route::post('/product/{slug}/reviews', [ProductReviewController::class, 'store'])->name('product.reviews.store');
 });
 
 // Backend
@@ -161,5 +194,10 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('/programs', ProgramController::class, ['as' => 'admin']);
         Route::resource('/video-home-banners', VideoHomeBannerController::class, ['as' => 'admin']);
         Route::resource('/faqs', FaqController::class, ['as' => 'admin']);
+
+        // Orders (admin)
+        Route::get('/orders', [AdminOrderController::class, 'index'])->name('admin.orders.index');
+        Route::get('/orders/{order}', [AdminOrderController::class, 'show'])->name('admin.orders.show');
+        Route::put('/orders/{order}/status', [AdminOrderController::class, 'updateStatus'])->name('admin.orders.update-status');
     });
 });

@@ -7,6 +7,72 @@
 @section('title','Product Page')
 @section('content')
 
+    {{-- Search & filter --}}
+    <section class="container pt-4">
+        <form method="GET" action="{{ route('pages.frontend.product') }}" class="row g-2 mb-4">
+            <div class="col-12 col-md-6">
+                <input type="text" name="q" value="{{ $search }}" class="form-control"
+                       placeholder="Cari produk...">
+            </div>
+            <div class="col-8 col-md-4">
+                <select name="category" class="form-select">
+                    <option value="">Semua Kategori</option>
+                    @foreach ($categories as $category)
+                        <option value="{{ $category->id }}"
+                                @selected((string) $selectedCategoryId === (string) $category->id)>
+                            {{ $category->name }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="col-4 col-md-2 d-flex gap-2">
+                <button type="submit" class="btn btn-primary border-0 text-white flex-fill">Cari</button>
+                @if ($filteredProducts)
+                    <a href="{{ route('pages.frontend.product') }}" class="btn btn-outline-secondary">Reset</a>
+                @endif
+            </div>
+        </form>
+
+        @if ($filteredProducts)
+            <h2 class="fw-semibold mb-3">Hasil Pencarian
+                <small class="text-secondary fs-6">({{ $filteredProducts->total() }} produk)</small>
+            </h2>
+            @if ($filteredProducts->isEmpty())
+                <div class="text-center py-5 border rounded-4 text-secondary">
+                    Tidak ada produk yang cocok.
+                </div>
+            @else
+                <div class="row g-3 mb-4">
+                    @foreach ($filteredProducts as $fp)
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <a href="{{ route('pages.frontend.product.detail', $fp->slug) }}"
+                               class="d-block border rounded-4 overflow-hidden shadow-sm text-decoration-none position-relative">
+                                @if ($fp->images->first())
+                                    <img src="{{ asset('storage/' . $fp->images->first()->image_path) }}"
+                                         alt="{{ $fp->name }}" class="img-fluid w-100" style="aspect-ratio: 1; object-fit: cover;">
+                                @else
+                                    <img src="{{ asset('images/Picture_Not_Yet_Available.png') }}"
+                                         alt="{{ $fp->name }}" class="img-fluid w-100" style="aspect-ratio: 1; object-fit: cover;">
+                                @endif
+                                @if (!is_null($fp->stock) && $fp->stock <= 0)
+                                    <span class="position-absolute top-0 end-0 m-2 badge bg-danger">Habis</span>
+                                @endif
+                                <div class="p-3 bg-body-secondary text-secondary">
+                                    <h3 class="fw-semibold fs-6 m-0 text-truncate text-dark">{{ $fp->name }}</h3>
+                                    <span class="d-block small text-truncate">{{ $fp->productCategory->name ?? '-' }}</span>
+                                    <span class="d-block fw-semibold text-dark mt-1">
+                                        Rp{{ number_format($fp->price, 0, '.', '.') }}
+                                    </span>
+                                </div>
+                            </a>
+                        </div>
+                    @endforeach
+                </div>
+                <div class="mb-4">{{ $filteredProducts->links() }}</div>
+            @endif
+        @endif
+    </section>
+
     {{-- Section 1 start --}}
     <section>
         <div id="carouselBannerProduct" class="carousel slide mb-4" data-bs-ride="carousel" data-bs-interval="3000">

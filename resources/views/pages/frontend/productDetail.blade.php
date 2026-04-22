@@ -37,13 +37,121 @@
                 <div class="text-secondary mb-3 fs-7 lh-1" id="productDetail">
                     {!! $product->description !!}
                 </div>
-                <button type="button" class="btn btn-lg btn-primary border-0 text-white"
-                    style="min-width: 12.5rem; height: 3.5rem;">
-                    <span class="fs-5"><a href="{{ $product->product_external_link }}"
-                            class="text-reset text-decoration-none">Grab It Now</a></span>
-                </button>
+                @if (session('status') === 'success')
+                    <div class="alert alert-success py-2">{{ session('message') }}</div>
+                @endif
+                <form method="POST" action="{{ route('pages.frontend.cart.add', $product->slug) }}"
+                      class="d-flex gap-2 align-items-center">
+                    @csrf
+                    <input type="number" name="quantity" value="1" min="1" max="99"
+                           class="form-control" style="width: 80px; height: 3.5rem;">
+                    <button type="submit" class="btn btn-lg btn-dark border-0 text-white"
+                            style="min-width: 12.5rem; height: 3.5rem;">
+                        <span class="fs-5">Tambah ke Keranjang</span>
+                    </button>
+                </form>
             </div>
         </div>
+        {{-- Reviews --}}
+        <div class="mb-5">
+            <div class="d-flex align-items-center justify-content-between mb-3">
+                <h4 class="fw-bold fs-2 text-black m-0">Ulasan Pembeli</h4>
+                @if ($reviews->isNotEmpty())
+                    <div class="text-secondary">
+                        <span class="fs-4 fw-bold text-dark">{{ number_format($averageRating, 1) }}</span>
+                        / 5 ({{ $reviews->count() }} ulasan)
+                    </div>
+                @endif
+            </div>
+
+            @if (session('review_status') === 'success')
+                <div class="alert alert-success">{{ session('review_message') }}</div>
+            @endif
+
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul class="mb-0">
+                        @foreach ($errors->all() as $err)
+                            <li>{{ $err }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
+            <div class="row g-4">
+                <div class="col-12 col-lg-7">
+                    @if ($reviews->isEmpty())
+                        <div class="text-center text-secondary py-4 border rounded-4">
+                            Belum ada ulasan untuk produk ini. Jadilah yang pertama!
+                        </div>
+                    @else
+                        @foreach ($reviews as $review)
+                            <div class="border-bottom py-3">
+                                <div class="d-flex justify-content-between align-items-center mb-1">
+                                    <div>
+                                        <strong>{{ $review->name }}</strong>
+                                        <span class="badge bg-success-subtle text-success small ms-1">
+                                            ✓ Pembeli Terverifikasi
+                                        </span>
+                                    </div>
+                                    <small class="text-secondary">
+                                        {{ $review->created_at->diffForHumans() }}
+                                    </small>
+                                </div>
+                                <div class="text-warning mb-2">
+                                    @for ($i = 1; $i <= 5; $i++)
+                                        {{ $i <= $review->rating ? '★' : '☆' }}
+                                    @endfor
+                                </div>
+                                <p class="mb-0 text-secondary">{{ $review->comment }}</p>
+                            </div>
+                        @endforeach
+                    @endif
+                </div>
+                <div class="col-12 col-lg-5">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="fw-bold mb-1">Tulis Ulasan</h5>
+                            <p class="small text-secondary mb-3">
+                                Hanya pembeli terverifikasi yang dapat menulis ulasan. Gunakan email yang sama dengan email pemesanan.
+                            </p>
+                            <form method="POST"
+                                  action="{{ route('pages.frontend.product.reviews.store', $product->slug) }}">
+                                @csrf
+                                <div class="mb-2">
+                                    <label class="form-label small">Nama</label>
+                                    <input type="text" name="name" class="form-control" required maxlength="100"
+                                           value="{{ old('name') }}">
+                                </div>
+                                <div class="mb-2">
+                                    <label class="form-label small">Email (yang dipakai saat checkout)</label>
+                                    <input type="email" name="email" class="form-control" required maxlength="255"
+                                           value="{{ old('email') }}">
+                                </div>
+                                <div class="mb-2">
+                                    <label class="form-label small">Rating</label>
+                                    <select name="rating" class="form-select" required>
+                                        @for ($i = 5; $i >= 1; $i--)
+                                            <option value="{{ $i }}" @selected(old('rating') == $i)>
+                                                {{ str_repeat('★', $i) }}{{ str_repeat('☆', 5 - $i) }} ({{ $i }})
+                                            </option>
+                                        @endfor
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label small">Komentar</label>
+                                    <textarea name="comment" rows="4" class="form-control" required maxlength="2000">{{ old('comment') }}</textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary border-0 text-white w-100">
+                                    Kirim Ulasan
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div data-aos="fade-down">
             <div class="d-flex align-items-center justify-content-between mb-3">
                 <h4 class="fw-bold fs-2 text-black">Related Products</h4>

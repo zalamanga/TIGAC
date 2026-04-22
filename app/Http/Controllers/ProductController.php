@@ -5,10 +5,13 @@ namespace App\Http\Controllers;
 use App\DataTables\ProductDataTable;
 use App\Http\Requests\ProductRequest;
 use App\Http\Requests\ProductUpdateRequest;
+use App\Models\Product;
+use App\Models\ProductCategory;
 use App\Services\HeroBannerService;
 use App\Services\ProductCategoryService;
 use App\Services\ProductService;
 use App\Services\ProductVariantService;
+use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class ProductController extends Controller
@@ -30,19 +33,35 @@ class ProductController extends Controller
         $this->heroBannerService = $heroBannerService;
     }
 
-    public function frontEndPage()
+    public function frontEndPage(Request $request)
     {
         $productPageHeroBanners = $this->heroBannerService->getActiveProductPageHeroBanners();
         $nonCollaborationProducts = $this->productService->getIsCollaborationProducts(false);
         $collaborationProducts = $this->productService->getIsCollaborationProducts(true);
 
-        $data = [
-            'productPageHeroBanners' => $productPageHeroBanners,
-            'nonCollaborationProducts' => $nonCollaborationProducts,
-            'collaborationProducts' => $collaborationProducts
-        ];
+        $search     = trim((string) $request->query('q', ''));
+        $categoryId = $request->query('category');
+        $categories = ProductCategory::orderBy('name')->get();
 
-        return view('pages.frontend.product', $data);
+        $filtered = null;
+        if ($search !== '' || $categoryId) {
+            $filtered = Product::with(['images', 'productCategory', 'variants'])
+                ->when($search !== '', fn ($q) => $q->where('name', 'like', "%{$search}%"))
+                ->when($categoryId, fn ($q) => $q->where('product_category_id', $categoryId))
+                ->latest()
+                ->paginate(12)
+                ->withQueryString();
+        }
+
+        return view('pages.frontend.product', [
+            'productPageHeroBanners'   => $productPageHeroBanners,
+            'nonCollaborationProducts' => $nonCollaborationProducts,
+            'collaborationProducts'    => $collaborationProducts,
+            'categories'               => $categories,
+            'search'                   => $search,
+            'selectedCategoryId'       => $categoryId,
+            'filteredProducts'         => $filtered,
+        ]);
     }
 
     public function productDetailPage($productSlug)
@@ -50,9 +69,14 @@ class ProductController extends Controller
         $product = $this->productService->getProductBySlug($productSlug);
         $relatedProducts = $this->productService->getProducts();
 
+        $reviews       = $product->approvedReviews()->latest()->get();
+        $averageRating = $reviews->avg('rating');
+
         $data = [
-            'product' => $product,
-            'relatedProducts' => $relatedProducts
+            'product'         => $product,
+            'relatedProducts' => $relatedProducts,
+            'reviews'         => $reviews,
+            'averageRating'   => $averageRating,
         ];
 
         return view('pages.frontend.productDetail', $data);

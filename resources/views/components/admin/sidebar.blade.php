@@ -122,6 +122,12 @@
                     </ul>
                 </li>
                 <li class="sidebar-item">
+                    <a href="{{ route('admin.orders.index') }}" class="sidebar-link">
+                        <i class="bi bi-bag-check-fill"></i>
+                        <span>Orders</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
                     <a href="{{ route('admin.programs.index') }}" class="sidebar-link">
                         <i class="bi bi-newspaper"></i>
                         <span>Program</span>

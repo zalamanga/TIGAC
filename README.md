@@ -1,11 +1,16 @@
 # Tigac.id
 
-Website resmi **Tigac.id** — dibangun dengan Laravel 10. Aplikasi ini terdiri dari dua bagian utama: **frontend publik** (etalase produk, program, partnership, newsletter, FAQ, dll) dan **panel admin** (CRUD untuk seluruh konten dinamis situs).
+Website resmi **Tigac.id** — dibangun dengan Laravel 10. Aplikasi ini punya tiga bagian utama:
+
+- **Frontend publik** — etalase produk, program, partnership, newsletter, FAQ
+- **E-commerce mini** — keranjang, checkout, pembayaran (dummy gateway), review produk, cek pesanan
+- **Panel admin** — CRUD konten situs + manajemen order
 
 ---
 
 ## Daftar Isi
 
+- [Fitur Utama](#fitur-utama)
 - [Tech Stack](#tech-stack)
 - [Prasyarat](#prasyarat)
 - [Instalasi](#instalasi)
@@ -14,10 +19,36 @@ Website resmi **Tigac.id** — dibangun dengan Laravel 10. Aplikasi ini terdiri 
 - [Skema Database](#skema-database)
 - [Daftar Rute](#daftar-rute)
   - [Rute Frontend](#rute-frontend-publik)
+  - [Rute E-commerce (Cart, Checkout, Payment, Review)](#rute-e-commerce-cart-checkout-payment-review)
   - [Rute Admin / Backend](#rute-admin--backend-butuh-login)
+- [Flow Belanja End-to-End](#flow-belanja-end-to-end)
 - [Autentikasi](#autentikasi)
 - [Perintah Artisan yang Sering Dipakai](#perintah-artisan-yang-sering-dipakai)
 - [Troubleshooting](#troubleshooting)
+
+---
+
+## Fitur Utama
+
+### Frontend Publik
+- Halaman produk dengan **pencarian + filter kategori** (pagination 12/halaman)
+- Detail produk + **review berbasis rating 1-5**
+- Halaman program, partnership, newsletter, FAQ, contact
+- Badge **"Habis"** otomatis pada produk stok ≤ 0
+
+### E-commerce
+- **Keranjang belanja** berbasis session (tidak perlu login)
+- **Checkout** dengan form alamat + pilihan kurir (Reguler / Express / Same Day — flat rate)
+- **Payment gateway dummy** — simulasi pembayaran, klik "Saya Sudah Bayar" → status jadi `paid`
+- **Validasi stok** di cart & checkout, **auto-decrement stok** atomik saat pembayaran lunas
+- **Email notifikasi** pembayaran diterima ke customer (via Mailable + Blade template)
+- **Review pembeli terverifikasi** — hanya email yang sudah pernah lunas beli produk itu yang bisa review, ditandai badge "✓ Pembeli Terverifikasi"
+- **Cek Pesanan** tanpa login — input `order_number` + `email` → status + detail
+
+### Admin
+- Dashboard + CRUD lengkap untuk: produk, kategori, varian, hero banner, video banner, newsletter, partnership, masterpiece, program, FAQ, kontak, user
+- **Manajemen order** — list semua order, detail per order, update status (pending → paid → processing → shipped → completed / cancelled)
+- Search, sort, paginate via `yajra/laravel-datatables`
 
 ---
 
@@ -112,6 +143,10 @@ erDiagram
     PRODUCTS ||--o{ PRODUCT_IMAGES : "memiliki"
     PRODUCTS ||--o{ PRODUCT_VARIANT : "memiliki"
     VARIANTS ||--o{ PRODUCT_VARIANT : "tersedia untuk"
+
+    PRODUCTS ||--o{ PRODUCT_REVIEWS : "diulas"
+    PRODUCTS ||--o{ ORDER_ITEMS : "dipesan di"
+    ORDERS ||--o{ ORDER_ITEMS : "berisi"
 
     USERS {
         bigint   id PK
@@ -274,6 +309,49 @@ erDiagram
         timestamp created_at
         timestamp updated_at
     }
+
+    ORDERS {
+        bigint  id PK
+        string  order_number UK
+        string  customer_name
+        string  customer_email
+        string  customer_phone
+        text    shipping_address
+        text    notes
+        bigint  subtotal
+        bigint  shipping_cost
+        string  shipping_method
+        bigint  total
+        string  status
+        string  payment_method
+        timestamp paid_at
+        timestamp created_at
+        timestamp updated_at
+    }
+
+    ORDER_ITEMS {
+        bigint  id PK
+        bigint  order_id FK
+        bigint  product_id FK
+        string  product_name
+        bigint  price
+        int     quantity
+        bigint  subtotal
+        timestamp created_at
+        timestamp updated_at
+    }
+
+    PRODUCT_REVIEWS {
+        bigint  id PK
+        bigint  product_id FK
+        string  name
+        string  email
+        tinyint rating
+        text    comment
+        boolean is_approved
+        timestamp created_at
+        timestamp updated_at
+    }
 ```
 
 > Entitas `HERO_BANNERS`, `NEWSLETTERS`, `PARTNERSHIPS`, `CONTACTS`, `MASTERPIECES`, `PROGRAMS`, `VIDEO_HOME_BANNERS`, `FAQS`, dan `SUBSCRIBERS` bersifat **standalone** (tidak memiliki relasi FK ke entitas lain). Mereka dikelola penuh lewat panel admin.
@@ -283,7 +361,10 @@ erDiagram
 ```
 product_categories (1) ────< (M) products
 products            (1) ────< (M) product_images
-products            (M) ────< (M) variants      [pivot: product_variant]
+products            (M) ────< (M) variants           [pivot: product_variant]
+products            (1) ────< (M) product_reviews
+products            (1) ────< (M) order_items        [historical snapshot]
+orders              (1) ────< (M) order_items
 ```
 
 ---
@@ -307,6 +388,9 @@ products            (M) ────< (M) variants      [pivot: product_variant]
 | `programs`           | Pendaftaran program (toko/reseller) dari form publik.                |
 | `faqs`               | Pertanyaan yang sering ditanyakan.                                   |
 | `subscribers`        | Email pelanggan newsletter.                                          |
+| `orders`             | Pesanan checkout. `order_number` = `ORD-YmdHis-xxx`. Status: pending / paid / processing / shipped / completed / cancelled. |
+| `order_items`        | Item per order — menyimpan **snapshot** nama & harga saat checkout (tidak berubah kalau produk di-edit). |
+| `product_reviews`    | Ulasan produk dari pembeli terverifikasi (rating 1-5 + comment). `is_approved` default `true`. |
 
 ---
 
@@ -337,6 +421,44 @@ Semua rute di bawah memakai prefix nama `pages.frontend.*`.
 | GET    | `/qr`                       | `pages.qr`                       | view `pages.qr`                              |
 | -      | `/subscriber` (resource)    | `pages.frontend.subscriber.*`    | `SubscriberController` (RESTful)             |
 | GET    | `/linkstorage`              | —                                | Jalankan `storage:link` sekali pakai         |
+
+> `GET /product?q=<keyword>&category=<id>` — search + filter (pagination 12/halaman).
+
+### Rute E-commerce (Cart, Checkout, Payment, Review)
+
+Semua rute di bawah juga punya prefix nama `pages.frontend.*`.
+
+#### Keranjang (session-based, tidak perlu login)
+
+| Method | URI                   | Nama                                 | Aksi                        |
+| ------ | --------------------- | ------------------------------------ | --------------------------- |
+| GET    | `/cart`               | `pages.frontend.cart.show`           | Lihat isi keranjang         |
+| POST   | `/cart/add/{slug}`    | `pages.frontend.cart.add`            | Tambah produk (body: `quantity`) |
+| PUT    | `/cart/{productId}`   | `pages.frontend.cart.update`         | Update jumlah               |
+| DELETE | `/cart/{productId}`   | `pages.frontend.cart.remove`         | Hapus 1 item                |
+| DELETE | `/cart`               | `pages.frontend.cart.clear`          | Kosongkan keranjang         |
+
+#### Checkout & Pembayaran
+
+| Method | URI                              | Nama                                | Aksi                             |
+| ------ | -------------------------------- | ----------------------------------- | -------------------------------- |
+| GET    | `/checkout`                      | `pages.frontend.checkout.show`      | Form pemesan + pilih kurir       |
+| POST   | `/checkout`                      | `pages.frontend.checkout.store`     | Bikin order (status: `pending`)  |
+| GET    | `/payment/{orderNumber}`         | `pages.frontend.payment.show`       | Halaman dummy gateway            |
+| POST   | `/payment/{orderNumber}/pay`     | `pages.frontend.payment.pay`        | Tandai lunas + kurangi stok + kirim email |
+| GET    | `/payment/{orderNumber}/success` | `pages.frontend.payment.success`    | Konfirmasi pembayaran berhasil   |
+
+> Payment page di-guard lewat session `checkout.last_order` — hanya pemesan saat itu (atau user admin yang login) yang bisa akses.
+
+#### Review & Cek Pesanan
+
+| Method | URI                          | Nama                                        | Aksi                                 |
+| ------ | ---------------------------- | ------------------------------------------- | ------------------------------------ |
+| POST   | `/product/{slug}/reviews`    | `pages.frontend.product.reviews.store`      | Kirim ulasan (verified-purchase only)|
+| GET    | `/cek-pesanan`               | `pages.frontend.order-lookup.show`          | Form cek pesanan                     |
+| POST   | `/cek-pesanan`               | `pages.frontend.order-lookup.lookup`        | Lookup by order_number + email       |
+
+> Review hanya disimpan kalau email-nya cocok dengan email order yang statusnya `paid / processing / shipped / completed`.
 
 ### Rute Admin / Backend (butuh login)
 
@@ -387,6 +509,14 @@ Semua rute di bawah dilindungi middleware **`auth`**.
 | FAQs                | `/admin/faqs`                | `admin.faqs.*`              |
 | User Management     | `/userManagement`            | `userManagement.*`          |
 
+#### Orders (Admin)
+
+| Method | URI                              | Nama                           | Aksi                                    |
+| ------ | -------------------------------- | ------------------------------ | --------------------------------------- |
+| GET    | `/admin/orders`                  | `admin.orders.index`           | List semua order (paginated 15)         |
+| GET    | `/admin/orders/{order}`          | `admin.orders.show`            | Detail order + item + customer info     |
+| PUT    | `/admin/orders/{order}/status`   | `admin.orders.update-status`   | Update status (pending → completed dll) |
+
 #### Rute Admin Tambahan
 
 | Method | URI                                                       | Nama                                 |
@@ -395,6 +525,61 @@ Semua rute di bawah dilindungi middleware **`auth`**.
 | POST   | `/newsletter-upload-image`                                | `newsletter-upload-image`            |
 
 > 💡 Lihat daftar rute aktual dengan: `php artisan route:list`
+
+---
+
+## Flow Belanja End-to-End
+
+```
+ [Product page]  search / filter / klik produk
+       │
+       ▼
+ [Product detail]  klik "Tambah ke Keranjang"
+       │                                       ┌──────────────────────┐
+       ▼                                       │ Tulis Ulasan         │
+ [Cart /cart]  update qty / hapus              │ (verified buyer only)│
+       │                                       └──────────▲───────────┘
+       ▼                                                  │
+ [Checkout /checkout]  isi alamat + pilih kurir           │
+       │ (validasi stok + shipping cost)                  │
+       ▼                                                  │
+ [Dummy Payment /payment/{ORD-...}]                       │
+       │ klik "Saya Sudah Bayar"                          │
+       ▼                                                  │
+  Order.status = paid                                     │
+  paid_at = now()                                         │
+  Product.stock -= quantity (atomic, lockForUpdate)       │
+  Mail::send(OrderPaid)  → customer email                 │
+       │                                                  │
+       ▼                                                  │
+ [Success page /payment/{ORD-...}/success] ───────────────┘
+
+ Admin side:
+ /admin/orders  → list → detail → update status manual
+ /cek-pesanan   → customer lookup by order_number + email
+```
+
+### Konfigurasi Pilihan Kurir
+
+Flat rate per kurir diatur di [config/shipping.php](config/shipping.php):
+
+| Key        | Label                  | Cost        |
+| ---------- | ---------------------- | ----------- |
+| `regular`  | Reguler (2-4 hari)     | Rp 15.000   |
+| `express`  | Express (1-2 hari)     | Rp 25.000   |
+| `same_day` | Same Day (kota besar)  | Rp 40.000   |
+
+Tambah/ubah kurir dengan edit file config-nya — tidak perlu migrasi.
+
+### Email Notifikasi
+
+Mailable: [app/Mail/OrderPaid.php](app/Mail/OrderPaid.php). Template: [resources/views/emails/order-paid.blade.php](resources/views/emails/order-paid.blade.php).
+
+Untuk dev tanpa SMTP, ubah `.env`:
+```
+MAIL_MAILER=log
+```
+Email akan tersimpan ke `storage/logs/laravel.log` (bisa di-preview tanpa konfigurasi mail server). Pengiriman email dibungkus `try/catch` — jika SMTP gagal, pembayaran tetap berhasil dan error hanya di-log.
 
 ---
 
@@ -408,6 +593,16 @@ Aplikasi memakai **Laravel Fortify** sebagai backend auth. Fitur yang diaktifkan
 - Email verification
 
 Semua rute admin dilindungi oleh middleware `auth`. Belum ada sistem **role-based access** — setiap user yang login punya akses penuh ke `/admin/*`. Tambahkan Gate/Policy bila memerlukan pembatasan per-user.
+
+**Kredensial default** (dari [DatabaseSeeder](database/seeders/DatabaseSeeder.php)):
+
+| Field    | Value              |
+| -------- | ------------------ |
+| URL      | `/login`           |
+| Email    | `admin@tigac.id`   |
+| Password | `admin123`         |
+
+Kalau user admin belum ada, jalankan: `php artisan db:seed`.
 
 ---
 
@@ -444,6 +639,11 @@ php artisan tinker
 - **Class not found setelah pull baru** → `composer dump-autoload`.
 - **Migrasi gagal: foreign key** → pastikan urutan migrasi berjalan sesuai timestamp (bawaan sudah benar).
 - **Vite asset 404** di produksi → jalankan `npm run build`.
+- **Login / halaman baru 404** → ada dua proses `artisan serve` jalan bersamaan. Cek dengan `netstat -ano | grep 8000`, kill salah satu dengan `taskkill //PID <pid> //F`, start ulang.
+- **"Trying to access array offset on value of type null"** di cart → hard-refresh browser; bug ini sudah di-fix, tapi route cache lama bisa masih mengacu class lama (`php artisan route:clear && php artisan view:clear`).
+- **Email pembayaran tidak terkirim** → ini ditangani silent (try/catch). Cek `storage/logs/laravel.log` untuk warning. Ganti ke `MAIL_MAILER=log` di `.env` kalau memang tidak ada SMTP.
+- **"Email belum pernah membeli produk ini"** saat review → memang by design. Review hanya untuk pembeli terverifikasi — checkout + bayar dulu pakai email yang sama, baru bisa review.
+- **db_tigac.sql** → snapshot lama (Juni 2024). **Jangan di-import** — skemanya sudah ketinggalan jauh dari migrasi saat ini. Pakai `php artisan migrate:fresh --seed` kalau mau reset database.
 
 ---
 
