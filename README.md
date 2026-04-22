@@ -1,66 +1,438 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Tigac.id
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Website resmi **Tigac.id** — dibangun dengan Laravel 10. Aplikasi ini terdiri dari dua bagian utama: **frontend publik** (etalase produk, program, partnership, newsletter, FAQ, dll) dan **panel admin** (CRUD untuk seluruh konten dinamis situs).
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Daftar Isi
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- [Tech Stack](#tech-stack)
+- [Prasyarat](#prasyarat)
+- [Instalasi](#instalasi)
+- [Struktur Direktori](#struktur-direktori)
+- [Entity Relationship Diagram (ERD)](#entity-relationship-diagram-erd)
+- [Skema Database](#skema-database)
+- [Daftar Rute](#daftar-rute)
+  - [Rute Frontend](#rute-frontend-publik)
+  - [Rute Admin / Backend](#rute-admin--backend-butuh-login)
+- [Autentikasi](#autentikasi)
+- [Perintah Artisan yang Sering Dipakai](#perintah-artisan-yang-sering-dipakai)
+- [Troubleshooting](#troubleshooting)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+## Tech Stack
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+| Layer        | Teknologi                                             |
+| ------------ | ----------------------------------------------------- |
+| Framework    | Laravel 10.x                                          |
+| PHP          | ^8.1                                                  |
+| Database     | MySQL 5.7+ / MariaDB 10.3+                            |
+| Auth         | Laravel Fortify + Sanctum                             |
+| Frontend     | Blade + Vite + Axios                                  |
+| Build tool   | Vite 5                                                |
+| Tabel admin  | `yajra/laravel-datatables` + buttons                  |
+| Notifikasi   | `realrashid/sweet-alert`                              |
+| HTTP client  | GuzzleHTTP 7                                          |
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+---
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Prasyarat
 
-## Laravel Sponsors
+- PHP ≥ 8.1 dengan ekstensi: `pdo_mysql`, `mbstring`, `openssl`, `tokenizer`, `xml`, `ctype`, `json`, `bcmath`, `fileinfo`, `gd`
+- Composer 2.x
+- Node.js ≥ 18 & NPM
+- MySQL / MariaDB
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+---
 
-### Premium Partners
+## Instalasi
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+```bash
+# 1. Clone repository
+git clone <repo-url> tigac.id
+cd tigac.id
 
-## Contributing
+# 2. Install dependencies
+composer install
+npm install
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+# 3. Siapkan file environment
+cp .env.example .env
+php artisan key:generate
 
-## Code of Conduct
+# 4. Konfigurasikan database di .env
+#    DB_DATABASE=db_tigac
+#    DB_USERNAME=root
+#    DB_PASSWORD=
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+# 5. Jalankan migrasi (+ seeder jika ada)
+php artisan migrate
 
-## Security Vulnerabilities
+# 6. Link storage supaya upload gambar bisa diakses publik
+php artisan storage:link
+#    Alternatif lewat browser: buka http://localhost:8000/linkstorage
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+# 7. Jalankan server dev
+php artisan serve       # backend (http://localhost:8000)
+npm run dev             # vite (asset hot reload)
+```
 
-## License
+---
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Struktur Direktori
+
+```
+tigac.id/
+├── app/
+│   ├── Http/Controllers/     # 15 controller (frontend + admin)
+│   └── Models/               # 15 Eloquent model
+├── database/
+│   └── migrations/           # Skema seluruh tabel
+├── public/                   # Entry point + asset publik
+├── resources/
+│   └── views/
+│       ├── pages/frontend/   # Blade halaman publik
+│       └── pages/admin/      # Blade panel admin
+├── routes/
+│   ├── web.php               # Seluruh rute web (frontend + admin)
+│   └── api.php               # Endpoint API (Sanctum)
+└── storage/app/public/       # Upload gambar/video
+```
+
+---
+
+## Entity Relationship Diagram (ERD)
+
+```mermaid
+erDiagram
+    USERS ||--o{ PRODUCTS : "admin mengelola"
+
+    PRODUCT_CATEGORIES ||--o{ PRODUCTS : "mengkategorikan"
+    PRODUCTS ||--o{ PRODUCT_IMAGES : "memiliki"
+    PRODUCTS ||--o{ PRODUCT_VARIANT : "memiliki"
+    VARIANTS ||--o{ PRODUCT_VARIANT : "tersedia untuk"
+
+    USERS {
+        bigint   id PK
+        string   name
+        string   email UK
+        timestamp email_verified_at
+        string   password
+        string   two_factor_secret
+        string   two_factor_recovery_codes
+        timestamp two_factor_confirmed_at
+        string   remember_token
+        timestamps
+    }
+
+    PRODUCT_CATEGORIES {
+        bigint  id PK
+        string  name UK
+        string  is_active
+        text    description
+        timestamps
+    }
+
+    PRODUCTS {
+        bigint  id PK
+        string  sku
+        string  name
+        string  slug
+        text    description
+        bigint  product_category_id FK
+        float   rating
+        bigint  price
+        float   discount_percent
+        boolean is_device
+        boolean is_collaboration_project
+        string  is_active
+        string  is_hot_item
+        int     stock
+        string  volume
+        string  product_external_link
+        timestamps
+    }
+
+    PRODUCT_IMAGES {
+        bigint  id PK
+        string  name
+        text    description
+        text    image_path
+        bigint  product_id FK
+        timestamps
+    }
+
+    VARIANTS {
+        bigint  id PK
+        string  name
+        text    description
+        timestamps
+    }
+
+    PRODUCT_VARIANT {
+        bigint  id PK
+        bigint  product_id FK
+        bigint  variant_id FK
+    }
+
+    HERO_BANNERS {
+        bigint  id PK
+        string  name UK
+        string  tagline UK
+        text    tagline_description
+        boolean is_for_product_page
+        string  media_type
+        string  media_path
+        string  is_active
+        string  is_priority
+        timestamps
+    }
+
+    NEWSLETTERS {
+        bigint  id PK
+        string  title UK
+        string  slug UK
+        text    content
+        string  thumbnail
+        string  thumbnail_short_description
+        boolean is_active
+        timestamps
+    }
+
+    PARTNERSHIPS {
+        bigint  id PK
+        string  name UK
+        string  description
+        string  logo
+        boolean is_active
+        string  external_link
+        timestamps
+    }
+
+    CONTACTS {
+        bigint  id PK
+        string  name UK
+        string  link UK
+        string  logo
+        timestamps
+    }
+
+    MASTERPIECES {
+        bigint  id PK
+        string  name UK
+        string  slug UK
+        string  detail_link UK
+        string  thumbnail
+        string  thumbnail_short_description
+        boolean is_active
+        timestamps
+    }
+
+    PROGRAMS {
+        bigint  id PK
+        string  pic
+        string  store_name UK
+        string  phone_number
+        string  email
+        text    address
+        timestamps
+    }
+
+    VIDEO_HOME_BANNERS {
+        bigint  id PK
+        string  name
+        text    description
+        text    video_path
+        timestamps
+    }
+
+    FAQS {
+        bigint  id PK
+        string  question
+        longtext answer
+        boolean is_active
+        timestamps
+    }
+
+    SUBSCRIBERS {
+        bigint  id PK
+        string  email UK
+        timestamps
+    }
+```
+
+> Entitas `HERO_BANNERS`, `NEWSLETTERS`, `PARTNERSHIPS`, `CONTACTS`, `MASTERPIECES`, `PROGRAMS`, `VIDEO_HOME_BANNERS`, `FAQS`, dan `SUBSCRIBERS` bersifat **standalone** (tidak memiliki relasi FK ke entitas lain). Mereka dikelola penuh lewat panel admin.
+
+### Relasi Inti (Product Domain)
+
+```
+product_categories (1) ────< (M) products
+products            (1) ────< (M) product_images
+products            (M) ────< (M) variants      [pivot: product_variant]
+```
+
+---
+
+## Skema Database
+
+| Tabel                | Deskripsi                                                            |
+| -------------------- | -------------------------------------------------------------------- |
+| `users`              | Akun admin (Fortify + 2FA kolom dari Jetstream).                     |
+| `product_categories` | Kategori produk, terhubung ke `products` (1:M).                      |
+| `products`           | Master produk. `slug` di-generate otomatis dari `name` di model.     |
+| `product_images`     | Galeri gambar produk (1 produk → banyak gambar).                     |
+| `variants`           | Daftar varian (misal: rasa, ukuran).                                 |
+| `product_variant`    | Pivot M:M antara `products` dan `variants`.                          |
+| `hero_banners`       | Banner hero untuk home page & halaman produk.                        |
+| `video_home_banners` | Video banner di halaman home.                                        |
+| `newsletters`        | Artikel / konten newsletter (dengan slug SEO-friendly).              |
+| `partnerships`       | Daftar partner / brand kolaborasi.                                   |
+| `contacts`           | Link kontak / social media (logo + link).                            |
+| `masterpieces`       | Showcase "masterpiece" / highlight produk pilihan.                   |
+| `programs`           | Pendaftaran program (toko/reseller) dari form publik.                |
+| `faqs`               | Pertanyaan yang sering ditanyakan.                                   |
+| `subscribers`        | Email pelanggan newsletter.                                          |
+
+---
+
+## Daftar Rute
+
+### Rute Frontend (publik)
+
+Semua rute di bawah memakai prefix nama `pages.frontend.*`.
+
+| Method | URI                         | Nama                             | Controller / Aksi                            |
+| ------ | --------------------------- | -------------------------------- | -------------------------------------------- |
+| GET    | `/`                         | `pages.frontend.index`           | `HomePageController@index`                   |
+| GET    | `/product`                  | `pages.frontend.product`         | `ProductController@frontEndPage`             |
+| GET    | `/product/{slug}`           | `pages.frontend.product.detail`  | `ProductController@productDetailPage`        |
+| GET    | `/program`                  | `pages.frontend.program`         | `ProgramController@frontEndPage`             |
+| POST   | `/program`                  | `pages.frontend.program.store`   | `ProgramController@store`                    |
+| GET    | `/newsletter`               | `pages.frontend.newsletter`      | `NewsletterController@frontEndPage`          |
+| GET    | `/partnership`              | `pages.frontend.partnership`     | `PartnershipController@frontEndPage`         |
+| GET    | `/faq`                      | `pages.frontend.faq`             | `FaqController@frontEndPage`                 |
+| GET    | `/discover`                 | `pages.frontend.discover`        | view `pages.frontend.about`                  |
+| GET    | `/about`                    | `pages.frontend.about`           | view `pages.frontend.about`                  |
+| GET    | `/vaporistar`               | `pages.frontend.vaporistar`      | view `pages.frontend.vaporistar`             |
+| GET    | `/contact`                  | `pages.frontend.contact`         | view `pages.frontend.contact`                |
+| GET    | `/find`                     | `pages.frontend.find`            | view `pages.frontend.find`                   |
+| GET    | `/tcall`                    | `pages.frontend.tcall`           | view `pages.frontend.tcall`                  |
+| GET    | `/consumer-program`         | `pages.frontend.consumer.program`| view `pages.frontend.consumerProgram`        |
+| GET    | `/landing`                  | `pages.landing`                  | view `pages.landing`                         |
+| GET    | `/qr`                       | `pages.qr`                       | view `pages.qr`                              |
+| -      | `/subscriber` (resource)    | `pages.frontend.subscriber.*`    | `SubscriberController` (RESTful)             |
+| GET    | `/linkstorage`              | —                                | Jalankan `storage:link` sekali pakai         |
+
+### Rute Admin / Backend (butuh login)
+
+Semua rute di bawah dilindungi middleware **`auth`**.
+
+#### Dashboard
+
+| Method | URI      | Nama          | Controller                         |
+| ------ | -------- | ------------- | ---------------------------------- |
+| GET    | `/admin` | `admin.index` | `AdminDashboardController@index`   |
+
+#### Product Category
+
+| Method | URI                                                          | Nama                                                    |
+| ------ | ------------------------------------------------------------ | ------------------------------------------------------- |
+| GET    | `/admin/products/categories`                                 | `admin.product.product-category.index`                  |
+| GET    | `/admin/products/categories/create`                          | `admin.product.product-category.create`                 |
+| POST   | `/admin/products/categories/store`                           | `admin.product.product-category.store`                  |
+| GET    | `/admin/products/categories/{id}/edit`                       | `admin.product.product-category.edit`                   |
+| PUT    | `/admin/products/categories/{id}/update`                     | `admin.product.product-category.update`                 |
+| DELETE | `/admin/products/categories/destroy/{id}`                    | `admin.product.product-category.destroy`                |
+| PUT    | `/admin/products/categories/chagne-active-status/{id}`       | `admin.product.product-category.change-active-status`   |
+
+#### Product Variant
+
+| Method | URI                                            | Nama                                    |
+| ------ | ---------------------------------------------- | --------------------------------------- |
+| GET    | `/admin/products/variants`                     | `admin.product.product-variant.index`   |
+| GET    | `/admin/products/variants/create`              | `admin.product.product-variant.create`  |
+| POST   | `/admin/products/variants/store`               | `admin.product.product-variant.store`   |
+| GET    | `/admin/products/variants/detail/{id}`         | `admin.product.product-variant.show`    |
+| GET    | `/admin/products/variants/edit/{id}`           | `admin.product.product-variant.edit`    |
+| PUT    | `/admin/products/variants/update/{id}`         | `admin.product.product-variant.update`  |
+| DELETE | `/admin/products/variants/destroy/{id}`        | `admin.product.product-variant.destroy` |
+
+#### Resource Routes (standard RESTful `index/create/store/show/edit/update/destroy`)
+
+| Resource            | URI base                     | Nama prefix                 |
+| ------------------- | ---------------------------- | --------------------------- |
+| Products            | `/admin/products`            | `admin.products.*`          |
+| Hero Banners        | `/admin/hero-banners`        | `admin.hero-banners.*`      |
+| Newsletters         | `/admin/newsletters`         | `admin.newsletters.*`       |
+| Partnerships        | `/admin/partnerships`        | `admin.partnerships.*`      |
+| Contacts            | `/admin/contacts`            | `admin.contacts.*`          |
+| Masterpieces        | `/admin/masterpieces`        | `admin.masterpieces.*`      |
+| Programs            | `/admin/programs`            | `admin.programs.*`          |
+| Video Home Banners  | `/admin/video-home-banners`  | `admin.video-home-banners.*`|
+| FAQs                | `/admin/faqs`                | `admin.faqs.*`              |
+| User Management     | `/userManagement`            | `userManagement.*`          |
+
+#### Rute Admin Tambahan
+
+| Method | URI                                                       | Nama                                 |
+| ------ | --------------------------------------------------------- | ------------------------------------ |
+| DELETE | `/admin/products/{productId}/images/{productImagesId}/destroy` | `admin.products.images.delete` |
+| POST   | `/newsletter-upload-image`                                | `newsletter-upload-image`            |
+
+> 💡 Lihat daftar rute aktual dengan: `php artisan route:list`
+
+---
+
+## Autentikasi
+
+Aplikasi memakai **Laravel Fortify** sebagai backend auth. Fitur yang diaktifkan antara lain:
+
+- Login / Logout
+- Password reset
+- Two-factor authentication (kolom DB tersedia di tabel `users`)
+- Email verification
+
+Semua rute admin dilindungi oleh middleware `auth`. Belum ada sistem **role-based access** — setiap user yang login punya akses penuh ke `/admin/*`. Tambahkan Gate/Policy bila memerlukan pembatasan per-user.
+
+---
+
+## Perintah Artisan yang Sering Dipakai
+
+```bash
+# Daftar semua rute
+php artisan route:list
+
+# Jalankan migrasi (fresh = drop semua lalu migrate ulang)
+php artisan migrate
+php artisan migrate:fresh --seed
+
+# Link storage publik (wajib sekali setelah clone)
+php artisan storage:link
+
+# Bersihkan cache
+php artisan cache:clear
+php artisan config:clear
+php artisan view:clear
+php artisan route:clear
+
+# Buat user admin baru lewat tinker
+php artisan tinker
+> \App\Models\User::create(['name' => 'Admin', 'email' => 'admin@tigac.id', 'password' => bcrypt('password')]);
+```
+
+---
+
+## Troubleshooting
+
+- **Gambar tidak muncul di frontend** → jalankan `php artisan storage:link` atau buka `/linkstorage` sekali.
+- **419 Page Expired** → clear cookie atau jalankan `php artisan config:clear`.
+- **Class not found setelah pull baru** → `composer dump-autoload`.
+- **Migrasi gagal: foreign key** → pastikan urutan migrasi berjalan sesuai timestamp (bawaan sudah benar).
+- **Vite asset 404** di produksi → jalankan `npm run build`.
+
+---
+
+## Lisensi
+
+Framework Laravel dirilis dengan [MIT License](https://opensource.org/licenses/MIT). Konten, aset, dan branding Tigac.id merupakan hak milik pemilik proyek.
