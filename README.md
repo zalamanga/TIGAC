@@ -123,7 +123,8 @@ erDiagram
         string   two_factor_recovery_codes
         timestamp two_factor_confirmed_at
         string   remember_token
-        timestamps
+        timestamp created_at
+        timestamp updated_at
     }
 
     PRODUCT_CATEGORIES {
@@ -131,7 +132,8 @@ erDiagram
         string  name UK
         string  is_active
         text    description
-        timestamps
+        timestamp created_at
+        timestamp updated_at
     }
 
     PRODUCTS {
@@ -151,7 +153,8 @@ erDiagram
         int     stock
         string  volume
         string  product_external_link
-        timestamps
+        timestamp created_at
+        timestamp updated_at
     }
 
     PRODUCT_IMAGES {
@@ -160,14 +163,16 @@ erDiagram
         text    description
         text    image_path
         bigint  product_id FK
-        timestamps
+        timestamp created_at
+        timestamp updated_at
     }
 
     VARIANTS {
         bigint  id PK
         string  name
         text    description
-        timestamps
+        timestamp created_at
+        timestamp updated_at
     }
 
     PRODUCT_VARIANT {
@@ -186,7 +191,8 @@ erDiagram
         string  media_path
         string  is_active
         string  is_priority
-        timestamps
+        timestamp created_at
+        timestamp updated_at
     }
 
     NEWSLETTERS {
@@ -197,7 +203,8 @@ erDiagram
         string  thumbnail
         string  thumbnail_short_description
         boolean is_active
-        timestamps
+        timestamp created_at
+        timestamp updated_at
     }
 
     PARTNERSHIPS {
@@ -207,7 +214,8 @@ erDiagram
         string  logo
         boolean is_active
         string  external_link
-        timestamps
+        timestamp created_at
+        timestamp updated_at
     }
 
     CONTACTS {
@@ -215,7 +223,8 @@ erDiagram
         string  name UK
         string  link UK
         string  logo
-        timestamps
+        timestamp created_at
+        timestamp updated_at
     }
 
     MASTERPIECES {
@@ -226,7 +235,8 @@ erDiagram
         string  thumbnail
         string  thumbnail_short_description
         boolean is_active
-        timestamps
+        timestamp created_at
+        timestamp updated_at
     }
 
     PROGRAMS {
@@ -236,7 +246,8 @@ erDiagram
         string  phone_number
         string  email
         text    address
-        timestamps
+        timestamp created_at
+        timestamp updated_at
     }
 
     VIDEO_HOME_BANNERS {
@@ -244,7 +255,8 @@ erDiagram
         string  name
         text    description
         text    video_path
-        timestamps
+        timestamp created_at
+        timestamp updated_at
     }
 
     FAQS {
@@ -252,13 +264,15 @@ erDiagram
         string  question
         longtext answer
         boolean is_active
-        timestamps
+        timestamp created_at
+        timestamp updated_at
     }
 
     SUBSCRIBERS {
         bigint  id PK
         string  email UK
-        timestamps
+        timestamp created_at
+        timestamp updated_at
     }
 ```
 
