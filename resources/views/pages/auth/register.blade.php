@@ -7,7 +7,7 @@
         <div class="col-lg-5 col-12">
             <div id="auth-left">
                 <div class="auth-logo">
-                    <a href="#" class="navbar-brand"><img src="{{ asset('images/logo.png') }}" alt="TIGAC logo"
+                    <a href="{{ route('pages.frontend.index') }}" class="navbar-brand"><img src="{{ asset('images/logo.png') }}" alt="TIGAC logo"
                             srcset="" /></a>
                 </div>
                 <h1 class="auth-title">Sign Up</h1>
@@ -43,8 +43,7 @@
                         @enderror
                     </div>
                     <div class="form-group position-relative has-icon-left mb-4">
-                        <input type="password" class="form-control form-control-xl" placeholder="Password" name="password"
-                            value="{{ old('password') }}" />
+                        <input type="password" class="form-control form-control-xl" placeholder="Password" name="password" />
                         <div class="form-control-icon">
                             <i class="bi bi-shield-lock"></i>
                         </div>

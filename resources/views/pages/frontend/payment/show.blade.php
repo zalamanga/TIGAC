@@ -53,31 +53,16 @@
 
     <div class="card bg-light">
         <div class="card-body">
-            <h5 class="fw-bold mb-3">Dummy Payment Gateway</h5>
-            <p class="mb-3">
-                Silakan transfer ke rekening berikut (simulasi — transaksi <strong>tidak nyata</strong>):
-            </p>
-            <div class="p-3 bg-white rounded border mb-3">
-                <div class="d-flex justify-content-between mb-1">
-                    <span class="text-secondary">Bank</span>
-                    <span class="fw-semibold">TIGAC VIRTUAL BANK</span>
-                </div>
-                <div class="d-flex justify-content-between mb-1">
-                    <span class="text-secondary">Nomor Rekening</span>
-                    <span class="fw-semibold">0000-{{ substr($order->order_number, -4) }}-1234</span>
-                </div>
-                <div class="d-flex justify-content-between">
-                    <span class="text-secondary">Atas Nama</span>
-                    <span class="fw-semibold">TIGAC.ID</span>
-                </div>
-            </div>
-            <p class="text-secondary small mb-3">
-                Setelah "transfer" simulasi, klik tombol di bawah untuk menandai pembayaran sebagai lunas.
-            </p>
+            <h5 class="fw-bold mb-3">Simulasi Pembayaran</h5>
+            <p class="mb-3">Mode demo. Tidak ada transfer uang atau koneksi ke bank.
+                Tombol di bawah menandai pesanan lunas dan mengurangi stok untuk pengujian.</p>
+            @error('payment')
+                <div class="alert alert-danger" role="alert">{{ $message }}</div>
+            @enderror
             <form method="POST" action="{{ route('pages.frontend.payment.pay', $order->order_number) }}">
                 @csrf
                 <button type="submit" class="btn btn-success w-100 text-white">
-                    Saya Sudah Bayar
+                    Simulasikan Pembayaran Lunas
                 </button>
             </form>
         </div>

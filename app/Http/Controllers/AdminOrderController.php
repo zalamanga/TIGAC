@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
+use Illuminate\Validation\ValidationException;
 
 class AdminOrderController extends Controller
 {
@@ -28,7 +30,14 @@ class AdminOrderController extends Controller
             'status' => ['required', Rule::in(Order::$statuses)],
         ]);
 
-        $order->update(['status' => $data['status']]);
+        DB::transaction(function () use ($order, $data) {
+            $locked = Order::lockForUpdate()->findOrFail($order->id);
+            $allowed = $locked->allowedNextStatuses();
+            if ($data['status'] !== $locked->status && ! in_array($data['status'], $allowed, true)) {
+                throw ValidationException::withMessages(['status' => 'Perubahan status tidak diizinkan. Pembayaran hanya melalui simulasi pembayaran.']);
+            }
+            $locked->update(['status' => $data['status']]);
+        });
 
         return redirect()
             ->route('admin.orders.show', $order)

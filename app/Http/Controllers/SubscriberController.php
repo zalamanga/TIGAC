@@ -28,11 +28,13 @@ class SubscriberController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'mail_customer' => 'required|email|unique:subscribers,email'
+        $data = $request->validate([
+            'mail_customer' => 'required|string|email|max:255|unique:subscribers,email'
         ]);
 
-        Subscriber::create($request->all());
+        $subscriber = new Subscriber;
+        $subscriber->email = $data['mail_customer'];
+        $subscriber->save();
 
         return redirect()->back()->with('success', 'You have successfully subscribed to our newsletter');
     }

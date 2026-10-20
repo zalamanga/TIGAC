@@ -13,7 +13,7 @@ class MasterpieceController extends Controller
 {
     protected $masterpieceService;
 
-    public function __construct(MasterpieceService $masterpieceService = null)
+    public function __construct(MasterpieceService $masterpieceService)
     {
         $this->masterpieceService = $masterpieceService;
     }

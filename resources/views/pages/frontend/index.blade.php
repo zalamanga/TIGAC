@@ -7,13 +7,16 @@
         <center>
             <h1 data-aos="fade-right" class="fw-semibold mb-3">Welcome to TIGAC World</h1>
         </center>
-        {{-- <video src="{{ $videoUrl }}" autoplay loop muted class="img-fluid rounded-4"></video> --}}
-
-        <video class="img-fluid rounded-4 video-product" controls autoplay loop>
-            <source
-                src="{{ asset('storage/' . $videoHomeBanner->video_path) ? asset('storage/' . $videoHomeBanner->video_path) : $videoUrl }}"
-                type="video/mp4">
-        </video>
+        @php
+            $bannerVideoUrl = $videoHomeBanner?->video_path
+                ? asset('storage/' . $videoHomeBanner->video_path)
+                : ($videoUrl ?? null);
+        @endphp
+        @if ($bannerVideoUrl)
+            <video class="img-fluid rounded-4 video-product" controls autoplay loop>
+                <source src="{{ $bannerVideoUrl }}" type="video/mp4">
+            </video>
+        @endif
     </section>
 
     {{-- section 1 end --}}
@@ -253,7 +256,7 @@
     {{-- Section 6 end --}}
 
     {{-- Section 7 start --}}
-    <section class="py-5 container d-flex align-items-center justify-content-center" style="min-height: 40vh">
+    <section class="py-5 container d-flex align-items-center justify-content-center overflow-hidden" style="min-height: 40vh">
         <div class="row w-full align-items-center justify-content-center justify-content-lg-between">
             <img src="{{ asset('images/new/logo-tcall.png') }}" alt="logo-tcall" class="col-2 img-fluid"
                 style="width: 370px" data-aos="fade-left">

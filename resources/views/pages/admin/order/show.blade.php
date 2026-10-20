@@ -90,8 +90,11 @@
                     <form method="POST" action="{{ route('admin.orders.update-status', $order) }}">
                         @csrf
                         @method('PUT')
+                        @error('status')
+                            <div class="alert alert-danger" role="alert">{{ $message }}</div>
+                        @enderror
                         <select name="status" class="form-select mb-3">
-                            @foreach (\App\Models\Order::$statuses as $s)
+                            @foreach (array_merge([$order->status], $order->allowedNextStatuses()) as $s)
                                 <option value="{{ $s }}" @selected($order->status === $s)>
                                     {{ strtoupper($s) }}
                                 </option>

@@ -21,7 +21,6 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProgramController;
 use App\Http\Controllers\SubscriberController;
 use App\Http\Controllers\VideoHomeBannerController;
-use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,10 +34,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/linkstorage', function () {
-    Artisan::call('storage:link');
-    echo 'ok';
-});
+Route::get('/up', fn () => response()->json(['status' => 'ok']));
 // Route::get('/', function () {
 //     $fileProducts = file_get_contents('../public/data/products.json');
 //     $data = json_decode($fileProducts, true);
@@ -93,7 +89,7 @@ Route::name('pages.frontend.')->group(function () {
     Route::get('/product', [ProductController::class, 'frontEndPage'])->name('product');
     Route::get('/program', [ProgramController::class, 'frontEndPage'])->name('program');
     Route::post('/program', [ProgramController::class, 'store'])->name('program.store');
-    Route::resource('/subscriber', SubscriberController::class);
+    Route::resource('/subscriber', SubscriberController::class)->only(['store']);
     Route::get('/discover', function () {
         return view('pages.frontend.about');
     })->name('discover');
@@ -134,25 +130,25 @@ Route::name('pages.frontend.')->group(function () {
 
     // Checkout
     Route::get('/checkout', [CheckoutController::class, 'show'])->name('checkout.show');
-    Route::post('/checkout', [CheckoutController::class, 'store'])->name('checkout.store');
+    Route::post('/checkout', [CheckoutController::class, 'store'])->middleware('throttle:10,1')->name('checkout.store');
 
     // Dummy payment
     Route::prefix('payment/{orderNumber}')->name('payment.')->group(function () {
         Route::get('/', [PaymentController::class, 'show'])->name('show');
-        Route::post('/pay', [PaymentController::class, 'pay'])->name('pay');
+        Route::post('/pay', [PaymentController::class, 'pay'])->middleware('throttle:30,1')->name('pay');
         Route::get('/success', [PaymentController::class, 'success'])->name('success');
     });
 
     // Order lookup (cek pesanan)
     Route::get('/cek-pesanan', [OrderLookupController::class, 'show'])->name('order-lookup.show');
-    Route::post('/cek-pesanan', [OrderLookupController::class, 'lookup'])->name('order-lookup.lookup');
+    Route::post('/cek-pesanan', [OrderLookupController::class, 'lookup'])->middleware('throttle:10,1')->name('order-lookup.lookup');
 
     // Product reviews
-    Route::post('/product/{slug}/reviews', [ProductReviewController::class, 'store'])->name('product.reviews.store');
+    Route::post('/product/{slug}/reviews', [ProductReviewController::class, 'store'])->middleware('throttle:5,1')->name('product.reviews.store');
 });
 
 // Backend
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'admin'])->group(function () {
     // Admin
     Route::controller(AdminDashboardController::class)->middleware('auth')->group(function () {
         Route::get('/admin', 'index')->name('admin.index');

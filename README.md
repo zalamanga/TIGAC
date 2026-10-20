@@ -1,652 +1,129 @@
-# Tigac.id
+# TIGAC
 
-Website resmi **Tigac.id** — dibangun dengan Laravel 10. Aplikasi ini punya tiga bagian utama:
+Website katalog dan toko TIGAC dengan halaman publik, keranjang berbasis sesi, checkout, simulasi pembayaran, serta panel pengelolaan konten dan pesanan.
 
-- **Frontend publik** — etalase produk, program, partnership, newsletter, FAQ
-- **E-commerce mini** — keranjang, checkout, pembayaran (dummy gateway), review produk, cek pesanan
-- **Panel admin** — CRUD konten situs + manajemen order
+Proyek menggunakan Laravel 12, Blade, Fortify, MySQL, dan Vite. Lingkungan Docker menyediakan PHP 8.3, Nginx, serta MySQL 8.4. Aset frontend dibangun menggunakan Node.js 22.12+; PHP, Composer, dan Node.js tidak perlu dipasang di host untuk menjalankan Docker.
 
----
+## Fitur
 
-## Daftar Isi
+- Katalog, kategori, varian, gambar produk, dan ulasan.
+- Keranjang: tambah produk, ubah jumlah, hapus, dan kosongkan.
+- Checkout dengan metode pengiriman lokal dari `config/shipping.php`.
+- Nomor pesanan, pencarian pesanan menggunakan nomor dan email, serta simulasi pembayaran.
+- Panel admin untuk produk, pesanan, pengguna, banner, newsletter, partnership, FAQ, dan konten lainnya.
+- Registrasi publik menghasilkan pengguna biasa. Akses admin memerlukan `is_admin = true` yang diberikan secara eksplisit melalui perintah admin.
 
-- [Fitur Utama](#fitur-utama)
-- [Tech Stack](#tech-stack)
-- [Prasyarat](#prasyarat)
-- [Instalasi](#instalasi)
-- [Struktur Direktori](#struktur-direktori)
-- [Entity Relationship Diagram (ERD)](#entity-relationship-diagram-erd)
-- [Skema Database](#skema-database)
-- [Daftar Rute](#daftar-rute)
-  - [Rute Frontend](#rute-frontend-publik)
-  - [Rute E-commerce (Cart, Checkout, Payment, Review)](#rute-e-commerce-cart-checkout-payment-review)
-  - [Rute Admin / Backend](#rute-admin--backend-butuh-login)
-- [Flow Belanja End-to-End](#flow-belanja-end-to-end)
-- [Autentikasi](#autentikasi)
-- [Perintah Artisan yang Sering Dipakai](#perintah-artisan-yang-sering-dipakai)
-- [Troubleshooting](#troubleshooting)
+## Menjalankan dengan Docker
 
----
+Gunakan Docker Desktop dengan Linux containers dan Docker Compose v2. Jalankan perintah berikut dari direktori yang berisi `compose.yaml`.
 
-## Fitur Utama
+Salin konfigurasi lokal:
 
-### Frontend Publik
-- Halaman produk dengan **pencarian + filter kategori** (pagination 12/halaman)
-- Detail produk + **review berbasis rating 1-5**
-- Halaman program, partnership, newsletter, FAQ, contact
-- Badge **"Habis"** otomatis pada produk stok ≤ 0
-
-### E-commerce
-- **Keranjang belanja** berbasis session (tidak perlu login)
-- **Checkout** dengan form alamat + pilihan kurir (Reguler / Express / Same Day — flat rate)
-- **Payment gateway dummy** — simulasi pembayaran, klik "Saya Sudah Bayar" → status jadi `paid`
-- **Validasi stok** di cart & checkout, **auto-decrement stok** atomik saat pembayaran lunas
-- **Email notifikasi** pembayaran diterima ke customer (via Mailable + Blade template)
-- **Review pembeli terverifikasi** — hanya email yang sudah pernah lunas beli produk itu yang bisa review, ditandai badge "✓ Pembeli Terverifikasi"
-- **Cek Pesanan** tanpa login — input `order_number` + `email` → status + detail
-
-### Admin
-- Dashboard + CRUD lengkap untuk: produk, kategori, varian, hero banner, video banner, newsletter, partnership, masterpiece, program, FAQ, kontak, user
-- **Manajemen order** — list semua order, detail per order, update status (pending → paid → processing → shipped → completed / cancelled)
-- Search, sort, paginate via `yajra/laravel-datatables`
-
----
-
-## Tech Stack
-
-| Layer        | Teknologi                                             |
-| ------------ | ----------------------------------------------------- |
-| Framework    | Laravel 10.x                                          |
-| PHP          | ^8.1                                                  |
-| Database     | MySQL 5.7+ / MariaDB 10.3+                            |
-| Auth         | Laravel Fortify + Sanctum                             |
-| Frontend     | Blade + Vite + Axios                                  |
-| Build tool   | Vite 5                                                |
-| Tabel admin  | `yajra/laravel-datatables` + buttons                  |
-| Notifikasi   | `realrashid/sweet-alert`                              |
-| HTTP client  | GuzzleHTTP 7                                          |
-
----
-
-## Prasyarat
-
-- PHP ≥ 8.1 dengan ekstensi: `pdo_mysql`, `mbstring`, `openssl`, `tokenizer`, `xml`, `ctype`, `json`, `bcmath`, `fileinfo`, `gd`
-- Composer 2.x
-- Node.js ≥ 18 & NPM
-- MySQL / MariaDB
-
----
-
-## Instalasi
-
-```bash
-# 1. Clone repository
-git clone <repo-url> tigac.id
-cd tigac.id
-
-# 2. Install dependencies
-composer install
-npm install
-
-# 3. Siapkan file environment
-cp .env.example .env
-php artisan key:generate
-
-# 4. Konfigurasikan database di .env
-#    DB_DATABASE=db_tigac
-#    DB_USERNAME=root
-#    DB_PASSWORD=
-
-# 5. Jalankan migrasi (+ seeder jika ada)
-php artisan migrate
-
-# 6. Link storage supaya upload gambar bisa diakses publik
-php artisan storage:link
-#    Alternatif lewat browser: buka http://localhost:8000/linkstorage
-
-# 7. Jalankan server dev
-php artisan serve       # backend (http://localhost:8000)
-npm run dev             # vite (asset hot reload)
+```powershell
+Copy-Item docker/.env.example .env.docker
 ```
 
----
+Edit `.env.docker`: isi `DB_PASSWORD` dan `MYSQL_ROOT_PASSWORD` dengan password baru, lalu sesuaikan `APP_URL` dan `APP_PORT` bila diperlukan. Gunakan alamat browser yang sama dengan `APP_URL`. File ini diabaikan Git dan tidak boleh dibagikan.
 
-## Struktur Direktori
+Bangun image dan buat kunci aplikasi sekali untuk konfigurasi baru:
 
-```
-tigac.id/
-├── app/
-│   ├── Http/Controllers/     # 15 controller (frontend + admin)
-│   └── Models/               # 15 Eloquent model
-├── database/
-│   └── migrations/           # Skema seluruh tabel
-├── public/                   # Entry point + asset publik
-├── resources/
-│   └── views/
-│       ├── pages/frontend/   # Blade halaman publik
-│       └── pages/admin/      # Blade panel admin
-├── routes/
-│   ├── web.php               # Seluruh rute web (frontend + admin)
-│   └── api.php               # Endpoint API (Sanctum)
-└── storage/app/public/       # Upload gambar/video
+```powershell
+docker compose --env-file .env.docker build
+docker compose --env-file .env.docker run --rm --no-deps --user root app php artisan key:generate --force
 ```
 
----
+Perintah kunci menulis `APP_KEY` ke `.env.docker`. Simpan file tersebut dan gunakan kembali saat menyalakan aplikasi berikutnya.
 
-## Entity Relationship Diagram (ERD)
+Nyalakan layanan dan buat tabel:
 
-```mermaid
-erDiagram
-    USERS ||--o{ PRODUCTS : "admin mengelola"
-
-    PRODUCT_CATEGORIES ||--o{ PRODUCTS : "mengkategorikan"
-    PRODUCTS ||--o{ PRODUCT_IMAGES : "memiliki"
-    PRODUCTS ||--o{ PRODUCT_VARIANT : "memiliki"
-    VARIANTS ||--o{ PRODUCT_VARIANT : "tersedia untuk"
-
-    PRODUCTS ||--o{ PRODUCT_REVIEWS : "diulas"
-    PRODUCTS ||--o{ ORDER_ITEMS : "dipesan di"
-    ORDERS ||--o{ ORDER_ITEMS : "berisi"
-
-    USERS {
-        bigint   id PK
-        string   name
-        string   email UK
-        timestamp email_verified_at
-        string   password
-        string   two_factor_secret
-        string   two_factor_recovery_codes
-        timestamp two_factor_confirmed_at
-        string   remember_token
-        timestamp created_at
-        timestamp updated_at
-    }
-
-    PRODUCT_CATEGORIES {
-        bigint  id PK
-        string  name UK
-        string  is_active
-        text    description
-        timestamp created_at
-        timestamp updated_at
-    }
-
-    PRODUCTS {
-        bigint  id PK
-        string  sku
-        string  name
-        string  slug
-        text    description
-        bigint  product_category_id FK
-        float   rating
-        bigint  price
-        float   discount_percent
-        boolean is_device
-        boolean is_collaboration_project
-        string  is_active
-        string  is_hot_item
-        int     stock
-        string  volume
-        string  product_external_link
-        timestamp created_at
-        timestamp updated_at
-    }
-
-    PRODUCT_IMAGES {
-        bigint  id PK
-        string  name
-        text    description
-        text    image_path
-        bigint  product_id FK
-        timestamp created_at
-        timestamp updated_at
-    }
-
-    VARIANTS {
-        bigint  id PK
-        string  name
-        text    description
-        timestamp created_at
-        timestamp updated_at
-    }
-
-    PRODUCT_VARIANT {
-        bigint  id PK
-        bigint  product_id FK
-        bigint  variant_id FK
-    }
-
-    HERO_BANNERS {
-        bigint  id PK
-        string  name UK
-        string  tagline UK
-        text    tagline_description
-        boolean is_for_product_page
-        string  media_type
-        string  media_path
-        string  is_active
-        string  is_priority
-        timestamp created_at
-        timestamp updated_at
-    }
-
-    NEWSLETTERS {
-        bigint  id PK
-        string  title UK
-        string  slug UK
-        text    content
-        string  thumbnail
-        string  thumbnail_short_description
-        boolean is_active
-        timestamp created_at
-        timestamp updated_at
-    }
-
-    PARTNERSHIPS {
-        bigint  id PK
-        string  name UK
-        string  description
-        string  logo
-        boolean is_active
-        string  external_link
-        timestamp created_at
-        timestamp updated_at
-    }
-
-    CONTACTS {
-        bigint  id PK
-        string  name UK
-        string  link UK
-        string  logo
-        timestamp created_at
-        timestamp updated_at
-    }
-
-    MASTERPIECES {
-        bigint  id PK
-        string  name UK
-        string  slug UK
-        string  detail_link UK
-        string  thumbnail
-        string  thumbnail_short_description
-        boolean is_active
-        timestamp created_at
-        timestamp updated_at
-    }
-
-    PROGRAMS {
-        bigint  id PK
-        string  pic
-        string  store_name UK
-        string  phone_number
-        string  email
-        text    address
-        timestamp created_at
-        timestamp updated_at
-    }
-
-    VIDEO_HOME_BANNERS {
-        bigint  id PK
-        string  name
-        text    description
-        text    video_path
-        timestamp created_at
-        timestamp updated_at
-    }
-
-    FAQS {
-        bigint  id PK
-        string  question
-        longtext answer
-        boolean is_active
-        timestamp created_at
-        timestamp updated_at
-    }
-
-    SUBSCRIBERS {
-        bigint  id PK
-        string  email UK
-        timestamp created_at
-        timestamp updated_at
-    }
-
-    ORDERS {
-        bigint  id PK
-        string  order_number UK
-        string  customer_name
-        string  customer_email
-        string  customer_phone
-        text    shipping_address
-        text    notes
-        bigint  subtotal
-        bigint  shipping_cost
-        string  shipping_method
-        bigint  total
-        string  status
-        string  payment_method
-        timestamp paid_at
-        timestamp created_at
-        timestamp updated_at
-    }
-
-    ORDER_ITEMS {
-        bigint  id PK
-        bigint  order_id FK
-        bigint  product_id FK
-        string  product_name
-        bigint  price
-        int     quantity
-        bigint  subtotal
-        timestamp created_at
-        timestamp updated_at
-    }
-
-    PRODUCT_REVIEWS {
-        bigint  id PK
-        bigint  product_id FK
-        string  name
-        string  email
-        tinyint rating
-        text    comment
-        boolean is_approved
-        timestamp created_at
-        timestamp updated_at
-    }
+```powershell
+docker compose --env-file .env.docker up -d
+docker compose --env-file .env.docker exec app php artisan migrate --force
 ```
 
-> Entitas `HERO_BANNERS`, `NEWSLETTERS`, `PARTNERSHIPS`, `CONTACTS`, `MASTERPIECES`, `PROGRAMS`, `VIDEO_HOME_BANNERS`, `FAQS`, dan `SUBSCRIBERS` bersifat **standalone** (tidak memiliki relasi FK ke entitas lain). Mereka dikelola penuh lewat panel admin.
+Buka [http://localhost:8080](http://localhost:8080). Endpoint `/up` mengembalikan `{"status":"ok"}` untuk pemeriksaan aplikasi tanpa mengakses database. Status layanan dapat dilihat dengan:
 
-### Relasi Inti (Product Domain)
-
-```
-product_categories (1) ────< (M) products
-products            (1) ────< (M) product_images
-products            (M) ────< (M) variants           [pivot: product_variant]
-products            (1) ────< (M) product_reviews
-products            (1) ────< (M) order_items        [historical snapshot]
-orders              (1) ────< (M) order_items
+```powershell
+docker compose --env-file .env.docker ps
 ```
 
----
+Layanan web hanya terikat ke alamat loopback host. MySQL tidak membuka port ke host. Database baru belum berisi katalog atau akun admin; isi konten melalui panel admin. Setup tidak mengimpor dump SQL, menjalankan seeder, atau menghapus tabel secara otomatis.
 
-## Skema Database
+## Membuat akun admin
 
-| Tabel                | Deskripsi                                                            |
-| -------------------- | -------------------------------------------------------------------- |
-| `users`              | Akun admin (Fortify + 2FA kolom dari Jetstream).                     |
-| `product_categories` | Kategori produk, terhubung ke `products` (1:M).                      |
-| `products`           | Master produk. `slug` di-generate otomatis dari `name` di model.     |
-| `product_images`     | Galeri gambar produk (1 produk → banyak gambar).                     |
-| `variants`           | Daftar varian (misal: rasa, ukuran).                                 |
-| `product_variant`    | Pivot M:M antara `products` dan `variants`.                          |
-| `hero_banners`       | Banner hero untuk home page & halaman produk.                        |
-| `video_home_banners` | Video banner di halaman home.                                        |
-| `newsletters`        | Artikel / konten newsletter (dengan slug SEO-friendly).              |
-| `partnerships`       | Daftar partner / brand kolaborasi.                                   |
-| `contacts`           | Link kontak / social media (logo + link).                            |
-| `masterpieces`       | Showcase "masterpiece" / highlight produk pilihan.                   |
-| `programs`           | Pendaftaran program (toko/reseller) dari form publik.                |
-| `faqs`               | Pertanyaan yang sering ditanyakan.                                   |
-| `subscribers`        | Email pelanggan newsletter.                                          |
-| `orders`             | Pesanan checkout. `order_number` = `ORD-YmdHis-xxx`. Status: pending / paid / processing / shipped / completed / cancelled. |
-| `order_items`        | Item per order — menyimpan **snapshot** nama & harga saat checkout (tidak berubah kalau produk di-edit). |
-| `product_reviews`    | Ulasan produk dari pembeli terverifikasi (rating 1-5 + comment). `is_approved` default `true`. |
+Setelah migrasi selesai, jalankan:
 
----
-
-## Daftar Rute
-
-### Rute Frontend (publik)
-
-Semua rute di bawah memakai prefix nama `pages.frontend.*`.
-
-| Method | URI                         | Nama                             | Controller / Aksi                            |
-| ------ | --------------------------- | -------------------------------- | -------------------------------------------- |
-| GET    | `/`                         | `pages.frontend.index`           | `HomePageController@index`                   |
-| GET    | `/product`                  | `pages.frontend.product`         | `ProductController@frontEndPage`             |
-| GET    | `/product/{slug}`           | `pages.frontend.product.detail`  | `ProductController@productDetailPage`        |
-| GET    | `/program`                  | `pages.frontend.program`         | `ProgramController@frontEndPage`             |
-| POST   | `/program`                  | `pages.frontend.program.store`   | `ProgramController@store`                    |
-| GET    | `/newsletter`               | `pages.frontend.newsletter`      | `NewsletterController@frontEndPage`          |
-| GET    | `/partnership`              | `pages.frontend.partnership`     | `PartnershipController@frontEndPage`         |
-| GET    | `/faq`                      | `pages.frontend.faq`             | `FaqController@frontEndPage`                 |
-| GET    | `/discover`                 | `pages.frontend.discover`        | view `pages.frontend.about`                  |
-| GET    | `/about`                    | `pages.frontend.about`           | view `pages.frontend.about`                  |
-| GET    | `/vaporistar`               | `pages.frontend.vaporistar`      | view `pages.frontend.vaporistar`             |
-| GET    | `/contact`                  | `pages.frontend.contact`         | view `pages.frontend.contact`                |
-| GET    | `/find`                     | `pages.frontend.find`            | view `pages.frontend.find`                   |
-| GET    | `/tcall`                    | `pages.frontend.tcall`           | view `pages.frontend.tcall`                  |
-| GET    | `/consumer-program`         | `pages.frontend.consumer.program`| view `pages.frontend.consumerProgram`        |
-| GET    | `/landing`                  | `pages.landing`                  | view `pages.landing`                         |
-| GET    | `/qr`                       | `pages.qr`                       | view `pages.qr`                              |
-| -      | `/subscriber` (resource)    | `pages.frontend.subscriber.*`    | `SubscriberController` (RESTful)             |
-| GET    | `/linkstorage`              | —                                | Jalankan `storage:link` sekali pakai         |
-
-> `GET /product?q=<keyword>&category=<id>` — search + filter (pagination 12/halaman).
-
-### Rute E-commerce (Cart, Checkout, Payment, Review)
-
-Semua rute di bawah juga punya prefix nama `pages.frontend.*`.
-
-#### Keranjang (session-based, tidak perlu login)
-
-| Method | URI                   | Nama                                 | Aksi                        |
-| ------ | --------------------- | ------------------------------------ | --------------------------- |
-| GET    | `/cart`               | `pages.frontend.cart.show`           | Lihat isi keranjang         |
-| POST   | `/cart/add/{slug}`    | `pages.frontend.cart.add`            | Tambah produk (body: `quantity`) |
-| PUT    | `/cart/{productId}`   | `pages.frontend.cart.update`         | Update jumlah               |
-| DELETE | `/cart/{productId}`   | `pages.frontend.cart.remove`         | Hapus 1 item                |
-| DELETE | `/cart`               | `pages.frontend.cart.clear`          | Kosongkan keranjang         |
-
-#### Checkout & Pembayaran
-
-| Method | URI                              | Nama                                | Aksi                             |
-| ------ | -------------------------------- | ----------------------------------- | -------------------------------- |
-| GET    | `/checkout`                      | `pages.frontend.checkout.show`      | Form pemesan + pilih kurir       |
-| POST   | `/checkout`                      | `pages.frontend.checkout.store`     | Bikin order (status: `pending`)  |
-| GET    | `/payment/{orderNumber}`         | `pages.frontend.payment.show`       | Halaman dummy gateway            |
-| POST   | `/payment/{orderNumber}/pay`     | `pages.frontend.payment.pay`        | Tandai lunas + kurangi stok + kirim email |
-| GET    | `/payment/{orderNumber}/success` | `pages.frontend.payment.success`    | Konfirmasi pembayaran berhasil   |
-
-> Payment page di-guard lewat session `checkout.last_order` — hanya pemesan saat itu (atau user admin yang login) yang bisa akses.
-
-#### Review & Cek Pesanan
-
-| Method | URI                          | Nama                                        | Aksi                                 |
-| ------ | ---------------------------- | ------------------------------------------- | ------------------------------------ |
-| POST   | `/product/{slug}/reviews`    | `pages.frontend.product.reviews.store`      | Kirim ulasan (verified-purchase only)|
-| GET    | `/cek-pesanan`               | `pages.frontend.order-lookup.show`          | Form cek pesanan                     |
-| POST   | `/cek-pesanan`               | `pages.frontend.order-lookup.lookup`        | Lookup by order_number + email       |
-
-> Review hanya disimpan kalau email-nya cocok dengan email order yang statusnya `paid / processing / shipped / completed`.
-
-### Rute Admin / Backend (butuh login)
-
-Semua rute di bawah dilindungi middleware **`auth`**.
-
-#### Dashboard
-
-| Method | URI      | Nama          | Controller                         |
-| ------ | -------- | ------------- | ---------------------------------- |
-| GET    | `/admin` | `admin.index` | `AdminDashboardController@index`   |
-
-#### Product Category
-
-| Method | URI                                                          | Nama                                                    |
-| ------ | ------------------------------------------------------------ | ------------------------------------------------------- |
-| GET    | `/admin/products/categories`                                 | `admin.product.product-category.index`                  |
-| GET    | `/admin/products/categories/create`                          | `admin.product.product-category.create`                 |
-| POST   | `/admin/products/categories/store`                           | `admin.product.product-category.store`                  |
-| GET    | `/admin/products/categories/{id}/edit`                       | `admin.product.product-category.edit`                   |
-| PUT    | `/admin/products/categories/{id}/update`                     | `admin.product.product-category.update`                 |
-| DELETE | `/admin/products/categories/destroy/{id}`                    | `admin.product.product-category.destroy`                |
-| PUT    | `/admin/products/categories/chagne-active-status/{id}`       | `admin.product.product-category.change-active-status`   |
-
-#### Product Variant
-
-| Method | URI                                            | Nama                                    |
-| ------ | ---------------------------------------------- | --------------------------------------- |
-| GET    | `/admin/products/variants`                     | `admin.product.product-variant.index`   |
-| GET    | `/admin/products/variants/create`              | `admin.product.product-variant.create`  |
-| POST   | `/admin/products/variants/store`               | `admin.product.product-variant.store`   |
-| GET    | `/admin/products/variants/detail/{id}`         | `admin.product.product-variant.show`    |
-| GET    | `/admin/products/variants/edit/{id}`           | `admin.product.product-variant.edit`    |
-| PUT    | `/admin/products/variants/update/{id}`         | `admin.product.product-variant.update`  |
-| DELETE | `/admin/products/variants/destroy/{id}`        | `admin.product.product-variant.destroy` |
-
-#### Resource Routes (standard RESTful `index/create/store/show/edit/update/destroy`)
-
-| Resource            | URI base                     | Nama prefix                 |
-| ------------------- | ---------------------------- | --------------------------- |
-| Products            | `/admin/products`            | `admin.products.*`          |
-| Hero Banners        | `/admin/hero-banners`        | `admin.hero-banners.*`      |
-| Newsletters         | `/admin/newsletters`         | `admin.newsletters.*`       |
-| Partnerships        | `/admin/partnerships`        | `admin.partnerships.*`      |
-| Contacts            | `/admin/contacts`            | `admin.contacts.*`          |
-| Masterpieces        | `/admin/masterpieces`        | `admin.masterpieces.*`      |
-| Programs            | `/admin/programs`            | `admin.programs.*`          |
-| Video Home Banners  | `/admin/video-home-banners`  | `admin.video-home-banners.*`|
-| FAQs                | `/admin/faqs`                | `admin.faqs.*`              |
-| User Management     | `/userManagement`            | `userManagement.*`          |
-
-#### Orders (Admin)
-
-| Method | URI                              | Nama                           | Aksi                                    |
-| ------ | -------------------------------- | ------------------------------ | --------------------------------------- |
-| GET    | `/admin/orders`                  | `admin.orders.index`           | List semua order (paginated 15)         |
-| GET    | `/admin/orders/{order}`          | `admin.orders.show`            | Detail order + item + customer info     |
-| PUT    | `/admin/orders/{order}/status`   | `admin.orders.update-status`   | Update status (pending → completed dll) |
-
-#### Rute Admin Tambahan
-
-| Method | URI                                                       | Nama                                 |
-| ------ | --------------------------------------------------------- | ------------------------------------ |
-| DELETE | `/admin/products/{productId}/images/{productImagesId}/destroy` | `admin.products.images.delete` |
-| POST   | `/newsletter-upload-image`                                | `newsletter-upload-image`            |
-
-> 💡 Lihat daftar rute aktual dengan: `php artisan route:list`
-
----
-
-## Flow Belanja End-to-End
-
-```
- [Product page]  search / filter / klik produk
-       │
-       ▼
- [Product detail]  klik "Tambah ke Keranjang"
-       │                                       ┌──────────────────────┐
-       ▼                                       │ Tulis Ulasan         │
- [Cart /cart]  update qty / hapus              │ (verified buyer only)│
-       │                                       └──────────▲───────────┘
-       ▼                                                  │
- [Checkout /checkout]  isi alamat + pilih kurir           │
-       │ (validasi stok + shipping cost)                  │
-       ▼                                                  │
- [Dummy Payment /payment/{ORD-...}]                       │
-       │ klik "Saya Sudah Bayar"                          │
-       ▼                                                  │
-  Order.status = paid                                     │
-  paid_at = now()                                         │
-  Product.stock -= quantity (atomic, lockForUpdate)       │
-  Mail::send(OrderPaid)  → customer email                 │
-       │                                                  │
-       ▼                                                  │
- [Success page /payment/{ORD-...}/success] ───────────────┘
-
- Admin side:
- /admin/orders  → list → detail → update status manual
- /cek-pesanan   → customer lookup by order_number + email
+```powershell
+docker compose --env-file .env.docker exec app php artisan app:create-admin
 ```
 
-### Konfigurasi Pilihan Kurir
+Masukkan email, nama, password minimal 12 karakter, dan konfirmasi password. Password diminta secara tersembunyi. Tidak ada akun atau password admin bawaan.
 
-Flat rate per kurir diatur di [config/shipping.php](config/shipping.php):
+Jika email sudah terdaftar sebagai pengguna biasa, perintah meminta persetujuan sebelum memberikan akses admin. Password akun lama tetap berlaku. Migrasi tidak otomatis menjadikan akun lama sebagai admin. Buka `/login`, lalu masuk dengan akun tersebut untuk mengakses `/admin`.
 
-| Key        | Label                  | Cost        |
-| ---------- | ---------------------- | ----------- |
-| `regular`  | Reguler (2-4 hari)     | Rp 15.000   |
-| `express`  | Express (1-2 hari)     | Rp 25.000   |
-| `same_day` | Same Day (kota besar)  | Rp 40.000   |
+## Alur pesanan dan batas simulasi
 
-Tambah/ubah kurir dengan edit file config-nya — tidak perlu migrasi.
+1. Tambahkan produk yang tersedia ke keranjang, lalu buka `/checkout`.
+2. Isi data pembeli dan pilih metode pengiriman. Ongkos merupakan nilai tetap dalam konfigurasi proyek, tanpa integrasi kurir.
+3. Checkout membuat pesanan berstatus `pending`. Stok belum dicadangkan pada tahap ini.
+4. Tombol pembayaran menjalankan simulasi: stok diperiksa kembali dan dikurangi saat pembayaran berhasil. Tidak ada transaksi ke bank atau payment gateway.
+5. Admin dapat melanjutkan pesanan berbayar ke tahap pemrosesan, pengiriman, dan selesai. Pembatalan tersedia untuk pesanan `pending`; pembatalan pesanan berbayar dan refund belum diterapkan.
 
-### Email Notifikasi
+Docker memaksa `MAIL_MAILER=log`, sehingga pesan email, termasuk tautan reset password, dicatat oleh aplikasi dan tidak dikirim melalui SMTP. Untuk melihat tautan reset setelah mengisi halaman lupa password, jalankan `docker compose --env-file .env.docker logs app` di komputer lokal. Nama, kontak, gambar, dan isi halaman yang sudah ada berasal dari materi proyek; keberadaannya tidak membuktikan layanan bisnis aktif.
 
-Mailable: [app/Mail/OrderPaid.php](app/Mail/OrderPaid.php). Template: [resources/views/emails/order-paid.blade.php](resources/views/emails/order-paid.blade.php).
+## Pengembangan dan pengujian
 
-Untuk dev tanpa SMTP, ubah `.env`:
-```
-MAIL_MAILER=log
-```
-Email akan tersimpan ke `storage/logs/laravel.log` (bisa di-preview tanpa konfigurasi mail server). Pengiriman email dibungkus `try/catch` — jika SMTP gagal, pembayaran tetap berhasil dan error hanya di-log.
+Kode aplikasi disalin ke dalam image. Setelah mengubah kode atau aset, bangun dan mulai ulang layanan:
 
----
-
-## Autentikasi
-
-Aplikasi memakai **Laravel Fortify** sebagai backend auth. Fitur yang diaktifkan antara lain:
-
-- Login / Logout
-- Password reset
-- Two-factor authentication (kolom DB tersedia di tabel `users`)
-- Email verification
-
-Semua rute admin dilindungi oleh middleware `auth`. Belum ada sistem **role-based access** — setiap user yang login punya akses penuh ke `/admin/*`. Tambahkan Gate/Policy bila memerlukan pembatasan per-user.
-
-**Kredensial default** (dari [DatabaseSeeder](database/seeders/DatabaseSeeder.php)):
-
-| Field    | Value              |
-| -------- | ------------------ |
-| URL      | `/login`           |
-| Email    | `admin@tigac.id`   |
-| Password | `admin123`         |
-
-Kalau user admin belum ada, jalankan: `php artisan db:seed`.
-
----
-
-## Perintah Artisan yang Sering Dipakai
-
-```bash
-# Daftar semua rute
-php artisan route:list
-
-# Jalankan migrasi (fresh = drop semua lalu migrate ulang)
-php artisan migrate
-php artisan migrate:fresh --seed
-
-# Link storage publik (wajib sekali setelah clone)
-php artisan storage:link
-
-# Bersihkan cache
-php artisan cache:clear
-php artisan config:clear
-php artisan view:clear
-php artisan route:clear
-
-# Buat user admin baru lewat tinker
-php artisan tinker
-> \App\Models\User::create(['name' => 'Admin', 'email' => 'admin@tigac.id', 'password' => bcrypt('password')]);
+```powershell
+docker compose --env-file .env.docker up -d --build
 ```
 
----
+Untuk membangun aset langsung di host, gunakan Node.js 22.12+:
 
-## Troubleshooting
+```powershell
+npm ci
+npm run build
+```
 
-- **Gambar tidak muncul di frontend** → jalankan `php artisan storage:link` atau buka `/linkstorage` sekali.
-- **419 Page Expired** → clear cookie atau jalankan `php artisan config:clear`.
-- **Class not found setelah pull baru** → `composer dump-autoload`.
-- **Migrasi gagal: foreign key** → pastikan urutan migrasi berjalan sesuai timestamp (bawaan sudah benar).
-- **Vite asset 404** di produksi → jalankan `npm run build`.
-- **Login / halaman baru 404** → ada dua proses `artisan serve` jalan bersamaan. Cek dengan `netstat -ano | grep 8000`, kill salah satu dengan `taskkill //PID <pid> //F`, start ulang.
-- **"Trying to access array offset on value of type null"** di cart → hard-refresh browser; bug ini sudah di-fix, tapi route cache lama bisa masih mengacu class lama (`php artisan route:clear && php artisan view:clear`).
-- **Email pembayaran tidak terkirim** → ini ditangani silent (try/catch). Cek `storage/logs/laravel.log` untuk warning. Ganti ke `MAIL_MAILER=log` di `.env` kalau memang tidak ada SMTP.
-- **"Email belum pernah membeli produk ini"** saat review → memang by design. Review hanya untuk pembeli terverifikasi — checkout + bayar dulu pakai email yang sama, baru bisa review.
-- **db_tigac.sql** → snapshot lama (Juni 2024). **Jangan di-import** — skemanya sudah ketinggalan jauh dari migrasi saat ini. Pakai `php artisan migrate:fresh --seed` kalau mau reset database.
+Jalankan pengujian PHP di container:
 
----
+```powershell
+docker compose --env-file .env.docker exec app php artisan test
+```
 
-## Lisensi
+Konfigurasi pengujian memakai SQLite `:memory:` dan mail `array`; pengujian fitur memalsukan pengiriman email. Cakupannya meliputi pembatasan admin, registrasi, perintah pembuatan admin, serta alur keranjang dan pesanan. Pengujian otomatis tidak menjalankan pembayaran nyata atau mengirim email ke pelanggan.
 
-Framework Laravel dirilis dengan [MIT License](https://opensource.org/licenses/MIT). Konten, aset, dan branding Tigac.id merupakan hak milik pemilik proyek.
+Verifikasi Docker: tiga layanan berstatus sehat, 24 migrasi berhasil di MySQL 8.4, serta 54 pengujian PHP dengan 367 asersi lulus pada PHP 8.3.35.
+
+Pemeriksaan Edge pada database kosong mencakup sembilan halaman publik/auth pada lebar 390 dan 1440 piksel (18 kunjungan), tanpa error JavaScript, aset lokal gagal, atau overflow horizontal. Beranda juga diperiksa pada lebar 320 dan 768 piksel.
+
+Hentikan layanan tanpa menghapus data lokal:
+
+```powershell
+docker compose --env-file .env.docker down
+```
+
+Database dan berkas unggahan disimpan dalam named volumes. Penghapusan volumes akan menghapus data tersebut. Mengubah password di file konfigurasi saja tidak mengubah password MySQL pada volume yang sudah dibuat.
+
+## Struktur
+
+```text
+app/                  Controller, model, layanan, middleware, dan perintah admin
+config/shipping.php   Pilihan serta ongkos pengiriman simulasi
+database/migrations/  Struktur database dan penambahan hak admin
+resources/            Template Blade dan sumber aset frontend
+routes/web.php        Halaman publik dan rute admin
+tests/                Pengujian unit dan fitur
+docker/               Contoh konfigurasi dan konfigurasi layanan
+Dockerfile            Build aplikasi dan aset
+compose.yaml          Layanan app, web, dan db
+```
+
+## Catatan pemeliharaan
+
+Dependensi diperbarui dari Laravel 10 ke Laravel 12 dengan mempertahankan struktur aplikasi yang ada, termasuk `app/Http/Kernel.php` dan provider. Proyek tidak diganti dengan skeleton baru. Konfigurasi Docker ini ditujukan untuk pengembangan lokal; integrasi pembayaran dan pengiriman masih berupa simulasi.
+
+Audit Composer pada pembaruan lockfile ini turun dari 84 temuan menjadi 0. Audit dependensi npm juga melaporkan 0 temuan.
+
+Dump database dan konfigurasi lokal tidak disertakan dalam pohon kerja yang dipublikasikan. Penghapusan berkas tidak menghapus riwayat Git lama. Jika kredensial atau password akun bawaan dari versi lama masih digunakan, ganti sebelum memakai data atau akses yang penting.

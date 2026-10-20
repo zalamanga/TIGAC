@@ -16,6 +16,7 @@ class CheckoutController extends Controller
 
     public function show()
     {
+        $this->cart->refreshProducts();
         if ($this->cart->isEmpty()) {
             return redirect()
                 ->route('pages.frontend.cart.show')
@@ -39,6 +40,7 @@ class CheckoutController extends Controller
 
     public function store(Request $request)
     {
+        $this->cart->refreshProducts();
         if ($this->cart->isEmpty()) {
             return redirect()
                 ->route('pages.frontend.cart.show')

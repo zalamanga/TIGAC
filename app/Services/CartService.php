@@ -64,6 +64,22 @@ class CartService
         Session::forget(self::KEY);
     }
 
+    public function refreshProducts(): void
+    {
+        $cart = $this->raw();
+        $products = Product::with('images')->whereIn('id', array_keys($cart))->get()->keyBy('id');
+        foreach ($cart as $id => &$item) {
+            if ($product = $products->get($id)) {
+                $item['name'] = $product->name;
+                $item['slug'] = $product->slug;
+                $item['price'] = (int) $product->price;
+                $item['image_path'] = optional($product->images->first())->image_path;
+            }
+        }
+        unset($item);
+        Session::put(self::KEY, $cart);
+    }
+
     public function all(): Collection
     {
         return collect($this->raw())->values();

@@ -8,10 +8,14 @@
         <div class="col-lg-5 col-12">
             <div id="auth-left">
                 <div class="auth-logo">
-                    <a href="#" class="navbar-brand"><img src="{{ asset('images/logo.png') }}" alt="TIGAC logo" /></a>
+                    <a href="{{ route('pages.frontend.index') }}" class="navbar-brand"><img src="{{ asset('images/logo.png') }}" alt="TIGAC logo" /></a>
                 </div>
                 <h1 class="auth-title">Log in.</h1>
                 <p class="auth-subtitle mb-5">Log in with your data that you entered during registration.</p>
+
+                @if (session('status'))
+                    <div class="alert alert-success" role="status">{{ session('status') }}</div>
+                @endif
 
                 <form action="{{ route('login') }}" method="POST">
                     @csrf
@@ -46,7 +50,8 @@
                     <button class="btn btn-primary btn-block btn-lg shadow-lg mt-5">Log in</button>
                 </form>
                 <div class="text-center mt-5 text-lg fs-4">
-                    <p><a class="font-bold" href="auth-forgot-password.html">Forgot password?</a>.</p>
+                    <p><a class="font-bold" href="{{ route('password.request') }}">Forgot password?</a></p>
+                    <p>Don't have an account? <a class="font-bold" href="{{ route('register') }}">Sign up</a>.</p>
                 </div>
             </div>
         </div>

@@ -8,6 +8,11 @@
 .env
 .env.backup
 .env.production
+.env.docker
+.env.*.local
+/database/*.sql
+/storage/app/public/*
+!/storage/app/public/.gitignore
 .phpunit.result.cache
 Homestead.json
 Homestead.yaml

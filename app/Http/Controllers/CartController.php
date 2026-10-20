@@ -12,6 +12,7 @@ class CartController extends Controller
 
     public function show()
     {
+        $this->cart->refreshProducts();
         return view('pages.frontend.cart.index', [
             'items'    => $this->cart->all(),
             'subtotal' => $this->cart->subtotal(),
@@ -26,6 +27,11 @@ class CartController extends Controller
 
         $product  = Product::where('slug', $slug)->firstOrFail();
         $quantity = $data['quantity'] ?? 1;
+        $current = $this->cart->all()->firstWhere('product_id', $product->id);
+        $existing = $current ? (int) $current['quantity'] : 0;
+        if ($existing + $quantity > 99) {
+            return back()->with('status', 'error')->with('message', 'Maksimal 99 unit per produk.');
+        }
 
         if (! is_null($product->stock) && $product->stock <= 0) {
             return back()

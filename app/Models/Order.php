@@ -50,6 +50,17 @@ class Order extends Model
         return $this->hasMany(OrderItem::class);
     }
 
+    public function allowedNextStatuses(): array
+    {
+        return match ($this->status) {
+            self::STATUS_PENDING => [self::STATUS_CANCELLED],
+            self::STATUS_PAID => [self::STATUS_PROCESSING, self::STATUS_SHIPPED, self::STATUS_COMPLETED],
+            self::STATUS_PROCESSING => [self::STATUS_SHIPPED, self::STATUS_COMPLETED],
+            self::STATUS_SHIPPED => [self::STATUS_COMPLETED],
+            default => [],
+        };
+    }
+
     public function statusBadgeClass(): string
     {
         return match ($this->status) {

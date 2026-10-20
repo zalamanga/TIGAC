@@ -3,7 +3,7 @@
 @include('sweetalert::alert')
 <html lang='en'></html>
 <body>
-    <script src="assets/static/js/initTheme.js"></script>
+    <script src="{{ asset('static/js/initTheme.js') }}"></script>
     <div id="auth">
         @yield('content')
     </div>

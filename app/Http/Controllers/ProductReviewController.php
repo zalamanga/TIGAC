@@ -29,13 +29,14 @@ class ProductReviewController extends Controller
         ]);
 
         $hasPurchased = Order::where('customer_email', $data['email'])
+            ->where('order_number', $request->session()->get('checkout.last_order'))
             ->whereIn('status', self::PURCHASED_STATUSES)
             ->whereHas('items', fn ($q) => $q->where('product_id', $product->id))
             ->exists();
 
         if (! $hasPurchased) {
             throw ValidationException::withMessages([
-                'email' => 'Email ini belum pernah membeli produk tersebut. Ulasan hanya bisa ditulis oleh pembeli yang sudah melunasi pesanan.',
+                'email' => 'Buka pesanan melalui Cek Pesanan terlebih dahulu. Ulasan memerlukan sesi pesanan lunas dengan email yang sesuai.',
             ]);
         }
 
