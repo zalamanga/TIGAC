@@ -1,5 +1,7 @@
 # TIGAC
 
+Alur Blade, keranjang sesi, checkout, simulasi pembayaran dan panel admin dijelaskan di [CODE_FLOW](docs/CODE_FLOW.md).
+
 Website katalog dan toko TIGAC dengan halaman publik, keranjang berbasis sesi, checkout, simulasi pembayaran, serta panel pengelolaan konten dan pesanan.
 
 Proyek menggunakan Laravel 12, Blade, Fortify, MySQL, dan Vite. Lingkungan Docker menyediakan PHP 8.3, Nginx, serta MySQL 8.4. Aset frontend dibangun menggunakan Node.js 22.12+; PHP, Composer, dan Node.js tidak perlu dipasang di host untuk menjalankan Docker.
