@@ -67,6 +67,7 @@ class ProductController extends Controller
     public function productDetailPage($productSlug)
     {
         $product = $this->productService->getProductBySlug($productSlug);
+        abort_unless($product, 404);
         $relatedProducts = $this->productService->getProducts();
 
         $reviews       = $product->approvedReviews()->latest()->get();

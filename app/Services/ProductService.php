@@ -4,6 +4,8 @@ namespace App\Services;
 
 use App\Contracts\ProductRepositoryInterface;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 
 class ProductService
 {
@@ -36,6 +38,18 @@ class ProductService
 
     public function storeProductData($requestProductData)
     {
+        $connection = DB::connection();
+        $startingLevel = $connection->transactionLevel();
+        $diskName = config('filesystems.default');
+        $newImagePaths = [];
+        $commitAttempted = false;
+        $warn = static function (string $message): void {
+            try {
+                Log::warning($message);
+            } catch (\Throwable $loggingError) {
+                // Recovery diagnostics cannot replace the original persistence exception.
+            }
+        };
         DB::beginTransaction();
         try {
             $productData = [
@@ -58,7 +72,11 @@ class ProductService
             // handle image input
             if (array_key_exists('images', $requestProductData)) {
                 foreach ($requestProductData['images'] as $index => $imageFile) {
-                    $imagePath = $imageFile->store('products');
+                    $imagePath = $imageFile->store('products', $diskName);
+                    if (!is_string($imagePath) || $imagePath === '') {
+                        throw new \RuntimeException('Product image could not be stored.');
+                    }
+                    $newImagePaths[] = $imagePath;
 
                     $imageData = [
                         'image_path' => $imagePath,
@@ -73,10 +91,34 @@ class ProductService
                 $this->productRepositoryInterface->attachProductVariant($product, $requestProductData['product_variants']);
             }
 
+            // A commit acknowledgement can be lost after the database accepted the write.
+            $commitAttempted = true;
             DB::commit();
         } catch (\Throwable $th) {
-            DB::rollBack();
-            return $th;
+            $rollbackConfirmed = false;
+            try {
+                $wasActive = $connection->transactionLevel() === $startingLevel + 1
+                    && $connection->getPdo()->inTransaction();
+                $connection->rollBack($startingLevel);
+                $rollbackConfirmed = $wasActive
+                    && $connection->transactionLevel() === $startingLevel
+                    && $connection->getPdo()->inTransaction() === ($startingLevel > 0);
+            } catch (\Throwable $rollbackError) {
+                $warn('Product creation rollback could not be confirmed; uploaded media retained.');
+            }
+
+            if (!$commitAttempted && $rollbackConfirmed) {
+                foreach ($newImagePaths as $imagePath) {
+                    try {
+                        if (!Storage::disk($diskName)->delete($imagePath)) {
+                            $warn('Product creation upload cleanup could not be completed.');
+                        }
+                    } catch (\Throwable $cleanupError) {
+                        $warn('Product creation upload cleanup could not be completed.');
+                    }
+                }
+            }
+            throw $th;
         }
     }
 

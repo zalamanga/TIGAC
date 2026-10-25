@@ -94,9 +94,11 @@ Jalankan pengujian PHP di container:
 docker compose --env-file .env.docker exec app php artisan test
 ```
 
-Konfigurasi pengujian memakai SQLite `:memory:` dan mail `array`; pengujian fitur memalsukan pengiriman email. Cakupannya meliputi pembatasan admin, registrasi, perintah pembuatan admin, serta alur keranjang dan pesanan. Pengujian otomatis tidak menjalankan pembayaran nyata atau mengirim email ke pelanggan.
+Konfigurasi pengujian memakai SQLite `:memory:` dan mail `array`; pengujian fitur memalsukan pengiriman email. Cakupannya meliputi pembatasan admin, registrasi, perintah pembuatan admin, serta alur keranjang dan pesanan. Regresi produk memeriksa slug yang tidak ditemukan, hasil simpan admin, rollback database dan pembersihan gambar upload. Pengujian otomatis tidak menjalankan pembayaran nyata atau mengirim email ke pelanggan.
 
-Verifikasi Docker: tiga layanan berstatus sehat, 24 migrasi berhasil di MySQL 8.4, serta 54 pengujian PHP dengan 367 asersi lulus pada PHP 8.3.35.
+Verifikasi perbaikan produk: 67 pengujian dengan 461 asersi lulus pada PHP 8.5.12 dan SQLite `:memory:`. Ini mencakup commit PDO yang berhasil lalu melempar error konfirmasi, rollback yang gagal, serta kegagalan pembersihan file. Jika hasil commit/rollback tidak dapat dipastikan, file baru dipertahankan untuk diperiksa. Pemulihan ini hanya menangani upload pembuatan produk; folder penyimpanan dan file dari alur update/delete tidak dipindai untuk pembersihan menyeluruh.
+
+Verifikasi Docker sebelumnya: tiga layanan berstatus sehat, 24 migrasi berhasil di MySQL 8.4, serta 54 pengujian PHP dengan 367 asersi lulus pada PHP 8.3.35.
 
 Pemeriksaan Edge pada database kosong mencakup sembilan halaman publik/auth pada lebar 390 dan 1440 piksel (18 kunjungan), tanpa error JavaScript, aset lokal gagal, atau overflow horizontal. Beranda juga diperiksa pada lebar 320 dan 768 piksel.
 
